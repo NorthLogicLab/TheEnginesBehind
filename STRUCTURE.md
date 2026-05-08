@@ -1,64 +1,115 @@
-# STRUKTUR — The Engines Behind
+Structural Framework — The Engines Behind
 
-## Titel
-The Engines Behind — A MasterMind Philosophy on Competitive Advantage, 
-AI Infrastructure and Personal Capacity in 2025-2035
+Build the project as a layered systems-analysis rather than a collection of isolated chapters.
 
----
+The project structure should follow this logic:
 
-## Del 1 — Then vs Now
-Arla 2014 som baseline. Klyngeteori og lokationsfordele dengang.
-Hvad holdt. Hvad ændrede sig.
-AI som den nye mælkekvote-afskaffelse — ekstern trigger der tvinger global repositionering.
-Forskelle og ligheder mellem 2014 og 2026.
-Personaer: Porter (primær) + Buffett (sekundær)
+Layer 1 — Core Theory
 
-## Del 2 — The Diamond Reloaded
-Porters diamant anvendt på AI-kapex geografi.
-Factor conditions i 2026: strøm, køling, fiber, regulering, talent.
-Demand conditions: hyperscaler capex-spend.
-Related industries: fysisk infrastruktur som kritiske spokes.
-Rivalry: USA vs Kina vs EU.
-Personaer: Porter (primær) + Kinesisk strateg (primær) + Buffett (sekundær)
+Purpose:
+Define the underlying analytical framework.
 
-## Del 3 — The New Cooperative
-Statslig industriel intervention som den moderne andelsbevægelse.
-IRA, EU AI Act, Chips Act, REPowerEU.
-Staten som venture kapitalist og strategisk investor.
-Government policy og chance som afgørende game-changers fremadrettet.
-Den usynlige hånd er ikke markedet — det er regeringerne.
-Personaer: Vestager (primær) + Kinesisk strateg (primær) + Porter (sekundær)
+Establish:
 
-## Del 4 — Hub and Spoke 2.0
-Hyperscalers som dominerende hub.
-Fysisk infrastruktur som kritiske spokes.
-Scandi Standard som parallel case — samme logik, anden sektor.
-Lusiaves som usynlig hub. Motorerne bag de synlige vindere.
-Personaer: Porter (primær) + Buffett (sekundær)
+- what an “engine” is
+- what asymmetry means
+- bottlenecks
+- absorptive capacity
+- infrastructure dependency
+- capability conversion
+- coordination mechanisms
+- time horizon asymmetry
+- value capture logic
 
-## Del 5 — PACAP vs RACAP — The Personal Equation
-Absorberende kapacitet vendt indad.
-Potentiel vs realiseret kapacitet på personniveau.
-Business Technologist som rollen der konverterer PACAP til RACAP hurtigere end andre.
-Factor conditions på personniveau.
-Skills needed: hvad er fremtidssikkert i 2026-2035.
-Jon Bachs uddannelsesrejse som levende case.
-Personaer: HR-direktør (primær) + Porter (sekundær) + Buffett (sekundær)
-
-## Del 6 — The MasterMind Portfolio
-Investeringsfilosofien ekspliciteret.
-Køb motorerne ikke narrativet.
-Fysisk nødvendighed over digital drøm.
-Porteføljen som proof of concept.
-Hvordan analysen kontinuerligt informerer fremtidige positioner.
-Personaer: Buffett (primær) + Porter (sekundær) + Vestager (sekundær)
+This layer creates the project’s core explanatory model.
 
 ---
 
-## Status
-- [ ] Del 1 — Arbejdsudkast v.2 færdigt — afventer review
-- [ ] Del 2 — Not started
-- [ ] Del 3 — Not started
-- [ ] Del 4 — Not started
-- [ ] Del 5 — Not started
-- [ ] Del 6 — Not started
+Layer 2 — Systemic Arenas
+
+Apply the framework to major systems:
+
+- AI infrastructure
+- energy
+- semiconductors
+- cloud and hyperscalers
+- regulation and industrial policy
+- state coordination
+- supply chains
+- labor and capability structures
+- platform ecosystems
+- investment dynamics
+
+Each section must:
+
+- identify the engine
+- identify the bottleneck
+- identify the coordination mechanism
+- identify value capture
+- identify asymmetrical effects
+
+AI is treated as a systemic forcing function — not the sole topic.
+
+---
+
+Layer 3 — Organizational Translation
+
+Analyze how organizations convert external technological change into operational capability.
+
+Focus on:
+
+- absorptive capacity
+- workflow translation
+- data structures
+- process redesign
+- governance
+- decision systems
+- capability accumulation
+- institutional learning
+
+Distinguish clearly between:
+
+- access to AI
+- ability to operationalize AI
+- ability to compound advantages from AI
+
+---
+
+Layer 4 — Personal Strategic Positioning
+
+Apply absorptive capacity theory at the individual level.
+
+Focus on:
+
+- PACAP versus RACAP
+- Business Technologist roles
+- interdisciplinary capability
+- translation between business and systems
+- learning velocity
+- operational leverage
+- adaptation asymmetry
+
+The individual is analyzed as a capability-conversion system.
+
+---
+
+Layer 5 — Strategic and Investment Implications
+
+Derive implications for:
+
+- companies
+- states
+- labor markets
+- investors
+- education systems
+- strategic positioning
+
+Focus on:
+
+- durable versus temporary advantage
+- invisible infrastructure layers
+- long-term structural necessities
+- what becomes commoditized
+- what becomes increasingly scarce
+
+The conclusion must synthesize the system as a whole rather than summarize isolated chapters.
