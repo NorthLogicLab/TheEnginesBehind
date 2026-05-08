@@ -1,158 +1,172 @@
 # MASTER CONTEXT — The Engines Behind
-
 ## Brug denne fil til at starte hver session
-Kopiér hele indholdet ind i starten af en ny Claude-samtale.
 
 ---
 
-## Hvem er jeg
-- Navn: Jon Bach
-- Titel: Business Technologist / E-procurement specialist
-- Arbejdsgiver: Scandi Standard
-- Uddannelse: HD International Business, CBS (2014) + Value Chain Management, VIA UC + AI Developer uddannelse (2028)
-- Profil: Hybrid mellem forretning og teknologi. Enneagram 5-1-3. DISC: C/D.
+## Projekt
+**Titel:** The Engines Behind — A MasterMind Philosophy on 
+Competitive Advantage, AI Infrastructure and Personal Capacity 
+in 2025–2035
 
-## Professionel baggrund
-- E-procurement ansvarlig på tværs af Scandi Standards europæiske footprint
-- Domænekendskab: VMI, regulatorisk, e-procurement, spend analytics
-- Tech-stack kendskab: QlikSense, M3 (Infor ERP), Acentio, Azure
-- Business Technologist — svær at placere nu, uundgåelig om 10 år
+**Primært sprog:** Dansk
+**Undtagelser:** Executive Summary + README på både dansk og engelsk
 
-## Investor-profil
-- Portefølje YTD 2026: +18,04% vs OMXC25 -3,23%
-- Filosofi: "Køb motorerne bag — ikke narrativet"
-- Kernepositioner: AI capex (Vertiv, TSMC, ABB, Eaton, NKT) + Pandora + Scandi Standard (20%)
-- Scandi Standard-case: Lusiaves vertikal integration, NL kapacitet, M3 udrulning, DK farm, 1 mia EBIT 2027, 2 mia EBIT 2032
-
-## Projektet
-**Titel:** The Engines Behind — A MasterMind Philosophy on Competitive Advantage, AI Infrastructure and Personal Capacity in 2025-2035
-
-**Formål:** 
+**Formål:**
 - Forstå hvad der rykker globalt på konkurrenceevne
-- Positionere mig professionelt fremadrettet
+- Positionere sig professionelt fremadrettet
 - Omsætte analysen til investeringsbeslutninger
 - Skabe et personligt strategisk kompas
 
-**Målgruppe:** Erhvervsliv og mig selv. Ikke policy-paper — men kan bygges ovenpå.
+**Målgruppe:** Erhvervsliv og én selv. Ikke policy-paper — 
+men kan bygges ovenpå.
 
-**Format:** HD IB / Smartlearning sprog. Analytisk men tilgængeligt. LinkedIn + GitHub publicering.
+**Format:** HD IB / Smartlearning sprog. Analytisk men 
+tilgængeligt. LinkedIn + GitHub publicering.
 
 **Tidshorisont:** 12 måneder on/off
 
-**Akademisk fundament:** Jon Bachs HD IB speciale om Arla Foods og klyngeteori (CBS 2014)
+---
+
+## Akademisk afsæt
+Projektet udspringer af HD IB-arbejde med Arla Foods, 
+klyngeteori og international konkurrenceevne (CBS, 2014). 
+Arla-casen fungerer ikke som hovedcase men som metodisk 
+oprindelse: den viste at konkurrencefordel opstår i systemet 
+omkring virksomheden — ikke kun inde i den.
+
+Dette projekt udvider den logik til AI-infrastruktur, 
+geopolitik, regulering, kapitalallokering og personlig 
+kapacitet.
+
+**Arla nævnes kun som oprindelse — ikke som parallelcase.**
 
 ---
 
-## Seneste beslutninger
-- Titel låst: "The Engines Behind — A MasterMind Philosophy"
-- 6-dels struktur godkendt
-- GitHub repo oprettet: NorthLogicLab/TheEnginesBehind
-- Claude Code installeret og forbundet til repo
-- Arbejdsmetode: Jon sparrer, udfordrer, tilfører domæneindsigt. Claude strukturerer, researcher, skriver udkast.
+## Profil
+- E-procurement specialist, Scandi Standard
+- Investor: +18% YTD 2026 vs OMXC25 -3,23%
+- Kernepositioner: Vertiv, TSMC, ABB, Eaton, NKT, 
+  Pandora, Scandi Standard (20%)
+- Filosofi: "Køb motorerne bag — ikke narrativet"
+- Profil: Business Technologist — hybrid mellem 
+  forretning og teknologi
 
 ---
 
-## Analytisk metode — Multi-Persona Konflikt + Syntese
+## Projektets centrale problemformulering
+Hvordan kan man identificere de underliggende motorer bag 
+varig konkurrencekraft i 2025–2035 — på tværs af 
+virksomheder, værdikæder, teknologiske infrastrukturer 
+og personlig kapacitet?
 
-Projektet anvender en multi-agent analysemodel med 5 ekspert-personaer.
-Målet er IKKE konsensus. Målet er konflikt, kritik og systemisk syntese.
+---
 
-### De 5 personaer og deres primære rolle:
+## Analytisk metode — fem linser, ikke fem teorier
 
-**Michael Porter**
-Fokus: Konkurrencestruktur, værdikæder, diamantmodel, klynger, factor conditions, national competitiveness.
-Tungest vægt: Del 2 (Diamond Reloaded) og Del 4 (Hub and Spoke 2.0)
+Teorierne er analytiske linser — ikke pensum.
+En teori nævnes kun hvis den løser et konkret analyseproblem.
 
-**Warren Buffett**
-Fokus: Kapitalallokering, durable moats, reel værdiskabelse vs hype, cash flow, langsigtede vindere, fysisk nødvendighed over digital drøm.
-Tungest vægt: Del 6 (MasterMind Portfolio)
+**Porter** — lokation, klynger, factor conditions, 
+national/regional konkurrenceevne.
+Spørgsmål: Hvorfor bliver nogle regioner strukturelt 
+stærkere end andre?
 
-**Margrethe Vestager**
-Fokus: EU-regulering, AI Act, Chips Act, digital suverænitet, compliance som konkurrenceparameter, platform dominance, geopolitik.
-Tungest vægt: Del 3 (The New Cooperative)
+**Dynamic Capabilities (Teece)** — omstillingsevne, 
+rekonfigurering, sanse-gribe-transformere.
+Spørgsmål: Hvem konverterer teknologisk disruption til 
+fordel — og hvem køber bare værktøjet?
 
-**Nordisk HR-direktør**
-Fokus: Kompetenceudvikling, fremtidige jobprofiler, organisationsforandring, human capital, AI-adoption, psykologiske konsekvenser.
-Tungest vægt: Del 5 (PACAP vs RACAP — The Personal Equation)
+**Ecosystem Theory (Jacobides/Gawer)** — systemkoordinering, 
+gensidige afhængigheder, platform governance.
+Spørgsmål: Hvem koordinerer systemet af afhængige aktører?
 
-**Kinesisk tech/infra strateg**
-Fokus: Statskapitalisme, Huawei/CATL/BYD, fysisk infrastruktur som geopolitisk våben, Belt and Road som klyngestrategi, teknologisk selvforsyning, det lange spil.
-Tungest vægt: Del 2 og Del 3
+**Bottlenecks & Modularity (Baldwin)** — værdifangst, 
+flaskehalse, arkitektonisk kontrol.
+Spørgsmål: Hvor i systemet fanges den varige værdi?
 
-### Persona Activation Rule:
+**Architectural Innovation (Henderson & Clark)** — 
+hvorfor stærke virksomheder fejler ved teknologiskift.
+Spørgsmål: Hvorfor misforstår Excel-organisationer 
+AI-systemer?
 
-En persona aktiveres KUN når den:
-- Tilføjer et perspektiv der er genuint forskelligt fra de andre
+---
+
+## Persona Activation Rule
+Personas er analytiske linser — ikke fast ritual.
+
+Aktiveres kun når de:
+- Tilføjer et perspektiv der er genuint forskelligt
 - Skaber produktiv konflikt med et andet perspektiv
 - Bringer domænespecifik logik der ændrer konklusionen
 
-En persona aktiveres IKKE når den:
-- Blot gentager hvad en anden linse allerede har sagt
-- Inkluderes af symmetri eller fuldstændighed
-- Tilføjer længde uden analytisk spænding
-
-Færre aktive personaer = skarpere analyse.
-Én stærk konflikt er mere værd end fire høflige perspektiver.
-
-### Kritisk metode:
-Claude må IKKE:
-- Ukritisk acceptere fortællingen
-- Skabe falsk konsensus
-- Bruge management-floskler
-- Konkludere uden argumentation
-- Ignorere modsætninger mellem personaerne
-
-Claude SKAL:
-- Være skeptisk og udfordre antagelser
-- Identificere svage argumenter
-- Analysere 2. og 3. ordens effekter
-- Adskille fakta, antagelser og spekulation
-- Forklare systemiske sammenhænge
-- Være villig til at sige: "Data understøtter ikke denne antagelse."
-
-### Analyseproces per del:
-1. Individuel analyse fra relevante personaer
-2. Konflikt og spændinger mellem perspektiverne
-3. Systemisk syntese
+De 5 personaer og primære dele:
+- Porter → Del 2 og Del 4
+- Buffett → Del 6
+- Vestager → Del 3
+- Nordisk HR-direktør → Del 5
+- Kinesisk tech/infra strateg → Del 2 og Del 3
 
 ---
 
-## Visualiseringsregler
+## Projektstruktur
 
-Klassificér altid visualiseringer som én af tre typer:
+**Del 1 — The Engines Behind**
+Manifest og analytisk kompas. Definerer observationen, 
+introducerer linserne, etablerer hvorfor det betyder noget.
+Primær lens: Ingen enkelt — alle fem introduceres kort.
 
-**Type 1 — Datadrevet graf:** Kun når konkrete data er tilgængelige. Angiv kilde, periode, enhed og begrænsninger.
+**Del 2 — The Infrastructure Layer**
+AI, energi, compute, datacentre, halvledere, køling.
+Primær lens: Porter + Bottlenecks + Ecosystem Theory.
 
-**Type 2 — Konceptuel model:** Til at forklare logik, teori og sammenhænge. Mærk tydeligt som konceptuel model.
+**Del 3 — The New Cooperative**
+Staten som investor, regulator og industristrateg.
+Primær lens: Vestager + Kinesisk strateg + Porter.
 
-**Type 3 — Hypotetisk scenarie:** Til mulige fremtidige udviklinger. Mærk tydeligt som hypotetisk scenarie.
+**Del 4 — Hub and Spoke 2.0**
+Platforme, økosystemer, value capture, leverandørmagt.
+Primær lens: Ecosystem Theory + Bottlenecks + Porter.
 
-Opfind aldrig tal, trends eller empirisk sikkerhed.
+**Del 5 — The Personal Equation**
+Fremtidens kompetenceprofil og personlig kapacitet.
+Primær lens: Dynamic Capabilities + Absorptive Capacity 
++ Architectural Innovation.
+
+**Del 6 — MasterMind Portfolio**
+Investering, karrierepositionering, strategisk kompas.
+Primær lens: Buffett + Bottlenecks + Moats.
 
 ---
 
-## Outputformat
+## Output format
+- Grundformat: HD IB — analytisk, argumenterende, 
+  professionelt men tilgængeligt
+- Essays: Løbende afstikkere til LinkedIn
+- Visualiseringer klassificeres altid som:
+  1. Datadrevet (kræver kilde, periode, enhed)
+  2. Konceptuel model (logik og relationer)
+  3. Hypotetisk scenarie (fremtidige muligheder)
 
-**Grundformat:** HD IB afhandlingssprog — analytisk, argumenterende, professionelt men tilgængeligt. Ikke konsulentfloskler.
+---
 
-**Essays:** Løbende afstikkere på interessante fokuspunkter. Kan publiceres selvstændigt på LinkedIn.
-
-**Struktur per del:**
-1. Introduktion
-2. Problemformulering
-3. Metode og perspektiver
-4. Individuelle analyser (personaer)
-5. Konfliktanalyse
-6. Systemisk syntese
-7. Strategiske implikationer
-8. Konklusion
-9. Perspektivering
+## Teknisk arkitektur
+- GitHub: NorthLogicLab/TheEnginesBehind
+- POC: Én HTML-fil per del
+- Produktion: index.html + styles.css + charts.js + /data/
+- Hosting: GitHub Pages (når klar)
+- Teknisk gæld dokumenteres i /critique.md
 
 ---
 
 ## Arbejdsmetode
 Start hver session med at indsætte denne fil.
 Opdater SESSIONS.md efter hver session.
-Udkast gemmes i _drafts mappen.
-Research gemmes i _research mappen.
-Kritik og svagheder gemmes i Critique filen.
+Udkast gemmes i /drafts.
+Kildehenvisninger følger nummereret fodnotesystem.
+
+---
+
+## Anti-hallucination regel
+Adskil altid: fakta / antagelse / inference / spekulation.
+Invent aldrig data, tal, kilder eller fremstil certainty.
+Sig eksplicit: "Data understøtter ikke denne antagelse."
