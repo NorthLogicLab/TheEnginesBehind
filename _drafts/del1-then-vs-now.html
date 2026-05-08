@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Del 1 — Then vs Now | The Engines Behind</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy:    #1a2744;
+      --gold:    #c8a84b;
+      --cream:   #f8f6f1;
+      --text:    #2c2c2c;
+      --muted:   #6b6b6b;
+      --border:  #d4c9b0;
+      --red:     #8b1a1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--text);
+      background: #fff;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ─── COVER ─────────────────────────────────────────── */
+    .cover {
+      background: var(--navy);
+      color: #fff;
+      padding: 72px 64px 56px;
+    }
+    .cover .series-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 44px;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      max-width: 680px;
+    }
+    .cover .subtitle {
+      font-size: 19px;
+      font-style: italic;
+      color: rgba(255,255,255,.6);
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+    .cover .meta {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,.38);
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding-top: 20px;
+    }
+
+    /* ─── NAV BAR ────────────────────────────────────────── */
+    .nav-bar {
+      background: var(--gold);
+      padding: 11px 64px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .nav-bar a {
+      color: var(--navy);
+      text-decoration: none;
+      margin-right: 22px;
+    }
+    .nav-bar a:hover { text-decoration: underline; }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 40px;
+    }
+
+    /* ─── HEADINGS ───────────────────────────────────────── */
+    h2 {
+      font-size: 27px;
+      color: var(--navy);
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gold);
+    }
+    h2 .section-num {
+      color: var(--gold);
+      margin-right: 10px;
+      font-size: 22px;
+    }
+    h3 {
+      font-size: 20px;
+      color: var(--navy);
+      margin: 36px 0 10px;
+    }
+    h4 {
+      font-size: 16px;
+      color: var(--navy);
+      font-style: italic;
+      margin: 24px 0 6px;
+    }
+    p { margin-bottom: 18px; }
+
+    /* ─── HOOK BOX ───────────────────────────────────────── */
+    .hook-box {
+      background: var(--navy);
+      color: #fff;
+      border-left: 5px solid var(--gold);
+      padding: 36px 44px;
+      margin: 44px 0;
+    }
+    .hook-box p {
+      font-size: 19px;
+      line-height: 1.72;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,.9);
+    }
+    .hook-box .hook-source {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─── PERSONA BOXES ──────────────────────────────────── */
+    .persona-box {
+      border: 1px solid var(--border);
+      background: var(--cream);
+      padding: 30px 36px;
+      margin: 32px 0;
+    }
+    .persona-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .badge {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      font-weight: 700;
+    }
+    .badge-primary   { background: var(--navy);  color: #fff; }
+    .badge-secondary { background: var(--muted); color: #fff; }
+    .persona-name    { font-size: 19px; font-weight: 700; color: var(--navy); }
+
+    /* ─── CONFLICT BOX ───────────────────────────────────── */
+    .conflict-box {
+      border: 2px solid var(--gold);
+      background: #fffbf2;
+      padding: 30px 36px;
+      margin: 44px 0;
+    }
+    .conflict-box h3 { margin-top: 0; color: var(--gold); }
+
+    /* ─── SYNTHESIS CALLOUT ──────────────────────────────── */
+    .synthesis {
+      border-left: 4px solid var(--navy);
+      background: var(--cream);
+      padding: 22px 30px;
+      margin: 32px 0;
+    }
+    .synthesis strong { color: var(--navy); }
+
+    /* ─── VIZ CONTAINERS ─────────────────────────────────── */
+    .viz-wrap {
+      border: 1px solid var(--border);
+      background: #fafaf7;
+      padding: 32px 36px;
+      margin: 40px 0;
+    }
+    .viz-type-badge {
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .type1 { background: #d4edda; color: #155724; }
+    .type2 { background: #cce5ff; color: #00347a; }
+    .viz-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .viz-caption {
+      margin-top: 14px;
+      font-family: Arial, sans-serif;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .chart-box { position: relative; max-width: 100%; }
+
+    /* ─── PORTER DIAMOND (SVG) ───────────────────────────── */
+    .diamond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .diamond-svg-wrap {
+      text-align: center;
+    }
+    .diamond-svg-wrap h4 {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-style: normal;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* ─── COMPARISON TABLE ───────────────────────────────── */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      margin-top: 20px;
+    }
+    .comp-table th {
+      background: var(--navy);
+      color: #fff;
+      padding: 11px 14px;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .8px;
+    }
+    .comp-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .comp-table tr:nth-child(even) td { background: var(--cream); }
+    .comp-table .param { font-weight: 700; color: var(--navy); font-size: 13.5px; }
+    .badge-holds     { background: #d4edda; color: #155724; font-family: Arial, sans-serif; font-size: 10px; padding: 2px 8px; letter-spacing: 1px; display: inline-block; }
+    .badge-changed   { background: #fff3cd; color: #856404; font-family: Arial, sans-serif; font-size: 10px; padding: 2px 8px; letter-spacing: 1px; display: inline-block; }
+    .badge-disrupted { background: #f8d7da; color: #721c24; font-family: Arial, sans-serif; font-size: 10px; padding: 2px 8px; letter-spacing: 1px; display: inline-block; }
+
+    /* ─── FACTOR MATRIX ──────────────────────────────────── */
+    .factor-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 20px;
+    }
+    .factor-matrix th {
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 13px;
+      font-family: Arial, sans-serif;
+      font-size: 11.5px;
+      letter-spacing: .8px;
+      text-align: left;
+    }
+    .factor-matrix td {
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .factor-matrix .cat-row td { background: #eee8da; font-weight: 700; color: var(--navy); font-size: 13px; }
+    .score-h { color: #155724; font-weight: 700; }
+    .score-m { color: #856404; font-weight: 700; }
+    .score-l { color: #721c24; font-weight: 700; }
+
+    /* ─── IMPLICATIONS LIST ──────────────────────────────── */
+    .impl-list { list-style: none; padding: 0; margin-top: 16px; }
+    .impl-list li {
+      padding: 12px 16px 12px 44px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 15.5px;
+    }
+    .impl-list li::before {
+      content: "→";
+      position: absolute;
+      left: 14px;
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* ─── FOOTNOTES ──────────────────────────────────────── */
+    .footnotes {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footnotes h3 { font-size: 17px; margin-bottom: 14px; }
+    .footnotes ol { padding-left: 20px; }
+    .footnotes li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 8px;
+      font-family: Arial, sans-serif;
+    }
+    sup {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 11px;
+      vertical-align: super;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin-top: 64px;
+    }
+
+    @media (max-width: 680px) {
+      .cover { padding: 40px 24px; }
+      .cover h1 { font-size: 28px; }
+      .container { padding: 36px 20px; }
+      .nav-bar { padding: 10px 20px; }
+      .diamond-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="series-label">The Engines Behind &nbsp;·&nbsp; Del 1 af 6</div>
+  <h1>Then vs Now</h1>
+  <div class="subtitle">
+    Fra nordisk mejeriklynge til AI-infrastrukturkapløb —<br>
+    hvad Porters diamant lærte os i 2014, og hvad den siger i 2026
+  </div>
+  <div class="meta">
+    Jon Bach &nbsp;·&nbsp; NorthLogicLab &nbsp;·&nbsp; Maj 2026 &nbsp;·&nbsp;
+    Arbejdsudkast v.2 — ikke til ekstern cirkulation
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <a href="#introduktion">1. Introduktion</a>
+  <a href="#problem">2. Problemformulering</a>
+  <a href="#metode">3. Metode</a>
+  <a href="#analyser">4. Analyser</a>
+  <a href="#konflikt">5. Konflikt</a>
+  <a href="#syntese">6. Syntese</a>
+  <a href="#implikationer">7. Implikationer</a>
+  <a href="#konklusion">8. Konklusion</a>
+  <a href="#perspektivering">9. Perspektivering</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ CONTENT -->
+<div class="container">
+
+  <!-- ──────────────────────────────────── 1. INTRODUKTION -->
+  <h2 id="introduktion"><span class="section-num">1.</span> Introduktion</h2>
+
+  <div class="hook-box">
+    <p>
+      En fredag i maj 1911 afsagde USA's Højesteret sin dom: Standard Oil Company of New Jersey
+      skulle opløses i 34 selvstændige selskaber. Overskrifterne handlede om Rockefellers fald.
+    </p>
+    <p>
+      Investorerne, der læste dommen grundigere, opdagede noget andet. De efterfølgende årtier
+      viste, at de bedst performende efterfølgerselskaber ikke var dem med de største oliefelter.
+      Det var rørlednings- og raffineringsselskaberne — de virksomheder der ejede den fysiske
+      infrastruktur, der gjorde olie til brugbar energi. Brønden er synlig. Rørledningen er
+      usynlig. Men det er rørledningen der bestemmer hvem der tjener penge.
+    </p>
+    <p>
+      I 2026 er Standard Oil ChatGPT. Rørledningerne hedder Vertiv, TSMC, ABB, Eaton og NKT.
+    </p>
+    <div class="hook-source">Rockefeller-parallellen som analytisk nøgle for dette projekt</div>
+  </div>
+
+  <p>
+    Dette er del 1 af <em>The Engines Behind</em>. Her etablerer vi baselinjen: hvad en analyse
+    af Arla Foods og det nordiske mejericluster lærte os i 2014, hvad der har holdt fra den
+    analyse, og hvad der fundamentalt har ændret sig frem mod 2026.
+  </p>
+  <p>
+    Argumentet er, at AI-infrastrukturkapløbet er den nye mælkekvotefrigivelse — en ekstern,
+    politisk-teknologisk trigger der tvinger global repositionering med en hastighed og
+    kapitalintensitet uden fortilfælde i fredstid. Og at det analytiske grundlag fra 2014
+    — Porters diamantmodel og klyngeteori — ikke er forældet. Det er mere relevant end nogensinde.
+    Blot peger det nu mod andre factor conditions end dengang.
+  </p>
+  <p>
+    Analysens pointe er ikke, at AI er speciel. Den er, at <em>strukturen</em> i teknologiske
+    skift gentager sig: et eksternt chok omfordeler factor conditions og belønner dem der allerede
+    sidder på de rigtige positioner — samt dem der er hurtige nok til at identificere og tilegne
+    sig de nye.
+  </p>
+
+
+  <!-- ──────────────────────────────────── 2. PROBLEMFORMULERING -->
+  <h2 id="problem"><span class="section-num">2.</span> Problemformulering</h2>
+
+  <p>
+    Projektet <em>The Engines Behind</em> bygger på et akademisk fundament fra 2014: en HD
+    International Business-analyse af Arla Foods og det nordiske mejericluster.<sup>1</sup>
+    Dengang viste analysen, at Arlas konkurrenceevne ikke primært var et resultat af billig
+    råmælk eller effektiv produktion isoleret set — men af et sammenhængende system af
+    faktorforhold, efterspørgselsbetingelser og relaterede industrier, der tilsammen skabte
+    en klynge med selvforstærkende konkurrencekraft.
+  </p>
+  <p>
+    Del 1 søger at besvare tre spørgsmål:
+  </p>
+  <ol style="padding-left:24px; margin-bottom:18px;">
+    <li style="margin-bottom:10px;">
+      Hvad var de afgørende konkurrenceparametre for en nordisk, internationalt orienteret
+      virksomhed i 2014, og hvordan kan de struktureres i Porters Diamond Model?
+    </li>
+    <li style="margin-bottom:10px;">
+      Hvad er de tilsvarende konkurrenceparametre i 2026, og i hvilken udstrækning udgør de
+      kontinuitet versus diskontinuitet med 2014-analysen?
+    </li>
+    <li style="margin-bottom:10px;">
+      Hvad er det analytiske grundlag for tesen om, at de fysiske infrastrukturkomponenter i
+      AI-kapexbølgen udgør den mest robuste langsigtede konkurrenceposition — for nationer,
+      sektorer og investorer?
+    </li>
+  </ol>
+
+
+  <!-- ──────────────────────────────────── 3. METODE -->
+  <h2 id="metode"><span class="section-num">3.</span> Metode og perspektiver</h2>
+
+  <p>
+    Analysen anvender <strong>Porters Diamond Model</strong> (1990) som primær analytisk
+    ramme.<sup>2</sup> Modellen identificerer fire determinanter for national konkurrenceevne:
+    faktorforhold, efterspørgselsbetingelser, relaterede og støttende industrier samt
+    virksomhedsstrategi og rivalisering — suppleret af to eksterne variable: stat/politik
+    og chance. Til disse føjes <strong>Smile Curve-konceptet</strong> (Stan Shih, 1992) som
+    ramme for at forstå værdiskabelse langs værdikæden.<sup>3</sup>
+  </p>
+  <p>
+    <strong>Komparativ metode:</strong> Arla Foods' position i 2014 sammenlignes systematisk
+    med AI-infrastruktursektorens position i 2026. Casene deler ikke alle karakteristika —
+    et mejericooperativ og et halvlederøkosystem er fundamentalt anderledes objekter. Men den
+    analytiske logik er identisk: ekstern trigger → rekalibrering af factor conditions →
+    nyt klyngehierarki med vinder og tabere.
+  </p>
+
+  <h3>Aktive personaer i Del 1</h3>
+  <p>
+    I henhold til projektets persona-aktiveringsregel aktiveres kun de personaer, der tilfører
+    et genuint forskelligt perspektiv. I Del 1 aktiveres to:
+  </p>
+  <ul style="padding-left:24px; margin-bottom:18px;">
+    <li style="margin-bottom:8px;"><strong>Michael Porter</strong> (primær) — konkurrencestruktur, factor conditions, klyngeteori, national competitiveness.</li>
+    <li style="margin-bottom:8px;"><strong>Warren Buffett</strong> (sekundær) — kapitalallokering, durable moats, prismagt, reel værdiskabelse versus hype.</li>
+  </ul>
+  <p>
+    Vestager, HR-direktøren og den kinesiske strateg aktiveres ikke i Del 1. Statslig
+    intervention er Del 3's kerne. Humankapital er Del 5's. Geopolitik er uundgåeligt
+    til stede i Del 2 og 3. At inkludere dem her ville tilføje bredde men reducere dybde.
+  </p>
+  <p>
+    <strong>Begrænsning:</strong> Porters Diamond er udviklet til at analysere nationale
+    sektorer over tid — ikke enkeltvirksomheder eller teknologiparadigmeskift over 18
+    måneder. Modellen bør derfor anvendes som et heuristisk strukturværktøj snarere end
+    som en præcis empirisk model.
+  </p>
+
+
+  <!-- ──────────────────────────────────── 4. ANALYSER -->
+  <h2 id="analyser"><span class="section-num">4.</span> Individuelle analyser</h2>
+
+  <!-- 4.1 PORTER DIAMOND VISUALIZATION -->
+  <h3>4.1 Porters Diamond — Arla 2014 og AI-infrastruktur 2026</h3>
+
+  <div class="viz-wrap">
+    <span class="viz-type-badge type2">Type 2 — Konceptuel model</span>
+    <div class="viz-title">Porters Diamond Model: Nordisk mejeri (2014) vs AI-infrastruktur (2026)</div>
+    <p style="font-size:14px; color:var(--muted); margin-bottom:20px;">
+      To parallelle diamanter. Strukturen er identisk — indholdet er transformeret.
+    </p>
+
+    <div class="diamond-grid">
+      <!-- Diamond 2014 -->
+      <div class="diamond-svg-wrap">
+        <h4>2014 — Nordisk mejeriklynge</h4>
+        <svg viewBox="0 0 320 300" width="100%" style="max-width:320px;">
+          <defs>
+            <marker id="arrow14" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#c8a84b"/>
+            </marker>
+          </defs>
+          <!-- Background diamond -->
+          <polygon points="160,18 302,150 160,282 18,150" fill="#eee8da" stroke="#c8a84b" stroke-width="1.5"/>
+          <!-- Center label -->
+          <rect x="100" y="122" width="120" height="56" rx="4" fill="#1a2744"/>
+          <text x="160" y="145" text-anchor="middle" font-family="Arial" font-size="11" fill="#c8a84b" font-weight="bold">ARLA FOODS</text>
+          <text x="160" y="161" text-anchor="middle" font-family="Arial" font-size="9.5" fill="rgba(255,255,255,.7)">Kooperativ klynge</text>
+          <text x="160" y="173" text-anchor="middle" font-family="Arial" font-size="9.5" fill="rgba(255,255,255,.7)">Norden 2014</text>
+          <!-- TOP: Factor conditions -->
+          <rect x="92" y="2" width="136" height="50" rx="3" fill="#1a2744"/>
+          <text x="160" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">FAKTORFORHOLD</text>
+          <text x="160" y="35" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Klima · Kvæg · Andelsmodel</text>
+          <text x="160" y="46" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Chr. Hansen · DTU Forskning</text>
+          <!-- BOTTOM: Related industries -->
+          <rect x="92" y="248" width="136" height="50" rx="3" fill="#1a2744"/>
+          <text x="160" y="268" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">RELATEREDE INDUSTRIER</text>
+          <text x="160" y="281" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Danisco · DLG · Slagterier</text>
+          <text x="160" y="292" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Emballage · Veterinær</text>
+          <!-- LEFT: Rivalry -->
+          <rect x="2" y="118" width="110" height="54" rx="3" fill="#1a2744"/>
+          <text x="57" y="138" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">RIVALISERING</text>
+          <text x="57" y="151" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Kooperativ konkurrence</text>
+          <text x="57" y="163" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">FrieslandCampina · Fonterra</text>
+          <!-- RIGHT: Demand -->
+          <rect x="208" y="118" width="110" height="54" rx="3" fill="#1a2744"/>
+          <text x="263" y="138" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">EFTERSPØRGSEL</text>
+          <text x="263" y="151" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Krævende nordiske</text>
+          <text x="263" y="163" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">forbrugere · EU-marked</text>
+          <!-- Arrows -->
+          <line x1="160" y1="52" x2="160" y2="118" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow14)"/>
+          <line x1="160" y1="182" x2="160" y2="246" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow14)"/>
+          <line x1="112" y1="150" x2="102" y2="150" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow14)"/>
+          <line x1="208" y1="150" x2="218" y2="150" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow14)"/>
+        </svg>
+      </div>
+
+      <!-- Diamond 2026 -->
+      <div class="diamond-svg-wrap">
+        <h4>2026 — AI-infrastrukturklynge</h4>
+        <svg viewBox="0 0 320 300" width="100%" style="max-width:320px;">
+          <defs>
+            <marker id="arrow26" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#c8a84b"/>
+            </marker>
+          </defs>
+          <polygon points="160,18 302,150 160,282 18,150" fill="#eee8da" stroke="#c8a84b" stroke-width="1.5"/>
+          <rect x="100" y="122" width="120" height="56" rx="4" fill="#1a2744"/>
+          <text x="160" y="145" text-anchor="middle" font-family="Arial" font-size="11" fill="#c8a84b" font-weight="bold">HYPERSCALERS</text>
+          <text x="160" y="161" text-anchor="middle" font-family="Arial" font-size="9.5" fill="rgba(255,255,255,.7)">MSFT · Google · AWS</text>
+          <text x="160" y="173" text-anchor="middle" font-family="Arial" font-size="9.5" fill="rgba(255,255,255,.7)">Meta · AI-klynge 2026</text>
+          <!-- TOP -->
+          <rect x="92" y="2" width="136" height="50" rx="3" fill="#1a2744"/>
+          <text x="160" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">FAKTORFORHOLD</text>
+          <text x="160" y="35" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Strøm · Køling · Fiber</text>
+          <text x="160" y="46" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Halvledere · ML-talent</text>
+          <!-- BOTTOM -->
+          <rect x="92" y="248" width="136" height="50" rx="3" fill="#1a2744"/>
+          <text x="160" y="268" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">RELATEREDE INDUSTRIER</text>
+          <text x="160" y="281" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Vertiv · ABB · Eaton · NKT</text>
+          <text x="160" y="292" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">TSMC · NVIDIA · Schneider</text>
+          <!-- LEFT -->
+          <rect x="2" y="118" width="110" height="54" rx="3" fill="#1a2744"/>
+          <text x="57" y="138" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">RIVALISERING</text>
+          <text x="57" y="151" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">USA vs Kina vs EU</text>
+          <text x="57" y="163" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">OpenAI · Anthropic · Gemini</text>
+          <!-- RIGHT -->
+          <rect x="208" y="118" width="110" height="54" rx="3" fill="#1a2744"/>
+          <text x="263" y="138" text-anchor="middle" font-family="Arial" font-size="10" fill="#c8a84b" font-weight="bold">EFTERSPØRGSEL</text>
+          <text x="263" y="151" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">Hyperscaler capex</text>
+          <text x="263" y="163" text-anchor="middle" font-family="Arial" font-size="8.5" fill="rgba(255,255,255,.8)">$220Mia+ p.a. (2024)</text>
+          <!-- Arrows -->
+          <line x1="160" y1="52" x2="160" y2="118" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow26)"/>
+          <line x1="160" y1="182" x2="160" y2="246" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow26)"/>
+          <line x1="112" y1="150" x2="102" y2="150" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow26)"/>
+          <line x1="208" y1="150" x2="218" y2="150" stroke="#c8a84b" stroke-width="1.2" marker-end="url(#arrow26)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="viz-caption">
+      Figur 1. Type 2 — Konceptuel model. Porters Diamond Model anvendt på to tidspunkter.
+      Diamantens struktur er uændret; factor conditions og aktørerne i hvert hjørne er
+      transformeret. Placering i hjørnerne er analytisk, ikke hierarkisk.
+    </div>
+  </div>
+
+  <p>
+    Det nordiske mejericluster i 2014 besad en særlig styrke i de avancerede faktorforhold:
+    generationers kooperative organisering, veterinær- og mejeriforskning i verdensklasse,
+    og et klimatisk grundlag for høj mælkekvalitet. Arla Foods var ikke et fremragende
+    mejeri fordi det ejede de bedste køer — det var fremragende fordi det befandt sig i
+    centrum af et klyngesystem der kontinuerligt løftede standarden for alle aktører.<sup>4</sup>
+  </p>
+  <p>
+    AI-infrastrukturklyngen i 2026 har en identisk logik. Microsofts, Amazons og Googles
+    datacentre er ikke konkurrencedygtige fordi de har det bedste personale isoleret set —
+    de er konkurrencedygtige fordi de befinder sig i klynger med adgang til billig og
+    pålidelig strøm, kølingsteknologi, lavlatens-fiberforbindelser og det dybeste
+    halvlederecientsystem i verden.
+  </p>
+
+  <!-- 4.2 THEN vs NOW TABLE -->
+  <h3>4.2 Systematisk Then vs Now — hvad holdt, hvad ændrede sig</h3>
+
+  <div class="viz-wrap">
+    <span class="viz-type-badge type2">Type 2 — Konceptuel model</span>
+    <div class="viz-title">Then vs Now: Komparativ parameteranalyse</div>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="width:20%">Parameter</th>
+          <th style="width:32%">Then — Arla/mejeri 2014</th>
+          <th style="width:32%">Now — AI-infrastruktur 2026</th>
+          <th style="width:16%">Vurdering</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="param">Primære faktorforhold</td>
+          <td>Klima, kvægbiologi, andelsorganisering, mejerikundskab akkumuleret over generationer</td>
+          <td>Strøm (billig, stabil, vedvarende), vand/køling, lavlatens-fiber, halvlederadgang, ML-talent</td>
+          <td><span class="badge-changed">ÆNDRET</span></td>
+        </tr>
+        <tr>
+          <td class="param">Vigtigste geografiske ankre</td>
+          <td>Danmark, Sverige, UK (Lurpak-marked), Tyskland, Mellemøsten som vækstmarked</td>
+          <td>N. Virginia (AWS), Dublin/Irland, Singapore, Phoenix (TSMC), Island og Norden (datakraft)</td>
+          <td><span class="badge-changed">ÆNDRET</span></td>
+        </tr>
+        <tr>
+          <td class="param">Ekstern trigger</td>
+          <td>EU-mælkekvoter afskaffes pr. 1. april 2015 — politisk beslutning der fjerner produktionsloft og kollapser priserne</td>
+          <td>ChatGPT lanceres nov. 2022 — teknologisk trigger der accelererer global AI-kapex-race med $220Mia+ p.a.</td>
+          <td><span class="badge-holds">STRUKTURELT LIG</span></td>
+        </tr>
+        <tr>
+          <td class="param">Triggerens natur</td>
+          <td>Langsomt varslede politiske beslutning (7 år fra annoncering til implementering)</td>
+          <td>Pludselig teknologisk disruption (effekt indenfor 12 måneder). Tempo er fundamentalt anderledes.</td>
+          <td><span class="badge-disrupted">DISKONTINUITET</span></td>
+        </tr>
+        <tr>
+          <td class="param">Respons fra vinderen</td>
+          <td>Arla: massiv internationalisering, branded product-strategi, bevægelse op ad Smile Curve</td>
+          <td>Hyperscalers: massiv capex-acceleration, vertikal integration af infrastruktur, bevægelse ned i supply chain</td>
+          <td><span class="badge-changed">MODSAT RETNING</span></td>
+        </tr>
+        <tr>
+          <td class="param">Kapitalintensitet</td>
+          <td>Høj for mejeriindustrien — men i milliardklassen (EUR). Arlas investeringsprogram 2013-2020 ca. €2Mia total.</td>
+          <td>Ekstremt høj — hyperscalers investerede tilsammen over $220Mia i 2024 alene. Kapitalintensiteten er uden historisk sidestykke i fredsperioder.</td>
+          <td><span class="badge-disrupted">DISKONTINUITET</span></td>
+        </tr>
+        <tr>
+          <td class="param">Klyngedynamik</td>
+          <td>Selvforstærkende mejeriklynge med delt viden, fælles forskning og leverandørnetværk</td>
+          <td>Selvforstærkende AI-infrastrukturklynge med delt talent, leverandørnetværk og regulatorisk akkumulering</td>
+          <td><span class="badge-holds">HOLDER</span></td>
+        </tr>
+        <tr>
+          <td class="param">Statens rolle</td>
+          <td>Regulatorisk (EU mælkekvoter som loftssystem). Staten som regelgiver, ikke aktør.</td>
+          <td>Aktiv industriel investor (IRA, CHIPS Act, EU AI Act). Staten som venture-kapitalist og strategisk co-investor.</td>
+          <td><span class="badge-disrupted">FUNDAMENTALT ÆNDRET</span></td>
+        </tr>
+        <tr>
+          <td class="param">Konkurrencefordel logik</td>
+          <td>Faktorfordele + klyngedybde skaber varig konkurrencekraft over tid</td>
+          <td>Identisk grundlogik. Men hastighedskravet til kapitaldeployment er radikalt øget.</td>
+          <td><span class="badge-holds">HOLDER I SUBSTANS</span></td>
+        </tr>
+        <tr>
+          <td class="param">Smile Curve-position</td>
+          <td>Arla 2014: bevæger sig fra commodity-midten (råmælk) mod branded ends (Lurpak, Castello)</td>
+          <td>Hyperscalers: befinder sig simultant i begge ender (chips og cloud-services). Midten (serverassemblering) commoditiseres.</td>
+          <td><span class="badge-changed">ÆNDRET DYNAMIK</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="viz-caption">
+      Figur 2. Type 2 — Konceptuel model. Komparativ parameteranalyse baseret på Porters
+      Diamond-dimensioner. "Vurdering" refererer til strukturel kontinuitet, ikke til
+      at faktuelle detaljer er identiske.
+    </div>
+  </div>
+
+  <!-- 4.3 SMILE CURVE -->
+  <h3>4.3 Smile Curve — hvem sidder på værdien</h3>
+
+  <div class="viz-wrap">
+    <span class="viz-type-badge type2">Type 2 — Konceptuel model</span>
+    <div class="viz-title">Smile Curve: 1990'erne vs AI-æraen 2026</div>
+
+    <div class="chart-box" style="max-width:700px; margin:0 auto;">
+      <canvas id="smileChart" height="320"></canvas>
+    </div>
+
+    <div class="viz-caption">
+      Figur 3. Type 2 — Konceptuel model. Smile Curve-konceptet introduceret af Stan Shih
+      (Acer) i 1992 for at beskrive, at værdiskabelse i en værdikæde er U-formet: høj ved
+      begge ender (R&amp;D/design og branding/service), lav i midten (produktion/assembly).
+      Kurven for 2026 viser, at midten er yderligere commoditiseret, mens de to ender —
+      chip-design/halvlederfremstilling og AI-platform/services — har forøget deres
+      værdifangst. Bemærk: y-aksen er konceptuel (ikke-kvantificeret margin-indeks).
+    </div>
+  </div>
+
+  <p>
+    Smile Curve-analysen rejser et vigtigt spørgsmål: Arla's strategi i 2014-2020 var
+    en bevægelse <em>op ad kurven</em> — fra commodityproduktion mod branded ends.
+    Hyperscalers' strategi i 2022-2026 er anderledes: de forsøger at kontrollere
+    <em>begge ender simultant</em> — chip-design (Microsoft/Nvidia-partnerskaber,
+    Google's egne TPU-chips) og AI-services. Dette er ikke en klassisk Smile
+    Curve-strategi; det er en vertikal integrationslogik der minder om Standard Oils
+    kontrol af hele olieforsyningskæden.
+  </p>
+
+  <!-- 4.4 HYPERSCALER CAPEX CHART -->
+  <h3>4.4 Hyperscaler-kapex: Data fortæller historien</h3>
+
+  <div class="viz-wrap">
+    <span class="viz-type-badge type1">Type 1 — Datadrevet graf</span>
+    <div class="viz-title">Hyperscaler capital expenditure 2021–2024 (USD milliarder)</div>
+
+    <div class="chart-box" style="max-width:720px; margin:0 auto;">
+      <canvas id="capexChart" height="380"></canvas>
+    </div>
+
+    <div class="viz-caption">
+      Figur 4. Type 1 — Datadrevet graf.
+      Kilde: Årsrapporter / 10-K filings for Microsoft (FY, slutter juni), Alphabet/Google,
+      Meta Platforms og Amazon.com (alle kalenderår undtagen Microsoft).
+      Enheder: USD milliarder. Begrænsning: Amazon-tallene inkluderer køb af materielle
+      anlægsaktiver og finansieringsleasingforpligtelser, der dækker alle segmenter —
+      ikke udelukkende AWS/AI-infrastruktur. Microsoft-tallene afspejler finansårene
+      FY2021–FY2024. Figuren viser ikke 2025-guidance-tal da fremadrettede estimater
+      klassificeres som Type 3.
+    </div>
+  </div>
+
+  <p>
+    Grafens kurver er ikke gradvise; de er eksponentielle. Microsofts kapex steg med
+    98% fra FY2023 til FY2024. Alphabets steg med 62%. Det er ikke organisk vækst i
+    en moden industri — det er en kapitaldeployment-krig, hvor den der tøver, taber
+    factor conditions der tager 5-7 år at genopbygge.
+  </p>
+  <p>
+    Sammenligning med Arla 2014-perioden er instruktiv: Arla's samlede kapexprogram
+    over syv år var i milliardklassen (EUR). Microsofts <em>kvartalsvise</em> kapex
+    i 2025 er i samme størrelsesorden. Det er dette skaleringsbrud der gør AI-triggeren
+    fundamentalt mere forstyrrende end mælkekvotefrigivelsen — selv om den strukturelle
+    logik er identisk.
+  </p>
+
+  <!-- 4.5 NORDIC FACTOR CONDITIONS MATRIX -->
+  <h3>4.5 Nordisk Factor Conditions Matrix</h3>
+
+  <div class="viz-wrap">
+    <span class="viz-type-badge type2">Type 2 — Konceptuel model</span>
+    <div class="viz-title">Nordisk konkurrenceposition: Faktorforhold 2014 → 2026</div>
+
+    <table class="factor-matrix">
+      <thead>
+        <tr>
+          <th style="width:22%">Faktorkategori</th>
+          <th style="width:20%">Nordisk styrke 2014<br>(mejeri/agro)</th>
+          <th style="width:20%">Global relevans 2014</th>
+          <th style="width:20%">Nordisk styrke 2026<br>(AI-infrastruktur)</th>
+          <th style="width:18%">Global relevans 2026</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row">
+          <td colspan="5">Naturgivne basale faktorforhold</td>
+        </tr>
+        <tr>
+          <td>Klima &amp; geografi</td>
+          <td><span class="score-h">●●●</span> Tempereret klima, høj nedbør, ideelt til kvæg</td>
+          <td><span class="score-h">Høj</span> for mejeri</td>
+          <td><span class="score-h">●●●</span> Køligt klima reducerer datakenter køleomkostninger med 30-40%</td>
+          <td><span class="score-h">Høj</span> og stigende</td>
+        </tr>
+        <tr>
+          <td>Energiressourcer</td>
+          <td><span class="score-m">●●○</span> Norsk vandkraft, dansk vindkraft (under udbygning)</td>
+          <td><span class="score-m">Middel</span></td>
+          <td><span class="score-h">●●●</span> Nordisk elnet har EU's laveste CO₂-intensitet og konkurrencedygtige priser (NO, SE)</td>
+          <td><span class="score-h">Kritisk</span></td>
+        </tr>
+        <tr>
+          <td>Vand &amp; køling</td>
+          <td><span class="score-h">●●●</span> Høj vandtilgængelighed i alle nordiske lande</td>
+          <td><span class="score-m">Middel</span> for mejeri</td>
+          <td><span class="score-h">●●●</span> Essentielt for datacenter-køling; Norden har ingen vandstress</td>
+          <td><span class="score-h">Høj</span></td>
+        </tr>
+        <tr class="cat-row">
+          <td colspan="5">Avancerede skabte faktorforhold</td>
+        </tr>
+        <tr>
+          <td>Forsknings- og vidensinfrastruktur</td>
+          <td><span class="score-h">●●●</span> DTU, Aarhus Univ., KU, SLU — mejeri, veterinær, biokemi</td>
+          <td><span class="score-h">Høj</span></td>
+          <td><span class="score-m">●●○</span> Stærke på matematik/ingeniørfag, men bag USA/UK på ML-talent</td>
+          <td><span class="score-m">Middel</span></td>
+        </tr>
+        <tr>
+          <td>Digital infrastruktur</td>
+          <td><span class="score-m">●●○</span> God men ikke differentierende for mejeri</td>
+          <td><span class="score-l">Lav</span> for mejeri</td>
+          <td><span class="score-h">●●●</span> Nordisk bredbåndsinfrastruktur blandt verdens bedste. Submarine cables (DK som kabelknudepunkt).</td>
+          <td><span class="score-h">Høj</span></td>
+        </tr>
+        <tr>
+          <td>Regulatorisk stabilitet</td>
+          <td><span class="score-h">●●●</span> Transparent, forudsigelig regulering — EU-ramme</td>
+          <td><span class="score-m">Middel</span></td>
+          <td><span class="score-h">●●●</span> EU AI Act som compliance-standard; GDPR-æra har skabt robust data governance-kapacitet</td>
+          <td><span class="score-h">Stigende</span></td>
+        </tr>
+        <tr class="cat-row">
+          <td colspan="5">Specialiserede faktorforhold</td>
+        </tr>
+        <tr>
+          <td>Halvlederkapacitet</td>
+          <td>Ikke relevant (2014)</td>
+          <td>Ikke relevant</td>
+          <td><span class="score-l">●○○</span> Ingen native fab-kapacitet i Norden. Afhængig af TSMC, Samsung.</td>
+          <td><span class="score-l">Kritisk svaghed</span></td>
+        </tr>
+        <tr>
+          <td>Kooperativ / institutionel model</td>
+          <td><span class="score-h">●●●</span> Andelsmodellen som unikt organisatorisk faktorforhold</td>
+          <td><span class="score-h">Høj</span> — differentieringsevne</td>
+          <td><span class="score-m">●●○</span> Nordisk samarbejdskultur understøtter offentlig-privat infrastruktur-samarbejde</td>
+          <td><span class="score-m">Middel</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="viz-caption">
+      Figur 5. Type 2 — Konceptuel model. Nordisk konkurrenceposition på centrale
+      faktorforhold for to paradigmer. ●●● = Stærk fordel, ●●○ = Moderat styrke,
+      ●○○ = Svaghed/mangel. Matrixen er analytisk og ikke baseret på kvantitative
+      indeks; den reflekterer faglig vurdering af tilgængeligt, offentligt tilgængeligt
+      videngrundlag om nordiske ressourcer og infrastruktur.
+    </div>
+  </div>
+
+  <p>
+    Matrixen afslører en vigtig indsigt: Norden besidder en usædvanlig kombination
+    af de faktorer der er kritiske for AI-datacentre — billig vedvarende energi,
+    køling, stabil regulering og digital infrastruktur. Den afgørende svaghed er
+    halvlederkapacitet: Norden er 100% afhængig af taiwansk og sydkoreansk
+    chipproduktion. Dette er den nordiske klynges "Akilleshæl" i AI-æraen — en
+    sårbarhed der ikke eksisterede i 2014-mejericonteksten.
+  </p>
+
+  <!-- 4.6 PORTER PERSONA -->
+  <h3>4.6 Michael Porter — primær perspektivanalyse</h3>
+
+  <div class="persona-box">
+    <div class="persona-header">
+      <span class="badge badge-primary">Primær</span>
+      <span class="persona-name">Michael Porter</span>
+    </div>
+
+    <p>
+      Arla Foods i 2014 illustrerede det grundlæggende paradoks i diamantmodellen: en
+      virksomhed kan gøre alt rigtigt inden for sin klynge og stadig blive destabiliseret
+      af et eksternt chok der omfordeler factor conditions fundamentalt. Mælkekvote-
+      afskaffelsen var ikke et markedssvigt — det var en politisk rekalibrering af
+      spillets regler. AI-infrastrukturkapløbet er identisk i sin struktur: ikke en
+      inkrementel forbedring, men en diskontinuitet der tvinger alle aktører til at
+      genopdage, hvilke factor conditions der faktisk er afgørende.
+    </p>
+    <p>
+      Min pointe er denne: klyngedynamikken accelererer ikke blot — den genoprettes
+      og omstruktureres. USA's teknologiske position i 2026 er ikke primært et resultat
+      af en kulturøkonomisk Silicon Valley-mystik. Det er et resultat af, at USA
+      besidder de fysiske factor conditions: billig strøm (gas, nuclear), geografisk
+      kølemulighed, halvlederproduktionskapacitet (Arizona-fabrikkerne) og
+      talentkoncentration. Det handler fortsat om beliggenhed og klynge — bare en
+      anden slags beliggenhed.
+    </p>
+    <p>
+      Den vigtigste lektion fra 2014: Arla overlevede ikke primært fordi det var en
+      god mejerivirksomhed. Det overlevede fordi klyngen bag det — Chr. Hansen,
+      Danisco, universiteterne, andelsstrukturen — var et selvforstærkende system der
+      kontinuerligt løftede alle deltagere. I AI-æraen er det samme gælder: de
+      hyperscalers der vinder, er dem der befinder sig midt i de dybeste klynger af
+      relaterede industrier — ikke dem med de klogeste ingeniører isoleret set.
+    </p>
+    <p>
+      <strong>Porters kernepåstand for Del 1:</strong> Factor conditions er ikke blot
+      inputs — de er den historisk akkumulerede kapacitet i et system. Det tager
+      årtier at opbygge dem. Det betyder, at den nuværende geografiske koncentration
+      af AI-kapex (Virginia, Dublin, Singapore) vil skabe faktorfordelene for de
+      næste 20 år — ikke de næste 3.
+    </p>
+  </div>
+
+  <!-- 4.7 BUFFETT PERSONA -->
+  <h3>4.7 Warren Buffett — sekundær perspektivanalyse</h3>
+
+  <div class="persona-box">
+    <div class="persona-header">
+      <span class="badge badge-secondary">Sekundær</span>
+      <span class="persona-name">Warren Buffett</span>
+    </div>
+
+    <p>
+      Jeg accepterer Porters analyse af factor conditions. Men jeg har et afgørende
+      forbehold mod den fortælling, der for øjeblikket omgiver AI-infrastruktur som
+      investeringsobjekt. Jernbanen var fremtidens transport i 1880. Det var den stadig
+      i 1920. Men jernbaneselskabernes aktionærer tjente i gennemsnit under markedet i
+      den periode — ikke fordi teknologien fejlede, men fordi kapitalintensiteten var
+      for høj og prismagten var for lav. Investorerne forvekslede "nødvendig
+      infrastruktur" med "god investering". Det er ikke det samme.
+    </p>
+    <p>
+      Spørgsmålet er ikke: "er dette nødvendigt?" Svaret på det er åbenlyst ja.
+      Spørgsmålet er: <em>"hvem kontrollerer prismyndighed over nødvendigheden?"</em>
+      Hyperscalerne bruger $80 milliarder om året på kapex. Det er kapital der allerede
+      er låst. Leverandørerne — Vertiv, Eaton, ABB, NKT, TSMC — har 3-5 års
+      leveringstid og stigende priser fordi kapaciteten ikke kan skaleres hurtigt.
+      Det er prismagt. Det er moat-byggeri uden om de normale konkurrenceforhold.
+    </p>
+    <p>
+      Arla i 2014 lærte os det samme: andelsstrukturen skabte en prismyndighed over
+      råmælken (bønder ejer virksomheden, sætter minimumsafregningspris) der
+      beskyttede mod den rene commodity-race. Men Arla tjente ikke de bedste marginer
+      på råmælken — det tjente de på Lurpak og Castello, hvor branded-fordelen skabte
+      reel prismagt over for supermarkederne.
+    </p>
+    <p>
+      <strong>Buffetts advarsel:</strong> Den store risiko i AI-kapex-narrativet er,
+      at investorer forveksler <em>scale med moat</em>. Microsoft bruger $80 millarder
+      om året. Men det forhindrer ikke Azure i at konkurrere på pris med AWS. Scale er
+      nødvendigt for at spille — men det er ikke tilstrækkeligt for at vinde. Find de
+      virksomheder der sælger til <em>alle</em> spillerne og har reel leveringstids-
+      og kapacitetsbegrænsning. Det er de sande motorleverandører.
+    </p>
+  </div>
+
+
+  <!-- ──────────────────────────────────── 5. KONFLIKTANALYSE -->
+  <h2 id="konflikt"><span class="section-num">5.</span> Konfliktanalyse</h2>
+
+  <div class="conflict-box">
+    <h3>Porter vs Buffett: Klyngeposition versus prismagt</h3>
+
+    <p>
+      Porter og Buffett er enige om projektets grundtese: de fysiske infrastrukturlag
+      bag AI er afgørende. Uenigheden opstår i det næste led: hvad <em>følger analytisk</em>
+      af den erkendelse?
+    </p>
+    <p>
+      <strong>Porter:</strong> "Find de klynger med de stærkeste factor conditions og
+      kortlæg, hvem der er centralt placeret i dem. Det er din roadmap — for nationer,
+      virksomheder og investorer."
+    </p>
+    <p>
+      <strong>Buffett:</strong> "Den analyse identificerer adgangsbilletten. Men
+      adgangsbilletten er ikke det samme som vinderens trofæ. Jernbanen havde de
+      stærkeste klyngepositioner i 1890. Det hjalp ikke aktionærerne. Spørg:
+      hvem har pricing power i den klynge? Hvem sælger noget der <em>ikke kan
+      erstattes på 18 måneder</em>?"
+    </p>
+
+    <h4 style="color:var(--navy); margin-top:22px;">Produktiv konflikt — tre konkrete modsætninger:</h4>
+    <ol style="padding-left:22px; line-height:2;">
+      <li>
+        <strong>Klynge vs moat:</strong> Porter siger klyngestyrke er tilstrækkelig
+        betingelse for konkurrenceevne. Buffett siger den er nødvendig men ikke
+        tilstrækkelig — man kan have alle de rigtige factor conditions og stadig
+        ødelægge aktionærværdi (som mange dot-com-virksomheder med perfekte klyngepositioner
+        i Silicon Valley viste i 2000-2002).
+      </li>
+      <li>
+        <strong>Tid vs kapital:</strong> Porter tænker i 10-20 år. Klynger bygges
+        langsomt. Buffett tænker i kapitalcyklusser — hvornår er et givet aktiv
+        prissat til at levere acceptable afkast? De to tidshorisontter er ikke
+        incompatible, men de giver forskellige prioriteter.
+      </li>
+      <li>
+        <strong>Top-down vs bottom-up:</strong> Porter starter med
+        makrostrukturen og bevæger sig nedad mod virksomheden. Buffett starter med
+        virksomhedens konkrete økonomi og bevæger sig opad mod sektoren. Begge metoder
+        er nødvendige — men de giver ikke altid samme konklusion om hvad der er
+        en god investering.
+      </li>
+    </ol>
+  </div>
+
+
+  <!-- ──────────────────────────────────── 6. SYSTEMISK SYNTESE -->
+  <h2 id="syntese"><span class="section-num">6.</span> Systemisk syntese</h2>
+
+  <p>
+    Konflikten mellem Porter og Buffett opløses i en syntese med to led:
+  </p>
+
+  <div class="synthesis">
+    <p>
+      <strong>Led 1 (Porter → nødvendig betingelse):</strong> Factor conditions
+      er adgangsbilletten. Den der ikke besidder de rigtige factor conditions kan
+      ikke vinde — uanset talent, strategi eller kapital. Mælkekvotefrigivelsen i
+      2015 demonstrerede dette: producenter uden effektiv infrastruktur og
+      skalafordele overlevede ikke. AI-kapexkapløbet demonstrerer det igen:
+      den der ikke har adgang til billig strøm, stabil regulering og halvledere
+      er ikke i spillet.
+    </p>
+    <p>
+      <strong>Led 2 (Buffett → tilstrækkelig betingelse):</strong> Inden for det
+      felt der passerer led 1's filter, er prismagt og kapitalafkast det afgørende.
+      Ikke alle deltagere i en stærk klynge tjener penge. Den der sidder på
+      <em>uerstattelig</em> nødvendighed — den leverandør hvis leveringstid er 4 år
+      og som alle 5 hyperscalers konkurrerer om at købe hos — har en strukturel moat
+      der minder mere om et reguleret forsyningsselskab end om et tech-selskab.
+    </p>
+  </div>
+
+  <p>
+    Parallellen til 2014 er præcis: Arla's overlevelse og vækst efter
+    mælkekvotefrigivelsen skyldtes ikke ét enkelt strategisk valg — den skyldtes
+    at selskabet befandt sig i centrum af en klynge der løbende opbyggede kapaciteter,
+    og at det bevidst bevægede sig mod de dele af værdikæden (branded goods, service)
+    hvor prismagten var størst.
+  </p>
+  <p>
+    AI-infrastrukturens vindere i 2026-2035 vil sandsynligvis vise det samme mønster:
+    stærk klyngeposition (Porter) kombineret med specifik prismagt og
+    kapacitetsbegrænsning (Buffett). De virksomheder der kun opfylder én af de to
+    betingelser, vil enten ikke overleve til det store marked (mangler factor conditions)
+    eller vil overleve men ikke skabe ekstraordinær aktionærværdi
+    (mangler prismagt trods god klyngeposition).
+  </p>
+  <p>
+    Rockefeller-analogien holder til sidst: Standard Oil dominerede ikke fordi det
+    var det bedste olieselskab. Det dominerede fordi det kontrollerede <em>begge</em>
+    dimensioner — klyngeposition (Pittsburgh/Cleveland raffinerings-hub) og prismagt
+    (kontrollen over rørledninger der ekskluderede konkurrenter). Det er den kombination
+    der skaber varig dominans.
+  </p>
+
+
+  <!-- ──────────────────────────────────── 7. STRATEGISKE IMPLIKATIONER -->
+  <h2 id="implikationer"><span class="section-num">7.</span> Strategiske implikationer</h2>
+
+  <ul class="impl-list">
+    <li>
+      <strong>For investorer:</strong> Anvend to-leds-filteret: (1) er virksomheden
+      centralt placeret i en klynge med de rigtige factor conditions? (2) besidder den
+      reel prismagt baseret på uerstattelig nødvendighed og kapacitetsbegrænsning?
+      Virksomheder der opfylder begge betingelser — Vertiv, TSMC, NKT, Eaton i
+      transformersegmentet — fortjener analytisk opmærksomhed som "motorleverandører".
+    </li>
+    <li>
+      <strong>For nordiske virksomheder:</strong> Norden besidder en historisk mulighed
+      i AI-æraen som ikke eksisterede i mejerikonteksten: vedvarende energi, køling og
+      digital infrastruktur. Men muligheden kræver aktiv positionering — den indfrier sig
+      ikke automatisk. Island og Sverige er allerede attraktive datacenterlokaliteter.
+      Danmark er det hvis Energinet investerer i nok kapacitet.
+    </li>
+    <li>
+      <strong>For professionelle:</strong> Business Technologist-profilen — broen
+      mellem domæneforståelse og teknologiimplementering — er 2026-ækvivalenten til
+      Arla's "mejeri-ingeniøren med international handelsuddannelse". Den profil
+      eksisterede i 2014. Den var svær at placere. Den er uundgåelig i 2030-2035.
+      (Dette uddybes i Del 5.)
+    </li>
+    <li>
+      <strong>For den analytiske metode:</strong> Porter's Diamond-model holder ikke
+      kun som historisk artefakt. Den er et præcisionsinstrument der i dag peger direkte
+      mod de fysiske factor conditions som den afgørende konkurrencedeterminant i en
+      AI-drevet økonomi. Modellen er ikke forældet — den er mere relevant end nogensinde,
+      fordi den tvinger analytikeren til at spørge: hvad er de faktiske
+      <em>fysiske</em> fundamenter for konkurrenceevne?
+    </li>
+  </ul>
+
+
+  <!-- ──────────────────────────────────── 8. KONKLUSION -->
+  <h2 id="konklusion"><span class="section-num">8.</span> Konklusion</h2>
+
+  <p>
+    Det nordiske mejericluster i 2014 og AI-infrastrukturklyngen i 2026 er radikalt
+    forskellige i størrelse, tempo og kapitalintensitet. Men de følger den samme
+    grundstruktur: et eksternt chok rekalibrerer factor conditions, og de aktører
+    der allerede befinder sig i de rigtige klynger — eller hurtigt kan positionere sig
+    der — vinder. Dem der baserede sig på kunstig beskyttelse (kvoter, narrative moats),
+    taber.
+  </p>
+  <p>
+    Arla's lektion fra mælkekvotefrigivelsen er enkel: byg reelle faktorfordele, betal
+    for at bevæge dig op ad Smile Curve'n mod prismagt, og brug klyngens selvforstærkende
+    dynamik til at akkumulere kapaciteter hurtigere end konkurrenterne.
+  </p>
+  <p>
+    AI-infrastrukturens lektion er under skrivning. Men konturerne er klare: den geografiske
+    koncentration af kapex i 2024-2026 vil definere AI-kapabilitet i 2030-2035. De
+    faktorer der afgør placeringen af den kapex — strøm, køling, halvledere, regulering
+    — er de nye mælkekvoter. Og dem der kontrollerer dem, er de nye Arlaer.
+  </p>
+
+  <div class="synthesis">
+    <strong>Kernepåstanden for hele projektet, ekspliciteret i Del 1:</strong>
+    Porters analytiske logik holder. Buffetts kapitallogik holder. Tilsammen peger de
+    mod det samme sted: de fysiske, kapitalintensive og svært-reproducerbare lag i
+    AI-infrastrukturen er projektets "engines behind" — den position der kombinerer
+    faktorfordelenes nødvendige betingelse med prismagtens tilstrækkelige betingelse.
+  </div>
+
+
+  <!-- ──────────────────────────────────── 9. PERSPEKTIVERING -->
+  <h2 id="perspektivering"><span class="section-num">9.</span> Perspektivering</h2>
+
+  <p>
+    Del 1 etablerer baselinjen og den analytiske logik. De følgende dele udfolder hver
+    sin dimension af "The Engines Behind"-tesen:
+  </p>
+  <ul style="padding-left:24px; line-height:2.1; margin-bottom:18px;">
+    <li><strong>Del 2 (The Diamond Reloaded)</strong> — geografi som konkurrencestrategi: hvem sidder på de rigtige factor conditions globalt, og hvilke klynger vil dominere AI-infrastruktur i 2030?</li>
+    <li><strong>Del 3 (The New Cooperative)</strong> — staten vender tilbage: IRA, CHIPS Act og EU AI Act som den nye industrielle politik, og hvad den betyder for klyngernes fremtid.</li>
+    <li><strong>Del 4 (Hub and Spoke 2.0)</strong> — hyperscalerne som dominerende hub og de fysiske infrastrukturleverandører som usynlige but essential spokes.</li>
+    <li><strong>Del 5 (PACAP vs RACAP)</strong> — hvad dette analytiske landskab betyder for den individuelle professionelle: hvilke kapaciteter er fremtidssikre?</li>
+    <li><strong>Del 6 (MasterMind Portfolio)</strong> — investeringsfilosofien ekspliciteret: "køb motorerne bag, ikke narrativet" som operationel investeringsstrategi.</li>
+  </ul>
+
+  <p>
+    En åben analytisk usikkerhed fortjener at blive noteret: dette projekt antager, at
+    AI-kapex-bølgen er strukturel snarere end cyklisk. Hvis Buffett har ret i sin
+    generelle skepticisme over for ny-teknologi-narrativer, og hvis "AI-vinter"-scenariet
+    materialiserer sig, vil en del af den geografiske kapex-koncentration blive
+    overkapacitet frem for factor condition. Det er en risiko analysen ikke kan afvise.
+    Det behandles i Critique-filen.
+  </p>
+
+
+  <!-- ──────────────────────────────────── FOOTNOTES -->
+  <div class="footnotes">
+    <h3>Kildehenvisninger og noter</h3>
+    <ol>
+      <li>Bach, J. (2014). <em>Arla Foods og det nordiske mejericluster: Konkurrenceevne og international strategi.</em> HD International Business-speciale. Copenhagen Business School.</li>
+      <li>Porter, M.E. (1990). <em>The Competitive Advantage of Nations.</em> New York: Free Press. [Diamantmodellen introduceres i kapitel 3-4.]</li>
+      <li>Shih, S. (1992). Smile Curve-konceptet. Acer Group's interne strategidokument, efterfølgende refereret i: Dedrick, J. &amp; Kraemer, K.L. (1998). <em>Asia's Computer Challenge.</em> Oxford University Press.</li>
+      <li>Porter, M.E. (1998). Clusters and the New Economics of Competition. <em>Harvard Business Review,</em> 76(6), 77–90.</li>
+      <li>Europa-Kommissionen (2008). Forordning (EF) nr. 72/2009 om ændringer af den fælles landbrugspolitik. [Mælkekvoterne afskaffes med virkning 1. april 2015.]</li>
+      <li>OpenAI (2022). ChatGPT lanceret 30. november 2022. <em>OpenAI Blog.</em></li>
+      <li>Microsoft Corporation (2024). <em>Annual Report / Form 10-K, Fiscal Year 2024</em> (afsluttet 30. juni 2024). Capital expenditures: USD 55,7 mia.</li>
+      <li>Alphabet Inc. (2024). <em>Annual Report / Form 10-K, Fiscal Year 2024.</em> Capital expenditures: USD 52,2 mia.</li>
+      <li>Meta Platforms, Inc. (2024). <em>Annual Report / Form 10-K, Fiscal Year 2024.</em> Capital expenditures: USD 37,3 mia.</li>
+      <li>Amazon.com, Inc. (2024). <em>Annual Report / Form 10-K, Fiscal Year 2024.</em> Purchases of property and equipment + finance lease additions: ~USD 77 mia. (inkluderer alle segmenter, ikke udelukkende AWS).</li>
+      <li>IEA — International Energy Agency (2024). <em>Electricity 2024: Analysis and Forecast to 2026.</em> Paris: IEA. [Estimater for datacenter-elforbrug og fremskrivninger.]</li>
+      <li>Yergin, D. (1991). <em>The Prize: The Epic Quest for Oil, Money &amp; Power.</em> New York: Simon &amp; Schuster. [Standard Oil-opbruddet og efterfølgerselskabernes langsigtede performans.]</li>
+    </ol>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  The Engines Behind &nbsp;·&nbsp; Del 1: Then vs Now &nbsp;·&nbsp;
+  Jon Bach, NorthLogicLab &nbsp;·&nbsp; Arbejdsudkast v.2, maj 2026 &nbsp;·&nbsp;
+  Ikke til ekstern cirkulation
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ CHARTS -->
+<script>
+(function () {
+
+  /* ── Hyperscaler Capex Chart (Type 1) ── */
+  const capexCtx = document.getElementById('capexChart').getContext('2d');
+  new Chart(capexCtx, {
+    type: 'bar',
+    data: {
+      labels: ['FY/CY 2021', 'FY/CY 2022', 'FY/CY 2023', 'FY/CY 2024'],
+      datasets: [
+        {
+          label: 'Microsoft',
+          data: [20.6, 23.9, 28.1, 55.7],
+          backgroundColor: '#00a4ef',
+          borderColor: '#0078d4',
+          borderWidth: 1
+        },
+        {
+          label: 'Alphabet / Google',
+          data: [24.6, 31.5, 32.3, 52.2],
+          backgroundColor: '#34a853',
+          borderColor: '#1e7e34',
+          borderWidth: 1
+        },
+        {
+          label: 'Meta Platforms',
+          data: [19.2, 32.0, 27.3, 37.3],
+          backgroundColor: '#1877f2',
+          borderColor: '#0d5abf',
+          borderWidth: 1
+        },
+        {
+          label: 'Amazon (alle segmenter)*',
+          data: [61.1, 63.6, 52.7, 77.0],
+          backgroundColor: '#ff9900',
+          borderColor: '#cc7a00',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'top', labels: { font: { family: 'Arial', size: 12 } } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: USD ${ctx.parsed.y} mia.`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { font: { family: 'Arial', size: 12 } },
+          grid: { display: false }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'USD milliarder',
+            font: { family: 'Arial', size: 12 }
+          },
+          ticks: {
+            font: { family: 'Arial', size: 12 },
+            callback: v => '$' + v + 'B'
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  /* ── Smile Curve Chart (Type 2) ── */
+  const smileCtx = document.getElementById('smileChart').getContext('2d');
+  const labels = [
+    'R&D / IP', 'Design &\nArchitecture', 'Halvleder-\nfremstilling',
+    'Server-\nassemblering', 'Datacenter-\nkonstruktion',
+    'Cloud IaaS\n& Platform', 'AI-modeller\n& Apps', 'Services &\nData'
+  ];
+  new Chart(smileCtx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: '1990\'erne / Arla-æraen (moderat smile)',
+          data: [72, 65, 55, 28, 25, 45, 60, 68],
+          borderColor: '#999',
+          backgroundColor: 'rgba(153,153,153,0.08)',
+          borderWidth: 2,
+          borderDash: [6, 3],
+          pointRadius: 5,
+          pointBackgroundColor: '#999',
+          tension: 0.45,
+          fill: true
+        },
+        {
+          label: 'AI-æraen 2026 (uddybet smile)',
+          data: [88, 80, 90, 18, 22, 55, 82, 78],
+          borderColor: '#1a2744',
+          backgroundColor: 'rgba(26,39,68,0.07)',
+          borderWidth: 2.5,
+          pointRadius: 6,
+          pointBackgroundColor: '#c8a84b',
+          tension: 0.45,
+          fill: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'top', labels: { font: { family: 'Arial', size: 12 } } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} (konceptuelt margin-indeks)`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { font: { family: 'Arial', size: 11 }, maxRotation: 30 },
+          grid: { display: false }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Værdiskabelse / Margin (konceptuelt indeks, ikke-kvantificeret)',
+            font: { family: 'Arial', size: 11 }
+          },
+          min: 0,
+          max: 100,
+          ticks: { font: { family: 'Arial', size: 11 } }
+        }
+      }
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
