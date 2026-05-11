@@ -34,12 +34,12 @@ Built on Jon Bach's HD International Business thesis from CBS (2014) — Arla Fo
 
 | # | Title | Status |
 |---|-------|--------|
-| 1 | Then vs Now | 🔄 In progress |
-| 2 | The Diamond Reloaded | ⬜ |
-| 3 | The New Cooperative | ⬜ |
-| 4 | Hub and Spoke 2.0 | ⬜ |
-| 5 | PACAP vs RACAP — The Personal Equation | ⬜ |
-| 6 | The MasterMind Portfolio | ⬜ |
+| 1 | Then vs Now | 🔄 Under review |
+| 2 | The Diamond Reloaded | 🔄 Under review |
+| 3 | The New Cooperative | 🔄 Under review |
+| 4 | Hub and Spoke 2.0 | 🔄 Under review |
+| 5 | PACAP vs RACAP — The Personal Equation | 🔄 Under review |
+| 6 | The MasterMind Portfolio | 🔄 Under review |
 
 ---
 
