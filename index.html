@@ -86,11 +86,10 @@
       display: none;
       position: fixed;
       top: 65px; left: 0; right: 0;
-      background: rgba(8,8,8,0.98);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(16px);
+      background: #080808;
+      border-bottom: 2px solid var(--accent);
       z-index: 199;
-      padding: 16px 0;
+      padding: 8px 0;
     }
 
     .nav-menu.is-open {
@@ -678,9 +677,16 @@
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
       navToggle.classList.toggle('is-open');
       navMenu.classList.toggle('is-open');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function() {
+      navToggle.classList.remove('is-open');
+      navMenu.classList.remove('is-open');
     });
 
     document.querySelectorAll('.nav-item').forEach(function(link) {
