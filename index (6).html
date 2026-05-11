@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheEnginesBehind — NorthLogicLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Force readable fallback if Google Fonts fails */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+  </style>
+  <style>
+    :root {
+      --black: #080808;
+      --surface: #0f0f0f;
+      --border: #1e1e1e;
+      --muted: #2a2a2a;
+      --text: #e8e4dc;
+      --text-dim: #8a8580;
+      --text-mid: #b0aaa5;
+      --accent: #c8b97a;
+      --accent-dim: #6b6240;
+      --green: #4a7c59;
+      --green-bright: #6db580;
+      --red: #8b3a3a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* SCANLINES */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(12,12,12,0.96);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--accent);
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 61px;
+        left: 0;
+        right: 0;
+        background: rgba(8,8,8,0.98);
+        flex-direction: column;
+        padding: 24px 32px;
+        gap: 24px;
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .hide-mobile { display: block; }
+      .nav-links a { font-size: 18px; }
+    }
+
+    .nav-links a {
+      color: #b0aaa5;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(120px, 18vw, 220px);
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(-50%) translateX(0); }
+      to { transform: translateY(-52%) translateX(-30px); }
+    }
+
+    .hero-label {
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 9vw, 110px);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-title em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      color: var(--text-mid);
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid;
+      transition: all 0.2s;
+      cursor: crosshair;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-dim);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-dim);
+      color: var(--text);
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--border);
+      border-top: 1px solid var(--muted);
+      border-bottom: 1px solid var(--muted);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-size: 15px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0 32px;
+    }
+
+    .ticker-item span {
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 15px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* PHILOSOPHY */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .phil-item {
+      background: var(--black);
+      padding: 40px;
+      transition: background 0.2s;
+    }
+
+    .phil-item:hover { background: var(--surface); }
+
+    .phil-number {
+      font-size: 15px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+
+    .phil-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .phil-desc {
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ENGINES */
+    .engines-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .engine-item {
+      background: var(--black);
+      padding: 32px 40px;
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      gap: 40px;
+      align-items: start;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .engine-item:hover { background: var(--surface); }
+
+    .engine-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .engine-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    .engine-tag {
+      font-size: 15px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .tag-active {
+      border-color: var(--green);
+      color: var(--green-bright);
+    }
+
+    .tag-building {
+      border-color: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .tag-vision {
+      border-color: var(--muted);
+      color: var(--text-dim);
+    }
+
+    .engine-desc {
+      color: var(--text-mid);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .engine-arrow {
+      color: var(--text-dim);
+      font-size: 20px;
+      align-self: center;
+      transition: all 0.2s;
+    }
+
+    .engine-item:hover .engine-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* PROFILE */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .profile-statement {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--text);
+      border-left: 2px solid var(--accent);
+      padding-left: 24px;
+    }
+
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .profile-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .profile-key {
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .profile-val {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    /* STACK */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .stack-item {
+      background: var(--black);
+      padding: 24px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .stack-item:hover { background: var(--surface); }
+
+    .stack-name {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stack-cat {
+      font-size: 15px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 15px;
+      color: var(--text-dim);
+    }
+
+    .nav-logo, .nav-links a, .btn, .section-label, .ticker-item,
+    .hero-label, .phil-number, .engine-tag, .profile-key,
+    .stack-cat, .footer-links a, .footer-copy {
+      font-family: 'DM Mono', monospace;
+    }
+    .blink {
+      animation: blink 1s step-end infinite;
+      color: var(--accent);
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .philosophy-grid,
+      .profile-grid,
+      .stack-grid { grid-template-columns: 1fr; }
+
+      .engine-item { grid-template-columns: 1fr; gap: 16px; }
+      .engine-arrow { display: none; }
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .container { padding: 0 20px; }
+
+      body { font-size: 18px; line-height: 2.0; }
+      .hero-sub { font-size: 18px; }
+      .phil-desc { font-size: 17px; }
+      .engine-desc { font-size: 17px; }
+      .phil-title { font-size: 20px; }
+      .profile-val { font-size: 17px; }
+      .ticker-item { font-size: 15px; }
+      .section-label { font-size: 15px; }
+      .phil-item { padding: 28px; }
+      .engine-item { padding: 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">TheEnginesBehind</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li class="hide-mobile"><a href="#engines">Engines</a></li>
+      <li class="hide-mobile"><a href="#profile">Profile</a></li>
+      <li class="hide-mobile"><a href="https://github.com/NorthLogicLab" target="_blank">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-text">ENGINES</div>
+    <div class="hero-label">Jon Bach · TheEnginesBehind · Built in NorthLogicLab</div>
+    <h1 class="hero-title">The Engine<br /><em>Behind</em><br />the Decision</h1>
+    <p class="hero-sub">
+      Compliance is not a variable. It's a license to operate.<br />
+      I build engines that transform regulatory pressure into competitive advantage —<br />
+      and compliance as a cost into compliance as a service that creates profit.
+    </p>
+    <div class="hero-actions">
+      <a href="#engines" class="btn btn-primary">See what I build →</a>
+      <a href="https://github.com/NorthLogicLab" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span>▸</span> PPWR / EPR / DPP</span>
+      <span class="ticker-item"><span>▸</span> Packaging Tender Evaluation</span>
+      <span class="ticker-item"><span>▸</span> Vendor Managed Inventory</span>
+      <span class="ticker-item"><span>▸</span> Decision Intelligence</span>
+      <span class="ticker-item"><span>▸</span> Cross-country Cost Modelling</span>
+      <span class="ticker-item"><span>▸</span> Regulatory Compliance Engines</span>
+      <span class="ticker-item"><span>▸</span> SAP Integration</span>
+      <span class="ticker-item"><span>▸</span> e-Procurement Automation</span>
+      <span class="ticker-item"><span>▸</span> PPWR / EPR / DPP</span>
+      <span class="ticker-item"><span>▸</span> Packaging Tender Evaluation</span>
+      <span class="ticker-item"><span>▸</span> Vendor Managed Inventory</span>
+      <span class="ticker-item"><span>▸</span> Decision Intelligence</span>
+      <span class="ticker-item"><span>▸</span> Cross-country Cost Modelling</span>
+      <span class="ticker-item"><span>▸</span> Regulatory Compliance Engines</span>
+      <span class="ticker-item"><span>▸</span> SAP Integration</span>
+      <span class="ticker-item"><span>▸</span> e-Procurement Automation</span>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section>
+    <div class="container">
+      <div class="section-label fade-in">Philosophy</div>
+      <div class="philosophy-grid fade-in">
+        <div class="phil-item">
+          <div class="phil-number">01</div>
+          <div class="phil-title">The engine drives value.<br />Others take the spotlight.</div>
+          <div class="phil-desc">I build the systems that make decisions possible — traceable, explainable and economically sound. The output speaks. I don't need to.</div>
+        </div>
+        <div class="phil-item">
+          <div class="phil-number">02</div>
+          <div class="phil-title">Complexity is the input.<br />Clarity is the product.</div>
+          <div class="phil-desc">Multi-layer materials. Country-specific regulations. Imperfect data. These aren't obstacles — they're exactly where structured decision logic creates the most value.</div>
+        </div>
+        <div class="phil-item">
+          <div class="phil-number">03</div>
+          <div class="phil-title">Excel is not a decision engine.<br />It just pretends to be.</div>
+          <div class="phil-desc">Manual evaluation leads to inconsistent decisions, invisible risk and dependency on individual knowledge. Structured engines don't forget. They don't have bad days.</div>
+        </div>
+        <div class="phil-item">
+          <div class="phil-number">04</div>
+          <div class="phil-title">Regulation is not a cost.<br />It's a decision variable.</div>
+          <div class="phil-desc">PPWR, EPR and DPP are economic forces — not compliance checkboxes. The organisations that treat them as inputs to decision models will outperform those that treat them as risk.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINES -->
+  <section id="engines">
+    <div class="container">
+      <div class="section-label fade-in">What I Build</div>
+      <div class="engines-list fade-in">
+
+        <a href="https://github.com/jonbach2012-design/PackagingTenderDecisionEngine" target="_blank" class="engine-item">
+          <div class="engine-meta">
+            <div class="engine-name">PTDE</div>
+            <div class="engine-tag tag-active">Active · POC</div>
+          </div>
+          <div class="engine-desc">
+            Packaging Tender Decision Engine — replaces Excel-based tender evaluation with structured, line-level scoring across commercial, technical and regulatory dimensions. Handles PPWR/EPR impact, multi-material complexity and spend-weighted supplier aggregation. Built in C# / Blazor.
+          </div>
+          <div class="engine-arrow">→</div>
+        </a>
+
+        <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank" class="engine-item">
+          <div class="engine-meta">
+            <div class="engine-name">ESL System</div>
+            <div class="engine-tag tag-active">Deployed</div>
+          </div>
+          <div class="engine-desc">
+            Electronic Shelf Label automation — two-button VMI interface that triggers order lines via REST API, pools orders by site, converts to CSV/EDI and pushes to SAP. Eliminates manual replenishment across warehouse locations. Live in production.
+          </div>
+          <div class="engine-arrow">→</div>
+        </a>
+
+        <div class="engine-item">
+          <div class="engine-meta">
+            <div class="engine-name">Cost Intelligence</div>
+            <div class="engine-tag tag-active">In Use</div>
+          </div>
+          <div class="engine-desc">
+            Cross-country pricing model tracking cost impact and % movement across 7 countries and 7 business units in real time. Replaces manual monthly reporting with structured, supplier-level visibility. Built for packaging category management.
+          </div>
+          <div class="engine-arrow">→</div>
+        </div>
+
+        <a href="https://github.com/NorthLogicLab/Regulus" target="_blank" class="engine-item">
+          <div class="engine-meta">
+            <div class="engine-name">Regulus</div>
+            <div class="engine-tag tag-vision">Vision · Roadmap</div>
+          </div>
+          <div class="engine-desc">
+            Modular decision platform for areas where regulation, data quality and economic outcomes are tightly connected. PTDE is the first module. Designed for extensibility across PPWR interpretation, EPR fee logic, DPP documentation and supplier risk — by country and domain.
+          </div>
+          <div class="engine-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile">
+    <div class="container">
+      <div class="section-label fade-in">Profile</div>
+      <div class="profile-grid fade-in">
+        <div>
+          <p class="profile-statement">
+            "I work in the intersection of procurement, operations and IT — building engines that make complex decisions simple, traceable and independent of Excel."
+          </p>
+        </div>
+        <div class="profile-details">
+          <div class="profile-row">
+            <div class="profile-key">Current</div>
+            <div class="profile-val">System Specialist · Scandi Standard</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">Domain</div>
+            <div class="profile-val">Digital Procurement · PPWR/EPR/DPP · Decision Intelligence · Vendor Onboarding · e-Procurement</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">Reach</div>
+            <div class="profile-val">7 countries · 7 business units · Nordic & European markets</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">Lab</div>
+            <div class="profile-val">NorthLogicLab — the lab where crazy ideas become structured engines</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">Location</div>
+            <div class="profile-val">Aalborg, Denmark</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">Academic foundation</div>
+            <div class="profile-val">HD International Business, CBS — cluster theory, competitive advantage and knowledge economics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section>
+    <div class="container">
+      <div class="section-label fade-in">Stack</div>
+      <div class="stack-grid fade-in">
+        <div class="stack-item"><div class="stack-name">C# / .NET</div><div class="stack-cat">Core</div></div>
+        <div class="stack-item"><div class="stack-name">Blazor</div><div class="stack-cat">Frontend</div></div>
+        <div class="stack-item"><div class="stack-name">REST API</div><div class="stack-cat">Integration</div></div>
+        <div class="stack-item"><div class="stack-name">SAP / EDI</div><div class="stack-cat">ERP</div></div>
+        <div class="stack-item"><div class="stack-name">Power BI</div><div class="stack-cat">Analytics</div></div>
+        <div class="stack-item"><div class="stack-name">Excel / CSV</div><div class="stack-cat">Data I/O</div></div>
+        <div class="stack-item"><div class="stack-name">PPWR / EPR</div><div class="stack-cat">Regulatory</div></div>
+        <div class="stack-item"><div class="stack-name">AI / RAG</div><div class="stack-cat">Intelligence</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">TheEnginesBehind<span class="blink">_</span></div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/NorthLogicLab" target="_blank">GitHub ↗</a></li>
+          <li><a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn ↗</a></li>
+        </ul>
+        <div class="footer-copy">© 2025 Jon Bach · TheEnginesBehind · Built in NorthLogicLab</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu when link clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
