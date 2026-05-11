@@ -1,68 +1,67 @@
-# The Engines Behind
-## A MasterMind Philosophy on Competitive Advantage, AI Infrastructure 
-## and Personal Capacity in 2025-2035
+# TheEnginesBehind
+
+> *Buy the engines. Not the narrative.*
 
 *By Jon Bach — NorthLogicLab*
 
 ---
 
-## Hvad er dette?
+A personal strategic compass connecting three levels:
 
-Et personligt strategisk kompas der forbinder tre niveauer:
-
-**Makro** — hvad rykker globalt på konkurrenceevne og AI-infrastruktur.
-**Meso** — hvordan klynger, sektorer og virksomheder positionerer sig.
-**Mikro** — hvad det betyder for personlig kapacitet og investeringsbeslutninger.
+**Macro** — what moves globally on competitive advantage and AI infrastructure.
+**Meso** — how clusters, sectors and companies position themselves.
+**Micro** — what it means for personal capacity and investment decisions.
 
 ---
 
-## Fundament
+## Foundation
 
-Bygger på Jon Bachs HD International Business speciale fra CBS (2014) om 
-Arla Foods, klyngeteori og international konkurrenceevne — opdateret til 
-en verden af AI-kapex, statslig industriel intervention og fysisk 
-infrastruktur som den nye konkurrenceparameter.
+Built on Jon Bach's HD International Business thesis from CBS (2014) — Arla Foods, cluster theory and international competitiveness — updated for a world of AI capex, state industrial intervention and physical infrastructure as the new competitive parameter.
 
 ---
 
-## Teoretisk rygrad
+## Theoretical backbone
 
-- Porters Diamant Model
-- Absorberende Kapacitet (PACAP/RACAP) — Zahra & George (2002)
-- Hub and Spoke klyngestruktur
-- OLI-modellen og Udenlandske Direkte Investeringer (FDI)
+- Porter's Diamond Model
+- Absorptive Capacity (PACAP/RACAP) — Zahra & George (2002)
+- Hub and Spoke cluster structure
+- OLI model and Foreign Direct Investment (FDI)
 - Value Chain / Smile Curve
 
 ---
 
-## Struktur
+## Structure
 
-| Del | Titel | Status |
-|-----|-------|--------|
-| 1 | Then vs Now | 🔄 Under udarbejdelse |
-| 2 | The Diamond Reloaded | 🔲 |
-| 3 | The New Cooperative | 🔲 |
-| 4 | Hub and Spoke 2.0 | 🔲 |
-| 5 | PACAP vs RACAP — The Personal Equation | 🔲 |
-| 6 | The MasterMind Portfolio | 🔲 |
-
----
-
-## Arbejdsmetode
-
-Skrevet on/off over 12 måneder i samarbejde med Claude (Anthropic).
-Jon sparrer, udfordrer og tilfører domæneindsigt.
-Claude strukturerer, researcher og skriver udkast.
+| # | Title | Status |
+|---|-------|--------|
+| 1 | Then vs Now | 🔄 In progress |
+| 2 | The Diamond Reloaded | ⬜ |
+| 3 | The New Cooperative | ⬜ |
+| 4 | Hub and Spoke 2.0 | ⬜ |
+| 5 | PACAP vs RACAP — The Personal Equation | ⬜ |
+| 6 | The MasterMind Portfolio | ⬜ |
 
 ---
 
-## Mappestruktur
+## Method
 
-- _drafts/ — udkast til hver del og essays
-- _research/ — kilder og noter
-- Critique — åbne svagheder og ubesvarede spørgsmål
-- SESSIONS.md — løbende beslutningslog
+Written on/off over 12 months in collaboration with Claude (Anthropic).
+Jon challenges, questions and contributes domain insight.
+Claude structures, researches and drafts.
+
+The output belongs to neither. The thinking belongs to both.
 
 ---
 
-*"Buy the engines. Not the narrative."*
+## Repository structure
+
+```
+_drafts/      — working drafts for each section
+_research/    — sources and notes
+critique/     — open weaknesses and unanswered questions
+SESSIONS.md   — ongoing decision log
+```
+
+---
+
+*Part of [NorthLogicLab](https://github.com/NorthLogicLab) · [theenginesbehind.com](https://theenginesbehind.com)*
