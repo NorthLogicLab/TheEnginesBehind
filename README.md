@@ -8,9 +8,9 @@
 
 A personal strategic compass connecting three levels:
 
-**Macro** — what moves globally on competitive advantage and AI infrastructure.
-**Meso** — how clusters, sectors and companies position themselves.
-**Micro** — what it means for personal capacity and investment decisions.
+- **Macro** — what moves globally on competitive advantage and AI infrastructure.
+- **Meso** — how clusters, sectors and companies position themselves.
+- **Micro** — what it means for personal capacity and investment decisions.
 
 ---
 
