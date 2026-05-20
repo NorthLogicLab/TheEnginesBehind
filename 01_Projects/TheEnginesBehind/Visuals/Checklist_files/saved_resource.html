@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html lang="da"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            window.parent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            window.parent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            window.parent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        let requestId = 0;
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        window.storage = {
+          get: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageGet', id, key, shared }, '*');
+            });
+          },
+          set: (key, value, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageSet', id, key, value, shared }, '*');
+            });
+          },
+          delete: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageDelete', id, key, shared }, '*');
+            });
+          },
+          list: (prefix, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageList', id, prefix, shared }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = requestId++;
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream
+                resolve(new Response(stream, {
+                  status: response.status,
+                  statusText: response.statusText,
+                  headers: response.headers
+                }));
+              },
+              reject,
+              channelId
+            });
+            
+            window.parent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          if (event.data.type === 'takeScreenshot') {
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: new Error('Root element not found'),
+              }, '*');
+            }
+            const screenshot = await htmlToImage.toPng(rootElement, {
+              imagePlaceholder:
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+            });
+            window.parent.postMessage({
+              type: 'screenshotData',
+              data: screenshot,
+            }, '*');
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          } else if (event.data.type === 'storageGet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageSet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageDelete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageList') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              window.parent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            window.parent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            window.parent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          window.parent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          window.parent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motorerne Bag — Selvdiagnostik</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #F7F6F1; color: #1A1A18; min-height: 100vh; padding: 1rem; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 1rem 0; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+  .tab { flex: 1; padding: 12px 16px; border-radius: 10px; border: 1.5px solid #D3D1C7; background: #F7F6F1; color: #5F5E5A; cursor: pointer; text-align: left; transition: all .2s; }
+  .tab.active { border-color: #1A1A18; background: #1A1A18; color: white; }
+  .tab-label { font-size: 13px; font-weight: 600; }
+  .tab-sub { font-size: 11px; opacity: .7; margin-top: 2px; }
+
+  /* Quiz card */
+  .quiz { background: #F7F6F1; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; }
+  .quiz-header { background: #1A1A18; padding: 1.75rem 2rem; }
+  .quiz-eyebrow { font-size: 11px; letter-spacing: .12em; color: #888780; text-transform: uppercase; margin-bottom: 6px; }
+  .quiz-title { font-size: 20px; font-weight: 600; color: white; line-height: 1.3; }
+  .quiz-sub { font-size: 13px; color: #888780; margin-top: 6px; }
+
+  /* Progress */
+  .progress-track { height: 3px; background: #EEEDE6; }
+  .progress-fill { height: 100%; transition: width .3s; }
+
+  /* Questions */
+  .questions { padding: 1.5rem; }
+  .q-card { margin-bottom: .75rem; background: #EEEDE6; border-radius: 10px; border: 1px solid #D3D1C7; overflow: hidden; transition: border-color .2s; }
+  .q-card.yes { border-color: var(--accent); }
+  .q-card.no  { border-color: #C0392B; }
+  .q-inner { padding: 1rem 1.25rem; }
+  .q-num { font-size: 11px; color: #888780; letter-spacing: .06em; margin-bottom: 6px; }
+  .q-text { font-size: 14px; line-height: 1.55; margin-bottom: .75rem; }
+  .q-btns { display: flex; gap: 8px; }
+  .q-btn { flex: 1; padding: 8px; border-radius: 7px; border: 1.5px solid #D3D1C7; background: transparent; color: #5F5E5A; font-size: 13px; cursor: pointer; transition: all .15s; font-family: Georgia, serif; }
+  .q-btn.active-yes { border-color: var(--accent); background: var(--accent); color: white; font-weight: 600; }
+  .q-btn.active-no  { border-color: #C0392B; background: #C0392B; color: white; font-weight: 600; }
+  .q-why { margin-top: 10px; padding: 8px 12px; border-radius: 6px; font-size: 12px; color: #5F5E5A; font-style: italic; line-height: 1.5; border-left: 2px solid; }
+  .q-why.yes { background: rgba(29,158,117,.07); border-color: var(--accent); }
+  .q-why.no  { background: rgba(192,57,43,.06);  border-color: #C0392B; }
+
+  /* Submit */
+  .submit { width: 100%; padding: 14px; border-radius: 10px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: all .2s; font-family: Georgia, serif; margin-top: 4px; }
+  .submit.ready { background: #1A1A18; color: white; }
+  .submit.waiting { background: #EEEDE6; color: #888780; cursor: not-allowed; }
+
+  /* Result */
+  .result { margin-top: 1.25rem; padding: 1.5rem; border-radius: 12px; background: #1A1A18; border: 2px solid; }
+  .result-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .result-label { font-size: 22px; font-weight: 700; }
+  .result-sub { font-size: 13px; color: #888780; margin-top: 2px; }
+  .result-pct { font-size: 28px; font-weight: 700; }
+  .result-pct span { font-size: 14px; color: #888780; }
+  .result-bar-track { height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; margin-bottom: 1rem; }
+  .result-bar-fill { height: 100%; border-radius: 3px; transition: width .6s; }
+  .result-text { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.6; margin-bottom: .75rem; }
+  .result-no { padding: 10px 14px; background: rgba(192,57,43,.12); border-radius: 8px; border-left: 2px solid #C0392B; font-size: 12px; color: rgba(255,255,255,.7); }
+  .result-tagline { margin-top: 1rem; text-align: center; font-size: 12px; font-style: italic; color: #888780; }
+</style>
+</head>
+<body id="artifacts-component-root-html">
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(&#39;velocity&#39;)">
+      <div class="tab-label">Organisation</div>
+      <div class="tab-sub">Er I på Organisation A-kurven?</div>
+    </button>
+    <button class="tab" onclick="switchTab(&#39;ct&#39;)">
+      <div class="tab-label">Individ</div>
+      <div class="tab-sub">Er du en Capability Translator?</div>
+    </button>
+  </div>
+
+  <div id="quiz-velocity">
+    <div class="quiz" style="--accent:#1D9E75">
+      <div class="quiz-header">
+        <div class="quiz-eyebrow">Selvdiagnostik</div>
+        <div class="quiz-title">Er din organisation på Organisation A-kurven?</div>
+        <div class="quiz-sub">10 spørgsmål der afslører hvilken side af Translation Barrier I befinder jer på.</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:0%;background:#1D9E75"></div>
+      </div>
+      <div class="questions">
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">1 / 10</div>
+          <div class="q-text">Har din organisation redesignet mindst ét kerneworkflow — ikke tilføjet AI til det, men redesignet det fra bunden om AI-kapabilitet?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,1,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,1,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">2 / 10</div>
+          <div class="q-text">Bruger mere end halvdelen af dine medarbejdere AI-værktøjer mindst én gang om ugen?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,2,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,2,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">3 / 10</div>
+          <div class="q-text">Ved du præcist hvilke tre beslutninger i din organisation AI fundamentalt ændrer informationsgrundlaget for — og er de redesignet?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,3,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,3,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">4 / 10</div>
+          <div class="q-text">Har din organisation gennemført en AI-relateret investering i dataarkitektur det seneste år?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,4,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,4,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">5 / 10</div>
+          <div class="q-text">Akkumulerer din organisation kontekstspecifik operationel data fra AI-integrationer som konkurrenter ikke har adgang til?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,5,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,5,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">6 / 10</div>
+          <div class="q-text">Har nogen i din organisation evalueret om jeres AI-systemer faktisk virker i jeres operative kontekst — ikke kun i leverandørens demo?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,6,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,6,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">7 / 10</div>
+          <div class="q-text">Har din organisation én eller flere personer der kan bygge bro mellem teknisk AI-kapabilitet og operationel integration?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,7,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,7,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">8 / 10</div>
+          <div class="q-text">Har din AI-integration kørt i produktionsmiljø i mere end seks måneder med målbare operative resultater?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,8,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,8,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">9 / 10</div>
+          <div class="q-text">Er hastigheden hvormed I integrerer nye AI-kapabiliteter stigende sammenlignet med for et år siden?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,9,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,9,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">10 / 10</div>
+          <div class="q-text">Ville en ny konkurrent der startede operationel AI-integration i dag have svært ved at indhente jeres position inden for to år?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,10,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;velocity&#39;,10,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+        <button class="submit waiting" disabled="">
+          Besvar alle spørgsmål (0/10)
+        </button></div></div></div>
+  <div id="quiz-ct" style="display:none">
+    <div class="quiz" style="--accent:#534AB7">
+      <div class="quiz-header">
+        <div class="quiz-eyebrow">Selvdiagnostik</div>
+        <div class="quiz-title">Kvalificerer du som Capability Translator?</div>
+        <div class="quiz-sub">10 spørgsmål der afslører om du besidder alle tre barrierers krydsningskapabilitet.</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:0%;background:#534AB7"></div>
+      </div>
+      <div class="questions">
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">1 / 10</div>
+          <div class="q-text">Har du nogensinde taget et AI-system fra idé til fuld operationel integration i en organisation — ikke et pilotprojekt, men reel produktion med målbare resultater?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,1,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,1,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">2 / 10</div>
+          <div class="q-text">Kan du forklare hvad et transformer-netværk gør på et konceptuelt niveau uden at slå det op?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,2,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,2,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">3 / 10</div>
+          <div class="q-text">Har du identificeret og redesignet en forretningsproces der var strukturelt anderledes med AI — ikke hurtigere, men fundamentalt anderledes i sin beslutningslogik?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,3,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,3,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">4 / 10</div>
+          <div class="q-text">Har du haft direkte ansvar for et operationelt resultat — P&amp;L, driftsansvar eller lignende — i mindst to år?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,4,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,4,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">5 / 10</div>
+          <div class="q-text">Kan du navigere et teknisk møde med ingeniører og et strategisk møde med topledelse samme dag — og bevare troværdighed i begge rum?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,5,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,5,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">6 / 10</div>
+          <div class="q-text">Har du drevet en rekonfiguration igennem i en organisation der aktivt modstod den — og gennemført den?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,6,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,6,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">7 / 10</div>
+          <div class="q-text">Kan du evaluere om et AI-systems output er troværdigt i en specifik operativ kontekst — og identificere præcist hvornår det fejler?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,7,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,7,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">8 / 10</div>
+          <div class="q-text">Har du krydset Translation Barrier i mere end én organisation eller mere end én teknologisk kontekst?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,8,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,8,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">9 / 10</div>
+          <div class="q-text">Kan du identificere hvilken type Translation Barrier-krydsning der er relevant i en given organisations kontekst — institutionel fusion, koordinationsindsigt, arkitektonisk indlejring, organisatorisk akkumulering eller strategisk rekonfiguration?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,9,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,9,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="q-card ">
+        <div class="q-inner">
+          <div class="q-num">10 / 10</div>
+          <div class="q-text">Søger organisationer eller individer aktivt din vurdering når de skal tage beslutninger om AI-integration?</div>
+          <div class="q-btns">
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,10,true)">Ja</button>
+            <button class="q-btn " onclick="answer(&#39;ct&#39;,10,false)">Nej</button>
+          </div>
+          
+        </div>
+      </div>
+        <button class="submit waiting" disabled="">
+          Besvar alle spørgsmål (0/10)
+        </button></div></div></div>
+
+</div>
+
+<script>
+const C = {
+  teal:   "#1D9E75",
+  purple: "#534AB7",
+  amber:  "#BA7517",
+  red:    "#C0392B",
+};
+
+const velocityQs = [
+  { id:1, w:2, q:"Har din organisation redesignet mindst ét kerneworkflow — ikke tilføjet AI til det, men redesignet det fra bunden om AI-kapabilitet?", why:"Workflow-redesign er den primære markør for operationel integration. Deployment uden redesign er PACAP, ikke RACAP." },
+  { id:2, w:1, q:"Bruger mere end halvdelen af dine medarbejdere AI-værktøjer mindst én gang om ugen?", why:"Bred brug er en forudsætning — men ikke tilstrækkelig. Det måler eksponering, ikke integration." },
+  { id:3, w:2, q:"Ved du præcist hvilke tre beslutninger i din organisation AI fundamentalt ændrer informationsgrundlaget for — og er de redesignet?", why:"Præcisionsevnen til at identificere de rigtige beslutninger er kernen i Capability Translation. Uklarhed her indikerer at barrieren ikke er krydset." },
+  { id:4, w:1, q:"Har din organisation gennemført en AI-relateret investering i dataarkitektur det seneste år?", why:"Dataarkitektur er fundamentet. Uden den deployes AI oven på fragmenterede data — sofistikeret underydelse, ikke akkumulering." },
+  { id:5, w:2, q:"Akkumulerer din organisation kontekstspecifik operationel data fra AI-integrationer som konkurrenter ikke har adgang til?", why:"Proprietær dataakkumulering er det første tegn på at compounding er begyndt. Generisk AI-brug producerer ingen proprietær fordel." },
+  { id:6, w:1, q:"Har nogen i din organisation evalueret om jeres AI-systemer faktisk virker i jeres operative kontekst — ikke kun i leverandørens demo?", why:"Evalueringskapabilitet er kritisk. Uden den deployes systemer der ser rigtige ud men fejler subtilt i praksis." },
+  { id:7, w:2, q:"Har din organisation én eller flere personer der kan bygge bro mellem teknisk AI-kapabilitet og operationel integration?", why:"Fraværet af Capability Translator-profilen er den mest forudsigelige årsag til at AI-investeringer forbliver på PACAP-siden." },
+  { id:8, w:1, q:"Har din AI-integration kørt i produktionsmiljø i mere end seks måneder med målbare operative resultater?", why:"Seks måneder i produktion er minimumsgrænsen for at RACAP begynder at akkumulere. Under dette er det eksponering, ikke integration." },
+  { id:9, w:1, q:"Er hastigheden hvormed I integrerer nye AI-kapabiliteter stigende sammenlignet med for et år siden?", why:"Stigende absorptionshastighed er tegnet på at meta-kapabiliteten akkumulerer. Konstant hastighed indikerer at organisationen ikke lærer at lære." },
+  { id:10,w:2, q:"Ville en ny konkurrent der startede operationel AI-integration i dag have svært ved at indhente jeres position inden for to år?", why:"Det ultimative test: er din position strukturelt svær at replikere hurtigt? Usikkerhed her indikerer at du sandsynligvis stadig er på PACAP-siden." },
+];
+
+const ctQs = [
+  { id:1, w:2, q:"Har du nogensinde taget et AI-system fra idé til fuld operationel integration i en organisation — ikke et pilotprojekt, men reel produktion med målbare resultater?", why:"Dette er den afgørende erfaring. Capability Translators defineres af gennemførte krydsninger, ikke planlagte." },
+  { id:2, w:1, q:"Kan du forklare hvad et transformer-netværk gør på et konceptuelt niveau uden at slå det op?", why:"Teknisk basisforståelse er nødvendig for evalueringskapabiliteten — men ikke tilstrækkelig alene." },
+  { id:3, w:2, q:"Har du identificeret og redesignet en forretningsproces der var strukturelt anderledes med AI — ikke hurtigere, men fundamentalt anderledes i sin beslutningslogik?", why:"Evnen til at skelne kosmetisk forbedring fra strukturel rekonfiguration er Capability Translatorens kernekapabilitet." },
+  { id:4, w:1, q:"Har du haft direkte ansvar for et operationelt resultat — P&L, driftsansvar eller lignende — i mindst to år?", why:"Operationelt resultatansvar er den erfaring der opbygger forståelse for hvad organisationer faktisk kræver for at ændre sig." },
+  { id:5, w:1, q:"Kan du navigere et teknisk møde med ingeniører og et strategisk møde med topledelse samme dag — og bevare troværdighed i begge rum?", why:"Legitimeringskapabilitet kræver troværdighed i begge rum simultant. Troværdighed i kun ét rum er ikke tilstrækkeligt." },
+  { id:6, w:2, q:"Har du drevet en rekonfiguration igennem i en organisation der aktivt modstod den — og gennemført den?", why:"Implementering mod institutionel modstand er den tredje og sværeste barriere. De fleste stopper her." },
+  { id:7, w:1, q:"Kan du evaluere om et AI-systems output er troværdigt i en specifik operativ kontekst — og identificere præcist hvornår det fejler?", why:"Evalueringskapabilitet beskytter mod det klassiske fald: systemer der ser rigtige ud men akkumulerer fejl subtilt over tid." },
+  { id:8, w:1, q:"Har du krydset Translation Barrier i mere end én organisation eller mere end én teknologisk kontekst?", why:"Gentagelse på tværs af kontekster er det der producerer mønstergenkendelse — den kapabilitet der gør profilen strukturelt værdifuld frem for situationelt nyttig." },
+  { id:9, w:2, q:"Kan du identificere hvilken type Translation Barrier-krydsning der er relevant i en given organisations kontekst — institutionel fusion, koordinationsindsigt, arkitektonisk indlejring, organisatorisk akkumulering eller strategisk rekonfiguration?", why:"Evnen til at matche krydsningstype med kontekst er meta-kapabiliteten der adskiller en erfaren Capability Translator fra en der kun har krydset én gang." },
+  { id:10,w:1, q:"Søger organisationer eller individer aktivt din vurdering når de skal tage beslutninger om AI-integration?", why:"Ekstern anerkendelse af translationskapabiliteten er en indirekte markør. Den er ikke definitiv — men dens fravær er et signal." },
+];
+
+const maxScore = 14;
+
+function getVelocityResult(score) {
+  const pct = score / maxScore;
+  if (pct >= 0.78) return { label:"Organisation A", sub:"Operationel integration — akkumulering er begyndt", color:C.teal, text:"Din organisation er på den rigtige side af Translation Barrier. Compounding er begyndt. Det strategiske fokus er nu at accelerere akkumuleringen og beskytte den mod de vendepunkter der uundgåeligt følger af dyb akkumulering." };
+  if (pct >= 0.5)  return { label:"Overgangszonen", sub:"Delvis integration — Translation Barrier er halvvejs krydset", color:C.amber, text:"Din organisation har krydset dele af Translation Barrier men ikke hele den. Risikoen er at I tror I er på Organisation A-kurven mens I faktisk befinder jer i det usynlige gab — og konkurrenterne akkumulerer." };
+  return { label:"Organisation B", sub:"Familiarity — Translation Barrier er ikke krydset", color:C.red, text:"Din organisation er primært på PACAP-siden. AI er tilgængeligt men ikke akkumulerende. Det kritiske spørgsmål er ikke om I skal krydse Translation Barrier — det er hvornår, og om I forstår hvad det faktisk kræver." };
+}
+
+function getCTResult(score) {
+  const pct = score / maxScore;
+  if (pct >= 0.78) return { label:"Capability Translator", sub:"Alle tre barrierer krydset — profilen er operationel", color:C.teal, text:"Du besidder den kapabilitetskonfiguration der er nødvendig for at krydse Translation Barrier i en organisatorisk kontekst. Identificerer. Redesigner. Implementerer — mod modstand. Det er sjældent og akkumulerende." };
+  if (pct >= 0.5)  return { label:"Under opbygning", sub:"Én eller to barrierer krydset — ikke alle tre simultant", color:C.amber, text:"Du har substantielle dele af Capability Translator-profilen. Den bindende begrænsning er præcis de spørgsmål du svarede nej til. Karrierearkitektur der bevidst adresserer disse huller er den hurtigste vej til den fulde profil." };
+  return { label:"PACAP-profil", sub:"Eksponering og forståelse — translationskapabilitet ikke akkumuleret endnu", color:"#534AB7", text:"Du er på den brede side af Translation Barrier. Det er ikke et problem — det er udgangspunktet. Capability Translator-profilen opbygges i en specifik sekvens: teknisk troværdighed i produktion, operationelt procesansvar, én gennemført Translation, gentagelse på tværs." };
+}
+
+// State
+const state = {
+  velocity: { answers: {}, shown: false },
+  ct:       { answers: {}, shown: false },
+};
+
+let activeTab = "velocity";
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', (i === 0 && tab === 'velocity') || (i === 1 && tab === 'ct'));
+  });
+  document.getElementById('quiz-velocity').style.display = tab === 'velocity' ? '' : 'none';
+  document.getElementById('quiz-ct').style.display       = tab === 'ct'       ? '' : 'none';
+}
+
+function answer(tab, id, val) {
+  state[tab].answers[id] = val;
+  state[tab].shown = false;
+  renderQuiz(tab);
+}
+
+function submit(tab) {
+  state[tab].shown = true;
+  renderQuiz(tab);
+}
+
+function renderQuiz(tab) {
+  const qs       = tab === 'velocity' ? velocityQs : ctQs;
+  const getResult= tab === 'velocity' ? getVelocityResult : getCTResult;
+  const accent   = tab === 'velocity' ? C.teal : "#534AB7";
+  const title    = tab === 'velocity' ? "Er din organisation på Organisation A-kurven?" : "Kvalificerer du som Capability Translator?";
+  const subtitle = tab === 'velocity' ? "10 spørgsmål der afslører hvilken side af Translation Barrier I befinder jer på." : "10 spørgsmål der afslører om du besidder alle tre barrierers krydsningskapabilitet.";
+
+  const ans      = state[tab].answers;
+  const answered = Object.keys(ans).length;
+  const score    = Object.entries(ans).filter(([,v])=>v).reduce((s,[id])=>{ const q=qs.find(q=>q.id===parseInt(id)); return s+(q?.w||0); },0);
+  const allDone  = answered === qs.length;
+  const result   = getResult(score);
+  const pct      = Math.round((answered/qs.length)*100);
+
+  let html = `
+    <div class="quiz" style="--accent:${accent}">
+      <div class="quiz-header">
+        <div class="quiz-eyebrow">Selvdiagnostik</div>
+        <div class="quiz-title">${title}</div>
+        <div class="quiz-sub">${subtitle}</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:${pct}%;background:${accent}"></div>
+      </div>
+      <div class="questions">`;
+
+  qs.forEach(q => {
+    const a = ans[q.id];
+    const cardClass = a === true ? 'yes' : a === false ? 'no' : '';
+    html += `
+      <div class="q-card ${cardClass}">
+        <div class="q-inner">
+          <div class="q-num">${q.id} / ${qs.length}</div>
+          <div class="q-text">${q.q}</div>
+          <div class="q-btns">
+            <button class="q-btn ${a===true?'active-yes':''}" onclick="answer('${tab}',${q.id},true)">Ja</button>
+            <button class="q-btn ${a===false?'active-no':''}"  onclick="answer('${tab}',${q.id},false)">Nej</button>
+          </div>
+          ${a !== undefined ? `<div class="q-why ${a?'yes':'no'}">${q.why}</div>` : ''}
+        </div>
+      </div>`;
+  });
+
+  html += `
+        <button class="submit ${allDone?'ready':'waiting'}" ${allDone?`onclick="submit('${tab}')"`:'disabled'}>
+          ${allDone ? 'Se resultat' : `Besvar alle spørgsmål (${answered}/${qs.length})`}
+        </button>`;
+
+  if (state[tab].shown && allDone) {
+    const noCt  = Object.values(ans).filter(v=>!v).length;
+    const noSc  = qs.filter(q=>ans[q.id]===false).reduce((s,q)=>s+q.w,0);
+    html += `
+        <div class="result" style="border-color:${result.color}">
+          <div class="result-top">
+            <div>
+              <div class="result-label" style="color:${result.color}">${result.label}</div>
+              <div class="result-sub">${result.sub}</div>
+            </div>
+            <div class="result-pct" style="color:${result.color}">${Math.round((score/maxScore)*100)}<span>%</span></div>
+          </div>
+          <div class="result-bar-track">
+            <div class="result-bar-fill" style="width:${Math.round((score/maxScore)*100)}%;background:${result.color}"></div>
+          </div>
+          <div class="result-text">${result.text}</div>
+          ${noCt > 0 ? `<div class="result-no">${noCt} spørgsmål besvaret negativt.${noSc>=4?' Nogle af disse er strukturelt afgørende for den fulde profil.':' De udgør ikke en kritisk begrænsning isoleret set.'}</div>` : ''}
+          <div class="result-tagline">Adgang er ikke kapabilitet. Konvertering er.</div>
+        </div>`;
+  }
+
+  html += `</div></div>`;
+  document.getElementById(`quiz-${tab}`).innerHTML = html;
+}
+
+// Init
+renderQuiz('velocity');
+renderQuiz('ct');
+</script>
+
+
+</body></html>

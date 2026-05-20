@@ -1,0 +1,8 @@
+# Browser-saved page files
+*_files/
+*.js.download
+*.gz
+
+# OS
+.DS_Store
+Thumbs.db
