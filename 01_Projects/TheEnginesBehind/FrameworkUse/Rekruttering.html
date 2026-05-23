@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekrutteringsperspektivet — The Engines Behind</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7f4;color:#1a1a1a;padding:2rem 1rem;min-height:100vh}
+.container{max-width:760px;margin:0 auto}
+.header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e0ddd8}
+.header-label{font-size:11px;letter-spacing:2px;color:#888;text-transform:uppercase;margin-bottom:.5rem}
+.header-title{font-size:26px;font-weight:600;color:#1a1a1a;margin-bottom:.5rem}
+.header-sub{font-size:15px;color:#666;line-height:1.6}
+.tabs{display:flex;gap:0;margin-bottom:2rem;border-bottom:2px solid #e0ddd8}
+.tab{padding:10px 20px;cursor:pointer;font-size:14px;font-weight:500;color:#888;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none}
+.tab:hover{color:#1a1a1a}
+.tab.active{color:#1a1a1a;border-bottom-color:#1a1a1a}
+.panel{display:none}.panel.active{display:block}
+.section-title{font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:.5rem}
+.section-sub{font-size:14px;color:#888;margin-bottom:1.5rem;line-height:1.5}
+.q-card{background:#fff;border:1px solid #e0ddd8;border-radius:10px;padding:1.25rem;margin-bottom:1rem}
+.q-number{font-size:11px;font-weight:600;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
+.q-text{font-size:16px;font-weight:500;color:#1a1a1a;margin-bottom:1rem;line-height:1.4}
+.signals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.signal-box{border-radius:8px;padding:.875rem}
+.signal-green{background:#e8f5e9;border:1px solid #a5d6a7}
+.signal-red{background:#fce4ec;border:1px solid #f48fb1}
+.signal-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
+.signal-green .signal-label{color:#2e7d32}
+.signal-red .signal-label{color:#c62828}
+.signal-items{font-size:13px;line-height:1.7;color:#444}
+.signal-items li{margin-left:1rem;margin-bottom:2px}
+.talent-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.talent-card{background:#fff;border:1px solid #e0ddd8;border-radius:10px;padding:1rem;display:flex;gap:10px;align-items:flex-start}
+.talent-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.talent-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
+.talent-desc{font-size:13px;color:#666;line-height:1.5}
+.insight-box{background:#f0ede8;border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+.insight-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.insight-text{font-size:14px;color:#444;line-height:1.7;font-style:italic}
+.opslag-controls{background:#fff;border:1px solid #e0ddd8;border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+.form-row{margin-bottom:1rem}
+label{font-size:13px;font-weight:500;color:#555;display:block;margin-bottom:.4rem}
+select,input{width:100%;padding:9px 12px;border:1px solid #d0cdc8;border-radius:8px;font-size:14px;color:#1a1a1a;background:#fff;font-family:inherit}
+select:focus,input:focus{outline:none;border-color:#1a73e8}
+.btn{padding:10px 20px;border-radius:8px;border:1px solid #d0cdc8;background:#fff;color:#1a1a1a;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.btn:hover{background:#f0ede8}
+.btn-primary{background:#1a1a1a;color:#fff;border-color:transparent}
+.btn-primary:hover{background:#333}
+.opslag-output{background:#fff;border:1px solid #e0ddd8;border-radius:10px;padding:1.5rem;display:none}
+.opslag-output.visible{display:block}
+.opslag-title{font-size:18px;font-weight:600;margin-bottom:1rem;color:#1a1a1a}
+.opslag-section{margin-bottom:1.25rem}
+.opslag-section-title{font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+.opslag-section-text{font-size:14px;color:#444;line-height:1.7}
+.opslag-section-text li{margin-left:1.25rem;margin-bottom:.25rem}
+.copy-btn{margin-top:1rem;font-size:13px}
+.divider{height:1px;background:#e0ddd8;margin:1.5rem 0}
+.archetype-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
+.arch-btn{padding:7px 14px;border-radius:999px;border:1px solid #d0cdc8;background:#fff;font-size:13px;cursor:pointer;color:#555;transition:all .15s}
+.arch-btn:hover{border-color:#888;color:#1a1a1a}
+.arch-btn.selected{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.esco-note{background:#fff;border:1px solid #e0ddd8;border-left:3px solid #378ADD;border-radius:0 8px 8px 0;padding:1rem;margin-bottom:1rem;font-size:14px;color:#444;line-height:1.6}
+.esco-note strong{color:#1a1a1a}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-label">The Engines Behind · Rekrutteringsperspektivet</div>
+    <div class="header-title">Find dem der akkumulerer</div>
+    <div class="header-sub">Tre praktiske instrumenter til HR-direktøren der vil rekruttere på kapabilitet — ikke kun på CV og jobtitel.</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('interview')">Interviewspørgsmål</button>
+    <button class="tab" onclick="showTab('talent')">Skjulte talenter</button>
+    <button class="tab" onclick="showTab('opslag')">Stillingsopslag</button>
+  </div>
+
+  <!-- TAB 1: INTERVIEW -->
+  <div id="interview" class="panel active">
+    <div class="section-title">De fem spørgsmål der afslører kapabilitet</div>
+    <div class="section-sub">Klassiske interviews finder ud af hvad kandidaten har gjort. Disse spørgsmål finder ud af om kandidaten akkumulerer — eller blot løser opgaver. Lyt efter hvad der overlever kandidaten.</div>
+
+    <div class="esco-note">
+      <strong>ESCO som baseline:</strong> Enhver kandidat der matcher ESCO-normprofilen for rollen, opfylder minimumskravet. Det interessante signal er hvem der <em>overskrider</em> normen — og i hvilke dimensioner. Det er den kandidat der akkumulerer asymmetrisk.
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Spørgsmål 1 · Feedback loops</div>
+      <div class="q-text">Fortæl om en proces, du har gjort mere datadrevet.</div>
+      <div class="signals">
+        <div class="signal-box signal-green">
+          <div class="signal-label">✓ Grønne signaler</div>
+          <div class="signal-items"><ul>
+            <li>Identificerede et informationsproblem ingen bad om</li>
+            <li>Redesignede hvordan data produceres — ikke blot brugt</li>
+            <li>Ændrede en beslutningsproces, ikke bare en rapport</li>
+            <li>Andre begyndte at bruge systemet</li>
+          </ul></div>
+        </div>
+        <div class="signal-box signal-red">
+          <div class="signal-label">✗ Røde signaler</div>
+          <div class="signal-items"><ul>
+            <li>Brugte et eksisterende dashboard mere aktivt</li>
+            <li>Eksport til Excel og manuel bearbejdning</li>
+            <li>Ingen kobling til en beslutning der ændrede sig</li>
+            <li>Projektet er afsluttet — systemet lever ikke videre</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Spørgsmål 2 · Systemforståelse</div>
+      <div class="q-text">Fortæl om et systemproblem, du selv diagnosticerede — uden at nogen bad dig om det.</div>
+      <div class="signals">
+        <div class="signal-box signal-green">
+          <div class="signal-label">✓ Grønne signaler</div>
+          <div class="signal-items"><ul>
+            <li>Så fejlen før andre — fordi de forstod sammenhængen</li>
+            <li>Forstod årsagen, ikke blot symptomet</li>
+            <li>Handlede på det uden at vente på mandat</li>
+            <li>Problemet er løst — eller løsningen er i gang</li>
+          </ul></div>
+        </div>
+        <div class="signal-box signal-red">
+          <div class="signal-label">✗ Røde signaler</div>
+          <div class="signal-items"><ul>
+            <li>Problemet var allerede eskaleret da de reagerede</li>
+            <li>Beskriver symptomet, ikke årsagen</li>
+            <li>IT fandt fejlen — de rapporterede den</li>
+            <li>Ingen selvstændig diagnostik</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Spørgsmål 3 · Akkumuleringshastighed</div>
+      <div class="q-text">Fortæl om en rapport, model eller løsning andre begyndte at bruge — som du ikke var bedt om at lave.</div>
+      <div class="signals">
+        <div class="signal-box signal-green">
+          <div class="signal-label">✓ Grønne signaler</div>
+          <div class="signal-items"><ul>
+            <li>Løsningen eksisterer stadig — uden kandidaten</li>
+            <li>Andre bruger den dagligt</li>
+            <li>Den er blevet forbedret videre af andre</li>
+            <li>Den reducerede manuel arbejde systematisk</li>
+          </ul></div>
+        </div>
+        <div class="signal-box signal-red">
+          <div class="signal-label">✗ Røde signaler</div>
+          <div class="signal-items"><ul>
+            <li>Rapporten var et engangsprodukt</li>
+            <li>Andre brugte den én gang og glemte den</li>
+            <li>Kandidaten ved ikke om den stadig bruges</li>
+            <li>Den krævede løbende vedligeholdelse af kandidaten selv</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Spørgsmål 4 · Oversættelsesevne</div>
+      <div class="q-text">Fortæl om en gang du oversatte mellem fagfolk og IT — og hvad der konkret ændrede sig.</div>
+      <div class="signals">
+        <div class="signal-box signal-green">
+          <div class="signal-label">✓ Grønne signaler</div>
+          <div class="signal-items"><ul>
+            <li>Forstod begge sider med præcision</li>
+            <li>Reducerede misforståelser konkret</li>
+            <li>Projektet lykkedes fordi de var der</li>
+            <li>Kan beskrive den tekniske begrænsning og forretningsbehovet</li>
+          </ul></div>
+        </div>
+        <div class="signal-box signal-red">
+          <div class="signal-label">✗ Røde signaler</div>
+          <div class="signal-items"><ul>
+            <li>Videresendte beskeder mellem afdelinger</li>
+            <li>Var "kommunikationsled" uden reel forståelse</li>
+            <li>Kan ikke forklare den tekniske side præcist</li>
+            <li>Oversætningen krævede altid andres hjælp</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" style="border-color:#1a1a1a">
+      <div class="q-number" style="color:#1a1a1a">Spørgsmål 5 · Det vigtigste</div>
+      <div class="q-text">Fortæl om noget du byggede, der overlevede efter du slap det.</div>
+      <div class="signals">
+        <div class="signal-box signal-green">
+          <div class="signal-label">✓ Grønne signaler</div>
+          <div class="signal-items"><ul>
+            <li>Systemet eksisterer og bruges — uden kandidaten</li>
+            <li>Det er blevet forbedret af andre</li>
+            <li>Det har ændret måden organisationen arbejder på</li>
+            <li>Kandidaten kan beskrive hvad det efterlader</li>
+          </ul></div>
+        </div>
+        <div class="signal-box signal-red">
+          <div class="signal-label">✗ Røde signaler</div>
+          <div class="signal-items"><ul>
+            <li>Eksisterede kun mens kandidaten var der</li>
+            <li>Ingen andre overtog det</li>
+            <li>Det "virkede fint" men ingen bruger det nu</li>
+            <li>Kandidaten er usikker på om det stadig bruges</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Analytisk pointe</div>
+      <div class="insight-text">"De kompetencer der er sværest at måle i en klassisk rekrutteringsproces, er præcis de kompetencer der er sværest at erstatte med AI. Det er ikke en ironi. Det er en mekanisme."</div>
+    </div>
+  </div>
+
+  <!-- TAB 2: SKJULTE TALENTER -->
+  <div id="talent" class="panel">
+    <div class="section-title">Find de skjulte talenter i maskinrummet</div>
+    <div class="section-sub">Høj akkumulering korrelerer ikke med synlighed i klassiske organisationer. De bedste Oversættere og Systemskabere sidder sjældent i centrum af mødet. Her er tegnene der afslører dem.</div>
+
+    <div class="insight-box">
+      <div class="insight-label">Det skjulte talent-paradoks</div>
+      <div class="insight-text">Organisationen har måske allerede kapabiliteten. Den mangler absorptionskapaciteten til at genkende den. Guldet ligger på lageret — men ingen har oprettet varenummeret.</div>
+    </div>
+
+    <div class="talent-grid">
+      <div class="talent-card">
+        <div class="talent-icon">⚙️</div>
+        <div><div class="talent-title">Automatiserer uden at blive bedt om det</div><div class="talent-desc">Bygger løsninger til egne processer ingen bad om — fordi de ser spildet andre ikke ser.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">🔍</div>
+        <div><div class="talent-title">Opdager masterdata-fejl</div><div class="talent-desc">Forstår ERP-flowet på tværs af funktioner og ser systemfejl som symptomer på en dybere arkitekturproblem.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">🌉</div>
+        <div><div class="talent-title">Forbinder fagfolk og IT uformelt</div><div class="talent-desc">Bliver uformelt kaldt ind som tolk i projekter — fordi de forstår begge sprog uden at have titlen for det.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">📊</div>
+        <div><div class="talent-title">Bygger modeller andre adopterer</div><div class="talent-desc">Laver en Excel-model eller et dashboard som kolleger begynder at bruge og dele — uden at det var en formel opgave.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">🎯</div>
+        <div><div class="talent-title">Ser systemproblemet før ledelsen</div><div class="talent-desc">Diagnosticerer årsagen bag tilbagevendende fejl og escalerings-mønstre — og har ofte allerede en løsning.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">📝</div>
+        <div><div class="talent-title">Dokumenterer det ingen bad om</div><div class="talent-desc">Skriver processbeskrivelser, beslutningslogik og systemguides fordi de forstår at viden skal ud af ét hoved.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">🔄</div>
+        <div><div class="talent-title">Redesigner ikke blot forbedrer</div><div class="talent-desc">Stiller spørgsmål ved selve procesarkitekturen — ikke kun ved effektiviteten inden for den eksisterende ramme.</div></div>
+      </div>
+      <div class="talent-card">
+        <div class="talent-icon">💡</div>
+        <div><div class="talent-title">Stiller spørgsmål ingen stiller</div><div class="talent-desc">"Hvorfor er det bygget sådan?" og "Hvad hvis vi fjernede dette trin helt?" — ikke som kritik, men som ægte nysgerrighed.</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-title" style="margin-bottom:.5rem">Sådan finder du dem</div>
+    <div class="section-sub">Performance reviews finder ikke disse mennesker. Her er tre metoder der virker.</div>
+
+    <div class="q-card">
+      <div class="q-number">Metode 1 · Spørg om systemerne de har efterladt</div>
+      <div class="q-text" style="font-size:14px;font-weight:400;color:#444;line-height:1.6">Send en simpel forespørgsel til teamledere: "Er der nogen i dit team der har bygget et system, en model eller en proces som I stadig bruger — som ikke var en formel arbejdsopgave?" De navne der dukker op, er dine skjulte talenter.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Metode 2 · Find dem andre uformelt henvender sig til</div>
+      <div class="q-text" style="font-size:14px;font-weight:400;color:#444;line-height:1.6">Spørg: "Hvem ringer du til når noget i systemet ikke virker — og det ikke er IT?" Og: "Hvem forklarer tekniske løsninger på en måde forretningen forstår?" De samme navne vil gå igen.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-number">Metode 3 · Giv dem et struktureret problem</div>
+      <div class="q-text" style="font-size:14px;font-weight:400;color:#444;line-height:1.6">Inviter kandidaterne til at kortlægge én proces de kender godt — og identificere det svageste led. En Systemskaber vil se systemproblemet. En Systemfølger vil beskrive processen som den er. Forskellen er tydelig inden for ti minutter.</div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Kritisk observation</div>
+      <div class="insight-text">De tre metoder kræver ingen psykologisk test, ingen dyr assessment, ingen ekstern konsulent. De kræver at HR stiller andre spørgsmål end de plejer — og lytter efter hvad der overlever kandidaten, ikke hvad kandidaten selv fortæller om sig selv.</div>
+    </div>
+  </div>
+
+  <!-- TAB 3: STILLINGSOPSLAG -->
+  <div id="opslag" class="panel">
+    <div class="section-title">Skriv opslag der tiltrækker den rigtige profil</div>
+    <div class="section-sub">Et klassisk opslag tiltrækker dem der genkender titlen. Et kapabilitetsbaseret opslag tiltrækker dem der genkender arbejdet. Det er ofte ikke de samme mennesker.</div>
+
+    <div class="opslag-controls">
+      <div class="form-row">
+        <label>Vælg den profil du søger</label>
+        <div class="archetype-selector" id="arch-selector">
+          <button class="arch-btn selected" onclick="selectArch(this,'sf')">Systemfølgeren</button>
+          <button class="arch-btn" onclick="selectArch(this,'fe')">Fageksperten</button>
+          <button class="arch-btn" onclick="selectArch(this,'pb')">Procesbyggeren</button>
+          <button class="arch-btn" onclick="selectArch(this,'ov')">Oversætteren</button>
+          <button class="arch-btn" onclick="selectArch(this,'ss')">Systemskaberen</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Jobtitel (fx "Procurement Specialist")</label>
+        <input type="text" id="job-title" placeholder="Skriv jobtitel..." value="Procurement Specialist">
+      </div>
+      <div class="form-row">
+        <label>Organisation / kontekst (valgfri)</label>
+        <input type="text" id="org-context" placeholder="fx fødevareproducent, tech-virksomhed...">
+      </div>
+      <button class="btn btn-primary" onclick="generateOpslag()">Generer stillingsopslag</button>
+    </div>
+
+    <div id="opslag-output" class="opslag-output">
+      <div class="opslag-title" id="opslag-title"></div>
+      <div id="opslag-content"></div>
+      <button class="btn copy-btn" onclick="copyOpslag()">Kopier tekst</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['interview','talent','opslag'][i]===id));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+let selectedArch='sf';
+function selectArch(btn,id){
+  document.querySelectorAll('.arch-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedArch=id;
+}
+
+const OPSLAG_DATA={
+  sf:{
+    aca:'Systemfølgeren',
+    intro:'Vi søger en driftsikker og struktureret medarbejder der trives med at arbejde inden for veletablerede systemer og processer.',
+    kerneopgaver:['Følge og vedligeholde eksisterende workflows og processer','Sikre konsistent og korrekt opgaveudførelse','Dokumentere og rapportere på etablerede parametre','Samarbejde med kollegaer om daglig drift'],
+    kompetencer:['Stærk procesforståelse og evne til at følge etablerede procedurer','God systemviden inden for relevante platforme','Struktureret og detaljeorienteret arbejdsstil','Pålidelig og ansvarlig i opgaveudførelse'],
+    undgaaBeskrivelse:'Denne rolle kræver ikke at du redesigner processer eller bygger nye systemer — men at du sikrer at de eksisterende kører optimalt.',
+  },
+  fe:{
+    aca:'Fageksperten',
+    intro:'Vi søger en fagligt stærk specialist med dyb domæneviden der kan løfte kvaliteten i vores arbejde og fungere som faglig sparringspartner.',
+    kerneopgaver:['Anvende dyb faglig viden til at løse komplekse domæneopgaver','Fungere som intern ekspert og sparringspartner','Sikre faglig kvalitet og compliance i opgaveudførelse','Bidrage til kompetenceudvikling i teamet'],
+    kompetencer:['Solid faglig uddannelse og erfaring inden for domænet','Evne til at formidle kompleks faglig viden klart','Analytisk tilgang til faglige problemstillinger','Interesse i at holde sig opdateret fagligt'],
+    undgaaBeskrivelse:'Vi leder efter dyb faglig tyngde — ikke nødvendigvis teknisk systemerfaring. Din viden er dit primære bidrag.',
+  },
+  pb:{
+    aca:'Procesbyggeren',
+    intro:'Vi søger en procesbevidst medarbejder der ikke blot udfører opgaver — men aktivt forbedrer de workflows og strukturer andre arbejder i.',
+    kerneopgaver:['Identificere ineffektivitet og forbedringspotentiale i eksisterende processer','Designe og implementere forbedrede workflows','Dokumentere processer på en måde andre kan bruge','Samarbejde med IT og forretning om procesoptimering'],
+    kompetencer:['Dokumenteret erfaring med procesoptimering og workflow-design','Evne til at se systemer og afhængigheder på tværs af funktioner','Struktureret tilgang til problemidentifikation og løsning','Erfaring med relevante procesværktøjer og platforme'],
+    undgaaBeskrivelse:'Vi leder ikke efter en der blot gør det eksisterende hurtigere. Vi leder efter en der stiller spørgsmål ved selve arkitekturen — og bygger noget bedre.',
+  },
+  ov:{
+    aca:'Oversætteren',
+    intro:'Vi søger en profil der kan bevæge sig flydende mellem forretningslogik og systemlogik — og oversætte præcist i begge retninger uden at miste nuancerne.',
+    kerneopgaver:['Oversætte forretningsbehov til præcise systemkrav og omvendt','Identificere hvilke beslutninger der er strukturelt anderledes med bedre data','Redesigne processer og beslutningsarkitektur — ikke blot optimere dem','Bygge løsninger og modeller andre anvender i deres daglige arbejde'],
+    kompetencer:['Dokumenteret evne til at arbejde med data og systemlogik','Erfaring med at forbinde forretningsbehov og tekniske løsninger','Har bygget noget andre bruger — og som eksisterede efter du forlod det','Analytisk, struktureret og handlingsorienteret'],
+    undgaaBeskrivelse:'Vi søger ikke primært en teknisk profil eller en ren forretningsprofil. Vi søger den sjældne profil der forstår begge sider — og kan bygge broen imellem dem.',
+  },
+  ss:{
+    aca:'Systemskaberen',
+    intro:'Vi søger en systemskaber — en profil der ikke blot løser problemer, men bygger de systemer og strukturer der gør organisationen i stand til at løse næste generations problemer selv.',
+    kerneopgaver:['Kortlægge og redesigne de beslutningsprocesser der er strukturelt vigtige for konkurrenceevnen','Bygge beslutningsinfrastruktur der akkumulerer og forbedres over tid','Identificere det bindende led i organisationens akkumuleringssystem — og fjerne det','Skabe systemer der overlever dig selv og gør organisationen klogere pr. iteration'],
+    kompetencer:['Kan dokumentere systemer du har bygget som andre stadig bruger — uden dig','Bevæger dig flydende mellem forretningslogik, data og systemdesign','Stiller spørgsmål ved arkitekturen, ikke kun effektiviteten','Tænker i feedback-loops og akkumulation, ikke blot i opgaveløsning'],
+    undgaaBeskrivelse:'Vi leder ikke efter en der er god til alt. Vi leder efter en der kan identificere præcist hvilke to til fem beslutninger der er strukturelt vigtige — og bygge systemerne der gør dem bedre over tid.',
+  }
+};
+
+function generateOpslag(){
+  const title=document.getElementById('job-title').value||'Stilling';
+  const org=document.getElementById('org-context').value;
+  const d=OPSLAG_DATA[selectedArch];
+  const orgStr=org?` hos ${org}`:'';
+
+  document.getElementById('opslag-title').textContent=`${title}${orgStr} — ${d.aca}-profil`;
+
+  let html=`
+    <div class="opslag-section">
+      <div class="opslag-section-title">Om rollen</div>
+      <div class="opslag-section-text">${d.intro}${org?' Vi er '+org+' og søger en '+title+' der kan gøre en reel forskel.':''}</div>
+    </div>
+    <div class="opslag-section">
+      <div class="opslag-section-title">Hvad du vil arbejde med</div>
+      <div class="opslag-section-text"><ul>${d.kerneopgaver.map(k=>'<li>'+k+'</li>').join('')}</ul></div>
+    </div>
+    <div class="opslag-section">
+      <div class="opslag-section-title">Hvad vi leder efter</div>
+      <div class="opslag-section-text"><ul>${d.kompetencer.map(k=>'<li>'+k+'</li>').join('')}</ul></div>
+    </div>
+    <div class="opslag-section">
+      <div class="opslag-section-title">Vigtigt at vide</div>
+      <div class="opslag-section-text">${d.undgaaBeskrivelse}</div>
+    </div>
+    <div class="opslag-section">
+      <div class="opslag-section-title">Til samtalen vil vi spørge</div>
+      <div class="opslag-section-text"><ul>
+        <li>Fortæl om noget du har bygget, der stadig eksisterer og bruges — uden at du er der.</li>
+        <li>Fortæl om en gang du så et systemproblem før andre — og hvad du gjorde ved det.</li>
+        <li>Hvad har du efterladt i din nuværende organisation der gør dem stærkere?</li>
+      </ul></div>
+    </div>`;
+
+  document.getElementById('opslag-content').innerHTML=html;
+  document.getElementById('opslag-output').classList.add('visible');
+}
+
+function copyOpslag(){
+  const title=document.getElementById('opslag-title').textContent;
+  const content=document.getElementById('opslag-content').innerText;
+  navigator.clipboard.writeText(title+'\n\n'+content).then(()=>{
+    const btn=document.querySelector('.copy-btn');
+    btn.textContent='Kopieret ✓';
+    setTimeout(()=>btn.textContent='Kopier tekst',2000);
+  });
+}
+</script>
+</body>
+</html>

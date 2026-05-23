@@ -1,172 +1,249 @@
 # MASTER CONTEXT — The Engines Behind
-## Brug denne fil til at starte hver session
+## Start hver session med denne fil
 
 ---
 
-## Projekt
-**Titel:** The Engines Behind — A MasterMind Philosophy on 
-Competitive Advantage, AI Infrastructure and Personal Capacity 
-in 2025–2035
+Dette er ikke en projektbeskrivelse.
+
+Det er en analytisk orienteringsfil. Den beskriver hvad projektet er, hvilke beslutninger der er fundamentale, og hvilke principper der ikke må fraviges.
+
+Læs den. Forstå den. Brug den.
+
+---
+
+## Projektet
+
+**Titel:** The Engines Behind — Infrastructure, Coordination and Absorptive Capacity in the Age of AI
+
+**Undertitel:** Hvorfor nogle systemer akkumulerer — og andre kun får adgang
 
 **Primært sprog:** Dansk
 **Undtagelser:** Executive Summary + README på både dansk og engelsk
 
-**Formål:**
-- Forstå hvad der rykker globalt på konkurrenceevne
-- Positionere sig professionelt fremadrettet
-- Omsætte analysen til investeringsbeslutninger
-- Skabe et personligt strategisk kompas
+**Format:** Analytisk erhvervsbog. Ikke akademisk. Ikke konsulentrapport. Ikke selvhjælp. Mekanisk, præcist, tilgængeligt — skrevet til den intelligente praktiker der vil forstå systemet bag outputtet.
 
-**Målgruppe:** Erhvervsliv og én selv. Ikke policy-paper — 
-men kan bygges ovenpå.
-
-**Format:** HD IB / Smartlearning sprog. Analytisk men 
-tilgængeligt. LinkedIn + GitHub publicering.
+**Målgruppe:** Erhvervsliv, investorer, strateger, politiske tænkere — og én selv.
 
 **Tidshorisont:** 12 måneder on/off
 
 ---
 
-## Akademisk afsæt
-Projektet udspringer af HD IB-arbejde med Arla Foods, 
-klyngeteori og international konkurrenceevne (CBS, 2014). 
-Arla-casen fungerer ikke som hovedcase men som metodisk 
-oprindelse: den viste at konkurrencefordel opstår i systemet 
-omkring virksomheden — ikke kun inde i den.
+## Akademisk oprindelse
 
-Dette projekt udvider den logik til AI-infrastruktur, 
-geopolitik, regulering, kapitalallokering og personlig 
-kapacitet.
+Projektet udspringer af HD IB-arbejde med Arla Foods, klyngeteori og international konkurrenceevne (CBS, 2014). Arla demonstrerede at konkurrencefordel opstår i systemet *omkring* virksomheden — ikke kun inde i den.
 
-**Arla nævnes kun som oprindelse — ikke som parallelcase.**
+Dette projekt udvider den logik til AI-infrastruktur, geopolitik, regulering, kapitalallokering og personlig kapabilitet.
+
+Arla nævnes kun som oprindelse. Aldrig som parallelcase.
 
 ---
 
-## Profil
+## Forfatterprofil
+
 - E-procurement specialist, Scandi Standard
 - Investor: +18% YTD 2026 vs OMXC25 -3,23%
-- Kernepositioner: Vertiv, TSMC, ABB, Eaton, NKT, 
-  Pandora, Scandi Standard (20%)
-- Filosofi: "Køb motorerne bag — ikke narrativet"
-- Profil: Business Technologist — hybrid mellem 
-  forretning og teknologi
+- Kernepositioner: Vertiv, TSMC, ABB, Eaton, NKT, Pandora, Scandi Standard (20%)
+- Filosofi: *Køb motorerne bag — ikke narrativet*
+- Profil: Business Technologist — opererer i grænsefladen mellem forretning og systemlogik
 
 ---
 
-## Projektets centrale problemformulering
-Hvordan kan man identificere de underliggende motorer bag 
-varig konkurrencekraft i 2025–2035 — på tværs af 
-virksomheder, værdikæder, teknologiske infrastrukturer 
-og personlig kapacitet?
+## Det centrale begreb: ACA
+
+**Asymmetrisk Kapabilitetsakkumulation** er bogens analytiske motor.
+
+Det er ikke en ny teori. Det er et syntetisk forklaringsframework der beskriver én mekanisme: nogle aktører konverterer adgang til infrastruktur, teknologi og viden til akkumulerende operationel kapabilitet. Andre har den samme adgang og akkumulerer ikke.
+
+Gabet mellem de to — det der vokser stille og strukturelt mens alle kigger på outputtet — er det projektet undersøger.
+
+```
+Infrastruktur → Koordination → Absorptionskapacitet
+→ Operationel Integration → Værdifangst
+→ Geninvestering → Stigende Replikationsbarrierer
+```
+
+AI skabte ikke mekanismen. AI accelererede den.
 
 ---
 
-## Analytisk metode — fem linser, ikke fem teorier
+## Kernebegreber — brug dem præcist
 
-Teorierne er analytiske linser — ikke pensum.
-En teori nævnes kun hvis den løser et konkret analyseproblem.
-
-**Porter** — lokation, klynger, factor conditions, 
-national/regional konkurrenceevne.
-Spørgsmål: Hvorfor bliver nogle regioner strukturelt 
-stærkere end andre?
-
-**Dynamic Capabilities (Teece)** — omstillingsevne, 
-rekonfigurering, sanse-gribe-transformere.
-Spørgsmål: Hvem konverterer teknologisk disruption til 
-fordel — og hvem køber bare værktøjet?
-
-**Ecosystem Theory (Jacobides/Gawer)** — systemkoordinering, 
-gensidige afhængigheder, platform governance.
-Spørgsmål: Hvem koordinerer systemet af afhængige aktører?
-
-**Bottlenecks & Modularity (Baldwin)** — værdifangst, 
-flaskehalse, arkitektonisk kontrol.
-Spørgsmål: Hvor i systemet fanges den varige værdi?
-
-**Architectural Innovation (Henderson & Clark)** — 
-hvorfor stærke virksomheder fejler ved teknologiskift.
-Spørgsmål: Hvorfor misforstår Excel-organisationer 
-AI-systemer?
+| Begreb | Hvad det betyder |
+|---|---|
+| **ACA** | Asymmetrisk Kapabilitetsakkumulation — hovedmekanismen |
+| **PACAP** | Potentiel absorptionskapacitet — hvad aktøren kan modtage |
+| **RACAP** | Realiseret absorptionskapacitet — hvad aktøren faktisk konverterer |
+| **Translation Barrier** | Grænsen mellem adgang og operationel integration |
+| **Translation Demand** | Evnen til at bevæge sig mellem domæneviden og systemlogik |
+| **Accumulation Runway** | Hastighed og dybde hvormed kapabilitet kompounder over tid |
+| **Velocity Asymmetry** | AI-accelereret divergens i kapabilitetstrajektorier |
+| **Bottleneck Position** | Strukturel kontrol over kritisk flaskehals |
+| **Replication Barriers** | Det der gør en position strukturelt svær at kopiere |
+| **Capability Translator** | Profilen der krydser translation barrier — evaluerer, redesigner, legitimerer |
+| **ESCO Baseline** | EU-standardiseret kompetenceprofil — rollenormen |
+| **ESCO-ACA Gap** | Gabet opad fra ESCO-normen — det strategisk interessante signal |
 
 ---
 
-## Persona Activation Rule
-Personas er analytiske linser — ikke fast ritual.
+## Bogens struktur — fem akter
 
-Aktiveres kun når de:
-- Tilføjer et perspektiv der er genuint forskelligt
-- Skaber produktiv konflikt med et andet perspektiv
-- Bringer domænespecifik logik der ændrer konklusionen
+**Akt 1 — The Pattern**
+ACA før AI. Samme mekanisme på tværs af fem epoker.
+Cases: EIC, Rockefeller, Ford, Toyota, Intel, Maersk, The 6 Crossings.
+Påstand: Det er ikke et AI-fænomen. Det er et strukturelt fænomen der er accelereret af AI.
 
-De 5 personaer og primære dele:
-- Porter → Del 2 og Del 4
-- Buffett → Del 6
-- Vestager → Del 3
-- Nordisk HR-direktør → Del 5
-- Kinesisk tech/infra strateg → Del 2 og Del 3
+**Akt 2 — The Accelerator**
+AI ændrer hastighed og konsekvenser — ikke mekanismen.
+Kapitler: Velocity Asymmetry · Adoptionsteater vs Integrationssystem · Translation Barrier · Capability Translator · Ejer du accelerationen · TSMC & ASML · 3 Lande 3 Strategier.
 
----
+**Akt 3 — Strategic Positioning**
+Fire niveauer. Én mekanisme. Fire størrelser.
+Individ → Organisation → Stat → Kontinent → Governance.
+Afsluttet med: ACA som universel mekanisme (tværsektoriel).
 
-## Projektstruktur
+**Akt 4 — The Fragility Paradox**
+Styrken producerer skrøbeligheden. Undgå winner narratives.
+Cases: Koncentrationsparadokset · Koordinationskollaps · Stiafhængighedens fængsel · Legitimitetserosion · TSMC som sårbarhed.
 
-**Del 1 — The Engines Behind**
-Manifest og analytisk kompas. Definerer observationen, 
-introducerer linserne, etablerer hvorfor det betyder noget.
-Primær lens: Ingen enkelt — alle fem introduceres kort.
-
-**Del 2 — The Infrastructure Layer**
-AI, energi, compute, datacentre, halvledere, køling.
-Primær lens: Porter + Bottlenecks + Ecosystem Theory.
-
-**Del 3 — The New Cooperative**
-Staten som investor, regulator og industristrateg.
-Primær lens: Vestager + Kinesisk strateg + Porter.
-
-**Del 4 — Hub and Spoke 2.0**
-Platforme, økosystemer, value capture, leverandørmagt.
-Primær lens: Ecosystem Theory + Bottlenecks + Porter.
-
-**Del 5 — The Personal Equation**
-Fremtidens kompetenceprofil og personlig kapacitet.
-Primær lens: Dynamic Capabilities + Absorptive Capacity 
-+ Architectural Innovation.
-
-**Del 6 — MasterMind Portfolio**
-Investering, karrierepositionering, strategisk kompas.
-Primær lens: Buffett + Bottlenecks + Moats.
+**Akt 5 — The Engine Behind the Engine**
+Syntese og slutposition.
+Kapitel 25: ACA som forklaringsmotor — hvad frameworket kan og ikke kan.
+Kapitel 26: Slutmanifestet — Køb motorerne. Ikke narrativet.
 
 ---
 
-## Output format
-- Grundformat: HD IB — analytisk, argumenterende, 
-  professionelt men tilgængeligt
-- Essays: Løbende afstikkere til LinkedIn
-- Visualiseringer klassificeres altid som:
-  1. Datadrevet (kræver kilde, periode, enhed)
-  2. Konceptuel model (logik og relationer)
-  3. Hypotetisk scenarie (fremtidige muligheder)
+## Analytiske standarder — disse må ikke fraviges
+
+**Adskil altid:**
+- Empirisk observation
+- Fortolkning
+- Hypotese
+- Konceptuel model
+- Spekulation
+
+**Identificér eksplicit:**
+- Flaskehalse og afhængigheder
+- Skaleringsbarrierer
+- Translationslag
+- Koordinationsproblemer
+- Tidshorisonasymmetrier
+- Second-order effects
+- Værdifangstmekanismer
+
+**Aldrig:**
+- AI-hype eller futurisme
+- Konsulentbuzzwords
+- Vag optimisme
+- LinkedIn-abstraktion
+- Deterministiske forudsigelser
+- Opfundne data, tal eller kilder
+
+**Altid:**
+- Mekanismer over narrativer
+- Kausale kæder over slogans
+- Systemer over isolerede hændelser
+- Incitamenter over intentioner
+- Operationel virkelighed over teoretisk elegance
 
 ---
 
-## Teknisk arkitektur
-- GitHub: NorthLogicLab/TheEnginesBehind
-- POC: Én HTML-fil per del
-- Produktion: index.html + styles.css + charts.js + /data/
-- Hosting: GitHub Pages (når klar)
-- Teknisk gæld dokumenteres i /critique.md
+## Skrivestil — det må ikke glemmes
+
+Tonen er: analytisk, præcis, tilgængelig, mekanisk, historisk forankret.
+
+Ikke flashy. Ikke akademisk. Ikke promotionelt.
+
+**Erhvervskrimi-elementet:** Velocity, dramatik og konkrete billeder bruges til at gøre mekanismen levende — men mekanismen er altid fundamentet.
+
+**Referencesætninger der definerer tonen:**
+
+> *"Det er ikke adoption. Det er teater."*
+
+> *"Når alle får det samme våben, afgøres kampen ikke af hvem der har det. Den afgøres af hvem der ved, hvad de skal skyde efter."*
+
+> *"Nordjysk tragikomik i enterprise-format: guldet ligger på lageret, men ingen har oprettet varenummeret."*
+
+> *"Køb motorerne. Ikke narrativet."*
+
+**Hvad der skal undgås:**
+
+> *"AI transformerer fremtidens arbejdsmarked fundamentalt."*
+> *"Virksomheder skal omfavne den digitale transformation."*
+> *"I en verden i hastig forandring..."*
+
+---
+
+## Teoretisk fundament
+
+Absorptionskapacitet (Zahra & George, 2002) · Porters Diamant · Economic Complexity Theory · ESCO v1.2 European Commission · O*NET BLS · Dynamic Capabilities (Teece) · Architectural Innovation (Henderson & Clark) · Bottlenecks & Modularity (Baldwin) · Ecosystem Theory (Jacobides/Gawer).
+
+Teorierne er analytiske linser — ikke pensum. De aktiveres kun når de løser et konkret analyseproblem.
+
+---
+
+## Aktive kilder
+
+| Kilde | Anvendelse |
+|---|---|
+| WEF Future of Jobs Report 2025 | 39% af kernekompetencer ændres inden 2030 |
+| BCG AI Adoption Research 2024-2025 | 1,7x revenue growth, integration vs. deployment |
+| Anthropic Economic Index | AI-eksponering per occupation (756 roller) |
+| KPMG Procurement AI Analysis | 50-80% automation af procurement-opgaver |
+| RAND: DeepSeek Analysis 2025 | Compute-spring og accumulation reset |
+| JPE: AI in the Knowledge Economy 2025 | Tacit knowledge som replication barrier |
+| Dallas Fed: AI og lønninger 2026 | Tacit knowledge og lønvækst empirisk |
+| ESCO v1.2, European Commission | Occupation/skills baseline (3.000+ occupations) |
+| O*NET (BLS) | Skills importance ratings og task data |
+| El-Sayed et al. 2024, Nursing Research | RACAP i sundhedsorganisationer |
+
+---
+
+## Repo-struktur
+
+```
+NorthLogicLab/TheEnginesBehind/
+├── Akt1 - The Pattern/
+├── Akt2 - The Accelerator/
+├── Akt3 - Positioning/
+├── Akt4 - Fragility Paradox/
+├── Akt5 - The Engines Behind the Engines/
+├── Visuals/
+├── 00_Core/
+├── _drafts/
+├── MASTER_CONTEXT.md     ← denne fil
+├── SESSIONS.md           ← analytisk beslutningslog
+├── README.md
+└── STRUCTURE.md
+```
+
+---
+
+## Åbne strukturelle spørgsmål
+
+Disse er ikke løst og skal adresseres i kommende sessioner:
+
+**CTI-instrumentet er ikke empirisk valideret.** Det er teoretisk afledt og forankret i ESCO/O*NET. Det skal markeres eksplicit i teksten som et analytisk instrument — ikke en valideret test.
+
+**Compute-spring som accumulation reset** er delvist imødekommet men ikke elimineret. RAND-argumentet er stærkt — men påstanden om at organisatorisk RACAP overlever teknologiskift er en hypotese, ikke dokumenteret faktum.
+
+**Akt4 er underudviklet** relativt til bogens øvrige dele. Fragility Paradox-argumentet er bogens mest originale bidrag og fortjener mindst to yderligere kapitler.
+
+**Bro fra Akt1 til Akt2** — overgangen fra historiske cases til AI-acceleration er analytisk klar men ikke narrativt skrevet som en overgang endnu.
+
+**Gennemskrivningsrunde mangler** på alle kapitler — særligt åbningssætninger og overgange inden for kapitlerne.
 
 ---
 
 ## Arbejdsmetode
-Start hver session med at indsætte denne fil.
-Opdater SESSIONS.md efter hver session.
-Udkast gemmes i /drafts.
-Kildehenvisninger følger nummereret fodnotesystem.
+
+Start hver session med at læse denne fil og SESSIONS.md.
+
+Opdater SESSIONS.md ved sessionens afslutning med: hvad der blev løst, beslutninger der ikke kan omgøres, forkastede retninger og åbne spørgsmål.
+
+Udkast gemmes i `/drafts`. Færdige kapitler i den relevante Akt-mappe. Commit og push ved sessionens afslutning.
 
 ---
 
-## Anti-hallucination regel
-Adskil altid: fakta / antagelse / inference / spekulation.
-Invent aldrig data, tal, kilder eller fremstil certainty.
-Sig eksplicit: "Data understøtter ikke denne antagelse."
+*MASTER_CONTEXT v3 — The Engines Behind*
+*Opdateres når fundamentale projektbeslutninger ændres.*
+*Ikke ved hver session — kun når noget strukturelt skifter.*
