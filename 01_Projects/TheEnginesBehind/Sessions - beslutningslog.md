@@ -241,3 +241,74 @@ Bro fra Akt1 til Akt2 — narrativ overgang fra historiske cases til AI-accelera
 *SESSIONS.md — The Engines Behind*
 *Opdateres ved afslutning af hver session.*
 *Format: analytisk beslutningslog, ikke mødereferat.*
+
+
+---
+
+## 2026-05-23 — Skæbnescenariet, kognitiv stratifikation og bogens anden nøglesætning
+
+**Det vi løste:**
+
+Skæbnescenariet bygget og itereret til v3 — robust model baseret på seks analytiske dimensioner kollapset til fire intuitive spørgsmål. To separate risici: erstatningsrisiko og transformationsrisiko. Fem profiler. Jobtitel driver ingen logik — kun genkendelse.
+
+SOSU-problemet løst: instrumentet undervurderede tidligere profiler med høj relationel og ansvarsmæssig tyngde. Dimension 5 (fejlomkostning) virker nu korrekt omvendt — beskytter mod erstatning, men ikke mod transformation.
+
+Kognitiv stratifikation udvidet til to kapitler:
+- Kap 8: kortlægger mekanismen og de tre lag
+- Kap 10: "Stien der forsvinder" — tre tidshorisonter, tre verdener, vej frem for individet og staten
+
+DeepSeek-tilføjelse skrevet til Akt 2 kap 5.
+Disclaimer skrevet til copyright-siden.
+
+**Beslutninger der ikke kan omgøres:**
+
+Bogens anden nøglesætning er låst fast:
+
+*"Bygger du motoren, betjener du motoren — eller bliver du input til motoren?"*
+
+Det er det menneskelige perspektiv på bogens centrale mekanisme.
+"Køb motorerne. Ikke narrativet." er investorperspektivet.
+Disse to sætninger dækker bogens to niveauer.
+
+Sætningen bruges tre steder:
+1. Som slutlinje i Skæbnescenariet
+2. Som bogens anden nøglesætning i MASTER_CONTEXT
+3. Som potentiel åbningslinje på theenginesbehind.com
+
+Jobtitler driver ingen logik i instrumenterne — kun genkendelse. Al logik baseres udelukkende på sliders/svar.
+
+Universalt sprog i alle instrumenter — ikke system-sprog, ikke sektor-specifikt. Menneskeligt og genkendelig på tværs af SOSU, læge, musiker, finansmand.
+
+**Forkastede retninger:**
+
+Sektor-specifikt sprog i instrumenter — forkastet. For snævert. Ikke skalerbart til de mange jobtitler og profiler der eksisterer.
+
+Jobtitel som logik-driver — forkastet. Producerede forkerte resultater for profiler med høj relationel og ansvarsmæssig tyngde (SOSU-problemet).
+
+Én samlet risikoscore — forkastet. Erstatningsrisiko og transformationsrisiko er fundamentalt forskellige og skal vises separat.
+
+**Output:**
+
+`skaebne-scenarie-v3.html` — robust instrument med seks-dimensions-model
+`akt4-kap10-stien-der-forsvinder.md` — nyt kapitel
+`tre-tilfoejelser-deepseek-disclaimer-stratifikation.md`
+`SESSIONS_v3.md` — denne opdatering
+
+**Åbne spørgsmål:**
+
+MASTER_CONTEXT skal opdateres med den nye nøglesætning.
+
+theenginesbehind.com forsiden skal redesignes med den nye sætning som åbning.
+
+Gennemskrivningsrunden er stadig den vigtigste udestående opgave for at løfte scoren fra 87 til 90+.
+
+**Næste træk:**
+
+Opdater MASTER_CONTEXT med ny nøglesætning.
+Commit alt til GitHub.
+Planlæg gennemskrivningsrunde på Akt 1 og 2.
+
+---
+
+*SESSIONS.md — The Engines Behind*
+*Opdateres ved afslutning af hver session.*

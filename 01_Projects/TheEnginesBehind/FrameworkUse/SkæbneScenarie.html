@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skæbnescenariet — The Engines Behind</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0907;--fg:#ede8de;--muted:#6b6358;--border:#1e1b16;
+  --amber:#c8943a;--green:#2d6a4f;--red:#8b2e2e;--blue:#2d4a6a;
+  --card:#111009;--serif:'Playfair Display',serif;
+  --sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);min-height:100vh;line-height:1.6}
+.wrap{max-width:740px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* HEADER */
+.header{margin-bottom:3rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem}
+.header-eye{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem}
+.header-title{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;line-height:1.2;margin-bottom:.75rem}
+.header-title em{font-style:italic;color:var(--amber)}
+.header-sub{font-size:14px;color:var(--muted);line-height:1.7;max-width:540px}
+
+/* STEPS */
+.screen{display:none}.screen.active{display:block}
+.step-row{display:flex;gap:8px;align-items:center;margin-bottom:2.5rem}
+.pip{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0;transition:all .3s}
+.pip.done{background:var(--muted)}.pip.active{background:var(--amber);transform:scale(1.5)}
+.step-lbl{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:4px;letter-spacing:1px}
+
+/* JOB INPUT */
+.q-block{margin-bottom:2.25rem}
+.q-label{font-size:16px;font-weight:500;color:var(--fg);margin-bottom:.4rem;line-height:1.5}
+.q-hint{font-size:13px;color:var(--muted);margin-bottom:.875rem;font-style:italic;line-height:1.5}
+.job-wrap{position:relative;margin-bottom:.5rem}
+.job-input{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:2px;font-size:15px;color:var(--fg);background:var(--card);font-family:var(--sans);transition:border-color .2s}
+.job-input:focus{outline:none;border-color:var(--amber)}
+.job-input::placeholder{color:var(--muted)}
+.sugs{position:absolute;top:100%;left:0;right:0;background:#15120d;border:1px solid var(--border);border-top:none;border-radius:0 0 2px 2px;z-index:10;max-height:180px;overflow-y:auto;display:none}
+.sug{padding:9px 16px;cursor:pointer;font-size:14px;color:var(--muted);border-bottom:.5px solid var(--border);display:flex;justify-content:space-between;transition:background .15s}
+.sug:hover{background:var(--border);color:var(--fg)}
+.sug-s{font-family:var(--mono);font-size:11px}
+.job-ok{font-family:var(--mono);font-size:12px;color:var(--green);margin-top:4px;display:none}
+
+/* DIMENSIONS */
+.dim-card{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:1.25rem;margin-bottom:1rem}
+.dim-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
+.dim-name{font-size:14px;font-weight:500;color:var(--fg)}
+.dim-num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+.dim-hint{font-size:13px;color:var(--muted);margin-bottom:.875rem;line-height:1.5;font-style:italic}
+.scale-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:.3rem;letter-spacing:.5px}
+input[type=range]{width:100%;accent-color:var(--amber)}
+.dim-val{text-align:right;font-family:var(--mono);font-size:12px;margin-top:.25rem;font-weight:500}
+
+/* PROTECTION — styled differently */
+.dim-card.protection{border-color:#2d6a4f33;background:#0d1710}
+.dim-card.protection .dim-name{color:#4a9a6a}
+.dim-card.protection .dim-num{color:#2d6a4f}
+
+/* BUTTONS */
+.btn{padding:11px 24px;border:1px solid var(--border);background:var(--card);color:var(--fg);font-family:var(--mono);font-size:13px;cursor:pointer;border-radius:2px;transition:all .2s;letter-spacing:.5px}
+.btn:hover{border-color:var(--muted)}
+.btn-primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
+.btn-primary:hover{opacity:.85}
+.nav{display:flex;justify-content:space-between;margin-top:2rem;align-items:center}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}
+
+/* RESULT */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1.5rem 0}
+.risk-card{border-radius:2px;padding:1.25rem}
+.risk-replace{background:#1a0d0d;border:1px solid #4a1a1a}
+.risk-transform{background:#0d1020;border:1px solid #1a2a4a}
+.risk-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+.risk-replace .risk-label{color:#c87070}
+.risk-transform .risk-label{color:#7090c8}
+.risk-title{font-size:15px;font-weight:500;margin-bottom:.4rem}
+.risk-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.risk-meter{height:4px;border-radius:2px;background:var(--border);margin-top:.75rem;overflow:hidden}
+.risk-fill{height:100%;border-radius:2px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.risk-replace .risk-fill{background:linear-gradient(90deg,#8b2e2e,#c87070)}
+.risk-transform .risk-fill{background:linear-gradient(90deg,#2d4a6a,#7090c8)}
+
+.protect-card{background:#0d1710;border:1px solid #2d6a4f44;border-radius:2px;padding:1.25rem;margin-bottom:1rem}
+.protect-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a9a6a;margin-bottom:.5rem}
+.protect-title{font-size:15px;font-weight:500;color:var(--fg);margin-bottom:.4rem}
+.protect-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.protect-meter{height:4px;border-radius:2px;background:var(--border);margin-top:.75rem;overflow:hidden}
+.protect-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#1a4a2a,#4a9a6a);transition:width 1s cubic-bezier(.4,0,.2,1)}
+
+.scenario-block{border:1px solid var(--border);border-radius:2px;padding:1.5rem;margin-bottom:1rem;position:relative}
+.scenario-block::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:2px 0 0 2px}
+.s-now::before{background:var(--amber)}
+.s-five::before{background:var(--red)}
+.s-ten::before{background:var(--green)}
+.s-lbl{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.625rem}
+.s-now .s-lbl{color:var(--amber)}
+.s-five .s-lbl{color:#c87070}
+.s-ten .s-lbl{color:#4a9a6a}
+.s-title{font-family:var(--serif);font-size:17px;font-weight:400;margin-bottom:.625rem;line-height:1.3}
+.s-text{font-size:14px;color:#a09880;line-height:1.8}
+.s-text strong{color:var(--fg);font-weight:500}
+
+.action-box{background:var(--card);border:1px solid var(--amber);border-radius:2px;padding:1.25rem;margin-top:1.5rem}
+.action-lbl{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:.75rem}
+.action-title{font-size:16px;font-weight:500;color:var(--fg);margin-bottom:.5rem}
+.action-text{font-size:14px;color:var(--muted);line-height:1.7}
+.action-week{font-family:var(--mono);font-size:12px;color:var(--amber);margin-top:.75rem;padding:.5rem .75rem;border:1px solid var(--border);border-radius:2px;display:inline-block;line-height:1.5}
+
+.honest-note{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--muted);line-height:1.7;padding:1rem 1.25rem;border-left:2px solid var(--border);margin-top:1.5rem}
+
+@media(max-width:580px){.risk-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+  <div class="header-eye">The Engines Behind · Skæbnescenariet</div>
+  <h1 class="header-title">Ikke hvad der <em>vil</em> ske.<br>Hvad der sandsynligvis sker.</h1>
+  <p class="header-sub">Fire spørgsmål der tilsammen kortlægger din risiko for erstatning, din risiko for at systemet ændrer sig uden om dig — og hvad der beskytter dig mod begge.</p>
+</div>
+
+<!-- S1 -->
+<div id="s1" class="screen active">
+  <div class="step-row">
+    <div class="pip active" id="p1"></div>
+    <div class="pip" id="p2"></div>
+    <div class="pip" id="p3"></div>
+    <span class="step-lbl">Trin 1 af 3 — Din situation</span>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">Hvad arbejder du med?</div>
+    <div class="q-hint">Valgfrit — skriv din jobtitel for at se eksempler. Instrumentet baserer sig på dine svar, ikke på titlen.</div>
+    <div class="job-wrap">
+      <input class="job-input" id="job-in" placeholder="fx sygeplejerske, lærer, projektleder..." oninput="filterJobs()" autocomplete="off">
+      <div class="sugs" id="sugs"></div>
+    </div>
+    <div class="job-ok" id="job-ok"></div>
+  </div>
+
+  <!-- DIM 1+2: Automatiserbarhed -->
+  <div class="dim-card">
+    <div class="dim-header">
+      <div class="dim-name">Hvor meget af dit arbejde følger faste mønstre?</div>
+      <div class="dim-num">01 · 02</div>
+    </div>
+    <div class="dim-hint">Tænk på de opgaver der fylder mest — rapporter, dokumentation, standardanalyse, sagsbehandling, planlægning. Ikke om du er god til det. Om det følger en form for opskrift.</div>
+    <div class="scale-row"><span>Næsten intet er forudsigeligt</span><span>Næsten alt er mønsterbaseret</span></div>
+    <input type="range" min="1" max="5" value="3" id="d1" oninput="updDim('v1',this.value,['Kaos og uforudsigelighed dominerer','Meget lidt følger faste mønstre','Blandet — noget rutine, noget nyt','En del følger kendte mønstre','Næsten alt er mønsterbaseret'],['#4a9a6a','#7a9a5a','#c8943a','#b85a2a','#8b2e2e'])">
+    <div class="dim-val" id="v1" style="color:var(--amber)">Blandet — noget rutine, noget nyt</div>
+  </div>
+
+  <!-- DIM 3: Substitution -->
+  <div class="dim-card">
+    <div class="dim-header">
+      <div class="dim-name">Kunne en ny kollega med AI-hjælp klare 70% af dit arbejde efter tre måneder?</div>
+      <div class="dim-num">03</div>
+    </div>
+    <div class="dim-hint">Det er den farlige dimension. Ikke "kan AI erstatte dig" — men "kan en billigere, yngre eller ekstern person gøre det meste med AI som støtte?"</div>
+    <div class="scale-row"><span>Nej — det kræver år at lære</span><span>Ja — relativt hurtigt</span></div>
+    <input type="range" min="1" max="5" value="3" id="d2" oninput="updDim('v2',this.value,['Kræver år af erfaring','Kræver meget erfaring','Med nogen erfaring og AI — måske','Sandsynligvis ja med AI-støtte','Ja — ret hurtigt'],['#4a9a6a','#7a9a5a','#c8943a','#b85a2a','#8b2e2e'])">
+    <div class="dim-val" id="v2" style="color:var(--amber)">Med nogen erfaring og AI — måske</div>
+  </div>
+
+  <!-- DIM 4+5: Workflow + ansvar -->
+  <div class="dim-card">
+    <div class="dim-header">
+      <div class="dim-name">Hvad sker der når det går galt — og hvem bærer ansvaret?</div>
+      <div class="dim-num">04 · 05</div>
+    </div>
+    <div class="dim-hint">To ting på én gang: hvor let er det at redesigne systemet uden dig, og hvad er konsekvensen hvis nogen tager fejl? Høj fejlomkostning beskytter mod erstatning — men ikke mod at systemet ændrer sig omkring dig.</div>
+    <div class="scale-row"><span>Let at omgå — lav fejlomkostning</span><span>Svært at omgå — høj fejlomkostning</span></div>
+    <input type="range" min="1" max="5" value="3" id="d3" oninput="updDim('v3',this.value,['Let at omgå, ingen store konsekvenser','Ret let at omgå, moderate konsekvenser','Blandet ansvar og konsekvenser','Svært at omgå, alvorlige konsekvenser','Kritisk ansvar — fejl er synlige og alvorlige'],['#8b2e2e','#b85a2a','#c8943a','#7a9a5a','#4a9a6a'])">
+    <div class="dim-val" id="v3" style="color:var(--amber)">Blandet ansvar og konsekvenser</div>
+  </div>
+
+  <!-- DIM 6: Adaptiv kapabilitet — PROTECTION -->
+  <div class="dim-card protection">
+    <div class="dim-header">
+      <div class="dim-name">Bruger du AI til at blive klogere — eller kun hurtigere?</div>
+      <div class="dim-num">06 · BESKYTTELSE</div>
+    </div>
+    <div class="dim-hint">Dette er beskyttelsesfaktoren. Dem der bruger AI som et læringsværktøj — til at forstå mere, stille nye spørgsmål, forbinde ting de ikke kunne se før — er fundamentalt anderledes stillet end dem der blot bruger det til hastighed.</div>
+    <div class="scale-row"><span>Kun hurtigere — samme arbejde</span><span>Klogere — nye spørgsmål og indsigter</span></div>
+    <input type="range" min="1" max="5" value="2" id="d4" oninput="updDim('v4',this.value,['Bruger det næsten ikke','Primært til at gøre ting hurtigere','Lidt af begge','Mestendels til at forstå mere','Konstant — til nye spørgsmål og indsigter'],['#8b2e2e','#b85a2a','#c8943a','#7a9a5a','#4a9a6a'])">
+    <div class="dim-val" id="v4" style="color:#4a9a6a">Primært til at gøre ting hurtigere</div>
+  </div>
+
+  <div class="nav">
+    <div></div>
+    <button class="btn btn-primary" onclick="go(2)">Se min analyse →</button>
+  </div>
+</div>
+
+<!-- S2: RISIKOBILLEDE -->
+<div id="s2" class="screen">
+  <div class="step-row">
+    <div class="pip done"></div>
+    <div class="pip active"></div>
+    <div class="pip"></div>
+    <span class="step-lbl">Trin 2 af 3 — Dit risikobillede</span>
+  </div>
+
+  <div style="font-family:var(--serif);font-size:20px;margin-bottom:.5rem" id="s2-headline"></div>
+  <div style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6" id="s2-sub"></div>
+
+  <div class="risk-grid">
+    <div class="risk-card risk-replace">
+      <div class="risk-label">Erstatningsrisiko</div>
+      <div class="risk-title" id="rr-title"></div>
+      <div class="risk-desc" id="rr-desc"></div>
+      <div class="risk-meter"><div class="risk-fill" id="rr-bar" style="width:0%"></div></div>
+    </div>
+    <div class="risk-card risk-transform">
+      <div class="risk-label">Transformationsrisiko</div>
+      <div class="risk-title" id="rt-title"></div>
+      <div class="risk-desc" id="rt-desc"></div>
+      <div class="risk-meter"><div class="risk-fill" id="rt-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="protect-card">
+    <div class="protect-label">Din beskyttelsesfaktor</div>
+    <div class="protect-title" id="prot-title"></div>
+    <div class="protect-desc" id="prot-desc"></div>
+    <div class="protect-meter"><div class="protect-fill" id="prot-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem">Tre tidspunkter</div>
+
+  <div class="scenario-block s-now">
+    <div class="s-lbl">I dag</div>
+    <div class="s-title" id="sn-title"></div>
+    <div class="s-text" id="sn-text"></div>
+  </div>
+
+  <div class="scenario-block s-five">
+    <div class="s-lbl">Om 3-5 år — hvis intet ændres</div>
+    <div class="s-title" id="s5-title"></div>
+    <div class="s-text" id="s5-text"></div>
+  </div>
+
+  <div class="scenario-block s-ten">
+    <div class="s-lbl">Om 3-5 år — med ét bevidst valg</div>
+    <div class="s-title" id="s10-title"></div>
+    <div class="s-text" id="s10-text"></div>
+  </div>
+
+  <div class="honest-note">To risici er ikke det samme. Erstatningsrisiko handler om om AI kan overtage dit arbejde direkte. Transformationsrisiko handler om systemet omkring dig ændrer sig så din rolle bliver smallere — selv om ingen erstatter dig. Begge kræver opmærksomhed. Ingen af dem er skæbne.</div>
+
+  <div class="nav">
+    <button class="btn" onclick="go(1)">← Tilbage</button>
+    <button class="btn btn-primary" onclick="go(3)">Hvad gør jeg? →</button>
+  </div>
+</div>
+
+<!-- S3: HANDLING -->
+<div id="s3" class="screen">
+  <div class="step-row">
+    <div class="pip done"></div>
+    <div class="pip done"></div>
+    <div class="pip active"></div>
+    <span class="step-lbl">Trin 3 af 3 — Dit næste skridt</span>
+  </div>
+
+  <div style="font-family:var(--serif);font-size:20px;margin-bottom:.5rem" id="s3-headline"></div>
+  <div style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6" id="s3-sub"></div>
+
+  <div class="action-box" id="act-primary">
+    <div class="action-lbl">Dit vigtigste næste skridt</div>
+    <div class="action-title" id="act-title"></div>
+    <div class="action-text" id="act-text"></div>
+    <div class="action-week" id="act-week"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem">To yderligere overvejelser</div>
+  <div id="extra-acts"></div>
+
+  <div class="honest-note" style="font-style:normal;border-left-color:var(--amber)">
+    <span style="font-family:var(--serif);font-size:16px;display:block;margin-bottom:.4rem">Stien er ved at forsvinde. Men stien var aldrig målet.</span>
+    Målet var den kapabilitet stien producerede. Kapabilitet kan akkumuleres ad andre veje — hvis du bevidst designer dem. Det er det ansvar vi ikke kan automatisere væk.
+    <span style="display:block;margin-top:1.25rem;font-family:var(--serif);font-size:18px;font-style:italic;color:var(--amber);line-height:1.4;border-top:1px solid var(--border);padding-top:1.25rem">Bygger du motoren, betjener du motoren — eller bliver du input til motoren?</span>
+  </div>
+
+  <div class="nav">
+    <button class="btn" onclick="go(2)">← Tilbage</button>
+    <button class="btn" onclick="restart()">Start forfra</button>
+  </div>
+</div>
+</div>
+
+<script>
+const JOBS=[
+  {t:'Sygeplejerske',s:'Sundhed'},{t:'Læge',s:'Sundhed'},{t:'SOSU-assistent',s:'Sundhed'},
+  {t:'SOSU-hjælper',s:'Sundhed'},{t:'Radiograf',s:'Sundhed'},{t:'Fysioterapeut',s:'Sundhed'},
+  {t:'Psykolog / terapeut',s:'Sundhed'},{t:'Jordemoder',s:'Sundhed'},
+  {t:'Sundhedsadministrator',s:'Sundhed'},{t:'Folkeskolelærer',s:'Pædagogik'},
+  {t:'Pædagog',s:'Pædagogik'},{t:'Specialpædagog',s:'Pædagogik'},
+  {t:'Socialrådgiver',s:'Pædagogik'},{t:'Uddannelsesleder',s:'Pædagogik'},
+  {t:'Officer / militær leder',s:'Forsvar'},{t:'Politibetjent',s:'Forsvar'},
+  {t:'Efterretningsanalytiker',s:'Forsvar'},{t:'Beredskabsmedarbejder',s:'Forsvar'},
+  {t:'Procurement specialist',s:'Forretning'},{t:'Controller',s:'Forretning'},
+  {t:'Projektleder',s:'Forretning'},{t:'HR-specialist',s:'Forretning'},
+  {t:'Data analyst',s:'Forretning'},{t:'IT-konsulent',s:'Forretning'},
+  {t:'Salgskonsulent',s:'Forretning'},{t:'Kundeservicemedarbejder',s:'Forretning'},
+  {t:'Arkitekt / designer',s:'Forretning'},{t:'Journalist',s:'Forretning'},
+  {t:'Musiker / kunstner',s:'Kreativ'},{t:'Finansrådgiver',s:'Forretning'},
+  {t:'Advokat / jurist',s:'Forretning'},{t:'Ingeniør',s:'Forretning'},
+];
+
+function filterJobs(){
+  const v=document.getElementById('job-in').value.toLowerCase();
+  const box=document.getElementById('sugs');
+  if(v.length<2){box.style.display='none';return;}
+  const m=JOBS.filter(j=>j.t.toLowerCase().includes(v)).slice(0,6);
+  if(!m.length){box.style.display='none';return;}
+  box.innerHTML=m.map(j=>`<div class="sug" onclick="pickJob('${j.t}')">${j.t}<span class="sug-s">${j.s}</span></div>`).join('');
+  box.style.display='block';
+}
+function pickJob(t){
+  document.getElementById('job-in').value=t;
+  document.getElementById('sugs').style.display='none';
+  document.getElementById('job-ok').style.display='block';
+  document.getElementById('job-ok').textContent='✓ '+t;
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.job-wrap'))document.getElementById('sugs').style.display='none';});
+
+const LABELS={
+  d1:['Kaos og uforudsigelighed dominerer','Meget lidt følger faste mønstre','Blandet — noget rutine, noget nyt','En del følger kendte mønstre','Næsten alt er mønsterbaseret'],
+  d2:['Kræver år af erfaring','Kræver meget erfaring','Med nogen erfaring og AI — måske','Sandsynligvis ja med AI-støtte','Ja — ret hurtigt'],
+  d3:['Let at omgå, ingen store konsekvenser','Ret let at omgå, moderate konsekvenser','Blandet ansvar og konsekvenser','Svært at omgå, alvorlige konsekvenser','Kritisk ansvar — fejl er synlige og alvorlige'],
+  d4:['Bruger det næsten ikke','Primært til at gøre ting hurtigere','Lidt af begge','Mestendels til at forstå mere','Konstant — til nye spørgsmål og indsigter'],
+};
+const COLORS={
+  d1:['#4a9a6a','#7a9a5a','#c8943a','#b85a2a','#8b2e2e'],
+  d2:['#4a9a6a','#7a9a5a','#c8943a','#b85a2a','#8b2e2e'],
+  d3:['#8b2e2e','#b85a2a','#c8943a','#7a9a5a','#4a9a6a'],
+  d4:['#8b2e2e','#b85a2a','#c8943a','#7a9a5a','#4a9a6a'],
+};
+
+function updDim(vid,val,labels,colors){
+  const i=parseInt(val)-1;
+  const el=document.getElementById(vid);
+  el.textContent=labels[i];
+  el.style.color=colors[i];
+}
+
+function getVals(){
+  return{
+    d1:parseInt(document.getElementById('d1').value),
+    d2:parseInt(document.getElementById('d2').value),
+    d3:parseInt(document.getElementById('d3').value),
+    d4:parseInt(document.getElementById('d4').value),
+    job:document.getElementById('job-in').value||'Din stilling'
+  };
+}
+
+function calcRisks(v){
+  // Replacement risk: dim1+dim2+dim3(inverted) - dim6(protection)
+  const raw_replace=((v.d1-1)+(v.d2-1)+(5-v.d3-1))/3;
+  const replace=Math.max(0,Math.min(100,Math.round((raw_replace/4)*100-(v.d4-1)*8)));
+
+  // Transformation risk: dim4+dim5(partial) — jobbet overlever men systemet ændres
+  const raw_transform=((v.d1-1)*0.7+(5-v.d3-1)*0.3)/1;
+  const transform=Math.max(0,Math.min(100,Math.round((raw_transform/4)*100-(v.d4-1)*5)));
+
+  // Protection
+  const protect=Math.round(((v.d4-1)/4)*100);
+
+  return{replace,transform,protect};
+}
+
+function getProfile(v,risks){
+  // Primary characterisation
+  if(risks.replace>65&&risks.protect<40)return'high-risk';
+  if(risks.replace>65&&risks.protect>=40)return'high-risk-protected';
+  if(risks.transform>60&&risks.replace<=40)return'transform-risk';
+  if(risks.replace<=40&&risks.transform<=40&&risks.protect>=60)return'strong';
+  return'moderate';
+}
+
+const PROFILES={
+  'high-risk':{
+    headline:'Der er reelle signaler her. Det er ikke en dom — det er information.',
+    sub:'Dit arbejde har karakteristika der gør det eksponeret mod direkte erstatning. Det behøver ikke betyde tab af job — men det betyder at status quo ikke er en strategi.',
+    rrTitle:'Moderat til høj',rrDesc:'Kombination af mønsterbaseret arbejde og substitutionsmulighed. Ikke akut — men retningen er vigtig at forstå.',
+    rtTitle:'Systemet ændrer sig',rtDesc:'Selv hvis du ikke erstattes direkte, er der risiko for at processerne omkring dig redesignes så din rolle bliver smallere.',
+    protTitle:'Beskyttelsen kan styrkes',protDesc:'Din adaptive kapabilitet er den vigtigste enkeltfaktor. Her er det mest direkte at handle.',
+    snTitle:'Du har adgang til de samme værktøjer som alle andre.',snText:'Det er udgangspunktet. <strong>Adgang er ikke kapabilitet.</strong> Spørgsmålet er hvad du bruger adgangen til.',
+    s5Title:'Om 3-5 år: rollen er smallere.',s5Text:'Ikke nødvendigvis forsvundet. Men de opgaver der i dag fylder din dag, håndteres nu af systemer. Det der er tilbage kræver dig — men er det tilstrækkeligt?',
+    s10Title:'Med ét valg nu: du har noget AI ikke kan lære.',s10Text:'Den person der bevidst begyndte at akkumulere det der ikke kan automatiseres — den erfaring, den relation, den fornemmelse — er i en fundamentalt anderledes position.',
+    actTitle:'Find det der kræver præcis dig',actText:'Ikke din jobtitel. Det specifikke som kun kommer med din erfaring — den fornemmelse for hvornår noget er rigtigt, selv når dataene siger noget andet. Det er der din vigtigste kapabilitet lever.',
+    actWeek:'Denne uge: skriv tre ting du ved som ingen manual kan lære dig.',
+    extra:[{t:'Frigør tid til det der ikke kan automatiseres',x:'Tag den mest gentagne opgave i din uge — og find en måde at gøre den hurtigere. Ikke for at spare tid. For at bruge den frigjorte tid på det AI ikke kan gøre.'},
+           {t:'Find nogen der tvinger dig til at tænke højt',x:'Find en kollega eller mentor der stiller dig spørgsmål du ikke har et svar på. Det er den hurtigste vej til at opdage hvad du ved — men aldrig har formuleret.'}]
+  },
+  'high-risk-protected':{
+    headline:'Du er eksponeret — men du har noget der beskytter dig.',
+    sub:'Dit arbejde har risikosignaler. Men din adaptive kapabilitet er en reel modvægt. Spørgsmålet er om du udnytter den fuldt ud.',
+    rrTitle:'Eksponeret — men ikke forsvarsløs',rrDesc:'Mønsterbaserede elementer i arbejdet giver eksponering. Din evne til at lære med AI er beskyttelsen.',
+    rtTitle:'Systemet ændrer sig uanset hvad',rtDesc:'Processer og workflows omkring dig vil blive redesignet. Det er ikke om — det er hvornår.',
+    protTitle:'Din beskyttelse er reel',protDesc:'Du bruger AI til mere end hastighed. Det er det der adskiller dig fra dem i samme rolle der ikke gør.',
+    snTitle:'Du er allerede foran mange i din situation.',snText:'Det at du bruger AI aktivt og nysgerrigt er ikke småting. <strong>De fleste bruger det til at gøre det samme hurtigere.</strong> Du stiller nye spørgsmål.',
+    s5Title:'Om 3-5 år: din fordel vokser.',s5Text:'Mens andre reagerer på forandringen, har du akkumuleret to til tre år ekstra forståelse og kapabilitet. <strong>Gabet vokser i din favør</strong> — men kun hvis du fortsætter bevidst.',
+    s10Title:'Med fortsat fokus: du er svær at erstatte.',s10Text:'Ikke fordi jobbet ikke ændrer sig. Men fordi du løbende akkumulerer det AI ikke kan — og bruger AI til at forstærke det du allerede er bedst til.',
+    actTitle:'Gør din beskyttelse synlig',actText:'Den adaptive kapabilitet du har er din vigtigste ressource — men kun hvis andre ved om den. Del hvad du lærer. Vis hvad du bygger. Gør din akkumulering eksplicit.',
+    actWeek:'Denne uge: del én indsigt du har fået ved at bruge AI med en kollega.',
+    extra:[{t:'Udvid hvad du kan kombinere',x:'Du er god til at bruge AI i dit felt. Næste skridt er at forstå ét tilgrænsende felt du endnu ikke kender godt — og se hvad forbindelsen åbner.'},
+           {t:'Efterlad noget der hjælper den næste',x:'Den viden du akkumulerer — skriv den ned i en form andre kan bruge. Det er det der adskiller personlig kapabilitet fra organisatorisk styrke.'}]
+  },
+  'transform-risk':{
+    headline:'Du erstattes ikke — men systemet omkring dig ændrer sig.',
+    sub:'Din direkte erstatningsrisiko er begrænset. Men de processer, workflows og systemer der omgiver dit arbejde, er under forandring. Det er en anderledes — og ofte overset — risiko.',
+    rrTitle:'Begrænset direkte risiko',rrDesc:'Dit arbejde kræver erfaring, ansvar eller menneskelig tilstedeværelse der er svær at erstatte direkte.',
+    rtTitle:'Systemet redesignes',rtDesc:'Dokumentation, prioritering, koordination og beslutningsstøtte automatiseres. Din rolle overlever — men kan blive smallere.',
+    protTitle:'Din beskyttelse kan styrkes',protDesc:'Adaptiv kapabilitet er vigtig her. Den der forstår det nye system og kan navigere i det, er stærkere end den der venter på at tilpasse sig.',
+    snTitle:'Du er relativt beskyttet — for nu.',snText:'Dit arbejde kræver noget AI ikke har. <strong>Det er en reel styrke.</strong> Men det system du arbejder i, forandres.',
+    s5Title:'Om 3-5 år: din rolle er den samme — men konteksten er ændret.',s5Text:'Dokumentationen skrives af systemer. Visitationen støttes af algoritmer. Vagtplanen optimeres automatisk. <strong>Du er stadig der — men hvad du bruger din tid på, er anderledes.</strong>',
+    s10Title:'Med bevidst navigation: du former forandringen frem for at tilpasse dig den.',s10Text:'Den person der forstår det nye system — og aktivt deltager i at forme hvordan det implementeres — er i en fundamentalt stærkere position end den der venter.',
+    actTitle:'Forstå det system der er ved at ændre sig',actText:'Find ud af hvilke af de processer der omgiver dit arbejde, der allerede er under forandring. Ikke for at stoppe det — men for at forstå det præcist nok til at have en mening om hvordan det bør ske.',
+    actWeek:'Denne uge: tal med én kollega om hvad I forventer ændrer sig i jeres arbejde det næste år.',
+    extra:[{t:'Brug AI til at forstå systemet du arbejder i',x:'Ikke til at gøre dit arbejde hurtigere. Til at forstå det system du er en del af — hvad der driver beslutningerne, hvad der kan forbedres, hvad der er ved at ændre sig.'},
+           {t:'Del din faglige viden med dem der designer systemerne',x:'De der bygger de nye systemer, kender ofte ikke den operationelle virkelighed de skal fungere i. Din erfaring er en ressource — hvis du deler den.'}]
+  },
+  'strong':{
+    headline:'Du er i en stærk position. Spørgsmålet er om du fastholder den.',
+    sub:'Din kombination af lavt eksponerede arbejdsopgaver og høj adaptiv kapabilitet giver en solid udgangssituation. Men styrke kræver vedligeholdelse.',
+    rrTitle:'Lav direkte risiko',rrDesc:'Dit arbejde kræver erfaring, kontekst og ansvar der er svær at erstatte. Det er en reel beskyttelse.',
+    rtTitle:'Moderat transformationsrisiko',rtDesc:'Systemet vil ændre sig. Det gør det altid. Men din evne til at navigere forandring er din vigtigste ressource.',
+    protTitle:'Stærk beskyttelse',protDesc:'Du bruger AI aktivt og lærende. Det er den enkeltfaktor der adskiller dem der akkumulerer fra dem der optimerer.',
+    snTitle:'Du akkumulerer allerede.',snText:'Det at du bruger AI nysgerrigt og bygger forståelse løbende er ikke en lille ting. <strong>Det er præcis mekanismen</strong> der adskiller dem der bliver stærkere fra dem der holder trit.',
+    s5Title:'Om 3-5 år: din fordel er strukturel.',s5Text:'Du har ikke blot akkumuleret kompetencer — du har akkumuleret en måde at lære på. <strong>Det kompounder.</strong> Hvert år er du hurtigere til at forstå det næste nye.',
+    s10Title:'Med fortsat bevidsthed: du er motoren andre læner sig op ad.',s10Text:'Ikke den højeste titel. Den person alle spørger når systemet ikke virker, når beslutningen er svær, når to verdener ikke taler sammen.',
+    actTitle:'Gør det du akkumulerer tilgængeligt for andre',actText:'Den viden og kapabilitet du har opbygget lever primært i dig. Det er dens styrke — og dens begrænsning. Den næste investering er at gøre den tilgængelig for andre, så den ikke forsvinder den dag du ikke er der.',
+    actWeek:'Denne uge: identificér ét sted hvor din viden kunne hjælpe nogen der er tidligere i sin læring end dig.',
+    extra:[{t:'Udvid din horisont bevidst',x:'Du er stærk i dit felt. Næste trin er at forstå ét tilgrænsende område du ikke kender godt. Ikke for at skifte retning — for at se dine egne blinde vinkler.'},
+           {t:'Design din akkumulering fremadrettet',x:'Hvad vil du vide om tre år som du ikke ved i dag? Hvad kræver det at akkumulere? Spørg dig selv nu — og lad svaret guide hvad du prioriterer.'}]
+  },
+  'moderate':{
+    headline:'Du er midt i feltet — og det er netop der valget træffes.',
+    sub:'Hverken stærkt beskyttet eller akut eksponeret. Det er den position hvor bevidste valg gør størst forskel — i begge retninger.',
+    rrTitle:'Moderat eksponering',rrDesc:'Elementer i dit arbejde er mønsterbaserede og potentielt substituerbare. Ikke akut — men retningen tæller.',
+    rtTitle:'Systemet forandres gradvist',rtDesc:'Processer og beslutningsstøtte vil ændre sig. Dem der forstår forandringen tidligt, former den. Dem der venter, tilpasser sig den.',
+    protTitle:'Beskyttelsen kan styrkes markant',protDesc:'Din adaptive kapabilitet er dit vigtigste handlepunkt. Forskellen mellem en moderat og en stærk position er primært her.',
+    snTitle:'Du har alle muligheder åbne.',snText:'Det er ikke en beroligende konklusion — det er en præcis én. <strong>Midt i feltet betyder at retningen ikke er bestemt.</strong> Den bestemmes af hvad du gør nu.',
+    s5Title:'Om 3-5 år uden bevidst valg: du holder trit — men akkumulerer ikke.',s5Text:'Du er ikke erstattet. Men dem der traf bevidste valg for tre år siden, er i en fundamentalt stærkere position. <strong>Gabet er ikke dramatisk — men det vokser.</strong>',
+    s10Title:'Med ét bevidst valg nu: din trajektorie ændres.',s10Text:'Et enkelt skridt i retning af dybere forståelse, mere nysgerrig AI-brug eller bevidst akkumulering af det der ikke kan automatiseres — det ændrer din kurve over tid.',
+    actTitle:'Vælg én retning og gå dybere',actText:'Midt i feltet er den farligste position for den der forsøger at gøre lidt af alt. Det der akkumulerer er dybde i en retning — ikke bredde i alle retninger.',
+    actWeek:'Denne uge: identificér ét område du vil forstå dybere end du gør i dag — og tag det første skridt.',
+    extra:[{t:'Brug AI til at stille spørgsmål du ikke kunne stille før',x:'Ikke til at gøre det samme hurtigere. Tag et problem du ikke forstår fuldt ud — og brug AI til at forstå det dybere. Det er forskellen på AI som genvej og AI som læringsmotor.'},
+           {t:'Find nogen der er foran dig — og lær af dem',x:'Find en person der er tre til fem år foran dig i sin karriere og spørg dem hvad de ville have gjort anderledes. Det er den hurtigste måde at se din fremtid med andres øjne.'}]
+  }
+};
+
+function go(step){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+step).classList.add('active');
+  ['p1','p2','p3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.className='pip'+(i+1<step?' done':i+1===step?' active':'');
+  });
+  if(step===2)buildS2();
+  if(step===3)buildS3();
+  window.scrollTo(0,0);
+}
+
+function buildS2(){
+  const v=getVals();
+  const risks=calcRisks(v);
+  const prof=getProfile(v,risks);
+  const P=PROFILES[prof];
+  window._v=v;window._risks=risks;window._prof=prof;
+
+  document.getElementById('s2-headline').textContent=P.headline;
+  document.getElementById('s2-sub').textContent=P.sub;
+
+  document.getElementById('rr-title').textContent=P.rrTitle;
+  document.getElementById('rr-desc').textContent=P.rrDesc;
+  document.getElementById('rt-title').textContent=P.rtTitle;
+  document.getElementById('rt-desc').textContent=P.rtDesc;
+  document.getElementById('prot-title').textContent=P.protTitle;
+  document.getElementById('prot-desc').textContent=P.protDesc;
+
+  document.getElementById('sn-title').textContent=P.snTitle;
+  document.getElementById('sn-text').innerHTML=P.snText;
+  document.getElementById('s5-title').textContent=P.s5Title;
+  document.getElementById('s5-text').innerHTML=P.s5Text;
+  document.getElementById('s10-title').textContent=P.s10Title;
+  document.getElementById('s10-text').innerHTML=P.s10Text;
+
+  setTimeout(()=>{
+    document.getElementById('rr-bar').style.width=risks.replace+'%';
+    document.getElementById('rt-bar').style.width=risks.transform+'%';
+    document.getElementById('prot-bar').style.width=risks.protect+'%';
+  },100);
+}
+
+function buildS3(){
+  const prof=window._prof||'moderate';
+  const P=PROFILES[prof];
+
+  document.getElementById('s3-headline').textContent='Fra analyse til handling';
+  document.getElementById('s3-sub').textContent='Baseret på din profil er der ét skridt der har størst effekt. Ikke fem. Ét.';
+
+  document.getElementById('act-title').textContent=P.actTitle;
+  document.getElementById('act-text').textContent=P.actText;
+  document.getElementById('act-week').textContent=P.actWeek;
+
+  document.getElementById('extra-acts').innerHTML=P.extra.map(e=>`
+    <div style="border:1px solid var(--border);border-radius:2px;padding:1.1rem 1.25rem;margin-bottom:.75rem">
+      <div style="font-size:14px;font-weight:500;color:var(--fg);margin-bottom:.4rem">${e.t}</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">${e.x}</div>
+    </div>`).join('');
+}
+
+function restart(){
+  document.getElementById('job-in').value='';
+  document.getElementById('job-ok').style.display='none';
+  document.getElementById('d1').value=3;
+  document.getElementById('d2').value=3;
+  document.getElementById('d3').value=3;
+  document.getElementById('d4').value=2;
+  updDim('v1',3,LABELS.d1,COLORS.d1);
+  updDim('v2',3,LABELS.d2,COLORS.d2);
+  updDim('v3',3,LABELS.d3,COLORS.d3);
+  updDim('v4',2,LABELS.d4,COLORS.d4);
+  go(1);
+}
+</script>
+</body>
+</html>

@@ -165,6 +165,8 @@ Ikke flashy. Ikke akademisk. Ikke promotionelt.
 
 > *"Køb motorerne. Ikke narrativet."*
 
+> *"Bygger du motoren, betjener du motoren — eller bliver du input til motoren?"*
+
 **Hvad der skal undgås:**
 
 > *"AI transformerer fremtidens arbejdsmarked fundamentalt."*

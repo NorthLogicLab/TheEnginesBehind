@@ -91,5 +91,18 @@ Og det er det denne bog handler om.
 
 ---
 
+## EN ANALYTISK NOTE
+
+Dette er et forklaringsframework — ikke en valideret teori, ikke investeringsrådgivning og ikke en empirisk bekræftet model.
+ACA er et syntetisk framework bygget på historiske cases, eksisterende forskning i absorptionskapacitet, tacit knowledge og industriel akkumulering, samt empiriske observationer fra nutidige data. Det er forankret i reel evidens — men det er ikke peer-reviewed og det er ikke testet longitudinalt over tilstrækkelig mange teknologiske generationer.
+CTI-instrumentet — Capability Translation Index — er teoretisk afledt og forankret i ESCO-ontologien og absorptionskapacitetsteorien. Det er ikke en valideret psykometrisk test.
+Bogen er skrevet til den intelligente praktiker der vil forstå systemet bag outputtet — ikke til den der søger handlingsgarantier.
+Mekanismerne er reelle. Konsekvenserne er reelle. Men enhver anvendelse af dette framework på konkrete karriere-, rekrutterings- eller investeringsbeslutninger kræver kontekstspecifik vurdering som denne bog ikke kan erstatte.
+
+Adskil altid: empirisk observation, fortolkning, hypotese og spekulation.
+Det er det vi har forsøgt. Det er det vi beder læseren om.
+
+
+
 *The Engines Behind*
 *Akt 1 begynder på næste side.*
