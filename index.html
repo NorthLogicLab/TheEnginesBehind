@@ -1,722 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TheEnginesBehind — NorthLogicLab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --black: #080808;
-      --surface: #111111;
-      --border: #222222;
-      --text: #e8e4dc;
-      --text-mid: #aaa49e;
-      --text-dim: #666060;
-      --accent: #c8b97a;
-      --accent-dim: #6b6240;
-      --green: #4a7c59;
-      --green-bright: #6db580;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.8;
-    }
-
-    /* ─── NAV ─────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 32px;
-      background: rgba(8,8,8,0.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    /* Hamburger button — always visible */
-    .nav-toggle {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-      width: 44px;
-      height: 44px;
-      padding: 8px;
-      background: transparent;
-      border: 2px solid var(--accent);
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 300;
-    }
-
-    .nav-toggle span {
-      display: block;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    .nav-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    /* Dropdown menu */
-    .nav-menu {
-      display: none;
-      position: fixed;
-      top: 65px; left: 0; right: 0;
-      background: #080808;
-      border-bottom: 2px solid var(--accent);
-      z-index: 199;
-      padding: 8px 0;
-    }
-
-    .nav-menu.is-open {
-      display: block;
-    }
-
-    .nav-menu a {
-      display: block;
-      padding: 16px 32px;
-      font-family: 'DM Mono', monospace;
-      font-size: 16px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: color 0.2s, background 0.2s;
-    }
-
-    .nav-menu a:last-child { border-bottom: none; }
-    .nav-menu a:hover { color: var(--accent); background: var(--surface); }
-
-    /* ─── LAYOUT ──────────────────────────────── */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    section {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 48px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ─── HERO ────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 120px 32px 80px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .hero-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(64px, 10vw, 120px);
-      line-height: 0.92;
-      color: var(--text);
-      margin-bottom: 32px;
-    }
-
-    .hero-title em {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      max-width: 560px;
-      color: var(--text-mid);
-      font-size: 18px;
-      line-height: 1.8;
-      margin-bottom: 48px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--black); }
-    .btn-primary:hover { background: transparent; color: var(--accent); }
-    .btn-ghost { background: transparent; border-color: var(--border); color: var(--text-mid); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--text); }
-
-    /* ─── TICKER ──────────────────────────────── */
-    .ticker {
-      overflow: hidden;
-      white-space: nowrap;
-      background: var(--border);
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333;
-      padding: 10px 0;
-    }
-
-    .ticker-inner {
-      display: inline-flex;
-      animation: ticker 35s linear infinite;
-    }
-
-    .ticker-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      padding: 0 32px;
-    }
-
-    .ticker-item span { color: var(--accent); margin-right: 8px; }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ─── PHILOSOPHY ──────────────────────────── */
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .phil-item {
-      background: var(--black);
-      padding: 40px;
-      transition: background 0.2s;
-    }
-
-    .phil-item:hover { background: var(--surface); }
-
-    .phil-number {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      margin-bottom: 16px;
-    }
-
-    .phil-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 24px;
-      font-style: italic;
-      color: var(--text);
-      margin-bottom: 16px;
-      line-height: 1.3;
-    }
-
-    .phil-desc {
-      color: var(--text-mid);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    /* ─── ENGINES ─────────────────────────────── */
-    .engines-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .engine-item {
-      background: var(--black);
-      padding: 32px 40px;
-      display: grid;
-      grid-template-columns: 180px 1fr auto;
-      gap: 40px;
-      align-items: start;
-      transition: background 0.2s;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    .engine-item:hover { background: var(--surface); }
-
-    .engine-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .engine-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border: 1px solid;
-      display: inline-block;
-    }
-
-    .tag-active { border-color: var(--green); color: var(--green-bright); }
-    .tag-building { border-color: var(--accent-dim); color: var(--accent); }
-    .tag-vision { border-color: #333; color: var(--text-dim); }
-
-    .engine-desc {
-      color: var(--text-mid);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .engine-arrow {
-      color: var(--text-dim);
-      font-size: 22px;
-      align-self: center;
-      transition: all 0.2s;
-    }
-
-    .engine-item:hover .engine-arrow { color: var(--accent); transform: translateX(4px); }
-
-    /* ─── PROFILE ─────────────────────────────── */
-    .profile-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .profile-statement {
-      font-family: 'Instrument Serif', serif;
-      font-size: 26px;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--text);
-      border-left: 2px solid var(--accent);
-      padding-left: 24px;
-    }
-
-    .profile-details { display: flex; flex-direction: column; gap: 0; }
-
-    .profile-row {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .profile-row:last-child { border-bottom: none; }
-
-    .profile-key {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 4px;
-    }
-
-    .profile-val { color: var(--text); font-size: 16px; }
-
-    /* ─── STACK ───────────────────────────────── */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .stack-item {
-      background: var(--black);
-      padding: 24px;
-      text-align: center;
-      transition: background 0.2s;
-    }
-
-    .stack-item:hover { background: var(--surface); }
-
-    .stack-name { font-size: 15px; color: var(--text); margin-bottom: 4px; }
-
-    .stack-cat {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ─── FOOTER ──────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-    }
-
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-
-    .footer-links a {
-      font-family: 'DM Mono', monospace;
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--accent); }
-    .footer-copy { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-dim); }
-
-    .blink { animation: blink 1s step-end infinite; color: var(--accent); }
-    @keyframes blink { 50% { opacity: 0; } }
-
-    /* ─── FADE IN ─────────────────────────────── */
-    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s, transform 0.6s; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ─── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 768px) {
-      .philosophy-grid,
-      .profile-grid { grid-template-columns: 1fr; }
-
-      .stack-grid { grid-template-columns: repeat(2, 1fr); }
-
-      .engine-item { grid-template-columns: 1fr; gap: 12px; }
-      .engine-arrow { display: none; }
-
-      .container { padding: 0 20px; }
-      .hero { padding: 100px 20px 60px; }
-
-      body { font-size: 16px; }
-      .hero-sub { font-size: 17px; }
-      .phil-desc, .engine-desc, .profile-val { font-size: 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Engines Behind</title>
+<meta name="description" content="Nogle akkumulerer. Andre har blot adgang. Det gab — og mekanismen bag det — er det denne bog undersøger.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07060a;
+  --fg:#f0ebe0;
+  --mid:#b8b0a0;
+  --muted:#7a7268;
+  --border:#1e1b16;
+  --amber:#c8943a;
+  --amber-dim:#8a5f1e;
+  --serif:'Playfair Display',serif;
+  --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,var(--bg) 60%,transparent)}
+.nav-logo{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+
+/* HERO — thriller opening */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:40%;
+  background:linear-gradient(to bottom,transparent,var(--bg));
+  pointer-events:none;
+}
+.hero-ambient{
+  position:absolute;top:20%;right:-10%;width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(200,148,58,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-label{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:2rem}
+.hero-title{
+  font-family:var(--serif);font-size:clamp(3.5rem,9vw,8.5rem);
+  font-weight:400;line-height:.95;letter-spacing:-.03em;
+  max-width:850px;margin-bottom:3rem;
+}
+.hero-title em{font-style:italic;color:var(--amber)}
+.hero-title .line2{padding-left:4rem}
+.hero-title .line3{padding-left:8rem;color:var(--mid)}
+.hero-sub{font-size:17px;color:var(--mid);max-width:480px;line-height:1.8;margin-bottom:3rem;border-left:2px solid var(--amber);padding-left:1.25rem}
+.hero-cta-row{display:flex;gap:1rem;align-items:center}
+.cta-primary{
+  display:inline-block;padding:13px 32px;
+  background:var(--amber);color:var(--bg);
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;border-radius:1px;
+  transition:opacity .2s;
+}
+.cta-primary:hover{opacity:.85}
+.cta-ghost{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  letter-spacing:1px;transition:color .2s;
+}
+.cta-ghost:hover{color:var(--fg)}
+
+/* PULSE LINE */
+.pulse-line{margin:0;padding:0;height:60px;overflow:hidden;position:relative}
+.pulse-line svg{width:100%;height:60px;opacity:.15}
+
+/* CHAPTERS */
+.body{max-width:800px;margin:0 auto;padding:0 3rem}
+
+.ch{padding:5rem 0;border-top:1px solid var(--border)}
+.ch-eye{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--amber-dim);text-transform:uppercase;margin-bottom:2rem}
+.ch-lead{
+  font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.25rem);
+  font-weight:400;line-height:1.3;color:var(--fg);margin-bottom:1.75rem;
+}
+.ch-lead em{font-style:italic;color:var(--amber)}
+.ch-p{font-size:15px;color:var(--mid);line-height:1.9;max-width:580px}
+.ch-p+.ch-p{margin-top:1.25rem}
+.ch-p strong{color:var(--fg);font-weight:400}
+
+/* TENSION QUOTE */
+.tq{
+  margin:3rem 0;padding:2rem 2rem 2rem 2.5rem;
+  border-left:3px solid var(--amber);
+  background:linear-gradient(to right,rgba(200,148,58,.06),transparent);
+}
+.tq-text{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--fg);line-height:1.5}
+
+/* ACTS — tension list */
+.act-list{margin-top:3rem}
+.act{
+  display:grid;grid-template-columns:50px 1fr;gap:2rem;
+  padding:1.75rem 0;border-top:1px solid var(--border);
+  transition:background .2s;
+}
+.act:last-child{border-bottom:1px solid var(--border)}
+.act-n{font-family:var(--mono);font-size:11px;color:var(--amber-dim);letter-spacing:1px;padding-top:2px}
+.act-right{}
+.act-title{font-family:var(--serif);font-size:19px;color:var(--fg);margin-bottom:.35rem}
+.act-desc{font-size:14px;color:var(--mid);line-height:1.7}
+.act-hint{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:.75rem}
+
+/* INSTRUMENTS */
+.inst-list{margin-top:2.5rem}
+.inst{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.25rem 0;border-top:1px solid var(--border);
+  cursor:pointer;transition:all .2s;
+  text-decoration:none;
+}
+.inst:last-child{border-bottom:1px solid var(--border)}
+.inst:hover .inst-name{color:var(--amber)}
+.inst:hover .inst-arr{color:var(--amber);transform:translateX(4px)}
+.inst-left{}
+.inst-name{font-family:var(--serif);font-size:17px;color:var(--fg);margin-bottom:.2rem;transition:color .2s}
+.inst-desc{font-size:13px;color:var(--muted)}
+.inst-arr{font-family:var(--mono);font-size:14px;color:var(--muted);transition:all .2s}
+
+/* CLOSING */
+.closing{
+  padding:10rem 3rem 8rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.closing::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,148,58,.08) 0%,transparent 65%);
+  pointer-events:none;
+}
+.closing-rule{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0 auto 6rem;max-width:400px}
+.closing-main{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(2rem,5vw,3.75rem);
+  color:var(--fg);line-height:1.2;
+  max-width:700px;margin:0 auto 2rem;
+}
+.closing-main em{color:var(--amber)}
+.closing-byline{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:3px;margin-bottom:3rem}
+.closing-links{display:flex;gap:1.5rem;justify-content:center}
+.closing-links a{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.closing-links a:hover{color:var(--fg)}
+
+footer{
+  padding:2rem 3rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px}
+.f-r{display:flex;gap:1.5rem}
+.f-r a{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.f-r a:hover{color:var(--fg)}
+
+@media(max-width:680px){
+  nav{padding:1.25rem 1.5rem}
+  .hero{padding:6rem 1.5rem 4rem}
+  .hero-title .line2{padding-left:1.5rem}
+  .hero-title .line3{padding-left:3rem}
+  .body{padding:0 1.5rem}
+  .closing{padding:6rem 1.5rem 5rem}
+  footer{flex-direction:column;gap:.75rem;padding:1.5rem;text-align:center}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">TheEnginesBehind</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- DROPDOWN MENU -->
-  <div class="nav-menu" id="navMenu">
-    <a href="#engines" class="nav-item">Engines</a>
-    <a href="#profile" class="nav-item">Profile</a>
-    <a href="https://github.com/NorthLogicLab" target="_blank" class="nav-item">GitHub ↗</a>
-    <a href="https://linkedin.com/in/jonbach2012" target="_blank" class="nav-item">LinkedIn ↗</a>
+<nav>
+  <div class="nav-logo">The Engines Behind</div>
+  <div class="nav-links">
+    <a href="#bogen">Bogen</a>
+    <a href="#instrumenter">Instrumenter</a>
+    <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank">GitHub ↗</a>
   </div>
+</nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-label">Jon Bach · TheEnginesBehind · Built in NorthLogicLab</div>
-    <h1 class="hero-title">The Engine<br /><em>Behind</em><br />the Decision</h1>
-    <p class="hero-sub">
-      Compliance is not a variable. It's a license to operate.<br />
-      I build engines that transform regulatory pressure into competitive advantage —
-      and compliance as a cost into compliance as a service that creates profit.
-    </p>
-    <div class="hero-actions">
-      <a href="#engines" class="btn btn-primary">See what I build →</a>
-      <a href="https://github.com/NorthLogicLab" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ambient"></div>
+  <div class="hero-label">NorthLogicLab · 2026</div>
+  <h1 class="hero-title">
+    <span class="line1">Nogle</span><br>
+    <span class="line2">akkumulerer.</span><br>
+    <span class="line3"><em>Andre har<br>blot adgang.</em></span>
+  </h1>
+  <p class="hero-sub">Det gab — og mekanismen bag det — er det denne bog undersøger.<br>AI skabte ikke mekanismen. AI accelererede den.</p>
+  <div class="hero-cta-row">
+    <a href="#bogen" class="cta-primary">Udforsk bogen</a>
+    <a href="#instrumenter" class="cta-ghost">Prøv instrumenterne →</a>
   </div>
+</div>
 
-  <!-- TICKER -->
-  <div class="ticker">
-    <div class="ticker-inner">
-      <span class="ticker-item"><span>▸</span> PPWR / EPR / DPP</span>
-      <span class="ticker-item"><span>▸</span> Packaging Tender Evaluation</span>
-      <span class="ticker-item"><span>▸</span> Vendor Managed Inventory</span>
-      <span class="ticker-item"><span>▸</span> Decision Intelligence</span>
-      <span class="ticker-item"><span>▸</span> Cross-country Cost Modelling</span>
-      <span class="ticker-item"><span>▸</span> Regulatory Compliance Engines</span>
-      <span class="ticker-item"><span>▸</span> SAP Integration</span>
-      <span class="ticker-item"><span>▸</span> e-Procurement Automation</span>
-      <span class="ticker-item"><span>▸</span> PPWR / EPR / DPP</span>
-      <span class="ticker-item"><span>▸</span> Packaging Tender Evaluation</span>
-      <span class="ticker-item"><span>▸</span> Vendor Managed Inventory</span>
-      <span class="ticker-item"><span>▸</span> Decision Intelligence</span>
-      <span class="ticker-item"><span>▸</span> Cross-country Cost Modelling</span>
-      <span class="ticker-item"><span>▸</span> Regulatory Compliance Engines</span>
-      <span class="ticker-item"><span>▸</span> SAP Integration</span>
-      <span class="ticker-item"><span>▸</span> e-Procurement Automation</span>
+<!-- PULSE -->
+<div class="pulse-line">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <polyline points="0,30 120,30 180,5 240,55 300,30 400,30 460,15 520,45 580,30 700,30 760,8 820,52 880,30 1000,30 1060,20 1120,40 1180,30 1440,30" fill="none" stroke="#c8943a" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<div class="body">
+
+  <!-- OBSERVATION -->
+  <div class="ch">
+    <div class="ch-eye">Observationen</div>
+    <p class="ch-lead">Der er en person i de fleste organisationer der ikke har en præcis jobtitel for det hun faktisk gør.</p>
+    <p class="ch-p">Hun er ikke leder. Hun er ikke synlig i de møder der tæller. Men spørger du hendes kolleger, ved de præcist hvem hun er.</p>
+    <p class="ch-p">Hun er den de ringer til når systemet ikke virker — og IT ikke kan forklare hvorfor. Hun bygger noget ingen bad om, og som nu er en del af måden organisationen træffer beslutninger på.</p>
+    <div class="tq">
+      <p class="tq-text">Måske er det dig.</p>
     </div>
   </div>
 
-  <!-- PHILOSOPHY -->
-  <section>
-    <div class="container">
-      <div class="section-label fade-in">Philosophy</div>
-      <div class="philosophy-grid fade-in">
-        <div class="phil-item">
-          <div class="phil-number">01</div>
-          <div class="phil-title">The engine drives value.<br />Others take the spotlight.</div>
-          <div class="phil-desc">I build the systems that make decisions possible — traceable, explainable and economically sound. The output speaks. I don't need to.</div>
+  <!-- MEKANISME -->
+  <div class="ch">
+    <div class="ch-eye">Mekanismen</div>
+    <p class="ch-lead">I 1870'erne fik mange aktører adgang til jernbanen.<br>Rockefeller så at <em>adgangen ikke var spørgsmålet.</em></p>
+    <p class="ch-p">Kontrollen over infrastrukturen der forbandt den med alt andet — det var spørgsmålet. Han akkumulerede det der lå bag adgangen.</p>
+    <p class="ch-p">I dag får alle adgang til AI. De fleste bruger den til at blive hurtigere til det de allerede gør.</p>
+    <p class="ch-p"><strong>Det er historien om adgang der gentager sig.</strong></p>
+    <div class="tq">
+      <p class="tq-text">Adgang distribueres. Kapabilitet akkumuleres. Og gabet imellem de to vokser stille og strukturelt — mens alle kigger på outputtet.</p>
+    </div>
+  </div>
+
+  <!-- BOGEN -->
+  <div class="ch" id="bogen">
+    <div class="ch-eye">Bogen · Fem akter · Dansk</div>
+    <p class="ch-lead">Ikke endnu en bog om AI.<br>En bog om <em>mekanismen bag AI.</em></p>
+    <div class="act-list">
+      <div class="act">
+        <div class="act-n">I</div>
+        <div class="act-right">
+          <div class="act-title">The Pattern</div>
+          <div class="act-desc">ACA før AI. Rockefeller, Ford, Toyota, Intel, Maersk. Samme mekanisme — fem epoker. Det er ikke teknologien der akkumulerer. Det er systemet bag den.</div>
+          <div class="act-hint">EIC · Standard Oil · Ford · Toyota · Intel · Maersk</div>
         </div>
-        <div class="phil-item">
-          <div class="phil-number">02</div>
-          <div class="phil-title">Complexity is the input.<br />Clarity is the product.</div>
-          <div class="phil-desc">Multi-layer materials. Country-specific regulations. Imperfect data. These aren't obstacles — they're exactly where structured decision logic creates the most value.</div>
+      </div>
+      <div class="act">
+        <div class="act-n">II</div>
+        <div class="act-right">
+          <div class="act-title">The Accelerator</div>
+          <div class="act-desc">AI ændrer hastighed og konsekvenser — ikke mekanismen. Velocity Asymmetry. Adoptionsteater vs. Integration. Translation Barrier.</div>
+          <div class="act-hint">TSMC · ASML · Tre lande · Oversætteren</div>
         </div>
-        <div class="phil-item">
-          <div class="phil-number">03</div>
-          <div class="phil-title">Excel is not a decision engine.<br />It just pretends to be.</div>
-          <div class="phil-desc">Manual evaluation leads to inconsistent decisions, invisible risk and dependency on individual knowledge. Structured engines don't forget. They don't have bad days.</div>
+      </div>
+      <div class="act">
+        <div class="act-n">III</div>
+        <div class="act-right">
+          <div class="act-title">Strategic Positioning</div>
+          <div class="act-desc">Fire niveauer. Én mekanisme. Hvem ejer de lag andre bliver afhængige af?</div>
+          <div class="act-hint">Individet · Organisationen · Staten · Kontinentet · Governance</div>
         </div>
-        <div class="phil-item">
-          <div class="phil-number">04</div>
-          <div class="phil-title">Regulation is not a cost.<br />It's a decision variable.</div>
-          <div class="phil-desc">PPWR, EPR and DPP are economic forces — not compliance checkboxes. The organisations that treat them as inputs to decision models will outperform those that don't.</div>
+      </div>
+      <div class="act">
+        <div class="act-n">IV</div>
+        <div class="act-right">
+          <div class="act-title">The Fragility Paradox</div>
+          <div class="act-desc">Styrken producerer skrøbeligheden. Det er ikke en advarsel — det er en mekanisk konsekvens. Stien der forsvinder.</div>
+          <div class="act-hint">F1 vs Hilux · TSMC · Kognitiv stratifikation · Systemskaberen som flaskehals</div>
         </div>
-        <div class="phil-item">
-          <div class="phil-number">05</div>
-          <div class="phil-title">If it lives only in someone's head,<br />it isn't a system.</div>
-          <div class="phil-desc">Tasks, owners, timelines and status scattered across emails and memory is not project management — it's organised chaos. Dynamic tracking turns parallel workstreams into visible, actionable structure. Requested by colleagues. That's the only metric that matters.</div>
-        </div>
-        <div class="phil-item">
-          <div class="phil-number">06</div>
-          <div class="phil-title">What comes next?</div>
-          <div class="phil-desc">That's the right question. If you think you know the answer — let's talk.</div>
+      </div>
+      <div class="act">
+        <div class="act-n">V</div>
+        <div class="act-right">
+          <div class="act-title">The Engine Behind the Engine</div>
+          <div class="act-desc">Syntese. Hvad frameworket kan — og ikke kan. De har brug for hinanden.</div>
+          <div class="act-hint">ACA som forklaringsmotor · Køb motorerne. Ikke narrativet.</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ENGINES -->
-  <section id="engines">
-    <div class="container">
-      <div class="section-label fade-in">What I Build</div>
-      <div class="engines-list fade-in">
-
-        <a href="https://github.com/jonbach2012-design/PackagingTenderDecisionEngine" target="_blank" class="engine-item">
-          <div>
-            <div class="engine-name">PTDE</div>
-            <div class="engine-tag tag-active">Active · POC</div>
-          </div>
-          <div class="engine-desc">Packaging Tender Decision Engine — replaces Excel-based tender evaluation with structured, line-level scoring across commercial, technical and regulatory dimensions. Handles PPWR/EPR impact, multi-material complexity and spend-weighted supplier aggregation. Built in C# / Blazor.</div>
-          <div class="engine-arrow">→</div>
-        </a>
-
-        <a href="https://github.com/NorthLogicLab/VendorManagedInventory" target="_blank" class="engine-item">
-          <div>
-            <div class="engine-name">VMI Systems</div>
-            <div class="engine-tag tag-active">Deployed · Live</div>
-          </div>
-          <div class="engine-desc">Four VMI technologies implemented across Lemvigh-Müller and Sanistål/Ahlsell — ESL, weight-based replenishment, vending automater and StockMaster. Started as a concept we pushed to market. Became a standard customers write into tenders. Live in production across Denmark.</div>
-          <div class="engine-arrow">→</div>
-        </a>
-
-        <div class="engine-item">
-          <div>
-            <div class="engine-name">Cost Intelligence</div>
-            <div class="engine-tag tag-active">In Use</div>
-          </div>
-          <div class="engine-desc">Cross-country pricing model tracking cost impact and % movement across 7 countries and 7 business units in real time. Replaces manual monthly reporting with structured, supplier-level visibility. Built for packaging category management.</div>
-          <div class="engine-arrow">→</div>
+  <!-- INSTRUMENTER -->
+  <div class="ch" id="instrumenter">
+    <div class="ch-eye">Instrumenter · Brug frameworket selv</div>
+    <p class="ch-lead">Fra analyse<br>til <em>handling.</em></p>
+    <p class="ch-p">Fire interaktive instrumenter der operationaliserer bogens framework. For individet der vil forstå sin position. For den der vil vide hvad der sandsynligvis sker.</p>
+    <div class="inst-list">
+      <a href="FrameworkUse/SkæbneScenarie.html" class="inst">
+        <div class="inst-left">
+          <div class="inst-name">Skæbnescenariet</div>
+          <div class="inst-desc">Replacement Risk · Transformation Risk · Resilience · To fremtider</div>
         </div>
-
-        <a href="https://github.com/NorthLogicLab/Regulus" target="_blank" class="engine-item">
-          <div>
-            <div class="engine-name">Regulus</div>
-            <div class="engine-tag tag-vision">Vision · Roadmap</div>
-          </div>
-          <div class="engine-desc">Modular decision platform for areas where regulation, data quality and economic outcomes are tightly connected. PTDE is the first module. Designed for extensibility across PPWR interpretation, EPR fee logic, DPP documentation and supplier risk — by country and domain.</div>
-          <div class="engine-arrow">→</div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PROFILE -->
-  <section id="profile">
-    <div class="container">
-      <div class="section-label fade-in">Profile</div>
-      <div class="profile-grid fade-in">
-        <div>
-          <p class="profile-statement">"I work in the intersection of procurement, operations and IT — building engines that make complex decisions simple, traceable and independent of Excel."</p>
+        <div class="inst-arr">→</div>
+      </a>
+      <a href="FrameworkUse/Selvdiagnostik.html" class="inst">
+        <div class="inst-left">
+          <div class="inst-name">ACA Selvdiagnostik</div>
+          <div class="inst-desc">Find din position på akkumuleringsskalaen</div>
         </div>
-        <div class="profile-details">
-          <div class="profile-row">
-            <div class="profile-key">Current</div>
-            <div class="profile-val">System Specialist · Scandi Standard</div>
-          </div>
-          <div class="profile-row">
-            <div class="profile-key">Domain</div>
-            <div class="profile-val">Digital Procurement · PPWR/EPR/DPP · Decision Intelligence · Vendor Onboarding</div>
-          </div>
-          <div class="profile-row">
-            <div class="profile-key">Reach</div>
-            <div class="profile-val">7 countries · 7 business units · Nordic & European markets</div>
-          </div>
-          <div class="profile-row">
-            <div class="profile-key">Academic foundation</div>
-            <div class="profile-val">HD International Business, CBS — cluster theory, competitive advantage and knowledge economics</div>
-          </div>
-          <div class="profile-row">
-            <div class="profile-key">Lab</div>
-            <div class="profile-val">NorthLogicLab — the lab where crazy ideas become structured engines</div>
-          </div>
-          <div class="profile-row">
-            <div class="profile-key">Location</div>
-            <div class="profile-val">Aalborg, Denmark</div>
-          </div>
+        <div class="inst-arr">→</div>
+      </a>
+      <a href="FrameworkUse/KarriereKompas.html" class="inst">
+        <div class="inst-left">
+          <div class="inst-name">Karrierekompas</div>
+          <div class="inst-desc">Hvad AI ændrer i dit arbejde — og hvad du gør ved det</div>
         </div>
-      </div>
+        <div class="inst-arr">→</div>
+      </a>
+      <a href="FrameworkUse/Rekruttering.html" class="inst">
+        <div class="inst-left">
+          <div class="inst-name">Rekrutteringsperspektivet</div>
+          <div class="inst-desc">Find dem der akkumulerer</div>
+        </div>
+        <div class="inst-arr">→</div>
+      </a>
     </div>
-  </section>
+  </div>
 
-  <!-- STACK -->
-  <section>
-    <div class="container">
-      <div class="section-label fade-in">Stack</div>
-      <div class="stack-grid fade-in">
-        <div class="stack-item"><div class="stack-name">C# / .NET</div><div class="stack-cat">Core</div></div>
-        <div class="stack-item"><div class="stack-name">Blazor</div><div class="stack-cat">Frontend</div></div>
-        <div class="stack-item"><div class="stack-name">REST API</div><div class="stack-cat">Integration</div></div>
-        <div class="stack-item"><div class="stack-name">SAP / EDI</div><div class="stack-cat">ERP</div></div>
-        <div class="stack-item"><div class="stack-name">Power BI</div><div class="stack-cat">Analytics</div></div>
-        <div class="stack-item"><div class="stack-name">Excel / CSV</div><div class="stack-cat">Data I/O</div></div>
-        <div class="stack-item"><div class="stack-name">PPWR / EPR</div><div class="stack-cat">Regulatory</div></div>
-        <div class="stack-item"><div class="stack-name">AI / RAG</div><div class="stack-cat">Intelligence</div></div>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-logo">TheEnginesBehind<span class="blink">_</span></div>
-        <ul class="footer-links">
-          <li><a href="https://github.com/NorthLogicLab" target="_blank">GitHub ↗</a></li>
-          <li><a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn ↗</a></li>
-        </ul>
-        <div class="footer-copy">© 2025 NorthLogicLab · Jon Bach</div>
-      </div>
-    </div>
-  </footer>
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-rule"></div>
+  <p class="closing-main">Bygger du motoren,<br>betjener du motoren —<br>eller bliver du <em>input</em><br>til motoren?</p>
+  <p class="closing-byline">The Engines Behind · Køb motorerne. Ikke narrativet.</p>
+  <div class="closing-links">
+    <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank">GitHub ↗</a>
+    <a href="https://jonbach.dk" target="_blank">jonbach.dk ↗</a>
+    <a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn ↗</a>
+  </div>
+</div>
 
-  <script>
-    // Hamburger
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    navToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      navToggle.classList.toggle('is-open');
-      navMenu.classList.toggle('is-open');
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function() {
-      navToggle.classList.remove('is-open');
-      navMenu.classList.remove('is-open');
-    });
-
-    document.querySelectorAll('.nav-item').forEach(function(link) {
-      link.addEventListener('click', function() {
-        navToggle.classList.remove('is-open');
-        navMenu.classList.remove('is-open');
-      });
-    });
-
-    // Fade in
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(function(el) {
-      observer.observe(el);
-    });
-  </script>
+<footer>
+  <div class="f-l">© 2026 NorthLogicLab · The Engines Behind</div>
+  <div class="f-r">
+    <a href="https://github.com/NorthLogicLab" target="_blank">GitHub ↗</a>
+    <a href="https://jonbach.dk" target="_blank">jonbach.dk ↗</a>
+  </div>
+</footer>
 
 </body>
 </html>
