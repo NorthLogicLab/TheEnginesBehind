@@ -69,19 +69,20 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
 <div class="container">
   <div class="header">
     <div class="header-label">The Engines Behind</div>
-    <div class="header-title">ACA Selvdiagnostik — find din akkumuleringsposition</div>
+    <div class="header-title">Selvdiagnostik — akkumulerer dit arbejde?</div>
   </div>
 
   <div id="intro" class="screen active">
-    <p class="intro-title">Hvad akkumulerer du?</p>
-    <p style="font-size:14px;color:#888;line-height:1.6;margin-bottom:1rem;padding:.875rem 1rem;border-left:2px solid #c8943a;background:#fdf9f3"><em>Akkumulering er forskellen på arbejde der kun bruger din tid — og arbejde der bygger værdi, metode og position over tid.</em></p>
-    <p class="intro-sub">12 spørgsmål om hvad du faktisk gør — ikke hvad du kunne gøre. Resultatet placerer dig på akkumuleringsskalaen og viser hvad der skal til for at rykke videre.</p>
-    <p style="margin-bottom:1.5rem"><span class="tag">12 spørgsmål</span><span class="tag">~3 min</span><span class="tag">ingen rigtige svar</span></p>
+    <p class="intro-title">Meget arbejde efterlader ingenting.</p>
+    <p class="intro-sub" style="margin-bottom:1.25rem">Næste uge ligner denne uge. Opgaverne løses — og nulstilles. Intet bygger sig op. Intet bliver lettere næste gang.</p>
+    <p class="intro-sub" style="margin-bottom:1.25rem">Noget arbejde er anderledes. Det bygger metoder, systemer og beslutningslogik der eksisterer uden dig. Det akkumulerer.</p>
+    <p class="intro-sub" style="margin-bottom:2rem"><strong>12 spørgsmål om hvad du faktisk gør. Ikke hvad du tror du gør.</strong></p>
     <div class="arch-preview">
-      <div class="arch-preview-label">De fem positioner — lav til høj akkumulering</div>
+      <div class="arch-preview-label">De fem positioner</div>
       <div id="arch-preview-list"></div>
     </div>
-    <button class="btn btn-primary" onclick="startQuiz()">Start selvdiagnostik</button>
+    <p style="font-size:12px;color:#aaa;margin:.75rem 0 1.25rem">Ingen rigtige svar · ~5 minutter</p>
+    <button class="btn btn-primary" onclick="startQuiz()">Start analysen</button>
   </div>
 
   <div id="quiz" class="screen">
@@ -101,9 +102,9 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
     <div class="result-tagline" id="arch-tagline"></div>
     <div class="result-desc" id="arch-desc"></div>
     <div class="score-grid">
-      <div class="score-card"><div class="score-label">Akkumuleringsscore</div><div class="score-val" id="s-aca"></div></div>
-      <div class="score-card"><div class="score-label">Position</div><div class="score-val" id="s-tier"></div></div>
-      <div class="score-card"><div class="score-label">Status</div><div class="score-val" id="s-acc"></div></div>
+      <div class="score-card"><div class="score-label">Din score</div><div class="score-val" id="s-aca"></div><div style="font-size:10px;color:#aaa;margin-top:2px">af 100</div></div>
+      <div class="score-card"><div class="score-label">Position</div><div class="score-val" id="s-tier"></div><div style="font-size:10px;color:#aaa;margin-top:2px">af 5 niveauer</div></div>
+      <div class="score-card"><div class="score-label">Dit arbejde</div><div class="score-val" id="s-acc" style="font-size:16px"></div></div>
     </div>
     <div class="divider"></div>
     <div style="font-size:13px;color:#888;margin-bottom:1rem">Dimensioner</div>
@@ -116,7 +117,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
       <div class="next-move-text" id="next-move"></div>
     </div>
     <div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn" onclick="restart()">Tag igen</button>
+      <button class="btn" onclick="restart()">Lav analysen igen</button>
     </div>
   </div>
 
@@ -125,23 +126,23 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
 
 <script>
 const A=[
-  {tier:1,name:'Systemfølgeren',tagline:'Forbruger tid',color:'#888780',score:12,status:'Lav',
+  {tier:1,name:'Systemfølgeren',tagline:'Forbruger tid',color:'#888780',score:12,status:'Stagnerer',
    desc:'Du løser opgaver — men intet bliver lettere næste gang. Arbejdet nulstilles hver uge. Det er ikke en dom over dig som person. Det er en beskrivelse af hvad arbejdet gør ved din position over tid. Automation erstatter denne profil hurtigst.',
    dims:{data:28,trans:18,runway:14,system:25,coord:55},
    next:'Identificér ét workflow du forstår fuldt ud — og redesign det fra grunden. Ikke forbedr det. Redesign det. Mål hvad der ændrer sig.'},
-  {tier:2,name:'Fageksperten',tagline:'Samler erfaring',color:'#9a9086',score:31,status:'Begyndende',
+  {tier:2,name:'Fageksperten',tagline:'Samler erfaring',color:'#9a9086',score:31,status:'Holder trit',
    desc:'Du bliver bedre over tid — men viden sidder mest i dit hoved. Den akkumulerer ikke organisatorisk. Hvis du forlader organisationen, tager du det meste af værdien med dig. Det er en reel styrke på kort sigt — og en reel sårbarhed på lang sigt.',
    dims:{data:45,trans:35,runway:28,system:38,coord:62},
    next:'Eksternaliser din domæneviden i ét struktureret system. En model, et framework, et dashboard. Gør den operationel så andre kan bruge den uden dig.'},
-  {tier:3,name:'Procesbyggeren',tagline:'Skaber metoder',color:'#378ADD',score:54,status:'Aktiveret',
+  {tier:3,name:'Procesbyggeren',tagline:'Skaber metoder',color:'#378ADD',score:54,status:'Vokser',
    desc:'Du bygger gentagelige måder at arbejde på. Andre bruger dem. Det begynder at akkumulere — men forbedringen sker ikke automatisk. Du skal aktivt lukke loopet: mål hvad der virker, og brug det til at gøre næste iteration bedre.',
    dims:{data:60,trans:65,runway:52,system:68,coord:75},
    next:'Luk feedback-loopet. Design ikke bare workflows — mål dem, og brug målingen til at redesigne næste iteration hurtigere end den forrige.'},
-  {tier:4,name:'Oversætteren',tagline:'Designer motorer',color:'#BA7517',score:74,status:'Kompounderende',
+  {tier:4,name:'Oversætteren',tagline:'Designer motorer',color:'#BA7517',score:74,status:'Akkumulerer',
    desc:'Du skaber systemer andre kan bruge — og du forbinder det der ikke taler sammen. Hvert system du bygger øger din kapacitet til at bygge det næste hurtigere. Akkumuleringen er selvforstærkende. Du er ved at blive svær at indhente.',
    dims:{data:85,trans:85,runway:74,system:78,coord:72},
    next:'Byg noget andre bruger uden at vide du byggede det. Det er tegnet på et akkumulerende system — og det er forskellen på en opgave løst og infrastruktur skabt.'},
-  {tier:5,name:'Systemskaberen',tagline:'Ejer beslutningslogik',color:'#0F6E56',score:91,status:'Selvforstærkende',
+  {tier:5,name:'Systemskaberen',tagline:'Ejer beslutningslogik',color:'#0F6E56',score:91,status:'Svær at indhente',
    desc:'Du påvirker hvordan organisationen tænker, prioriterer og vælger. Du redesigner ikke blot processer — du redesigner beslutningslogikken bag dem. Hvert projekt øger kapaciteten til at løse næste problem. Det er den position der er sværest at indhente.',
    dims:{data:90,trans:95,runway:91,system:88,coord:85},
    next:'Den vigtigste næste investering er ikke personlig kapabilitet — det er at bygge systemer der akkumulerer uafhængigt af dig. Systemet skal overleve systemskaberen.'}
@@ -162,7 +163,7 @@ const Q=[
   {t:'Hvad beskriver bedst din relation til de systemer du arbejder med?',o:['Jeg bruger dem som de er designet','Kender dem godt og udnytter dem fuldt ud','Tilpasser og konfigurerer dem til mine behov','Designer arbejdslogikken — systemerne er et middel'],w:[[3,1,0,0,0],[0,2,2,0,0],[0,0,2,2,1],[0,0,0,1,3]]}
 ];
 
-const DIMS=[{k:'data',l:'Data-intensitet'},{k:'trans',l:'Oversættelsesevne'},{k:'runway',l:'Akkumuleringshastighed'},{k:'system',l:'Systemforståelse'},{k:'coord',l:'Koordinationskompleksitet'}];
+const DIMS=[{k:'data',l:'Data-intensitet',x:'Bruger du data til at træffe beslutninger — eller blot til at rapportere?'},{k:'trans',l:'Oversættelsesevne',x:'Kan du forklare tekniske løsninger til ikke-tekniske kolleger — og omvendt?'},{k:'runway',l:'Akkumuleringshastighed',x:'Bliver du hurtigere og klogere for hvert projekt — eller starter du forfra?'},{k:'system',l:'Systemforståelse',x:'Forstår du det system du arbejder i — ikke blot de opgaver du løser?'},{k:'coord',l:'Koordinationskompleksitet',x:'Hvor mange aktører og afhængigheder håndterer dit arbejde på tværs?'}];
 let cur=0,ans=[];
 
 document.getElementById('arch-preview-list').innerHTML=A.map(a=>`<div class="arch-row"><div class="arch-dot" style="background:${a.color}"></div><div class="arch-row-name">${a.name}</div><div class="arch-row-tag">${a.tagline}</div></div>`).join('');
@@ -211,7 +212,11 @@ function showResult(){
   bars.innerHTML='';
   DIMS.forEach(d=>{
     const v=arch.dims[d.k]||0;
-    bars.innerHTML+=`<div class="dim-row"><div class="dim-label"><span class="dim-name">${d.l}</span><span class="dim-score">${v}</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:${arch.color}" data-w="${v}"></div></div></div>`;
+    bars.innerHTML+=`<div class="dim-row">
+      <div class="dim-label"><span class="dim-name">${d.l}</span><span class="dim-score">${v}</span></div>
+      ${d.x?`<div style="font-size:11px;color:#aaa;margin-bottom:4px;font-style:italic">${d.x}</div>`:''}
+      <div class="bar-track"><div class="bar-fill" style="width:0%;background:${arch.color}" data-w="${v}"></div></div>
+    </div>`;
   });
   setTimeout(()=>document.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w+'%'),50);
   const sum=tot.reduce((a,b)=>a+b,0);
@@ -221,7 +226,14 @@ function showResult(){
   const short=['Følger','Ekspert','Bygger','Oversætter','Skaber'];
   A.forEach((a,i)=>{
     if(i>0)spec.innerHTML+='<div class="spec-line"></div>';
-    spec.innerHTML+=`<div class="spec-item${i===mi?' active':''}"><div class="spec-dot" style="background:${a.color};${i===mi?'box-shadow:0 0 0 3px '+a.color+'44':''}"></div><div class="spec-name">${short[i]}<br>${pct[i]}%</div></div>`;
+    const isActive=i===mi;
+    spec.innerHTML+=`<div class="spec-item${isActive?' active':''}">
+      <div class="spec-dot" style="background:${a.color};width:${isActive?'14px':'8px'};height:${isActive?'14px':'8px'};${isActive?'box-shadow:0 0 0 4px '+a.color+'33;margin-bottom:2px':''}"></div>
+      <div class="spec-name" style="${isActive?'color:#1a1a1a;font-weight:700;font-size:12px':''}">
+        ${short[i]}<br>${pct[i]}%
+        ${isActive?'<br><span style="font-size:10px;color:#c8943a">← dig</span>':''}
+      </div>
+    </div>`;
   });
 }
 </script>

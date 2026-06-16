@@ -78,14 +78,26 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
 <div class="header">
   <div class="header-label">The Engines Behind · Karrierekompas</div>
   <div class="header-title">Bliver dit arbejde erstattet — eller forstærket?</div>
-  <div class="header-sub">Fire spørgsmål. Én ærlig position. Ikke en quiz — et kompas.</div>
+  <div class="header-sub">AI overtager rutinebaserede opgaver. Det der ikke overtages er arbejde der kræver oversættelse, erfaring og menneskelig tilstedeværelse. Dette kompas viser hvor du står.</div>
 </div>
 
 <!-- S1: JOB + SPØRGSMÅL -->
 <div id="s1" class="screen active">
   <div class="step-row"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><span class="step-lbl">Trin 1 af 3 — Dit arbejde</span></div>
+
+  <!-- FIRE AKSER PREVIEW -->
+  <div style="background:#f8f7f4;border:1px solid #e0ddd8;border-radius:8px;padding:1.25rem;margin-bottom:2rem">
+    <div style="font-size:11px;font-weight:600;letter-spacing:1px;color:#888;text-transform:uppercase;margin-bottom:.875rem">Fire dimensioner der afgør din robusthed</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.625rem">
+      <div style="font-size:13px;color:#444"><strong style="color:#1a1a1a">Gentagelse</strong> — hvor meget er rutine?</div>
+      <div style="font-size:13px;color:#444"><strong style="color:#1a1a1a">Brobygning</strong> — forbinder du faggrupper?</div>
+      <div style="font-size:13px;color:#444"><strong style="color:#1a1a1a">Praksisviden</strong> — lærte du det ved at gøre det?</div>
+      <div style="font-size:13px;color:#444"><strong style="color:#1a1a1a">Relation</strong> — er mennesket selve produktet?</div>
+    </div>
+  </div>
+
   <div class="section-title">Hvad laver du?</div>
-  <div class="section-sub">Skriv din jobtitel eller beskriv kort hvad du arbejder med. Vælg derefter fra forslagene — eller fortsæt med din egen beskrivelse.</div>
+  <div class="section-sub">Valgfrit — hjælper med at kalibrere eksemplerne. Kompasresultatet baserer sig udelukkende på dine svar nedenfor.</div>
 
   <div class="q-block">
     <div class="job-input-wrap">
@@ -96,40 +108,41 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
   </div>
 
   <div class="q-block">
-    <div class="q-label">Hvor stor en del af din arbejdsdag bruger du på opgaver der gentager sig på nogenlunde samme måde?</div>
-    <div class="q-sub">Tænk på de opgaver du udfører oftest — dokumentation, rapporter, standardkommunikation, faste procedurer. Ikke engangsopgaver.</div>
+    <div class="q-label">Gentagelse — hvor meget af din dag er rutine?</div>
+    <div class="q-sub">Dokumentation, rapporter, standardkommunikation, faste procedurer. Opgaver der ligner hinanden fra dag til dag.</div>
     <div class="scale-row"><span>Næsten ingenting</span><span>Det meste af dagen</span></div>
     <input type="range" min="1" max="10" value="5" id="q-rutine" oninput="document.getElementById('v-rutine').textContent=['','Meget lidt','Lidt','Noget','Noget','Halvt','Halvt','En del','En del','Det meste','Næsten alt'][this.value]">
     <div class="val-display" id="v-rutine">Halvt</div>
   </div>
 
   <div class="q-block">
-    <div class="q-label">Hvor tit er du den person der forklarer noget fagligt til nogen fra en anden afdeling — eller omvendt forstår noget teknisk andre ikke fatter?</div>
-    <div class="q-sub">Eksempel: du forklarer IT hvad klinikken har brug for. Eller du forklarer ledelsen hvad dataene faktisk siger. Eller du forbinder to faggrupper der ikke taler samme sprog.</div>
+    <div class="q-label">Brobygning — forbinder du folk der ikke taler samme sprog?</div>
+    <div class="q-sub">Du forklarer IT hvad forretningen har brug for. Du forklarer ledelsen hvad dataene faktisk siger. Du er den der forbinder to faggrupper der ellers taler forbi hinanden.</div>
     <div class="scale-row"><span>Sjældent</span><span>Konstant</span></div>
     <input type="range" min="1" max="10" value="5" id="q-bro" oninput="document.getElementById('v-bro').textContent=['','Sjældent','Sjældent','Af og til','Af og til','Nogenlunde','Nogenlunde','Tit','Tit','Meget tit','Konstant'][this.value]">
     <div class="val-display" id="v-bro">Nogenlunde</div>
   </div>
 
   <div class="q-block">
-    <div class="q-label">Hvor meget af det du ved, har du lært ved at gøre det — ikke ved at læse om det?</div>
-    <div class="q-sub">Det kan være klinisk erfaring, håndværksmæssig viden, situationsfornemmelse, kendskab til specifikke mennesker eller systemer. Viden der er svær at forklare præcist — men som gør dig god til dit arbejde.</div>
-    <div class="scale-row"><span>Det meste kom fra kurser/bøger</span><span>Næsten alt kom fra praksis</span></div>
+    <div class="q-label">Praksisviden — lærte du det ved at gøre det?</div>
+    <div class="q-sub">Klinisk erfaring, situationsfornemmelse, kendskab til specifikke mennesker og systemer. Viden der er svær at forklare præcist — men som gør dig god til dit arbejde.</div>
+    <div class="scale-row"><span>Det meste fra kurser</span><span>Næsten alt fra praksis</span></div>
     <input type="range" min="1" max="10" value="5" id="q-tacit" oninput="document.getElementById('v-tacit').textContent=['','Mest teori','Mest teori','Lidt af begge','Lidt af begge','Blandet','Blandet','Mest praksis','Mest praksis','Næsten alt praksis','Alt fra praksis'][this.value]">
     <div class="val-display" id="v-tacit">Blandet</div>
   </div>
 
   <div class="q-block">
-    <div class="q-label">Hvor central er den menneskelige relation i dit arbejde — ikke som en hyggelig bonus, men som selve kernen i det du leverer?</div>
-    <div class="q-sub">Eksempel: en terapeut leverer terapi — ikke information. En lærer motiverer og ser den enkelte elev. En betjent skaber tillid i en akutsituation. En jordemoder er til stede på en måde ingen app kan erstatte.</div>
-    <div class="scale-row"><span>Minimal — resultatet tæller</span><span>Kernen — relationen er produktet</span></div>
+    <div class="q-label">Relation — er mennesket selve produktet?</div>
+    <div class="q-sub">En terapeut leverer terapi — ikke information. En lærer motiverer den konkrete elev. En betjent skaber tillid i en akutsituation. Ikke relation som en hyggelig bonus — som kernen i hvad du leverer.</div>
+    <div class="scale-row"><span>Minimal</span><span>Kernen</span></div>
     <input type="range" min="1" max="10" value="5" id="q-relation" oninput="document.getElementById('v-relation').textContent=['','Minimal','Minimal','Lidt','Lidt','Noget','Noget','En del','En del','Meget','Kernen'][this.value]">
     <div class="val-display" id="v-relation">Noget</div>
   </div>
 
+  <p style="font-size:13px;color:#888;margin-bottom:1rem">Resultatet viser om din rolle bliver mere eller mindre værdifuld i takt med at AI overtager rutinearbejdet.</p>
   <div class="nav">
     <div></div>
-    <button class="btn btn-primary" onclick="go(2)">Se min analyse →</button>
+    <button class="btn btn-primary" onclick="go(2)">Se min position →</button>
   </div>
 </div>
 
