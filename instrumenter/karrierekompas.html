@@ -77,8 +77,8 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
 <div class="container">
 <div class="header">
   <div class="header-label">The Engines Behind · Karrierekompas</div>
-  <div class="header-title">Er du i fare — eller i en stærk position?</div>
-  <div class="header-sub">Et ærligt kompas til dig der vil forstå hvad AI ændrer i dit arbejde. Ikke generiske råd — men en analyse baseret på hvad du faktisk gør.</div>
+  <div class="header-title">Bliver dit arbejde erstattet — eller forstærket?</div>
+  <div class="header-sub">Fire spørgsmål. Én ærlig position. Ikke en quiz — et kompas.</div>
 </div>
 
 <!-- S1: JOB + SPØRGSMÅL -->
@@ -248,10 +248,10 @@ const SPOR={
     color:'#1565c0',
     bg:'#e3f2fd',
     border:'#90caf9',
-    tagline:'Du forbinder det der ikke taler sammen — det er svært at erstatte',
-    desc:'Du er den person andre kalder ind når to verdener skal forstå hinanden. Det er ikke en kommunikationsevne. Det er en kognitiv kapabilitet der kræver dyb forståelse af begge sider — og det er præcis den AI scorer lavest på.',
-    styrker:['Du forstår kontekst på begge sider af en samtale','Du reducerer misforståelser der koster tid og ressourcer','Din værdi stiger jo mere komplekst systemet bliver','Du ser koblingen andre ikke ser'],
-    risici:['Hvis du kun formidler uden dybt at forstå begge sider','Hvis din brobyggerrolle ikke er synlig for ledelsen','Hvis du ikke eksternaliserer hvad du ved i strukturer andre kan bruge'],
+    tagline:'Du forbinder det der ikke taler samme sprog',
+    desc:'Du er den person andre kalder ind når to verdener skal forstå hinanden. Det er ikke en kommunikationsevne — det er en kognitiv kapabilitet der kræver dyb forståelse af begge sider. AI kan oversætte ord. Den kan ikke oversætte kontekst, incitamenter og organisatorisk virkelighed.',
+    styrker:['Din værdi stiger jo mere komplekst systemet bliver','Du ser koblingen andre ikke ser','Du reducerer misforståelser der koster tid og ressourcer','Den rolle efterspørges mere — ikke mindre — med AI'],
+    risici:['Hvis du kun formidler uden at forstå begge sider dybt','Hvis din rolle ikke er synlig for dem der beslutter om du er nødvendig','Hvis du ikke eksternaliserer hvad du ved så det overlever dig'],
   },
   B:{
     name:'Eksperten med dybden',
@@ -259,10 +259,10 @@ const SPOR={
     color:'#1b5e20',
     bg:'#e8f5e9',
     border:'#a5d6a7',
-    tagline:'Din erfaring akkumulerede noget AI ikke kan kopiere',
-    desc:'Det du har lært ved at gøre — ikke ved at læse — er den sværeste form for viden at erstatte. AI er trænet på tekst. Den er ikke trænet på det du har mærket, set og fejlet dig frem til over år. Det er en reel beskyttelse.',
-    styrker:['Kontekstspecifik viden opbygget over tid','Evnen til at se hvad der ikke passer ind i mønsteret','Situationsfornemmelse AI systematisk mangler','Domæneviden der er svær at kodificere'],
-    risici:['Hvis din viden kun lever i dit hoved og aldrig deles','Hvis du ikke kombinerer din dybde med bredere systemforståelse','Hvis dit felt er præget af rutine snarere end kompleksitet'],
+    tagline:'Din erfaring er svær at kopiere — men kun hvis den akkumulerer',
+    desc:'Det du har lært ved at gøre — ikke ved at læse — er den sværeste form for viden at erstatte. AI er trænet på tekst. Den er ikke trænet på det du har mærket, set og fejlet dig frem til over år. Det er en reel beskyttelse. Men kun hvis viden ikke forbliver i dit hoved alene.',
+    styrker:['Kontekstspecifik viden opbygget over tid','Evnen til at se hvad der ikke passer ind i mønsteret','Situationsfornemmelse AI systematisk mangler'],
+    risici:['Viden der kun lever i dit hoved forsvinder den dag du ikke er der','Hvis dit felt er præget af rutine snarere end kompleksitet','Hvis du ikke kombinerer dybde med bredere systemforståelse'],
   },
   C:{
     name:'Det menneskelige centrum',
@@ -270,10 +270,10 @@ const SPOR={
     color:'#4a148c',
     bg:'#f3e5f5',
     border:'#ce93d8',
-    tagline:'Relationen er dit produkt — ikke en bonus',
-    desc:'Der er en kategori af arbejde AI strukturelt ikke kan udføre: det der kræver menneskelig tilstedeværelse som kerneydelse. En terapeut leverer terapi — ikke information. En pædagog motiverer den konkrete elev. En betjent skaber tillid i en akutsituation. Det er ikke erstatteligt.',
-    styrker:['Tillid og relation som kerneydelse','Empati og menneskelig tilstedeværelse','Etisk skøn i komplekse situationer','Motivering og menneskelig påvirkning'],
-    risici:['Hvis de administrative opgaver around din relationelle kerne tager for meget tid','Hvis du ikke aktivt frigiver rutineopgaver til AI så du kan fokusere på det menneskelige','Hvis organisationen ikke forstår hvad der er din reelle kerneydelse'],
+    tagline:'Relationen er dit produkt — ikke en bonus ovenpå arbejdet',
+    desc:'Der er arbejde AI strukturelt ikke kan udføre: det der kræver menneskelig tilstedeværelse som kerneydelse. En terapeut leverer terapi — ikke information. En pædagog motiverer den konkrete elev. En betjent skaber tillid i en akutsituation. Det er ikke erstatteligt. Men det kræver at du frigiver tid fra det der ikke kræver dig.',
+    styrker:['Tillid og relation som kerneydelse','Etisk skøn og menneskelig tilstedeværelse i komplekse situationer','AI forstærker dit arbejde — erstatter det ikke'],
+    risici:['Hvis administrative opgaver sluger den tid der burde gå til relationen','Hvis organisationen ikke forstår hvad der er din reelle kerneydelse','Hvis du ikke aktivt frigiver rutineopgaver til AI'],
   },
   D:{
     name:'I risikozonen',
@@ -281,10 +281,10 @@ const SPOR={
     color:'#b71c1c',
     bg:'#fce4ec',
     border:'#f48fb1',
-    tagline:'Ikke en dom — men et signal du bør handle på',
-    desc:'Dine svar viser at en stor del af dit arbejde er rutinebaseret, og at du sjældent forbinder faggrupper, har begrænset praksiserfaring eller relationel kerne. Det er præcis den profil AI erstatter hurtigst. Det er ikke for sent — men det kræver bevidste valg.',
-    styrker:['Du kender dine processer godt','Du har mulighed for at se forbedringspotentiale indefra','Du er tæt på det der kan automatiseres — og det giver dig mulighed for at designe løsningerne'],
-    risici:['Rutineopgaver automatiseres hurtigere end de fleste tror','Uden dybde, brobyggeri eller relationel kerne er positionen sårbar','Passivitet er den største risiko'],
+    tagline:'Ikke en dom — men et signal der kræver handling',
+    desc:'Dine svar viser at en stor del af dit arbejde er rutinebaseret — og at du sjældent forbinder faggrupper, har begrænset praksiserfaring eller relationel kerne. Det er den profil AI erstatter hurtigst. Det er ikke for sent. Men passivitet er den største risiko.',
+    styrker:['Du kender dine processer indefra — det giver dig adgang til at redesigne dem','Du er tæt på det der automatiseres — og dermed tæt på at forstå hvad der skal bygges i stedet'],
+    risici:['Rutineopgaver automatiseres hurtigere end de fleste tror','Positionen er sårbar uden dybde, brobyggeri eller relationel kerne','Status quo er ikke en strategi'],
   }
 };
 
@@ -328,10 +328,10 @@ function buildS2(){
 }
 
 function buildHonestPicture(v,spor){
-  if(spor==='C')return'Din position er beskyttet af noget AI ikke kan replikere: menneskelig tilstedeværelse som kerneydelse. Men det kræver at du aktivt frigiver rutineopgaverne til AI — så du kan bruge al tid på det der faktisk er dit produkt.';
-  if(spor==='B')return'Praksiserfaring er en reel beskyttelse. Men kun hvis den akkumulerer — hvis du bliver klogere for hvert år og deler den viden i strukturer andre kan bruge. Viden der forbliver i ét hoved forsvinder den dag du ikke er der.';
-  if(spor==='A')return'Brobyggerkapabiliteten er en af de mest undervurderede og underbetalte kompetencer i de fleste organisationer. Det er paradoksalt — for det er præcis den kompetence der er sværest at erstatte. Din opgave er at gøre din værdi synlig og systematisk.';
-  return'Rutine er ikke et personlighedstræk. Det er en beskrivelse af hvad der fylder din dag. Det kan ændres — men det kræver bevidste valg om hvad du bruger din tid på, og hvad du begynder at bygge.';
+  if(spor==='C')return'Du er stærk, men ikke automatisk sikker. Din kerneydelse er menneskelig tilstedeværelse — og det er reel beskyttelse. Men systemet omkring dig ændrer sig. Dokumentation, koordination og administration overtages af AI. Det frigiver tid — men kun hvis du aktivt tager den og bruger den på det der kræver dig.';
+  if(spor==='B')return'Du er stærk, fordi dit arbejde bygger på praksislært viden og erfaring. Det er svært at erstatte. Men svært er ikke det samme som umuligt — og viden der forbliver i dit hoved alene, akkumulerer ikke. Din næste opgave er at gøre din dybde synlig og tilgængelig.';
+  if(spor==='A')return'Du er stærk, fordi dit arbejde bygger på brobygning og oversættelse. Det er præcis den kompetence AI scorer lavest på. Men din rolle er ofte usynlig — og usynlig værdi er sårbar værdi. Din næste opgave er ikke at blive bedre til det du gør. Det er at gøre det synligt.';
+  return'Dit arbejde har et mønster AI kan se. Det er ikke en dom — det er en diagnose. De gentagne dele af dit arbejde er oplagte AI-kandidater. Din næste opgave er ikke at konkurrere med AI på dem. Det er at flytte dig tættere på beslutninger, prioritering og tværfaglig oversættelse.';
 }
 
 function buildS3(){

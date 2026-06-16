@@ -127,8 +127,8 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 <div class="wrap">
 <div class="header">
   <div class="header-eye">The Engines Behind · Skæbnescenariet</div>
-  <h1 class="header-title">Ikke hvad der <em>vil</em> ske.<br>Hvad der sandsynligvis sker.</h1>
-  <p class="header-sub">Fire spørgsmål. To risici. Én position. Ét konkret næste skridt.</p>
+  <h1 class="header-title">Bliver dit arbejde<br><em>erstattet — eller forstærket?</em></h1>
+  <p class="header-sub">Ikke hvad der vil ske. Hvad der sandsynligvis sker — og hvad der adskiller de to fremtider.</p>
 </div>
 
 <!-- S1 -->
@@ -155,7 +155,8 @@ input[type=range]{width:100%;accent-color:var(--amber)}
   </div>
   <div class="dim-card">
     <div class="dim-header"><div class="dim-name">Kunne en ny kollega med AI-hjælp klare 70% af dit arbejde efter tre måneder?</div><div class="dim-num">03</div></div>
-    <div class="dim-hint">Ikke "kan AI erstatte dig" — men kan en billigere, yngre eller ekstern person gøre det meste med AI som støtte? Det er substitutionsrisikoen. Den bider.</div>
+    <div class="dim-hint">Ikke "kan AI erstatte dig" — men kan en billigere, yngre eller ekstern person gøre det meste med AI som støtte?
+    <br><br><em>Hjælp til svaret: Tænk på en konkret opgave fra sidste uge. Hvor meget af den kunne forklares som en procedure, tjekliste eller prompt?</em></div>
     <div class="scale-row"><span>Nej — kræver år</span><span>Ja — ret hurtigt</span></div>
     <input type="range" min="1" max="5" value="3" id="d2" oninput="updD('v2',this.value,D2L,D2C)">
     <div class="dim-val" id="v2" style="color:var(--amber)">Måske med erfaring og AI</div>
@@ -185,35 +186,13 @@ input[type=range]{width:100%;accent-color:var(--amber)}
   </div>
 
   <div style="font-family:var(--serif);font-size:20px;margin-bottom:.4rem" id="s2-hl"></div>
-  <div style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6" id="s2-sub"></div>
+  <div style="font-size:14px;color:var(--muted);margin-bottom:2rem;line-height:1.6" id="s2-sub"></div>
 
-  <!-- FOUR FIELDS -->
-  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem">Scenarieoverblik</div>
-  <div class="four-fields">
-    <div class="field">
-      <div class="field-label">Replacement Risk</div>
-      <div class="field-value" id="ff-rr"></div>
-    </div>
-    <div class="field">
-      <div class="field-label">Transformation Risk</div>
-      <div class="field-value" id="ff-tr"></div>
-    </div>
-    <div class="field">
-      <div class="field-label">Resilience Score</div>
-      <div class="field-value" id="ff-rs"></div>
-    </div>
-    <div class="field" style="grid-column:1/-1">
-      <div class="field-label">Sandsynligt scenarie</div>
-      <div class="field-value" id="ff-sc" style="font-size:14px;color:var(--fg)"></div>
-      <div class="field-scenario" id="ff-sc-desc"></div>
-    </div>
-  </div>
-
-  <!-- MOTOR POSITION -->
+  <!-- 1. DIN POSITION -->
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem">1 · Din position</div>
   <div class="motor-box">
     <div class="motor-header">
-      <div class="motor-label">Din position</div>
-      <div class="motor-question">Bygger du motoren, betjener du motoren — eller bliver du input til motoren?</div>
+      <div class="motor-label">Bygger du motoren, betjener du motoren — eller bliver du input til motoren?</div>
     </div>
     <div class="motor-row" id="mr-build">
       <div class="motor-icon">⚙️</div>
@@ -241,10 +220,29 @@ input[type=range]{width:100%;accent-color:var(--amber)}
     </div>
   </div>
 
-  <div class="divider"></div>
+  <!-- 2. DIN STØRSTE RISIKO -->
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem;margin-top:2rem">2 · Din største risiko</div>
+  <div class="four-fields">
+    <div class="field">
+      <div class="field-label">Replacement Risk</div>
+      <div class="field-value" id="ff-rr"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">Transformation Risk</div>
+      <div class="field-value" id="ff-tr"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">Resilience</div>
+      <div class="field-value" id="ff-rs"></div>
+    </div>
+    <div class="field" style="grid-column:1/-1">
+      <div class="field-label">Sandsynligt scenarie</div>
+      <div class="field-value" id="ff-sc" style="font-size:14px;color:var(--fg)"></div>
+      <div class="field-scenario" id="ff-sc-desc"></div>
+    </div>
+  </div>
 
-  <!-- RISK METERS -->
-  <div class="risk-grid">
+  <div class="risk-grid" style="margin-top:10px">
     <div class="risk-card risk-replace">
       <div class="risk-lbl">Erstatningsrisiko</div>
       <div class="risk-title" id="rr-t"></div>
@@ -259,27 +257,30 @@ input[type=range]{width:100%;accent-color:var(--amber)}
     </div>
   </div>
   <div class="protect-card">
-    <div class="prot-lbl">Resilience — din beskyttelsesfaktor</div>
+    <div class="prot-lbl">Din beskyttelsesfaktor</div>
     <div style="font-size:14px;font-weight:500;color:var(--fg);margin-bottom:.3rem" id="prot-t"></div>
     <div style="font-size:13px;color:var(--muted);line-height:1.5" id="prot-d"></div>
     <div class="prot-meter"><div class="prot-fill" id="prot-b" style="width:0%"></div></div>
   </div>
 
-  <div class="divider"></div>
+  <!-- TO TIDSPUNKTER — sekundært, kollapsbart visuelt -->
+  <details style="margin-top:1.5rem">
+    <summary style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:.75rem 0;border-top:1px solid var(--border);list-style:none">▸ Se de to fremtider i detaljer</summary>
+    <div style="margin-top:1rem">
+      <div class="scenario-block s-five">
+        <div class="s-lbl">Om 3-5 år — hvis intet ændres</div>
+        <div class="s-title" id="s5-t"></div>
+        <div class="s-text" id="s5-x"></div>
+      </div>
+      <div class="scenario-block s-ten">
+        <div class="s-lbl">Om 3-5 år — med ét bevidst valg</div>
+        <div class="s-title" id="s10-t"></div>
+        <div class="s-text" id="s10-x"></div>
+      </div>
+    </div>
+  </details>
 
-  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem">To tidspunkter</div>
-  <div class="scenario-block s-five">
-    <div class="s-lbl">Om 3-5 år — hvis intet ændres</div>
-    <div class="s-title" id="s5-t"></div>
-    <div class="s-text" id="s5-x"></div>
-  </div>
-  <div class="scenario-block s-ten">
-    <div class="s-lbl">Om 3-5 år — med ét bevidst valg</div>
-    <div class="s-title" id="s10-t"></div>
-    <div class="s-text" id="s10-x"></div>
-  </div>
-
-  <div class="honest-note">Replacement Risk og Transformation Risk er ikke det samme. Den første handler om AI overtager dit arbejde direkte. Den anden handler om systemet redesignes så din rolle bliver smallere — selv om ingen erstatter dig. Begge kræver opmærksomhed. Ingen af dem er skæbne.</div>
+  <div class="honest-note" style="margin-top:1.5rem">Replacement Risk og Transformation Risk er ikke det samme. Den første handler om AI overtager dit arbejde direkte. Den anden handler om systemet redesignes så din rolle bliver smallere — selv om ingen erstatter dig. Begge kræver opmærksomhed. Ingen af dem er skæbne.</div>
 
   <div class="nav"><button class="btn" onclick="go(1)">← Tilbage</button><button class="btn btn-primary" onclick="go(3)">Hvad gør jeg? →</button></div>
 </div>
@@ -302,8 +303,8 @@ input[type=range]{width:100%;accent-color:var(--amber)}
   <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem">To yderligere overvejelser</div>
   <div id="extra-acts"></div>
   <div class="honest-note" style="font-style:normal;border-left-color:var(--amber)">
-    <span style="font-family:var(--serif);font-size:16px;display:block;margin-bottom:.4rem">Stien er ved at forsvinde. Men stien var aldrig målet.</span>
-    Målet var den kapabilitet stien producerede. Kapabilitet kan akkumuleres ad andre veje — hvis du bevidst designer dem. Det er det ansvar vi ikke kan automatisere væk.
+    <span style="font-family:var(--serif);font-size:15px;font-weight:500;display:block;margin-bottom:.5rem;color:var(--fg)">Din karrierevej kan blive smallere. Det betyder ikke at din værdi forsvinder.</span>
+    Men værdien skal flyttes — fra opgaveudførelse til kapabilitet. Fra at løse problemer til at bygge systemer der løser dem. Det er præcis hvad de tre skridt ovenfor handler om.
     <span class="closing-q">Bygger du motoren, betjener du motoren — eller bliver du input til motoren?</span>
   </div>
   <div class="nav"><button class="btn" onclick="go(2)">← Tilbage</button><button class="btn" onclick="restart()">Start forfra</button></div>

@@ -74,6 +74,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
 
   <div id="intro" class="screen active">
     <p class="intro-title">Hvad akkumulerer du?</p>
+    <p style="font-size:14px;color:#888;line-height:1.6;margin-bottom:1rem;padding:.875rem 1rem;border-left:2px solid #c8943a;background:#fdf9f3"><em>Akkumulering er forskellen på arbejde der kun bruger din tid — og arbejde der bygger værdi, metode og position over tid.</em></p>
     <p class="intro-sub">12 spørgsmål om hvad du faktisk gør — ikke hvad du kunne gøre. Resultatet placerer dig på akkumuleringsskalaen og viser hvad der skal til for at rykke videre.</p>
     <p style="margin-bottom:1.5rem"><span class="tag">12 spørgsmål</span><span class="tag">~3 min</span><span class="tag">ingen rigtige svar</span></p>
     <div class="arch-preview">
@@ -100,7 +101,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
     <div class="result-tagline" id="arch-tagline"></div>
     <div class="result-desc" id="arch-desc"></div>
     <div class="score-grid">
-      <div class="score-card"><div class="score-label">Akkuleringsscore</div><div class="score-val" id="s-aca"></div></div>
+      <div class="score-card"><div class="score-label">Akkumuleringsscore</div><div class="score-val" id="s-aca"></div></div>
       <div class="score-card"><div class="score-label">Position</div><div class="score-val" id="s-tier"></div></div>
       <div class="score-card"><div class="score-label">Status</div><div class="score-val" id="s-acc"></div></div>
     </div>
@@ -124,24 +125,24 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #e0ddd8;font-size:1
 
 <script>
 const A=[
-  {tier:1,name:'Systemfølgeren',tagline:'Adgang uden integration',color:'#888780',score:12,status:'Lav',
-   desc:'Opererer inden for etablerede systemer og workflows. Høj stabilitet, lav akkumulation. Automation erstatter rutinebaserede opgaver hurtigere end nye kapabiliteter opbygges — det er den strukturelle risiko ved denne position.',
+  {tier:1,name:'Systemfølgeren',tagline:'Forbruger tid',color:'#888780',score:12,status:'Lav',
+   desc:'Du løser opgaver — men intet bliver lettere næste gang. Arbejdet nulstilles hver uge. Det er ikke en dom over dig som person. Det er en beskrivelse af hvad arbejdet gør ved din position over tid. Automation erstatter denne profil hurtigst.',
    dims:{data:28,trans:18,runway:14,system:25,coord:55},
    next:'Identificér ét workflow du forstår fuldt ud — og redesign det fra grunden. Ikke forbedr det. Redesign det. Mål hvad der ændrer sig.'},
-  {tier:2,name:'Fageksperten',tagline:'Viden uden velocity',color:'#9a9086',score:31,status:'Begyndende',
-   desc:'Dyb domæneviden der er svær at erstatte på kort sigt. Men viden der forbliver i ét hoved skalerer ikke. Den akkumulerer ikke organisatorisk — og den kompounder ikke over tid.',
+  {tier:2,name:'Fageksperten',tagline:'Samler erfaring',color:'#9a9086',score:31,status:'Begyndende',
+   desc:'Du bliver bedre over tid — men viden sidder mest i dit hoved. Den akkumulerer ikke organisatorisk. Hvis du forlader organisationen, tager du det meste af værdien med dig. Det er en reel styrke på kort sigt — og en reel sårbarhed på lang sigt.',
    dims:{data:45,trans:35,runway:28,system:38,coord:62},
    next:'Eksternaliser din domæneviden i ét struktureret system. En model, et framework, et dashboard. Gør den operationel så andre kan bruge den uden dig.'},
-  {tier:3,name:'Procesbyggeren',tagline:'Integration uden fuld kompounding',color:'#378ADD',score:54,status:'Aktiveret',
-   desc:'Bygger og forbedrer aktivt de processer andre opererer i. Akkumuleringens grænse er krydset — men feedback-loopet er endnu ikke fuldt lukket. Kompounding er lineær, ikke eksponentiel.',
+  {tier:3,name:'Procesbyggeren',tagline:'Skaber metoder',color:'#378ADD',score:54,status:'Aktiveret',
+   desc:'Du bygger gentagelige måder at arbejde på. Andre bruger dem. Det begynder at akkumulere — men forbedringen sker ikke automatisk. Du skal aktivt lukke loopet: mål hvad der virker, og brug det til at gøre næste iteration bedre.',
    dims:{data:60,trans:65,runway:52,system:68,coord:75},
    next:'Luk feedback-loopet. Design ikke bare workflows — mål dem, og brug målingen til at redesigne næste iteration hurtigere end den forrige.'},
-  {tier:4,name:'Oversætteren',tagline:'Konverterer adgang til kapabilitet',color:'#BA7517',score:74,status:'Kompounderende',
-   desc:'Bevæger sig flydende mellem forretningslogik og systemlogik. Oversættelsesevne og akkumuleringshastighed begynder at forstærke hinanden. Hvert system der bygges øger kapaciteten til at bygge det næste hurtigere.',
+  {tier:4,name:'Oversætteren',tagline:'Designer motorer',color:'#BA7517',score:74,status:'Kompounderende',
+   desc:'Du skaber systemer andre kan bruge — og du forbinder det der ikke taler sammen. Hvert system du bygger øger din kapacitet til at bygge det næste hurtigere. Akkumuleringen er selvforstærkende. Du er ved at blive svær at indhente.',
    dims:{data:85,trans:85,runway:74,system:78,coord:72},
    next:'Byg noget andre bruger uden at vide du byggede det. Det er tegnet på et akkumulerende system — og det er forskellen på en opgave løst og infrastruktur skabt.'},
-  {tier:5,name:'Systemskaberen',tagline:'Motoren bag motoren',color:'#0F6E56',score:91,status:'Selvforstærkende',
-   desc:'Redesigner systemer, beslutningslogik og koordinationsarkitektur. Oversættelsesevne og akkumuleringshastighed er begge maksimerede og forstærker hinanden. Hvert projekt øger kapaciteten til at løse næste problem.',
+  {tier:5,name:'Systemskaberen',tagline:'Ejer beslutningslogik',color:'#0F6E56',score:91,status:'Selvforstærkende',
+   desc:'Du påvirker hvordan organisationen tænker, prioriterer og vælger. Du redesigner ikke blot processer — du redesigner beslutningslogikken bag dem. Hvert projekt øger kapaciteten til at løse næste problem. Det er den position der er sværest at indhente.',
    dims:{data:90,trans:95,runway:91,system:88,coord:85},
    next:'Den vigtigste næste investering er ikke personlig kapabilitet — det er at bygge systemer der akkumulerer uafhængigt af dig. Systemet skal overleve systemskaberen.'}
 ];
