@@ -1,159 +1,113 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="lang-da">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Engines Behind</title>
-<meta name="description" content="Nogle akkumulerer. Andre har blot adgang. Det gab — og mekanismen bag det — er det denne bog undersøger.">
+<meta name="description" content="De fleste tror de implementerer AI. De optimerer rutiner og kalder det transformation. Det er ikke det samme.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#07060a;
-  --fg:#f0ebe0;
-  --mid:#b8b0a0;
-  --muted:#7a7268;
-  --border:#1e1b16;
-  --amber:#c8943a;
-  --amber-dim:#8a5f1e;
-  --serif:'Playfair Display',serif;
-  --sans:'IBM Plex Sans',sans-serif;
+  --bg:#07060a;--fg:#f0ebe0;--mid:#b8b0a0;--muted:#7a7268;
+  --border:#1e1b16;--amber:#c8943a;--amber-dim:#7a5518;
+  --serif:'Playfair Display',serif;--sans:'IBM Plex Sans',sans-serif;
   --mono:'IBM Plex Mono',monospace;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
 
+/* LANG SWITCHING */
+.da{display:none}.en{display:none}
+.lang-da .da{display:block}.lang-da .da.inline{display:inline}
+.lang-en .en{display:block}.lang-en .en.inline{display:inline}
+.lang-da .da.flex{display:flex}.lang-en .en.flex{display:flex}
+
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,var(--bg) 60%,transparent)}
 .nav-logo{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+.nav-right{display:flex;gap:2rem;align-items:center}
 .nav-links{display:flex;gap:2rem}
 .nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
+.lang-toggle{display:flex;gap:4px;align-items:center;padding-left:1.5rem;border-left:1px solid var(--border)}
+.lang-btn{background:none;border:1px solid transparent;border-radius:4px;font-size:20px;cursor:pointer;opacity:.45;transition:all .2s;padding:3px 6px;line-height:1}
+.lang-btn.active{opacity:1;border-color:var(--amber);background:rgba(200,148,58,.1)}
+.lang-btn:hover{opacity:.85}
 
-/* HERO — thriller opening */
+/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden}
-.hero::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:40%;
-  background:linear-gradient(to bottom,transparent,var(--bg));
-  pointer-events:none;
-}
-.hero-ambient{
-  position:absolute;top:20%;right:-10%;width:600px;height:600px;
-  background:radial-gradient(ellipse,rgba(200,148,58,.07) 0%,transparent 65%);
-  pointer-events:none;
-}
-.hero-label{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:2rem}
-.hero-title{
-  font-family:var(--serif);font-size:clamp(3.5rem,9vw,8.5rem);
-  font-weight:400;line-height:.95;letter-spacing:-.03em;
-  max-width:850px;margin-bottom:3rem;
-}
+.hero-ambient{position:absolute;top:10%;right:-5%;width:700px;height:700px;background:radial-gradient(ellipse,rgba(200,148,58,.06) 0%,transparent 60%);pointer-events:none}
+.hero-label{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:2.5rem}
+.hero-tese{font-size:clamp(15px,1.7vw,19px);color:var(--mid);max-width:620px;line-height:1.9;margin-bottom:3rem;border-left:2px solid var(--amber);padding-left:1.5rem}
+.hero-tese strong{color:var(--fg);font-weight:400}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,8vw,7rem);font-weight:400;line-height:.95;letter-spacing:-.03em;max-width:850px;margin-bottom:3.5rem}
 .hero-title em{font-style:italic;color:var(--amber)}
-.hero-title .line2{padding-left:4rem}
-.hero-title .line3{padding-left:8rem;color:var(--mid)}
-.hero-sub{font-size:17px;color:var(--mid);max-width:480px;line-height:1.8;margin-bottom:3rem;border-left:2px solid var(--amber);padding-left:1.25rem}
-.hero-cta-row{display:flex;gap:1rem;align-items:center}
-.cta-primary{
-  display:inline-block;padding:13px 32px;
-  background:var(--amber);color:var(--bg);
-  font-family:var(--mono);font-size:11px;letter-spacing:2px;
-  text-transform:uppercase;border-radius:1px;
-  transition:opacity .2s;
-}
-.cta-primary:hover{opacity:.85}
-.cta-ghost{
-  font-family:var(--mono);font-size:11px;color:var(--muted);
-  letter-spacing:1px;transition:color .2s;
-}
-.cta-ghost:hover{color:var(--fg)}
+.hero-title .l2{padding-left:3rem}.hero-title .l3{padding-left:6rem;color:var(--mid)}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.cta-a{display:inline-block;padding:13px 32px;background:var(--amber);color:var(--bg);font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;border-radius:1px;transition:opacity .2s}
+.cta-a:hover{opacity:.85}
+.cta-b{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;transition:color .2s}
+.cta-b:hover{color:var(--fg)}
 
-/* PULSE LINE */
-.pulse-line{margin:0;padding:0;height:60px;overflow:hidden;position:relative}
-.pulse-line svg{width:100%;height:60px;opacity:.15}
+/* PULSE */
+.pulse{height:60px;overflow:hidden}
+.pulse svg{width:100%;height:60px;opacity:.12}
 
-/* CHAPTERS */
+/* BODY */
 .body{max-width:800px;margin:0 auto;padding:0 3rem}
-
 .ch{padding:5rem 0;border-top:1px solid var(--border)}
 .ch-eye{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--amber-dim);text-transform:uppercase;margin-bottom:2rem}
-.ch-lead{
-  font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.25rem);
-  font-weight:400;line-height:1.3;color:var(--fg);margin-bottom:1.75rem;
-}
+.ch-lead{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2.1rem);font-weight:400;line-height:1.35;color:var(--fg);margin-bottom:1.75rem}
 .ch-lead em{font-style:italic;color:var(--amber)}
 .ch-p{font-size:15px;color:var(--mid);line-height:1.9;max-width:580px}
 .ch-p+.ch-p{margin-top:1.25rem}
 .ch-p strong{color:var(--fg);font-weight:400}
+.tq{margin:2.5rem 0;padding:1.75rem 2rem 1.75rem 2rem;border-left:3px solid var(--amber);background:linear-gradient(to right,rgba(200,148,58,.07),transparent)}
+.tq-text{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--fg);line-height:1.55}
 
-/* TENSION QUOTE */
-.tq{
-  margin:3rem 0;padding:2rem 2rem 2rem 2.5rem;
-  border-left:3px solid var(--amber);
-  background:linear-gradient(to right,rgba(200,148,58,.06),transparent);
-}
-.tq-text{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--fg);line-height:1.5}
+/* INDSIGTER */
+.insight-grid{display:grid;gap:1px;background:var(--border);margin-top:2.5rem}
+.insight{background:var(--bg);padding:2rem;transition:background .2s}
+.insight:hover{background:#0e0c09}
+.insight-n{font-family:var(--mono);font-size:10px;color:var(--amber-dim);letter-spacing:2px;margin-bottom:.875rem}
+.insight-title{font-family:var(--serif);font-size:19px;color:var(--fg);margin-bottom:.75rem;line-height:1.3}
+.insight-body{font-size:14px;color:var(--mid);line-height:1.75;max-width:560px;margin-bottom:1.25rem}
+.insight-quote{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);line-height:1.6;padding:.875rem 1.25rem;border-left:2px solid var(--amber-dim);margin-bottom:1.25rem}
+.insight-tag{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px}
 
-/* ACTS — tension list */
-.act-list{margin-top:3rem}
-.act{
-  display:grid;grid-template-columns:50px 1fr;gap:2rem;
-  padding:1.75rem 0;border-top:1px solid var(--border);
-  transition:background .2s;
-}
+/* ACTS */
+.act-list{margin-top:2.5rem}
+.act{display:grid;grid-template-columns:50px 1fr;gap:2rem;padding:1.75rem 0;border-top:1px solid var(--border)}
 .act:last-child{border-bottom:1px solid var(--border)}
 .act-n{font-family:var(--mono);font-size:11px;color:var(--amber-dim);letter-spacing:1px;padding-top:2px}
-.act-right{}
-.act-title{font-family:var(--serif);font-size:19px;color:var(--fg);margin-bottom:.35rem}
+.act-title{font-family:var(--serif);font-size:18px;color:var(--fg);margin-bottom:.35rem}
 .act-desc{font-size:14px;color:var(--mid);line-height:1.7}
 .act-hint{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:.75rem}
 
 /* INSTRUMENTS */
 .inst-list{margin-top:2.5rem}
-.inst{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.25rem 0;border-top:1px solid var(--border);
-  cursor:pointer;transition:all .2s;
-  text-decoration:none;
-}
+.inst{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;border-top:1px solid var(--border);text-decoration:none;transition:all .2s}
 .inst:last-child{border-bottom:1px solid var(--border)}
 .inst:hover .inst-name{color:var(--amber)}
 .inst:hover .inst-arr{color:var(--amber);transform:translateX(4px)}
-.inst-left{}
 .inst-name{font-family:var(--serif);font-size:17px;color:var(--fg);margin-bottom:.2rem;transition:color .2s}
 .inst-desc{font-size:13px;color:var(--muted)}
-.inst-arr{font-family:var(--mono);font-size:14px;color:var(--muted);transition:all .2s}
+.inst-arr{font-family:var(--mono);font-size:14px;color:var(--muted);transition:all .2s;flex-shrink:0;margin-left:2rem}
 
 /* CLOSING */
-.closing{
-  padding:10rem 3rem 8rem;
-  text-align:center;
-  position:relative;overflow:hidden;
-}
-.closing::before{
-  content:'';position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(200,148,58,.08) 0%,transparent 65%);
-  pointer-events:none;
-}
+.closing{padding:10rem 3rem 8rem;text-align:center;position:relative;overflow:hidden}
+.closing::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(200,148,58,.07) 0%,transparent 65%);pointer-events:none}
 .closing-rule{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0 auto 6rem;max-width:400px}
-.closing-main{
-  font-family:var(--serif);font-style:italic;
-  font-size:clamp(2rem,5vw,3.75rem);
-  color:var(--fg);line-height:1.2;
-  max-width:700px;margin:0 auto 2rem;
-}
+.closing-main{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,5vw,3.75rem);color:var(--fg);line-height:1.2;max-width:700px;margin:0 auto 2rem}
 .closing-main em{color:var(--amber)}
 .closing-byline{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:3px;margin-bottom:3rem}
-.closing-links{display:flex;gap:1.5rem;justify-content:center}
+.closing-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
 .closing-links a{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;transition:color .2s}
 .closing-links a:hover{color:var(--fg)}
 
-footer{
-  padding:2rem 3rem;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .f-l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px}
 .f-r{display:flex;gap:1.5rem}
 .f-r a{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;transition:color .2s}
@@ -161,12 +115,13 @@ footer{
 
 @media(max-width:680px){
   nav{padding:1.25rem 1.5rem}
+  .nav-links{display:none}
   .hero{padding:6rem 1.5rem 4rem}
-  .hero-title .line2{padding-left:1.5rem}
-  .hero-title .line3{padding-left:3rem}
+  .hero-title .l2{padding-left:1.5rem}.hero-title .l3{padding-left:3rem}
   .body{padding:0 1.5rem}
   .closing{padding:6rem 1.5rem 5rem}
   footer{flex-direction:column;gap:.75rem;padding:1.5rem;text-align:center}
+  .act{grid-template-columns:40px 1fr;gap:1rem}
 }
 </style>
 </head>
@@ -174,31 +129,68 @@ footer{
 
 <nav>
   <div class="nav-logo">The Engines Behind</div>
-  <div class="nav-links">
-    <a href="#bogen">Bogen</a>
-    <a href="#instrumenter">Instrumenter</a>
-    <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank">GitHub ↗</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#indsigter" class="da inline">Indsigter</a>
+      <a href="#indsigter" class="en inline">Insights</a>
+      <a href="#bogen" class="da inline">Bogen</a>
+      <a href="#bogen" class="en inline">The Book</a>
+      <a href="#instrumenter" class="da inline">Instrumenter</a>
+      <a href="#instrumenter" class="en inline">Instruments</a>
+      <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank">GitHub ↗</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-da" onclick="setLang('da')" title="Dansk">🇩🇰</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English">🇬🇧</button>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-ambient"></div>
-  <div class="hero-label">NorthLogicLab · 2026</div>
-  <h1 class="hero-title">
-    <span class="line1">Nogle</span><br>
-    <span class="line2">akkumulerer.</span><br>
-    <span class="line3"><em>Andre har<br>blot adgang.</em></span>
+  <div class="hero-label da">NorthLogicLab · The Engines Behind · 2026</div>
+  <div class="hero-label en">NorthLogicLab · The Engines Behind · 2026</div>
+
+  <div class="hero-tese da">
+    De fleste organisationer tror de implementerer AI.<br>
+    De optimerer rutiner og kalder det transformation.<br><br>
+    <strong>Det er ikke det samme.</strong><br><br>
+    Og gabet til dem der faktisk akkumulerer,<br>
+    vokser hver eneste kvartal — stille og strukturelt,<br>
+    mens alle kigger på outputtet.
+  </div>
+  <div class="hero-tese en">
+    Most organisations believe they are implementing AI.<br>
+    They are optimising routines and calling it transformation.<br><br>
+    <strong>It is not the same thing.</strong><br><br>
+    And the gap to those who actually accumulate<br>
+    grows every single quarter — quietly and structurally,<br>
+    while everyone watches the output.
+  </div>
+
+  <h1 class="hero-title da">
+    <span>Nogle</span><br>
+    <span class="l2">akkumulerer.</span><br>
+    <span class="l3"><em>Andre har<br>blot adgang.</em></span>
   </h1>
-  <p class="hero-sub">Det gab — og mekanismen bag det — er det denne bog undersøger.<br>AI skabte ikke mekanismen. AI accelererede den.</p>
-  <div class="hero-cta-row">
-    <a href="#bogen" class="cta-primary">Udforsk bogen</a>
-    <a href="#instrumenter" class="cta-ghost">Prøv instrumenterne →</a>
+  <h1 class="hero-title en">
+    <span>Some</span><br>
+    <span class="l2">accumulate.</span><br>
+    <span class="l3"><em>Others merely<br>have access.</em></span>
+  </h1>
+
+  <div class="hero-cta da flex">
+    <a href="#indsigter" class="cta-a">Læs indsigterne</a>
+    <a href="#bogen" class="cta-b">Om bogen →</a>
+  </div>
+  <div class="hero-cta en flex">
+    <a href="#indsigter" class="cta-a">Read the insights</a>
+    <a href="#bogen" class="cta-b">About the book →</a>
   </div>
 </div>
 
-<!-- PULSE -->
-<div class="pulse-line">
+<div class="pulse">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
     <polyline points="0,30 120,30 180,5 240,55 300,30 400,30 460,15 520,45 580,30 700,30 760,8 820,52 880,30 1000,30 1060,20 1120,40 1180,30 1440,30" fill="none" stroke="#c8943a" stroke-width="1.5"/>
   </svg>
@@ -206,72 +198,143 @@ footer{
 
 <div class="body">
 
+  <!-- INDSIGTER -->
+  <div class="ch" id="indsigter">
+    <div class="ch-eye da">Indsigter · Ubeskårede observationer</div>
+    <div class="ch-eye en">Insights · Unfiltered observations</div>
+
+    <p class="ch-lead da">Det ingen<br><em>siger højt.</em></p>
+    <p class="ch-lead en">What nobody<br><em>says out loud.</em></p>
+
+    <p class="ch-p da">Tre observationer fra projektet. Korte. Direkte. Med substansen bag for dem der vil have mere end overfladen.</p>
+    <p class="ch-p en">Three observations from the project. Short. Direct. With the substance behind them for those who want more than the surface.</p>
+
+    <div class="insight-grid">
+      <div class="insight">
+        <div class="insight-n">01</div>
+        <div class="insight-title da">Deployment er ikke integration. Men alle tæller det som det samme.</div>
+        <div class="insight-title en">Deployment is not integration. But everyone counts it as the same.</div>
+        <div class="insight-body da">BCG's data viser at virksomheder med AI-integration vokser 1,7× hurtigere end dem med blot AI-deployment. Forskellen er ikke teknologien. Det er om AI er koblet til de beslutninger der faktisk afgør konkurrenceevnen — eller blot til de opgaver der var lettest at automatisere.</div>
+        <div class="insight-body en">BCG data shows that companies with AI integration grow 1.7× faster than those with mere AI deployment. The difference is not the technology. It is whether AI is connected to the decisions that actually determine competitiveness — or only to the tasks that were easiest to automate.</div>
+        <div class="insight-quote da">"Det er ikke adoption. Det er teater."</div>
+        <div class="insight-quote en">"It is not adoption. It is theatre."</div>
+        <div class="insight-tag da">← Akt 2 · Adoptionsteater vs. Integration</div>
+        <div class="insight-tag en">← Act 2 · Adoption Theatre vs. Integration</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-n">02</div>
+        <div class="insight-title da">Den farligste konkurrent er ikke den der har mere AI. Det er den der bruger AI til at underbyde dig.</div>
+        <div class="insight-title en">The most dangerous competitor is not the one with more AI. It is the one using AI to undercut you.</div>
+        <div class="insight-body da">Substitutionsrisikoen handler ikke om alder eller anciennitet. Den er mere præcis og mere ubehagelig: kan en billigere, mindre erfaren eller ekstern aktør klare 70% af dit arbejde med AI som støtte? Det er det spørgsmål de fleste organisationer ikke stiller — og som afgør næste runde af besparelser og omstruktureringer.</div>
+        <div class="insight-body en">Substitution risk is not about age or seniority. It is more precise and more uncomfortable: can a cheaper, less experienced or external actor handle 70% of your work with AI support? That is the question most organisations never ask — and the one that determines the next round of cost cuts and restructuring.</div>
+        <div class="insight-quote da">"Spørg ikke: kan AI gøre dette? Spørg: hvem kan gøre dette med AI?"</div>
+        <div class="insight-quote en">"Don't ask: can AI do this? Ask: who can do this with AI?"</div>
+        <div class="insight-tag da">← Akt 4 · Fragility Paradox · Kognitiv stratifikation</div>
+        <div class="insight-tag en">← Act 4 · Fragility Paradox · Cognitive stratification</div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-n">03</div>
+        <div class="insight-title da">Stien der lærte os det vi ved, er ved at forsvinde. Ingen designer en erstatning.</div>
+        <div class="insight-title en">The path that taught us what we know is disappearing. No one is designing a replacement.</div>
+        <div class="insight-body da">Entry-level arbejde var aldrig primært værdifuldt fordi det producerede output. Det var værdifuldt fordi det producerede læring. Den unge revisor der lavede de samme rapporter i to år, akkumulerede forståelse for hvad tallene faktisk fortæller. AI overtager nu præcis disse opgaver. Stien forsvinder — og ingen taler om hvad der skal bygges i dens sted.</div>
+        <div class="insight-body en">Entry-level work was never primarily valuable because it produced output. It was valuable because it produced learning. The junior analyst running the same reports for two years accumulated an understanding of what the numbers actually say. AI is now taking over precisely these tasks. The path is disappearing — and no one is talking about what needs to be built in its place.</div>
+        <div class="insight-quote da">"Stien var aldrig målet. Målet var den kapabilitet stien producerede."</div>
+        <div class="insight-quote en">"The path was never the goal. The goal was the capability the path produced."</div>
+        <div class="insight-tag da">← Akt 4 · Stien der forsvinder</div>
+        <div class="insight-tag en">← Act 4 · The Path That Disappears</div>
+      </div>
+    </div>
+  </div>
+
   <!-- OBSERVATION -->
   <div class="ch">
-    <div class="ch-eye">Observationen</div>
-    <p class="ch-lead">Der er en person i de fleste organisationer der ikke har en præcis jobtitel for det hun faktisk gør.</p>
-    <p class="ch-p">Hun er ikke leder. Hun er ikke synlig i de møder der tæller. Men spørger du hendes kolleger, ved de præcist hvem hun er.</p>
-    <p class="ch-p">Hun er den de ringer til når systemet ikke virker — og IT ikke kan forklare hvorfor. Hun bygger noget ingen bad om, og som nu er en del af måden organisationen træffer beslutninger på.</p>
+    <div class="ch-eye da">Observationen</div>
+    <div class="ch-eye en">The Observation</div>
+    <p class="ch-lead da">Der er en person i de fleste organisationer der ikke har en præcis jobtitel for det hun faktisk gør.</p>
+    <p class="ch-lead en">There is a person in most organisations who does not have a precise job title for what she actually does.</p>
+    <p class="ch-p da">Hun er ikke leder. Hun er ikke synlig i de møder der tæller. Men spørger du hendes kolleger, ved de præcist hvem hun er.</p>
+    <p class="ch-p en">She is not a manager. She is not visible in the meetings that matter. But ask her colleagues and they know exactly who she is.</p>
+    <p class="ch-p da">Hun er den de ringer til når systemet ikke virker. Hun bygger noget ingen bad om, og som nu er en del af måden organisationen træffer beslutninger på.</p>
+    <p class="ch-p en">She is the one they call when the system does not work. She builds things nobody asked for, which have now become part of how the organisation makes decisions.</p>
     <div class="tq">
-      <p class="tq-text">Måske er det dig.</p>
+      <p class="tq-text da">Måske er det dig.</p>
+      <p class="tq-text en">Perhaps that is you.</p>
     </div>
   </div>
 
   <!-- MEKANISME -->
   <div class="ch">
-    <div class="ch-eye">Mekanismen</div>
-    <p class="ch-lead">I 1870'erne fik mange aktører adgang til jernbanen.<br>Rockefeller så at <em>adgangen ikke var spørgsmålet.</em></p>
-    <p class="ch-p">Kontrollen over infrastrukturen der forbandt den med alt andet — det var spørgsmålet. Han akkumulerede det der lå bag adgangen.</p>
-    <p class="ch-p">I dag får alle adgang til AI. De fleste bruger den til at blive hurtigere til det de allerede gør.</p>
-    <p class="ch-p"><strong>Det er historien om adgang der gentager sig.</strong></p>
+    <div class="ch-eye da">Mekanismen · ACA</div>
+    <div class="ch-eye en">The Mechanism · ACA</div>
+    <p class="ch-lead da">I 1870'erne fik mange aktører adgang til jernbanen.<br>Rockefeller så at <em>adgangen ikke var spørgsmålet.</em></p>
+    <p class="ch-lead en">In the 1870s many actors gained access to the railroad.<br>Rockefeller saw that <em>access was not the question.</em></p>
+    <p class="ch-p da">Kontrollen over infrastrukturen der forbandt den med alt andet — det var spørgsmålet. Han akkumulerede det der lå bag adgangen.</p>
+    <p class="ch-p en">Control over the infrastructure connecting it to everything else — that was the question. He accumulated what lay behind the access.</p>
+    <p class="ch-p da">I dag får alle adgang til AI. De fleste bruger den til at blive hurtigere til det de allerede gør.</p>
+    <p class="ch-p en">Today everyone gets access to AI. Most use it to do faster what they already do.</p>
     <div class="tq">
-      <p class="tq-text">Adgang distribueres. Kapabilitet akkumuleres. Og gabet imellem de to vokser stille og strukturelt — mens alle kigger på outputtet.</p>
+      <p class="tq-text da">Adgang distribueres. Kapabilitet akkumuleres. Og gabet imellem de to vokser stille og strukturelt — mens alle kigger på outputtet.</p>
+      <p class="tq-text en">Access is distributed. Capability is accumulated. And the gap between the two grows quietly and structurally — while everyone watches the output.</p>
     </div>
   </div>
 
   <!-- BOGEN -->
   <div class="ch" id="bogen">
-    <div class="ch-eye">Bogen · Fem akter · Dansk</div>
-    <p class="ch-lead">Ikke endnu en bog om AI.<br>En bog om <em>mekanismen bag AI.</em></p>
+    <div class="ch-eye da">Bogen · Fem akter · Dansk</div>
+    <div class="ch-eye en">The Book · Five Acts · In Danish</div>
+    <p class="ch-lead da">Ikke endnu en bog om AI.<br>En bog om <em>mekanismen bag AI.</em></p>
+    <p class="ch-lead en">Not another book about AI.<br>A book about <em>the mechanism behind AI.</em></p>
     <div class="act-list">
       <div class="act">
         <div class="act-n">I</div>
-        <div class="act-right">
-          <div class="act-title">The Pattern</div>
-          <div class="act-desc">ACA før AI. Rockefeller, Ford, Toyota, Intel, Maersk. Samme mekanisme — fem epoker. Det er ikke teknologien der akkumulerer. Det er systemet bag den.</div>
+        <div>
+          <div class="act-title da">The Pattern</div>
+          <div class="act-title en">The Pattern</div>
+          <div class="act-desc da">ACA før AI. Rockefeller, Ford, Toyota, Intel, Maersk. Samme mekanisme — fem epoker. Det er ikke teknologien der akkumulerer. Det er systemet bag den.</div>
+          <div class="act-desc en">ACA before AI. Rockefeller, Ford, Toyota, Intel, Maersk. Same mechanism — five eras. It is not the technology that accumulates. It is the system behind it.</div>
           <div class="act-hint">EIC · Standard Oil · Ford · Toyota · Intel · Maersk</div>
         </div>
       </div>
       <div class="act">
         <div class="act-n">II</div>
-        <div class="act-right">
+        <div>
           <div class="act-title">The Accelerator</div>
-          <div class="act-desc">AI ændrer hastighed og konsekvenser — ikke mekanismen. Velocity Asymmetry. Adoptionsteater vs. Integration. Translation Barrier.</div>
-          <div class="act-hint">TSMC · ASML · Tre lande · Oversætteren</div>
+          <div class="act-desc da">AI ændrer hastighed og konsekvenser — ikke mekanismen. Velocity Asymmetry. Adoptionsteater vs. Integration. Translation Barrier.</div>
+          <div class="act-desc en">AI changes speed and consequences — not the mechanism. Velocity Asymmetry. Adoption Theatre vs. Integration. Translation Barrier.</div>
+          <div class="act-hint">TSMC · ASML · Three countries · The Translator</div>
         </div>
       </div>
       <div class="act">
         <div class="act-n">III</div>
-        <div class="act-right">
-          <div class="act-title">Strategic Positioning</div>
-          <div class="act-desc">Fire niveauer. Én mekanisme. Hvem ejer de lag andre bliver afhængige af?</div>
-          <div class="act-hint">Individet · Organisationen · Staten · Kontinentet · Governance</div>
+        <div>
+          <div class="act-title da">Strategisk Positionering</div>
+          <div class="act-title en">Strategic Positioning</div>
+          <div class="act-desc da">Fire niveauer. Én mekanisme. Hvem ejer de lag andre bliver afhængige af?</div>
+          <div class="act-desc en">Four levels. One mechanism. Who owns the layers others become dependent on?</div>
+          <div class="act-hint da">Individet · Organisationen · Staten · Kontinentet · Governance</div>
+          <div class="act-hint en">The Individual · The Organisation · The State · The Continent · Governance</div>
         </div>
       </div>
       <div class="act">
         <div class="act-n">IV</div>
-        <div class="act-right">
+        <div>
           <div class="act-title">The Fragility Paradox</div>
-          <div class="act-desc">Styrken producerer skrøbeligheden. Det er ikke en advarsel — det er en mekanisk konsekvens. Stien der forsvinder.</div>
-          <div class="act-hint">F1 vs Hilux · TSMC · Kognitiv stratifikation · Systemskaberen som flaskehals</div>
+          <div class="act-desc da">Styrken producerer skrøbeligheden. Det er ikke en advarsel — det er en mekanisk konsekvens.</div>
+          <div class="act-desc en">Strength produces fragility. This is not a warning — it is a mechanical consequence.</div>
+          <div class="act-hint da">F1 vs Hilux · TSMC · Kognitiv stratifikation · Stien der forsvinder</div>
+          <div class="act-hint en">F1 vs Hilux · TSMC · Cognitive stratification · The path that disappears</div>
         </div>
       </div>
       <div class="act">
         <div class="act-n">V</div>
-        <div class="act-right">
+        <div>
           <div class="act-title">The Engine Behind the Engine</div>
-          <div class="act-desc">Syntese. Hvad frameworket kan — og ikke kan. De har brug for hinanden.</div>
-          <div class="act-hint">ACA som forklaringsmotor · Køb motorerne. Ikke narrativet.</div>
+          <div class="act-desc da">Syntese. Hvad frameworket kan — og ikke kan. De har brug for hinanden.</div>
+          <div class="act-desc en">Synthesis. What the framework can — and cannot — explain. They need each other.</div>
+          <div class="act-hint da">ACA som forklaringsmotor · Køb motorerne. Ikke narrativet.</div>
+          <div class="act-hint en">ACA as explanatory engine · Buy the engines. Not the narrative.</div>
         </div>
       </div>
     </div>
@@ -279,35 +342,46 @@ footer{
 
   <!-- INSTRUMENTER -->
   <div class="ch" id="instrumenter">
-    <div class="ch-eye">Instrumenter · Brug frameworket selv</div>
-    <p class="ch-lead">Fra analyse<br>til <em>handling.</em></p>
-    <p class="ch-p">Fire interaktive instrumenter der operationaliserer bogens framework. For individet der vil forstå sin position. For den der vil vide hvad der sandsynligvis sker.</p>
+    <div class="ch-eye da">Instrumenter · Brug frameworket selv</div>
+    <div class="ch-eye en">Instruments · Use the framework yourself</div>
+    <p class="ch-lead da">Fra analyse<br>til <em>handling.</em></p>
+    <p class="ch-lead en">From analysis<br>to <em>action.</em></p>
+    <p class="ch-p da">Fire interaktive instrumenter. For individet der vil forstå sin position. For organisationen der vil rekruttere anderledes. For den der vil vide hvad der sandsynligvis sker.</p>
+    <p class="ch-p en">Four interactive instruments. For the individual who wants to understand their position. For the organisation that wants to recruit differently. For those who want to know what is likely to happen.</p>
     <div class="inst-list">
-      <a href="FrameworkUse/SkæbneScenarie.html" class="inst">
-        <div class="inst-left">
-          <div class="inst-name">Skæbnescenariet</div>
-          <div class="inst-desc">Replacement Risk · Transformation Risk · Resilience · To fremtider</div>
+      <a href="/instrumenter/skaebnescenariet.html" class="inst">
+        <div>
+          <div class="inst-name da">Skæbnescenariet</div>
+          <div class="inst-name en">The Fate Scenario</div>
+          <div class="inst-desc da">Replacement Risk · Transformation Risk · Resilience · To fremtider</div>
+          <div class="inst-desc en">Replacement Risk · Transformation Risk · Resilience · Two futures</div>
         </div>
         <div class="inst-arr">→</div>
       </a>
-      <a href="FrameworkUse/Selvdiagnostik.html" class="inst">
-        <div class="inst-left">
-          <div class="inst-name">ACA Selvdiagnostik</div>
-          <div class="inst-desc">Find din position på akkumuleringsskalaen</div>
+      <a href="/instrumenter/selvdiagnostik.html" class="inst">
+        <div>
+          <div class="inst-name da">ACA Selvdiagnostik</div>
+          <div class="inst-name en">ACA Self-diagnostic</div>
+          <div class="inst-desc da">Find din position på akkumuleringsskalaen</div>
+          <div class="inst-desc en">Find your position on the accumulation scale</div>
         </div>
         <div class="inst-arr">→</div>
       </a>
-      <a href="FrameworkUse/KarriereKompas.html" class="inst">
-        <div class="inst-left">
-          <div class="inst-name">Karrierekompas</div>
-          <div class="inst-desc">Hvad AI ændrer i dit arbejde — og hvad du gør ved det</div>
+      <a href="/instrumenter/karrierekompas.html" class="inst">
+        <div>
+          <div class="inst-name da">Karrierekompas</div>
+          <div class="inst-name en">Career Compass</div>
+          <div class="inst-desc da">Hvad AI ændrer i dit arbejde — og hvad du gør ved det</div>
+          <div class="inst-desc en">What AI changes in your work — and what you do about it</div>
         </div>
         <div class="inst-arr">→</div>
       </a>
-      <a href="FrameworkUse/Rekruttering.html" class="inst">
-        <div class="inst-left">
-          <div class="inst-name">Rekrutteringsperspektivet</div>
-          <div class="inst-desc">Find dem der akkumulerer</div>
+      <a href="/instrumenter/rekruttering.html" class="inst">
+        <div>
+          <div class="inst-name da">Rekrutteringsperspektivet</div>
+          <div class="inst-name en">The Recruitment Perspective</div>
+          <div class="inst-desc da">Find dem der akkumulerer</div>
+          <div class="inst-desc en">Find those who accumulate</div>
         </div>
         <div class="inst-arr">→</div>
       </a>
@@ -319,11 +393,12 @@ footer{
 <!-- CLOSING -->
 <div class="closing">
   <div class="closing-rule"></div>
-  <p class="closing-main">Bygger du motoren,<br>betjener du motoren —<br>eller bliver du <em>input</em><br>til motoren?</p>
-  <p class="closing-byline">The Engines Behind · Køb motorerne. Ikke narrativet.</p>
+  <p class="closing-main da">Bygger du motoren,<br>betjener du motoren —<br>eller bliver du <em>input</em><br>til motoren?</p>
+  <p class="closing-main en">Are you building the engine,<br>operating the engine —<br>or becoming <em>input</em><br>to the engine?</p>
+  <p class="closing-byline da">The Engines Behind · Køb motorerne. Ikke narrativet.</p>
+  <p class="closing-byline en">The Engines Behind · Buy the engines. Not the narrative.</p>
   <div class="closing-links">
     <a href="https://github.com/NorthLogicLab/TheEnginesBehind" target="_blank">GitHub ↗</a>
-    <a href="https://jonbach.dk" target="_blank">jonbach.dk ↗</a>
     <a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn ↗</a>
   </div>
 </div>
@@ -331,10 +406,19 @@ footer{
 <footer>
   <div class="f-l">© 2026 NorthLogicLab · The Engines Behind</div>
   <div class="f-r">
-    <a href="https://github.com/NorthLogicLab" target="_blank">GitHub ↗</a>
-    <a href="https://jonbach.dk" target="_blank">jonbach.dk ↗</a>
+    <a href="https://linkedin.com/in/jonbach2012" target="_blank">LinkedIn ↗</a>
   </div>
 </footer>
 
+<script>
+function setLang(lang){
+  document.documentElement.className='lang-'+lang;
+  document.getElementById('btn-da').classList.toggle('active',lang==='da');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.documentElement.lang=lang;
+}
+// Default: dansk
+setLang('da');
+</script>
 </body>
 </html>
