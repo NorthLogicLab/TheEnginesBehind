@@ -312,3 +312,68 @@ Planlæg gennemskrivningsrunde på Akt 1 og 2.
 
 *SESSIONS.md — The Engines Behind*
 *Opdateres ved afslutning af hver session.*
+
+
+---
+
+## 2026-05-23 — Redaktionelle principper for gennemskrivningsrunden
+
+**Tre principper der skal styre næste runde — ikke opgaver, men analytiske standarder:**
+
+---
+
+**Princip 1: Falsifikation per case**
+
+For hver historisk case i Akt 1 stilles eksplicit spørgsmålet:
+*"Hvad ville modbevise min læsning?"*
+
+Eksempel Ford: Var Fords fordel virkelig ukopiérbar læring — eller bare kapital, timing, markedsekspansion og lav pris?
+
+Det gør teksten analytisk robust uden at dræbe energien. Det er ikke en svækkelse af argumentet — det er en styrkelse. Et argument der har overvejet sin stærkeste modstander, er stærkere end et der ikke har.
+
+Falsifikationsspørgsmålet skrives ikke nødvendigvis eksplicit i teksten — men det skal have informeret hvert kapitels analyse. Hvis svaret på "hvad ville modbevise dette" er trivielt, er påstanden for svag.
+
+**Princip 2: Source hardening-runde**
+
+5-8 nøglepåstande per case identificeres og verificeres med stærkere kilder. Ikke alt skal fodnotes ihjel — men de bærende kausale påstande og de centrale tal skal stå solidt.
+
+Særlig opmærksomhed på: påstande om markedsandele, tidspunkter for teknologiske skift, og kausale kæder der præsenteres som fakta men er fortolkninger.
+
+Metoden: for hver case — hvad er den ene påstand der bærer hele argumentet? Den skal have den stærkeste kilde.
+
+**Princip 3: Operationel oversættelsesboks**
+
+Efter hver case i Akt 1 tilføjes én fast boks. Ikke en opsummering. En operationel oversættelse.
+
+Format:
+```
+HVAD LEDEREN SER
+[Én til to sætninger der oversætter casen 
+til en konkret observation en praktiker 
+kan bruge]
+```
+
+Det gør materialet brugbart til:
+- NotebookLM og AI-assisteret analyse
+- LinkedIn-uddrag
+- Lederdialoger og foredrag
+- PTDE/Regulus-kontekst
+- Karrierepositionering
+
+Boksen skal ikke forklare casen igen. Den skal besvare spørgsmålet: *"Hvad er det første jeg kigger efter i min egen organisation?"*
+
+---
+
+**Redaktionel regel der tilføjes til gennemskrivningsrunden:**
+
+*"Det var ikke X, det var Y"*-konstruktionen bruges nu selektivt — maksimalt to gange per kapitel. Samme pointe gentaget med næsten samme formulering skæres konsekvent.
+
+Mål: 15-20% reduktion i gentagelse på tværs af alle kapitler. Rytmen bevares. Støjen fjernes.
+
+---
+
+**Næste træk:**
+
+Gennemskrivningsrunden starter med Akt 1 — de syv cases er bogens fundament og fortjener den første runde.
+
+Rækkefølge: falsifikation → source hardening → operationel boks → gentagelsesreduktion.
