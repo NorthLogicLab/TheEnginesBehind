@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velocity Asymmetry — The Engines Behind</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0907;--fg:#ede8de;--muted:#6b6358;--border:#1e1b16;
+  --card:#111009;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+.wrap{max-width:760px;width:100%}
+.eye{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem}
+.title{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:400;margin-bottom:.25rem}
+.sub{font-size:13px;color:var(--muted);margin-bottom:2rem;line-height:1.6}
+.legend{display:flex;gap:1.5rem;justify-content:flex-end;margin-bottom:.75rem}
+.li{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ll-green{display:inline-block;width:22px;height:2.5px;background:#0F6E56;border-radius:2px}
+.ll-gray{display:inline-block;width:22px;height:0;border-top:2px dashed #888780}
+.chart-wrap{position:relative;width:100%;height:300px;margin-bottom:1.25rem}
+.zones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.zone{padding:.875rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:2px}
+.z1{border-left:3px solid #534AB7}
+.z2{border-left:3px solid #c8943a}
+.z3{border-left:3px solid #8b2e2e}
+.zlbl{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.35rem}
+.z1 .zlbl{color:#7F77DD}.z2 .zlbl{color:#c8943a}.z3 .zlbl{color:#c87070}
+.ztitle{font-size:13px;font-weight:500;color:var(--fg);margin-bottom:.25rem}
+.zdesc{font-size:11px;color:var(--muted);line-height:1.5}
+.closing{padding:1rem 1.25rem;border:1px solid var(--border);border-radius:2px;background:var(--card);font-style:italic;font-size:14px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eye">The Engines Behind · Velocity Asymmetry</div>
+  <div class="title">To organisationer. Ét udgangspunkt. Tre zoner.</div>
+  <div class="sub">Org A investerer i friktion og redesign. Org B accelererer det eksisterende. Fra udsiden ser de identiske ud — i de første tolv måneder.</div>
+
+  <div class="legend">
+    <div class="li"><span class="ll-green"></span>Org A — integrerer</div>
+    <div class="li"><span class="ll-gray"></span>Org B — adopterer</div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="va" role="img" aria-label="Velocity Asymmetry diagram. Org A starter lavere end Org B grundet friktion ved redesign, krydser forbi ved ca år 1.5, og accelererer eksponentielt. Org B vokser lineært og flader ud.">Org A: friktion i start, eksponentiel acceleration. Org B: lineær vækst uden acceleration.</canvas>
+  </div>
+
+  <div class="zones">
+    <div class="zone z1">
+      <div class="zlbl">År 0–1</div>
+      <div class="ztitle">Illusionen</div>
+      <div class="zdesc">Begge rapporterer fremdrift. B ser stærkest ud. Gabet eksisterer allerede — men omvendt.</div>
+    </div>
+    <div class="zone z2">
+      <div class="zlbl">År 1–3</div>
+      <div class="ztitle">Det usynlige gab</div>
+      <div class="zdesc">A krydser B og distancerer. Usynligt i regnskabet. Her tror de fleste de er med.</div>
+    </div>
+    <div class="zone z3">
+      <div class="zlbl">År 3+</div>
+      <div class="ztitle">Det strukturelle gab</div>
+      <div class="zdesc">Nu synligt. For sent at lukke ved at kopiere. Replication barriers er bygget.</div>
+    </div>
+  </div>
+
+  <div class="closing">Hvilken kurve er din organisation på — og hvornår finder du ud af det?</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const zoneP={
+  id:'zp',
+  beforeDraw(chart){
+    const{ctx,chartArea:{left,right,top,bottom},scales:{x}}=chart;
+    if(!x)return;
+    const x1=x.getPixelForValue(1),x3=x.getPixelForValue(3);
+    ctx.save();
+    ctx.fillStyle='rgba(83,74,183,0.08)';ctx.fillRect(left,top,x1-left,bottom-top);
+    ctx.fillStyle='rgba(186,117,23,0.08)';ctx.fillRect(x1,top,x3-x1,bottom-top);
+    ctx.fillStyle='rgba(139,46,46,0.08)';ctx.fillRect(x3,top,right-x3,bottom-top);
+    ctx.restore();
+  }
+};
+new Chart(document.getElementById('va'),{
+  type:'line',
+  plugins:[zoneP],
+  data:{
+    labels:['Start','6 mdr','År 1','År 2','År 3','År 4','År 5'],
+    datasets:[
+      {label:'Org A',data:[10,7,11,22,42,74,120],borderColor:'#0F6E56',backgroundColor:'transparent',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#0F6E56',tension:0.4},
+      {label:'Org B',data:[10,14,19,25,31,37,43],borderColor:'#888780',backgroundColor:'transparent',borderWidth:2,borderDash:[6,4],pointRadius:3,pointBackgroundColor:'#888780',tension:0.3}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': indeks '+c.parsed.y}}},
+    scales:{
+      x:{grid:{color:'rgba(30,27,22,0.6)'},ticks:{color:'#6b6358',font:{size:11,family:'IBM Plex Mono'}}},
+      y:{min:0,max:125,grid:{color:'rgba(30,27,22,0.6)'},ticks:{color:'#6b6358',font:{size:11,family:'IBM Plex Mono'},callback:v=>v===0?'':''+v}}
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -12,6 +12,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .header-label{font-size:11px;letter-spacing:2px;color:#888;text-transform:uppercase;margin-bottom:.5rem}
 .header-title{font-size:26px;font-weight:600;color:#1a1a1a;margin-bottom:.5rem}
 .header-sub{font-size:15px;color:#666;line-height:1.6}
+/* KONTEKST-BANNER fra Skæbne */
+.context-banner{background:#0a0907;border:1px solid #2d4a2a;border-radius:6px;padding:1rem 1.25rem;margin-bottom:2rem;display:flex;align-items:center;gap:.875rem}
+.context-banner-icon{font-size:18px;flex-shrink:0}
+.context-banner-text{font-size:14px;color:#a0c8a0;line-height:1.5}
+.context-banner-text strong{color:#c8e8c0}
 .screen{display:none}.screen.active{display:block}
 .step-row{display:flex;gap:6px;align-items:center;margin-bottom:2rem}
 .step-dot{width:8px;height:8px;border-radius:50%;background:#e0ddd8;transition:all .3s;flex-shrink:0}
@@ -37,7 +42,6 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
 .btn:hover{background:#f0ede8}
 .btn-primary{background:#1a1a1a;color:#fff;border-color:transparent}
 .btn-primary:hover{background:#333}
-.btn:disabled{opacity:.3;cursor:not-allowed}
 .nav{display:flex;justify-content:space-between;margin-top:1.5rem}
 .result-header{margin-bottom:1.5rem}
 .spor-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;margin-bottom:.75rem}
@@ -64,12 +68,6 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
 .warning-box{background:#fff3e0;border:1px solid #ffcc80;border-radius:10px;padding:1.25rem;margin-bottom:1rem}
 .warning-lbl{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#e65100;margin-bottom:.5rem}
 .warning-text{font-size:14px;color:#444;line-height:1.7}
-.spor-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:1.5rem}
-.spor-card{background:#fff;border:1.5px solid #e0ddd8;border-radius:10px;padding:1.1rem;display:flex;gap:12px;align-items:flex-start}
-.spor-icon{font-size:22px;flex-shrink:0}
-.spor-name{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
-.spor-desc{font-size:13px;color:#888;line-height:1.4}
-.spor-card.highlight{border-color:#1a1a1a;background:#f8f7f4}
 .divider{height:1px;background:#e0ddd8;margin:1.5rem 0}
 </style>
 </head>
@@ -77,13 +75,19 @@ input[type=range]{width:100%;accent-color:#1a1a1a}
 <div class="container">
 <div class="header">
   <div class="header-label">The Engines Behind · Karrierekompas</div>
-  <div class="header-title">Bliver dit arbejde erstattet — eller forstærket?</div>
-  <div class="header-sub">AI overtager rutinebaserede opgaver. Det der ikke overtages er arbejde der kræver oversættelse, erfaring og menneskelig tilstedeværelse. Dette kompas viser hvor du står.</div>
+  <div class="header-title">Hvad beskytter dig — og hvor peger du?</div>
+  <div class="header-sub">Du ved nu hvad der er truet. Dette kompas viser din stærkeste dimension — og hvor du er sværest at erstatte.</div>
 </div>
 
 <!-- S1: JOB + SPØRGSMÅL -->
 <div id="s1" class="screen active">
   <div class="step-row"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><span class="step-lbl">Trin 1 af 3 — Dit arbejde</span></div>
+
+  <!-- KONTEKST-BANNER -->
+  <div class="context-banner">
+    <div class="context-banner-icon">⚙️</div>
+    <div class="context-banner-text">Du har set hvad der er truet. <strong>Nu ser vi hvad der beskytter dig.</strong> Fire dimensioner — én retning.</div>
+  </div>
 
   <!-- FIRE AKSER PREVIEW -->
   <div style="background:#f8f7f4;border:1px solid #e0ddd8;border-radius:8px;padding:1.25rem;margin-bottom:2rem">
@@ -256,44 +260,28 @@ function calcSpor(v){
 
 const SPOR={
   A:{
-    name:'Brobyggeren',
-    icon:'🌉',
-    color:'#1565c0',
-    bg:'#e3f2fd',
-    border:'#90caf9',
+    name:'Brobyggeren',icon:'🌉',color:'#1565c0',bg:'#e3f2fd',border:'#90caf9',
     tagline:'Du forbinder det der ikke taler samme sprog',
     desc:'Du er den person andre kalder ind når to verdener skal forstå hinanden. Det er ikke en kommunikationsevne — det er en kognitiv kapabilitet der kræver dyb forståelse af begge sider. AI kan oversætte ord. Den kan ikke oversætte kontekst, incitamenter og organisatorisk virkelighed.',
     styrker:['Din værdi stiger jo mere komplekst systemet bliver','Du ser koblingen andre ikke ser','Du reducerer misforståelser der koster tid og ressourcer','Den rolle efterspørges mere — ikke mindre — med AI'],
     risici:['Hvis du kun formidler uden at forstå begge sider dybt','Hvis din rolle ikke er synlig for dem der beslutter om du er nødvendig','Hvis du ikke eksternaliserer hvad du ved så det overlever dig'],
   },
   B:{
-    name:'Eksperten med dybden',
-    icon:'🧠',
-    color:'#1b5e20',
-    bg:'#e8f5e9',
-    border:'#a5d6a7',
+    name:'Eksperten med dybden',icon:'🧠',color:'#1b5e20',bg:'#e8f5e9',border:'#a5d6a7',
     tagline:'Din erfaring er svær at kopiere — men kun hvis den akkumulerer',
     desc:'Det du har lært ved at gøre — ikke ved at læse — er den sværeste form for viden at erstatte. AI er trænet på tekst. Den er ikke trænet på det du har mærket, set og fejlet dig frem til over år. Det er en reel beskyttelse. Men kun hvis viden ikke forbliver i dit hoved alene.',
     styrker:['Kontekstspecifik viden opbygget over tid','Evnen til at se hvad der ikke passer ind i mønsteret','Situationsfornemmelse AI systematisk mangler'],
     risici:['Viden der kun lever i dit hoved forsvinder den dag du ikke er der','Hvis dit felt er præget af rutine snarere end kompleksitet','Hvis du ikke kombinerer dybde med bredere systemforståelse'],
   },
   C:{
-    name:'Det menneskelige centrum',
-    icon:'🤝',
-    color:'#4a148c',
-    bg:'#f3e5f5',
-    border:'#ce93d8',
+    name:'Det menneskelige centrum',icon:'🤝',color:'#4a148c',bg:'#f3e5f5',border:'#ce93d8',
     tagline:'Relationen er dit produkt — ikke en bonus ovenpå arbejdet',
     desc:'Der er arbejde AI strukturelt ikke kan udføre: det der kræver menneskelig tilstedeværelse som kerneydelse. En terapeut leverer terapi — ikke information. En pædagog motiverer den konkrete elev. En betjent skaber tillid i en akutsituation. Det er ikke erstatteligt. Men det kræver at du frigiver tid fra det der ikke kræver dig.',
     styrker:['Tillid og relation som kerneydelse','Etisk skøn og menneskelig tilstedeværelse i komplekse situationer','AI forstærker dit arbejde — erstatter det ikke'],
     risici:['Hvis administrative opgaver sluger den tid der burde gå til relationen','Hvis organisationen ikke forstår hvad der er din reelle kerneydelse','Hvis du ikke aktivt frigiver rutineopgaver til AI'],
   },
   D:{
-    name:'I risikozonen',
-    icon:'⚠️',
-    color:'#b71c1c',
-    bg:'#fce4ec',
-    border:'#f48fb1',
+    name:'I risikozonen',icon:'⚠️',color:'#b71c1c',bg:'#fce4ec',border:'#f48fb1',
     tagline:'Ikke en dom — men et signal der kræver handling',
     desc:'Dine svar viser at en stor del af dit arbejde er rutinebaseret — og at du sjældent forbinder faggrupper, har begrænset praksiserfaring eller relationel kerne. Det er den profil AI erstatter hurtigst. Det er ikke for sent. Men passivitet er den største risiko.',
     styrker:['Du kender dine processer indefra — det giver dig adgang til at redesigne dem','Du er tæt på det der automatiseres — og dermed tæt på at forstå hvad der skal bygges i stedet'],
@@ -353,38 +341,10 @@ function buildS3(){
   const S=SPOR[spor];
 
   const NEXT={
-    A:{
-      title:'Gør din brobyggerrolle synlig og systematisk',
-      steps:[
-        'Identificér de tre beslutninger i din organisation der fejler fordi to faggrupper ikke taler samme sprog — og positionér dig ved dem.',
-        'Byg ét dokument, én skabelon eller ét format der gør din oversættelse gentagelig. Ikke for at erstatte dig — men for at vise hvad du faktisk gør.',
-        'Brug AI til at forberede dig på samtaler: forstå den tekniske side dybere, den faglige side bredere. Ikke for at vide alt — men for at oversætte mere præcist.'
-      ]
-    },
-    B:{
-      title:'Eksternaliser din dybde — gør den tilgængelig for andre',
-      steps:[
-        'Identificér den viden du har som ingen andre har — og som forsvinder når du ikke er der. Skriv den ned. Strukturer den. Én ting ad gangen.',
-        'Find ét område hvor din dybde møder et systemspørgsmål — og lær at stille spørgsmål til det. Du behøver ikke bygge systemet. Du skal forstå hvad det kan.',
-        'Brug AI til at teste din viden: stil det dine svære spørgsmål. Når det fejler — det er præcis der din tacit knowledge er mest værdifuld.'
-      ]
-    },
-    C:{
-      title:'Frigiv rutinen — intensivér det menneskelige',
-      steps:[
-        'Kortlæg de opgaver i din uge der ikke kræver din menneskelige tilstedeværelse — dokumentation, standardkommunikation, administrative flows. Brug AI til dem.',
-        'Brug den frigjorte tid på det AI aldrig kan: den svære samtale, det komplekse tilfælde, det barn der hænger, den patient der er bange.',
-        'Lær at beskrive din kerneydelse præcist — ikke din jobtitel, men hvad du leverer som ingen teknologi kan. Det er dit karrierefundament.'
-      ]
-    },
-    D:{
-      title:'Tre konkrete bevægelser — vælg én at starte med',
-      steps:[
-        'Find ét rutineflow i dit arbejde og kortlæg det præcist: hvad er input, hvad sker der, hvad er output? Det første skridt mod forandring er at se hvad der faktisk foregår.',
-        'Find én person fra en anden afdeling eller faggruppe — og lær hvad deres problem er. Ikke for at løse det. For at forstå det. Det er begyndelsen på brobyggeri.',
-        'Identificér ét område hvor du har mere erfaring end andre — og del den viden i én struktureret form andre kan bruge. Det er begyndelsen på akkumulering.'
-      ]
-    }
+    A:{title:'Gør din brobyggerrolle synlig og systematisk',steps:['Identificér de tre beslutninger i din organisation der fejler fordi to faggrupper ikke taler samme sprog — og positionér dig ved dem.','Byg ét dokument, én skabelon eller ét format der gør din oversættelse gentagelig. Ikke for at erstatte dig — men for at vise hvad du faktisk gør.','Brug AI til at forberede dig på samtaler: forstå den tekniske side dybere, den faglige side bredere. Ikke for at vide alt — men for at oversætte mere præcist.']},
+    B:{title:'Eksternaliser din dybde — gør den tilgængelig for andre',steps:['Identificér den viden du har som ingen andre har — og som forsvinder når du ikke er der. Skriv den ned. Strukturer den. Én ting ad gangen.','Find ét område hvor din dybde møder et systemspørgsmål — og lær at stille spørgsmål til det. Du behøver ikke bygge systemet. Du skal forstå hvad det kan.','Brug AI til at teste din viden: stil det dine svære spørgsmål. Når det fejler — det er præcis der din tacit knowledge er mest værdifuld.']},
+    C:{title:'Frigiv rutinen — intensivér det menneskelige',steps:['Kortlæg de opgaver i din uge der ikke kræver din menneskelige tilstedeværelse — dokumentation, standardkommunikation, administrative flows. Brug AI til dem.','Brug den frigjorte tid på det AI aldrig kan: den svære samtale, det komplekse tilfælde, det barn der hænger, den patient der er bange.','Lær at beskrive din kerneydelse præcist — ikke din jobtitel, men hvad du leverer som ingen teknologi kan. Det er dit karrierefundament.']},
+    D:{title:'Tre konkrete bevægelser — vælg én at starte med',steps:['Find ét rutineflow i dit arbejde og kortlæg det præcist: hvad er input, hvad sker der, hvad er output? Det første skridt mod forandring er at se hvad der faktisk foregår.','Find én person fra en anden afdeling eller faggruppe — og lær hvad deres problem er. Ikke for at løse det. For at forstå det. Det er begyndelsen på brobyggeri.','Identificér ét område hvor du har mere erfaring end andre — og del den viden i én struktureret form andre kan bruge. Det er begyndelsen på akkumulering.']}
   };
 
   const N=NEXT[spor];
@@ -394,36 +354,21 @@ function buildS3(){
     <div class="next-box">
       <div class="next-lbl">Dit næste træk</div>
       <div class="next-title">${N.title}</div>
-      <div class="next-text"><ol style="margin-left:1.25rem">${N.steps.map((s,i)=>'<li style="margin-bottom:.75rem">'+s+'</li>').join('')}</ol></div>
+      <div class="next-text"><ol style="margin-left:1.25rem">${N.steps.map(s=>'<li style="margin-bottom:.75rem">'+s+'</li>').join('')}</ol></div>
     </div>
     <div class="divider"></div>
     <div class="section-title" style="font-size:16px;margin-bottom:1rem">De tre universelle bevægelser</div>
-    <div class="card">
-      <div class="card-lbl">Bevægelse 1 — Fra at forbruge til at fortolke</div>
-      <div class="card-text">Brug ikke AI til at blive hurtigere til det samme. Brug den til at stille spørgsmål du ikke kunne stille før. Hvad er mønsteret i de tilfælde der går galt? Hvad ser dataene som du ikke har haft tid til at kigge på?</div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">Bevægelse 2 — Fra specialist til forbinder</div>
-      <div class="card-text">Find ét tilgrænsende felt du ikke kender godt — og lær præcis nok til at forstå deres problem. Du skal ikke blive ekspert. Du skal forstå nok til at se koblingen de ikke ser selv.</div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">Bevægelse 3 — Fra opgave til spor</div>
-      <div class="card-text">Spørg om den opgave du er ved at løse: hvad efterlader den? En løst opgave efterlader ingenting. Et spor efterlader noget der kan bruges næste gang. Det behøver ikke være et system. Det kan være en note, en skabelon, en procedure.</div>
-    </div>
-    <div class="insight">
-      <div class="insight-lbl">Det vigtigste at forstå</div>
-      <div class="insight-text">Du behøver ikke at lave om på alt. Du behøver ikke at lære at kode. Du behøver ikke at blive noget du ikke er. Du skal forstå præcist hvad der beskytter dig — og bevidst investere mere tid der. Det er alt.</div>
-    </div>`;
+    <div class="card"><div class="card-lbl">Bevægelse 1 — Fra at forbruge til at fortolke</div><div class="card-text">Brug ikke AI til at blive hurtigere til det samme. Brug den til at stille spørgsmål du ikke kunne stille før. Hvad er mønsteret i de tilfælde der går galt? Hvad ser dataene som du ikke har haft tid til at kigge på?</div></div>
+    <div class="card"><div class="card-lbl">Bevægelse 2 — Fra specialist til forbinder</div><div class="card-text">Find ét tilgrænsende felt du ikke kender godt — og lær præcis nok til at forstå deres problem. Du skal ikke blive ekspert. Du skal forstå nok til at se koblingen de ikke ser selv.</div></div>
+    <div class="card"><div class="card-lbl">Bevægelse 3 — Fra opgave til spor</div><div class="card-text">Spørg om den opgave du er ved at løse: hvad efterlader den? En løst opgave efterlader ingenting. Et spor efterlader noget der kan bruges næste gang. Det behøver ikke være et system. Det kan være en note, en skabelon, en procedure.</div></div>
+    <div class="insight"><div class="insight-lbl">Det vigtigste at forstå</div><div class="insight-text">Du behøver ikke at lave om på alt. Du behøver ikke at lære at kode. Du behøver ikke at blive noget du ikke er. Du skal forstå præcist hvad der beskytter dig — og bevidst investere mere tid der. Det er alt.</div></div>`;
 }
 
 function restart(){
   selectedJob=null;
   document.getElementById('job-input').value='';
   document.getElementById('job-selected').style.display='none';
-  document.getElementById('q-rutine').value=5;
-  document.getElementById('q-bro').value=5;
-  document.getElementById('q-tacit').value=5;
-  document.getElementById('q-relation').value=5;
+  ['q-rutine','q-bro','q-tacit','q-relation'].forEach(id=>document.getElementById(id).value=5);
   document.getElementById('v-rutine').textContent='Halvt';
   document.getElementById('v-bro').textContent='Nogenlunde';
   document.getElementById('v-tacit').textContent='Blandet';

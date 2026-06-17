@@ -120,7 +120,16 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .honest-note{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--muted);line-height:1.7;padding:1rem 1.25rem;border-left:2px solid var(--border);margin-top:1.5rem}
 .closing-q{display:block;margin-top:1.25rem;font-family:var(--serif);font-size:18px;font-style:italic;color:var(--amber);line-height:1.4;border-top:1px solid var(--border);padding-top:1.25rem}
 
-@media(max-width:580px){.risk-grid,.four-fields{grid-template-columns:1fr}}
+/* KOMPAS KOBLING */
+.kompas-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:2rem;padding:1.25rem 1.5rem;background:#0d1a12;border:1px solid #2d6a4f66;border-radius:2px;text-decoration:none;transition:border-color .2s}
+.kompas-link:hover{border-color:#4a9a6a}
+.kompas-link-left{}
+.kompas-link-eye{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a9a6a;margin-bottom:.3rem}
+.kompas-link-title{font-family:var(--serif);font-size:17px;color:var(--fg);line-height:1.3}
+.kompas-link-sub{font-size:13px;color:var(--muted);margin-top:.25rem;line-height:1.5}
+.kompas-link-arrow{font-family:var(--mono);font-size:20px;color:#4a9a6a;flex-shrink:0}
+
+@media(max-width:580px){.risk-grid,.four-fields{grid-template-columns:1fr}.kompas-link{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -188,7 +197,6 @@ input[type=range]{width:100%;accent-color:var(--amber)}
   <div style="font-family:var(--serif);font-size:20px;margin-bottom:.4rem" id="s2-hl"></div>
   <div style="font-size:14px;color:var(--muted);margin-bottom:2rem;line-height:1.6" id="s2-sub"></div>
 
-  <!-- 1. DIN POSITION -->
   <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem">1 · Din position</div>
   <div class="motor-box">
     <div class="motor-header">
@@ -220,7 +228,6 @@ input[type=range]{width:100%;accent-color:var(--amber)}
     </div>
   </div>
 
-  <!-- 2. DIN STØRSTE RISIKO -->
   <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem;margin-top:2rem">2 · Din største risiko</div>
   <div class="four-fields">
     <div class="field">
@@ -263,7 +270,6 @@ input[type=range]{width:100%;accent-color:var(--amber)}
     <div class="prot-meter"><div class="prot-fill" id="prot-b" style="width:0%"></div></div>
   </div>
 
-  <!-- TO TIDSPUNKTER — sekundært, kollapsbart visuelt -->
   <details style="margin-top:1.5rem">
     <summary style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:.75rem 0;border-top:1px solid var(--border);list-style:none">▸ Se de to fremtider i detaljer</summary>
     <div style="margin-top:1rem">
@@ -307,7 +313,18 @@ input[type=range]{width:100%;accent-color:var(--amber)}
     Men værdien skal flyttes — fra opgaveudførelse til kapabilitet. Fra at løse problemer til at bygge systemer der løser dem. Det er præcis hvad de tre skridt ovenfor handler om.
     <span class="closing-q">Bygger du motoren, betjener du motoren — eller bliver du input til motoren?</span>
   </div>
-  <div class="nav"><button class="btn" onclick="go(2)">← Tilbage</button><button class="btn" onclick="restart()">Start forfra</button></div>
+
+  <!-- KOBLING TIL KARRIEREKOMPAS -->
+  <a href="karrierekompas.html" class="kompas-link">
+    <div class="kompas-link-left">
+      <div class="kompas-link-eye">Næste skridt</div>
+      <div class="kompas-link-title">Du ved nu hvad der er truet.<br>Vil du vide hvad der beskytter dig?</div>
+      <div class="kompas-link-sub">Karrierekompasset viser din stærkeste dimension — og hvor du er sværest at erstatte.</div>
+    </div>
+    <div class="kompas-link-arrow">→</div>
+  </a>
+
+  <div class="nav" style="margin-top:1.5rem"><button class="btn" onclick="go(2)">← Tilbage</button><button class="btn" onclick="restart()">Start forfra</button></div>
 </div>
 </div>
 
@@ -402,7 +419,6 @@ function getScenario(v,s){
 function getMotorPos(v,s){
   const buildScore=(v.d4-1)*25+(5-v.d2-1)*15;
   const inputScore=(v.d1-1)*20+(v.d2-1)*20+(5-v.d4-1)*15;
-  const operateScore=100-Math.max(buildScore,inputScore);
   if(buildScore>55)return'build';
   if(inputScore>55)return'input';
   return'operate';
@@ -494,23 +510,19 @@ function buildS2(){
   document.getElementById('s2-hl').textContent=P.hl;
   document.getElementById('s2-sub').textContent=P.sub;
 
-  // Four fields
   const rrl=levelLabel(s.replace);
   const rtl=levelLabel(s.transform);
-  const rsl=levelLabel(100-s.resilience);
   document.getElementById('ff-rr').innerHTML=`<span class="${rrl.c}">${rrl.l}</span>`;
   document.getElementById('ff-tr').innerHTML=`<span class="${rtl.c}">${rtl.l}</span>`;
   document.getElementById('ff-rs').innerHTML=`<span class="${levelLabel(s.resilience).c}">${levelLabel(s.resilience).l}</span>`;
   document.getElementById('ff-sc').textContent=sc.name;
   document.getElementById('ff-sc-desc').textContent=sc.desc;
 
-  // Motor position
   ['mr-build','mr-operate','mr-input'].forEach(id=>document.getElementById(id).classList.remove('active'));
   const activeRow=mp==='build'?'mr-build':mp==='input'?'mr-input':'mr-operate';
   document.getElementById(activeRow).classList.add('active');
   document.getElementById(activeRow).innerHTML+='<div class="motor-you">← DIG</div>';
 
-  // Risk meters
   document.getElementById('rr-t').textContent=P.rrT;
   document.getElementById('rr-d').textContent=P.rrD;
   document.getElementById('rt-t').textContent=P.rtT;
@@ -518,7 +530,6 @@ function buildS2(){
   document.getElementById('prot-t').textContent=P.protT;
   document.getElementById('prot-d').textContent=P.protD;
 
-  // Scenarios
   document.getElementById('s5-t').textContent=P.s5T;
   document.getElementById('s5-x').innerHTML=P.s5X;
   document.getElementById('s10-t').textContent=P.s10T;
