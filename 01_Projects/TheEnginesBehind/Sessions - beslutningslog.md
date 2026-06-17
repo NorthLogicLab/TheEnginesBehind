@@ -377,3 +377,72 @@ Mål: 15-20% reduktion i gentagelse på tværs af alle kapitler. Rytmen bevares.
 Gennemskrivningsrunden starter med Akt 1 — de syv cases er bogens fundament og fortjener den første runde.
 
 Rækkefølge: falsifikation → source hardening → operationel boks → gentagelsesreduktion.
+
+
+
+---
+
+## 2026-06-17 — Rekrutteringsværktøj v4 + Akt3 individniveau revideret
+
+**Det vi løste:**
+
+Rekrutteringsværktøjet redesignet som én schweizerkniv med fire tabs:
+① Interviewspørgsmål (eksisterende, bevaret urørt)
+② Stillingsopslag (eksisterende, bevaret urørt)
+③ ACA-analyse (ny — fem dimensioner, vægtning, arketype-output)
+④ Skjulte talenter (eksisterende, bevaret urørt)
+
+WEF Future of Jobs Report 2025 integreret som analytisk åbning i headeren — ikke som salgsargument, men som datakontekst. Tre tal: 39%, 63%, 11/100. Data skaber behovet. Sekvensguide øverst viser brugerrejsen.
+
+Skelnen etableret og fastholdt: analytisk tone hele vejen. Ingen kommerciel indpakning. Analysen visualiserer problemet — brugeren drager konklusionen selv.
+
+Akt3 individniveau revideret — fire filer:
+- 1. Individet kondenseret fra 530 linjer til ét skarpt åbningskapitel. De fem arketyper med kanoniske navne. Lukker på bogens menneskelige ankerspørgsmål.
+- 1a. Oversætteren komplet: nutidigt procurement-eksempel tilføjet (ERP/e-procurement/BI uden API). Alle tre barrierer demonstreret i én genkendelig virksomhedskontekst. Advarselsboks fjernet.
+- 1b. Rekruttering restruktureret: overlap med 1. Individet fjernet. ESCO-argumentet bevaret. WEF integreret som analytisk begrundelse for intern identifikation. Redaktionel note markerer at instrumentet er det separate lag.
+- 1c. Workflow redesign: "Capability Translator" → "Oversætteren" alle 11 steder.
+
+Arketype-navne nu konsistente på tværs af alle filer: Systemfølgeren, Fageksperten, Procesbyggeren, Oversætteren, Systemskaberen.
+
+To git commits. 39 filer. Push gennemført til main.
+
+**Beslutninger der ikke kan omgøres:**
+
+Rekrutteringsværktøjet er ét instrument — ikke to separate filer. Schweizerkniv-strukturen er fastlagt.
+
+Analytisk tone er valgt over kommerciel tone. WEF-tallene er kontekst, ikke pitch.
+
+1. Individet er et åbningskapitel — ikke et selvstændigt kapitel med fuld argumentation. Al ESCO-argumentation, WEF-tal og karrierekurver lever i 1b.
+
+Procurement-eksemplet i 1a er forankret i generisk enterprise-virkelighed (ERP/e-procurement/BI) — ikke i navngivne produkter. Holder sig dermed tidløst.
+
+**Forkastede retninger:**
+
+Kommerciel version af rekrutteringsværktøjet (rekruttering-kommerciel.html) — forkastet til fordel for analytisk tone der skaber behovet organisk.
+
+To separate filer (rekruttering-analyse + rekruttering-interview) — forkastet til fordel for én schweizerkniv.
+
+Integration af WEF-tal som hero-tekst — forkastet. Tallene lever i header som kontekst, ikke som åbning.
+
+**Output:**
+
+`instrumenter/rekruttering.html` — schweizerkniv v4
+`01_Projects/TheEnginesBehind/Akt3 - Positioning/1. Individet.md` — kondenseret
+`01_Projects/TheEnginesBehind/Akt3 - Positioning/1a. Oversætteren - de 3 barrierer.md` — komplet
+`01_Projects/TheEnginesBehind/Akt3 - Positioning/1b. Rekruttering & karriere.md` — restruktureret
+`01_Projects/TheEnginesBehind/Akt3 - Positioning/1c. Workflow re-design.md` — terminologi konsistent
+`01_Projects/TheEnginesBehind/Visuals/` — alle HTML-visualiseringer committed for første gang
+
+**Åbne spørgsmål:**
+
+Priksekvensen — gammel session i claude.ai-historik som Jon husker som stærk. Indholdet er ikke genfundet. Afventer manuel gennemgang af samtalehistorik.
+
+Resten af Akt3 (2. Organisationen, 3. Staten, 4. Kontinentet) — ikke revideret denne session.
+
+Koblingen Skæbne → Kompas i instrumenterne — sekvens-link ikke implementeret endnu.
+
+**Næste træk:**
+
+Gennemlæsning af Akt3 kap 2-4 (Organisation, Stat, Kontinent) med samme revisionslogik som individniveauet.
+
+Eller: Priksekvensen — find den i claude.ai-historik og integrer.
