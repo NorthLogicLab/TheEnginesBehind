@@ -2,7 +2,7 @@
 
 > *Køb motorerne. Ikke narrativet.*
 
-**Hvorfor nogle systemer akkumulerer — og andre kun får adgang**
+**Adgang distribueres. Fordel koncentreres. Hvorfor?**
 
 *By Jon Bach — NorthLogicLab*
 
@@ -18,65 +18,59 @@ AI skabte den ikke. AI accelererede den.
 
 ## Det centrale begreb
 
-**Asymmetrisk Kapabilitetsakkumulation (ACA)** er bogens analytiske framework.
+**Asymmetrisk Kapabilitetsakkumulering (ACA)** er bogens analytiske framework.
 
-Når adgang til AI bliver universel, er den afgørende variabel ikke længere værktøjet. Det er om aktøren — individ, organisation eller stat — konverterer adgang til akkumulerende operationel kapabilitet.
+ACA er ikke en teori om adgang. Adgang til teknologi, infrastruktur og kapital bliver billigere for alle. ACA er en teori om konvertering: hvorfor nogle aktører omsætter adgang til akkumulerende operationel kapabilitet — individ, organisation eller stat — mens andre med identisk adgang ikke gør det.
 
-De fleste stopper ved adgang. De få der krydser translation barrier bygger strukturel fordel der bliver progressivt sværere at replikere.
+De fleste stopper ved adgang. De få der krydser **Translation Barrier** bygger strukturel fordel der bliver progressivt sværere at replikere.
 
 ```
-Infrastruktur → Koordination → Absorptionskapacitet → Operationel Integration
-→ Værdifangst → Geninvestering → Stigende Replikationsbarrierer
+Adgang → Translation Barrier → Absorptionskapacitet (PACAP/RACAP)
+→ Akkumulering → Koncentration → Reinvestering
 ```
 
 ---
 
 ## Struktur — fem akter
 
-### Akt 1 — The Pattern
+### Akt 1 — Mønsteret
 *ACA før AI*
 
 Mekanismen fandtes længe før AI. Samme strukturelle motor på tværs af epoker.
 
-| Kapitel | Case | Crossing |
-|---|---|---|
-| 1 | TSMC som åbning | *Hvad er motoren bag synlig dominans?* |
-| 2 | East India Company | Institutionel fusion — stat + kapital + militær + handel |
-| 3 | Rockefeller / Standard Oil | Koordinationsindsigt — infrastrukturelle knuder andre ikke så |
-| 4 | Ford | Arkitektonisk indlejring — produktionsviden kodet i fysisk system |
-| 5 | Toyota / Ohno | Organisatorisk akkumulering — TPS som distribueret hukommelse |
-| 6 | Intel / Andy Grove | Strategisk rekonfiguration — afvikling af gammel identitet, ny kurve |
-| 7 | Syntese: The Five Crossings | Fem måder at krydse Translation Barrier på |
+| Case | Crossing |
+|---|---|
+| East India Company | Institutionel fusion — stat, kapital, militær og handel i én enhed |
+| Standard Oil / Rockefeller | Kontrol over adgangsbetingelserne i jernbanesystemet |
+| Ford | Arkitektonisk indlejring — produktionsviden kodet i fysisk system |
+| Toyota / Ohno | Organisatorisk akkumulering — TPS som distribueret hukommelse |
+| Intel / Andy Grove | Strategisk rekonfiguration — og stiafhængighedens tilbagevenden |
+| Maersk | Vertikal integration som infrastrukturelt fangehold |
+| Lusiaves / Scandi Standard | Nutidig interlude — strukturanalyse uden intentionsattribuering |
 
 ---
 
-### Akt 2 — The Accelerator
+### Akt 2 — Accelerationen
 *AI ændrer hastigheden, ikke mekanismen*
 
-| Kapitel | Titel |
-|---|---|
-| 8 | AI accelererer ACA — samme loop, højere hastighed, stejlere kurve |
-| 9 | Translation Barrier — hvorfor adgang ikke bliver til kapabilitet |
-| 10 | Adoptionsteater vs Integrationssystem — aktivitet uden akkumulering |
-| 11 | Velocity Asymmetry — illusionen, det usynlige gab, det strukturelle gab |
-| 12 | Infrastrukturstakken bag AI — compute, energi, halvledere, EUV, optik |
-| 13 | Hyperscalers — hvem ejer AI-loopet, og hvem lejer det? |
+AI accelererer ACA-loopet — samme mekanisme, højere hastighed, stejlere kurve. Kapitlerne dækker Translation Barrier i praksis, adoptionsteater versus reel integration, infrastrukturstakken bag AI (compute, energi, halvledere, EUV), og hvem der ejer accelerationen versus hvem der lejer den.
 
 ---
 
-### Akt 3 — Strategic Positioning
-*Hvordan man positionerer sig under accelereret ACA*
+### Akt 3 — Positioneringen
+*Samme mekanisme, fire størrelser*
 
 | Kapitel | Niveau | Fokus |
 |---|---|---|
-| 14 | **Individet** | Capability Translator · PACAP → RACAP · ESCO-ACA mapping · rekruttering og karriere |
-| 15 | **Organisationen** | Deployment vs integration · workflow · dataarkitektur · governance |
-| 16 | **Staten** | Koordinationskapacitet · Taiwan, CHIPS Act, industrielt systembyggeri |
-| 17 | **Kontinentet** | USA / EU / Kina · regulering · infrastrukturdybde · koordinationsarkitektur |
-| 18 | **Governance** | Lusiaves / Scandi Standard som real-time ACA-case |
+| 1 | **Individet** | De fem positioner · Oversætteren · PACAP → RACAP |
+| 1a–1c | Oversætteren, rekruttering & karriere, workflow redesign | De tre barrierer Oversætteren krydser |
+| 2 | **Organisationen** | PACAP/RACAP, BCG 70-20-10, det organisatoriske immunforsvar |
+| 3 | **Staten** | Koordinationskapacitet · Taiwan, CHIPS Act, Big Fund Fase III |
+| 4 | **Kontinentet** | USA / EU / Kina / Sydøstasien — fire akkumuleringsstrategier |
+| 5 | **Governance** | Transmissionsinfrastrukturen — Toyota TPS, Scandi Standard |
 
-**ESCO-ACA integration (Kapitel 14):**
-ESCO (European Skills, Competences, Qualifications and Occupations) definerer rollenormen — hvad jobbet strukturelt kræver. ACA måler gabet opad fra normen. Den kandidat eller medarbejder der systematisk overskrider ESCO-baselineen på translation demand og accumulation runway akkumulerer asymmetrisk kapabilitet. Gabet er signalet.
+**ESCO-ACA integration:**
+ESCO (European Skills, Competences, Qualifications and Occupations) definerer rollenormen — hvad jobbet strukturelt kræver. ACA måler gabet opad fra normen. Gabet er signalet, ikke match mod baseline.
 
 ```
 ESCO baseline      → hvad rollen forventes at kræve
@@ -86,27 +80,35 @@ Gabet opad         → det strategisk interessante signal
 
 ---
 
-### Akt 4 — The Fragility Paradox
-*Styrken producerer skrøbeligheden*
+### Akt 4 — Skrøbeligheden
+*Styrken producerer skrøbeligheden (Fragility Paradox)*
 
-| Kapitel | Titel |
+| # | Titel |
 |---|---|
-| 19 | Styrke og skrøbelighed er samme mekanisme |
-| 20 | Koncentrationsparadokset — TSMC, ASML, hyperscalers, platforme |
-| 21 | Koordinationskollaps — når systemet mister evnen til at holde aktører samlet |
-| 22 | Stiafhængighedens fængsel — det der byggede styrken blokerer næste transition |
-| 23 | Legitimitet som systemgrænse — EIC, platforme, AI-infrastruktur |
-| 24 | Hvad forbliver usikkert — AI-trajektorie, geopolitik, ny koordinationsarkitektur |
+| 1 | Seks vendepunkter — styrken producerer skrøbeligheden |
+| 2 | F1 vs. Hilux — styrke og skrøbelighed er samme mekanisme |
+| 3 | Koncentrationsparadokset |
+| 5 | Stiafhængighedens fængsel |
+| 6 | Legitimitetserosion |
+| 7 | TSMC — verdens vigtigste virksomhed og verdens farligste enkeltpunkt |
+| 8 | Effektivitetens pris |
+| 9 | Kognitiv stratifikation — hvad forbliver usikkert |
+| 10 | Stien der forsvinder |
+| 11 | Systemskaberen som ny flaskehals |
 
 ---
 
-### Akt 5 — The Engine Behind the Engine
+### Akt 5 — Syntesen
 *Syntese og slutposition*
 
-| Kapitel | Titel |
+| # | Titel |
 |---|---|
-| 25 | ACA som forklaringsmotor — hvad frameworket kan, og hvad det ikke kan |
-| 26 | Køb motorerne. Ikke narrativet. — Slutmanifestet |
+| 1 | ACA som forklaringsmotor — hvad frameworket kan, og hvad det ikke kan |
+| 2 | De har brug for hinanden — relationen mellem de fem positioner er helten |
+| 3 | Syntese og slutposition |
+| 4 | Når beslutninger begynder at akkumulere |
+| 5 | Tre sætninger der holder |
+| 6 | Køb motorerne. Ikke narrativet. — Slutmanifestet |
 
 > Adgang er ikke kapabilitet.
 > Aktivitet er ikke akkumulering.
@@ -114,21 +116,40 @@ Gabet opad         → det strategisk interessante signal
 
 ---
 
-## Analytisk framework
+## Analytisk framework — det låste begrebsregister
 
 | Begreb | Definition |
 |---|---|
-| ACA | Asymmetrisk Kapabilitetsakkumulation — hovedmekanismen |
-| PACAP | Potential Absorptive Capacity — hvad aktøren kan modtage |
-| RACAP | Realized Absorptive Capacity — hvad aktøren faktisk konverterer |
+| ACA | Asymmetrisk Kapabilitetsakkumulering — hovedmekanismen |
+| PACAP | Potentiel absorptionskapacitet — hvad aktøren kan modtage og forstå |
+| RACAP | Realiseret absorptionskapacitet — hvad aktøren faktisk konverterer |
 | Translation Barrier | Grænsen mellem adgang og operationel integration |
-| Translation Demand | Evnen til at bevæge sig mellem domæneviden og systemlogik |
-| Accumulation Runway | Hastighed og dybde hvormed kapabilitet kompounder over tid |
-| Velocity Asymmetry | AI-accelereret divergens i kapabilitetstrajektorier |
-| Bottleneck Position | Strukturel kontrol af kritisk flaskehals |
-| Replication Barriers | Det der gør en position strukturelt svær at kopiere |
-| ESCO Baseline | EU-standardiseret kompetenceprofil per occupation — rollenormen |
-| ESCO-ACA Gap | Gabet opad fra ESCO-normen — det strategisk interessante signal |
+| Bottleneck-position | Strukturel kontrol over et kritisk punkt andre er afhængige af |
+| Governance | Transmissionsinfrastrukturen — afgør om akkumulering konverteres eller forsvinder i friktion |
+| Fragility Paradox | Den mekanisme der producerer styrke, producerer samtidig skrøbelighed |
+| Oversætteren | Profilen der krydser Translation Barrier — låst dansk navn |
+| De fem positioner | Systemfølgeren · Fageksperten · Procesbyggeren · Oversætteren · Systemskaberen |
+| ESCO-baseline | EU-standardiseret kompetenceprofil — rollenormen et gap måles fra |
+
+**Forladte termer — bruges ikke længere:** Capability Translator, Translation Demand, Accumulation Runway, Velocity Asymmetry. Se MASTER_CONTEXT.md for den fulde liste og baggrund.
+
+---
+
+## Kommercialiseringssporet
+
+Et parallelt, tidsboxet spor ved siden af bogskrivningen — Scandi Standard er laboratoriet, med Danpo som første pilot.
+
+**Instrumentporteføljen:**
+
+| Instrument | Funktion |
+|---|---|
+| **Positionsanalysen — Individ** | AS-IS, personligt niveau. Gratis, viralt, leads og data til bogen. |
+| **Positionsanalysen — Organisation** | AS-IS, aggregeret. HR/leder-indgang, viser zonefordeling og arketyper. |
+| **Kapabilitetskortet** | TO-BE, betalt. Fire anvendelser: rekruttering, udvikling, succession planning, teamdesign. |
+
+**Tragten:** Positionsanalysen (Individ) → Positionsanalysen (Organisation) → Kapabilitetskortet → betalt produkt.
+
+**Målet:** 10 betalende kunder til Kapabilitetskortet. Se `Roadmap.md` for fasestruktur og tidsbudget.
 
 ---
 
@@ -136,23 +157,29 @@ Gabet opad         → det strategisk interessante signal
 
 ```
 01_Projects/TheEnginesBehind/
-├── Akt1 - The Pattern/          ← Historiske cases
-├── Akt2 - The Accelerator/      ← AI-acceleration
-├── Akt3 - Positioning/          ← Individ / Org / Stat / Kontinent
-├── Akt4 - Fragility Paradox/    ← Koncentration og skrøbelighed
-├── Visuals/                     ← Diagrammer og visuelle frameworks
+├── Akt1 - The Pattern/              ← Historiske cases
+├── Akt2 - The Accelerator/          ← AI-acceleration
+├── Akt3 - Positioning/              ← Individ / Org / Stat / Kontinent / Governance
+├── Akt4 - Fragility Paradox/        ← Koncentration og skrøbelighed (10 kapitler)
+├── Akt5 - The Engines Behind the Engines/  ← Syntese og manifest (6 kapitler)
+├── FrameworkUse/
+│   ├── Positionsanalyse_individ.html
+│   ├── Positionsanalyse_organisation.html
+│   └── Kapabilitetskortet.html
+├── Visuals/                         ← Diagrammer, akkumuleringsmaskinen, frontpage/backpage
 ├── Interlude - Scandi & Lusiaves/
-├── TheEngineBehindTheEngine/    ← Syntese og manifest
 ├── Executive summary.md
-├── Indholdsfortegnelse.md
-├── Manifest v3 final.md
-├── MASTER_CONTEXT.md            ← Start her ved ny session
-├── SESSIONS.md                  ← Beslutningslog per session
-└── critique.md                  ← Åbne spørgsmål og svagheder
+├── MASTER_CONTEXT.md                ← Start her ved ny session
+├── SESSIONS.md                      ← Beslutningslog per session
+└── Roadmap.md                       ← Kommercialiseringsplan
+
+instrumenter/                        ← Live-versioner til theenginesbehind.com
+├── Positionsanalyse_individ.html
+├── Positionsanalyse_organisation.html
+└── Kapabilitetskortet.html
 
 00_Core/
-├── Principles.md                ← Analytiske standarder
-├── RoadMap_Master.md
+├── Principles.md                    ← Analytiske standarder
 └── Vision.md
 ```
 
@@ -160,9 +187,9 @@ Gabet opad         → det strategisk interessante signal
 
 ## Teoretisk fundament
 
-Bygger på Jon Bachs HD International Business speciale fra CBS (2014) om Arla Foods, klyngeteori og international konkurrenceevne — udvidet til AI-infrastruktur, geopolitik, regulering, kapitalallokering og personlig kapacitet.
+ACA kombinerer ti etablerede traditioner til én forklaringsmodel for et specifikt spørgsmål — ikke som erstatning for dem:
 
-Teoretisk rygrad: Absorptionskapacitet (Zahra & George, 2002) · Porters Diamant · Economic Complexity Theory · ESCO / O*NET occupational frameworks · Institutionel Stiafhængighed.
+Absorptionskapacitet (Cohen & Levinthal 1990, Zahra & George 2002) · Dynamic Capabilities (Teece) · Resource Based View (Barney) · Path Dependency (David, Arthur) · Increasing Returns (Arthur) · Learning Curves (Wright) · Systems Thinking (Senge, Meadows) · Political Economy (Acemoglu & Robinson, Mazzucato, Rodrik) · Transaction Cost Economics (Coase, Williamson) · Industrial Policy.
 
 ---
 
@@ -170,12 +197,16 @@ Teoretisk rygrad: Absorptionskapacitet (Zahra & George, 2002) · Porters Diamant
 
 | Kilde | Anvendelse |
 |---|---|
-| WEF Future of Jobs Report 2025 | 39% af kernekompetencer ændres inden 2030 |
-| Anthropic Economic Index | AI-eksponering per occupation (756 roller) |
-| KPMG Procurement AI Analysis | 50-80% automation af procurement-opgaver |
-| ESCO v1.2, European Commission | Occupation/skills baseline (3.000+ occupations) |
-| O*NET (BLS) | Skills importance ratings og task data |
-| Loaiza & Rigobon | EPOCH-kapabiliteter og beskæftigelsesvækst |
+| BCG AI Adoption Research 2024-2025 | 1,7× revenue growth, integration vs. deployment |
+| WEF Future of Jobs Report 2025 | Kompetencegab-data |
+| Anthropic Economic Index | AI-eksponering per occupation |
+| Dallas Fed | Tacit knowledge og lønvækst |
+| RAND: DeepSeek Analysis 2025 | Compute-effektivitet og akkumuleringslogik |
+| JPE: AI in the Knowledge Economy 2025 | Tacit knowledge som replication barrier |
+| ESCO v1.2, European Commission | Occupation/skills baseline |
+| El-Sayed et al. 2024, Nursing Research | Absorptionskapacitet i sundhedsorganisationer |
+| Simvia (PPWR-undersøgelse, juni 2026) | Koordinationskollaps-empiri |
+| Egne data — Positionsanalysen | Aggregeret eksponerings- og arketypedata, fra juni 2026 og frem |
 
 ---
 
@@ -183,11 +214,11 @@ Teoretisk rygrad: Absorptionskapacitet (Zahra & George, 2002) · Porters Diamant
 
 Skrevet on/off over 12 måneder i samarbejde med Claude (Anthropic).
 
-Jon udfordrer, spørger og bidrager med domæneindsigt.
+Jon udfordrer, spørger og bidrager med domæneindsigt og operationel kontekst fra Scandi Standard.
 Claude strukturerer, researcher og skriver udkast.
 
 Outputtet tilhører ingen af dem. Tænkningen tilhører begge.
 
 ---
 
-*Del af [NorthLogicLab](https://github.com/NorthLogicLab) · Primært sprog: Dansk · Executive Summary: Engelsk*
+*Del af [NorthLogicLab](https://github.com/NorthLogicLab) · Primært sprog: Dansk · Executive Summary: Dansk og engelsk*
