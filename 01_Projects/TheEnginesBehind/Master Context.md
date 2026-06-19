@@ -13,7 +13,7 @@ Læs den. Forstå den. Brug den.
 
 ## Projektet
 
-**Titel:** The Engines Behind — Infrastructure, Coordination and Absorptive Capacity in the Age of AI
+**Titel:** The Engines Behind — Why Some Organizations Convert Access into Capability, and Others Don't
 
 **Undertitel:** Hvorfor nogle systemer akkumulerer — og andre kun får adgang
 
@@ -22,164 +22,132 @@ Læs den. Forstå den. Brug den.
 
 **Format:** Analytisk erhvervsbog. Ikke akademisk. Ikke konsulentrapport. Ikke selvhjælp. Mekanisk, præcist, tilgængeligt — skrevet til den intelligente praktiker der vil forstå systemet bag outputtet.
 
-**Målgruppe:** Erhvervsliv, investorer, strateger, politiske tænkere — og én selv.
+**Målgruppe:** Erhvervsliv, investorer, strateger, HR og People-funktioner, Transformation- og Digitaliseringsledere, politiske tænkere og statsledere — og én selv.
 
-**Tidshorisont:** 12 måneder on/off
-
----
-
-## Akademisk oprindelse
-
-Projektet udspringer af HD IB-arbejde med Arla Foods, klyngeteori og international konkurrenceevne (CBS, 2014). Arla demonstrerede at konkurrencefordel opstår i systemet *omkring* virksomheden — ikke kun inde i den.
-
-Dette projekt udvider den logik til AI-infrastruktur, geopolitik, regulering, kapitalallokering og personlig kapabilitet.
-
-Arla nævnes kun som oprindelse. Aldrig som parallelcase.
+**Tidshorisont:** 12 måneder on/off, nu med et parallelt kommercialiseringsspor (se nedenfor).
 
 ---
 
 ## Forfatterprofil
 
 - E-procurement specialist, Scandi Standard
-- Investor: +18% YTD 2026 vs OMXC25 -3,23%
-- Kernepositioner: Vertiv, TSMC, ABB, Eaton, NKT, Pandora, Scandi Standard (20%)
-- Filosofi: *Køb motorerne bag — ikke narrativet*
+- Investor — filosofi: *Køb motorerne. Ikke narrativet.*
 - Profil: Business Technologist — opererer i grænsefladen mellem forretning og systemlogik
 
 ---
 
 ## Det centrale begreb: ACA
 
-**Asymmetrisk Kapabilitetsakkumulation** er bogens analytiske motor.
+**Asymmetrisk Kapabilitetsakkumulering (ACA)** er bogens analytiske motor.
 
-Det er ikke en ny teori. Det er et syntetisk forklaringsframework der beskriver én mekanisme: nogle aktører konverterer adgang til infrastruktur, teknologi og viden til akkumulerende operationel kapabilitet. Andre har den samme adgang og akkumulerer ikke.
+ACA er ikke en teori om adgang. Adgang til teknologi, infrastruktur og kapital bliver billigere for alle. ACA er en teori om konvertering: hvorfor nogle aktører omsætter adgang til akkumulerende operationel kapabilitet, mens andre med identisk adgang ikke gør det.
 
 Gabet mellem de to — det der vokser stille og strukturelt mens alle kigger på outputtet — er det projektet undersøger.
 
 ```
-Infrastruktur → Koordination → Absorptionskapacitet
-→ Operationel Integration → Værdifangst
-→ Geninvestering → Stigende Replikationsbarrierer
+Adgang → Translation Barrier → Absorptionskapacitet (PACAP/RACAP)
+→ Akkumulering → Koncentration → Reinvestering
 ```
 
 AI skabte ikke mekanismen. AI accelererede den.
 
 ---
 
-## Kernebegreber — brug dem præcist
+## Kernebegreber — det låste begrebsregister
 
-| Begreb | Hvad det betyder |
-|---|---|
-| **ACA** | Asymmetrisk Kapabilitetsakkumulation — hovedmekanismen |
-| **PACAP** | Potentiel absorptionskapacitet — hvad aktøren kan modtage |
-| **RACAP** | Realiseret absorptionskapacitet — hvad aktøren faktisk konverterer |
-| **Translation Barrier** | Grænsen mellem adgang og operationel integration |
-| **Translation Demand** | Evnen til at bevæge sig mellem domæneviden og systemlogik |
-| **Accumulation Runway** | Hastighed og dybde hvormed kapabilitet kompounder over tid |
-| **Velocity Asymmetry** | AI-accelereret divergens i kapabilitetstrajektorier |
-| **Bottleneck Position** | Strukturel kontrol over kritisk flaskehals |
-| **Replication Barriers** | Det der gør en position strukturelt svær at kopiere |
-| **Capability Translator** | Profilen der krydser translation barrier — evaluerer, redesigner, legitimerer |
-| **ESCO Baseline** | EU-standardiseret kompetenceprofil — rollenormen |
-| **ESCO-ACA Gap** | Gabet opad fra ESCO-normen — det strategisk interessante signal |
+Disse termer er fastlagt og bruges konsekvent — dansk i løbende tekst, engelsk i Executive Summary, README og ved international kommunikation. Ingen yderligere paralleltermer introduceres for samme begreb.
+
+| Dansk | Engelsk | Hvad det betyder |
+|---|---|---|
+| Asymmetrisk Kapabilitetsakkumulering (ACA) | Asymmetric Capability Accumulation (ACA) | Hovedmekanismen — hvorfor nogle aktører konverterer adgang til akkumulerende kapabilitet, og andre ikke gør |
+| Potentiel absorptionskapacitet (PACAP) | Potential Absorptive Capacity (PACAP) | Hvad aktøren kan modtage og forstå |
+| Realiseret absorptionskapacitet (RACAP) | Realized Absorptive Capacity (RACAP) | Hvad aktøren faktisk konverterer til operationel virkelighed |
+| Translation Barrier | Translation Barrier | Grænsen mellem adgang og operationel integration |
+| Flaskehalsposition | Bottleneck position | Strukturel kontrol over et kritisk punkt andre er afhængige af |
+| Governance | Governance | Transmissionsinfrastrukturen — det der afgør om akkumulering konverteres eller forsvinder i friktion |
+| Skrøbelighedsparadokset | Fragility Paradox | Den mekanisme der producerer styrke, producerer samtidig skrøbelighed |
+| Oversætteren | The Translator | Profilen der krydser Translation Barrier — låst dansk navn, ingen anden term bruges i dansk tekst |
+| De fem positioner | The five positions | Systemfølgeren · Fageksperten · Procesbyggeren · Oversætteren · Systemskaberen — fem funktioner, ikke et hierarki |
+| ESCO-baseline | ESCO baseline | EU-standardiseret kompetenceprofil — rollenormen et gap måles fra |
+
+**Vigtigt:** Tidligere arbejdsdokumenter har brugt "Capability Translator", "Translation Demand", "Accumulation Runway" og "Velocity Asymmetry" som engelske paralleltermer. Disse er forladt. Brug kun termerne i tabellen ovenfor.
 
 ---
 
 ## Bogens struktur — fem akter
 
-**Akt 1 — The Pattern**
-ACA før AI. Samme mekanisme på tværs af fem epoker.
-Cases: EIC, Rockefeller, Ford, Toyota, Intel, Maersk, The 6 Crossings.
-Påstand: Det er ikke et AI-fænomen. Det er et strukturelt fænomen der er accelereret af AI.
+**Akt 1 — Mønsteret**
+ACA før AI. Samme mekanisme på tværs af epoker.
+Cases: EIC, Standard Oil/Rockefeller, Ford, Toyota, Intel, Maersk + Lusiaves/Scandi Standard-interlude.
+Påstand: Det er ikke et AI-fænomen. Det er et strukturelt fænomen accelereret af AI.
 
-**Akt 2 — The Accelerator**
-AI ændrer hastighed og konsekvenser — ikke mekanismen.
-Kapitler: Velocity Asymmetry · Adoptionsteater vs Integrationssystem · Translation Barrier · Capability Translator · Ejer du accelerationen · TSMC & ASML · 3 Lande 3 Strategier.
+**Akt 2 — Accelerationen**
+AI ændrer hastighed og konsekvens — ikke mekanismen.
 
-**Akt 3 — Strategic Positioning**
-Fire niveauer. Én mekanisme. Fire størrelser.
-Individ → Organisation → Stat → Kontinent → Governance.
-Afsluttet med: ACA som universel mekanisme (tværsektoriel).
+**Akt 3 — Positioneringen**
+Fem kapitler, samme mekanisme på fire størrelser: Individet · Organisationen · Staten · Kontinentet · Governance.
 
-**Akt 4 — The Fragility Paradox**
-Styrken producerer skrøbeligheden. Undgå winner narratives.
-Cases: Koncentrationsparadokset · Koordinationskollaps · Stiafhængighedens fængsel · Legitimitetserosion · TSMC som sårbarhed.
+**Akt 4 — Skrøbeligheden (Fragility Paradox)**
+Styrken producerer skrøbeligheden. Ti kapitler: Seks vendepunkter, F1/Hilux, Koncentrationsparadokset, Stiafhængighed, Legitimitetserosion, TSMC, Effektivitetens pris, Kognitiv stratifikation, Stien der forsvinder, Systemskaberen som ny flaskehals.
 
-**Akt 5 — The Engine Behind the Engine**
-Syntese og slutposition.
-Kapitel 25: ACA som forklaringsmotor — hvad frameworket kan og ikke kan.
-Kapitel 26: Slutmanifestet — Køb motorerne. Ikke narrativet.
+**Akt 5 — Syntesen**
+1. ACA som forklaringsmotor — hvad frameworket kan og ikke kan, falsifikationsbetingelser
+2. De har brug for hinanden — relationen mellem positionerne er helten, ikke én profil
+3. Syntese og slutposition — de tre kernesætninger
+4. Tre sætninger der holder — anvendelse på karriere, virksomhed, investering
+5. Køb motorerne. Ikke narrativet. — slutmanifestet
+
+---
+
+## Kommercialiseringssporet (nyt — juni 2026)
+
+Projektet har nu et parallelt, tidsboxet kommercialiseringsspor ved siden af bogskrivningen. Det er ikke et sideprojekt — det er den primære kilde til empirisk data bogen i stigende grad bygger på.
+
+**Instrumentporteføljens nye struktur:**
+
+| Instrument | Funktion |
+|---|---|
+| **Positionsanalysen — Individ** | AS-IS, personligt niveau. Gratis, viralt, leads. |
+| **Positionsanalysen — Organisation** | AS-IS, aggregeret. HR/leder-indgang. |
+| **Kapabilitetskortet** (tidl. "Rekrutteringsværktøjet") | TO-BE, betalt. Fire anvendelser: rekruttering, udvikling, succession planning, teamdesign. |
+
+**Tragten:** Positionsanalysen (Individ) → Positionsanalysen (Organisation) → Kapabilitetskortet → betalt produkt.
+
+**Målet:** 10 betalende kunder til Kapabilitetskortet. Scandi Standard (med Danpo som første pilot) er laboratoriet. Se separat roadmap-dokument for fasestruktur og tidsbudget (~10 timer/uge).
+
+**Hvorfor det hører hjemme i MASTER_CONTEXT:** Aggregeret, anonymiseret data fra Positionsanalysen er tiltænkt som empirisk materiale til Akt 3 — ikke kun som kommercielt værktøj. Det gør bogen til mere end en syntese af andres forskning.
 
 ---
 
 ## Analytiske standarder — disse må ikke fraviges
 
-**Adskil altid:**
-- Empirisk observation
-- Fortolkning
-- Hypotese
-- Konceptuel model
-- Spekulation
+**Adskil altid:** Empirisk observation · Fortolkning · Hypotese · Konceptuel model · Spekulation
 
-**Identificér eksplicit:**
-- Flaskehalse og afhængigheder
-- Skaleringsbarrierer
-- Translationslag
-- Koordinationsproblemer
-- Tidshorisonasymmetrier
-- Second-order effects
-- Værdifangstmekanismer
+**Identificér eksplicit:** Flaskehalse og afhængigheder · Skaleringsbarrierer · Koordinationsproblemer · Second-order effects
 
-**Aldrig:**
-- AI-hype eller futurisme
-- Konsulentbuzzwords
-- Vag optimisme
-- LinkedIn-abstraktion
-- Deterministiske forudsigelser
-- Opfundne data, tal eller kilder
+**Aldrig:** AI-hype eller futurisme · Konsulentbuzzwords · Vag optimisme · LinkedIn-abstraktion · Deterministiske forudsigelser · Opfundne data, tal eller kilder · Nye engelske paralleltermer for begreber der allerede har et dansk, låst navn
 
-**Altid:**
-- Mekanismer over narrativer
-- Kausale kæder over slogans
-- Systemer over isolerede hændelser
-- Incitamenter over intentioner
-- Operationel virkelighed over teoretisk elegance
+**Altid:** Mekanismer over narrativer · Kausale kæder over slogans · Systemer over isolerede hændelser · Incitamenter over intentioner · Operationel virkelighed over teoretisk elegance
 
 ---
 
-## Skrivestil — det må ikke glemmes
+## Skrivestil
 
 Tonen er: analytisk, præcis, tilgængelig, mekanisk, historisk forankret.
 
 Ikke flashy. Ikke akademisk. Ikke promotionelt.
 
-**Erhvervskrimi-elementet:** Velocity, dramatik og konkrete billeder bruges til at gøre mekanismen levende — men mekanismen er altid fundamentet.
-
-**Referencesætninger der definerer tonen:**
-
-> *"Det er ikke adoption. Det er teater."*
-
-> *"Når alle får det samme våben, afgøres kampen ikke af hvem der har det. Den afgøres af hvem der ved, hvad de skal skyde efter."*
-
-> *"Nordjysk tragikomik i enterprise-format: guldet ligger på lageret, men ingen har oprettet varenummeret."*
-
-> *"Køb motorerne. Ikke narrativet."*
-
-> *"Bygger du motoren, betjener du motoren — eller bliver du input til motoren?"*
-
-**Hvad der skal undgås:**
-
-> *"AI transformerer fremtidens arbejdsmarked fundamentalt."*
-> *"Virksomheder skal omfavne den digitale transformation."*
-> *"I en verden i hastig forandring..."*
+Korte, deklarative sætninger. Narrativ først, analyse som bevis — ikke som udgangspunkt. Manifest-tone, ikke konsulentrapport.
 
 ---
 
 ## Teoretisk fundament
 
-Absorptionskapacitet (Zahra & George, 2002) · Porters Diamant · Economic Complexity Theory · ESCO v1.2 European Commission · O*NET BLS · Dynamic Capabilities (Teece) · Architectural Innovation (Henderson & Clark) · Bottlenecks & Modularity (Baldwin) · Ecosystem Theory (Jacobides/Gawer).
+ACA kombinerer ti etablerede traditioner til én forklaringsmodel for et specifikt spørgsmål — ikke som erstatning for dem:
 
-Teorierne er analytiske linser — ikke pensum. De aktiveres kun når de løser et konkret analyseproblem.
+Absorptionskapacitet (Cohen & Levinthal 1990, Zahra & George 2002) · Dynamic Capabilities (Teece) · Resource Based View (Barney) · Path Dependency (David, Arthur) · Increasing Returns (Arthur) · Learning Curves (Wright) · Systems Thinking (Senge, Meadows) · Political Economy (Acemoglu & Robinson, Mazzucato, Rodrik) · Transaction Cost Economics (Coase, Williamson) · Industrial Policy.
+
+Se separat teoretisk note for den fulde syntese-argumentation til appendiks.
 
 ---
 
@@ -187,16 +155,16 @@ Teorierne er analytiske linser — ikke pensum. De aktiveres kun når de løser 
 
 | Kilde | Anvendelse |
 |---|---|
-| WEF Future of Jobs Report 2025 | 39% af kernekompetencer ændres inden 2030 |
-| BCG AI Adoption Research 2024-2025 | 1,7x revenue growth, integration vs. deployment |
-| Anthropic Economic Index | AI-eksponering per occupation (756 roller) |
-| KPMG Procurement AI Analysis | 50-80% automation af procurement-opgaver |
-| RAND: DeepSeek Analysis 2025 | Compute-spring og accumulation reset |
+| WEF Future of Jobs Report 2025 | Kompetencegab-data |
+| BCG AI Adoption Research 2024-2025 | 1,7× revenue growth, integration vs. deployment |
+| Anthropic Economic Index | AI-eksponering per occupation |
+| Dallas Fed | Tacit knowledge og lønvækst |
+| RAND: DeepSeek Analysis 2025 | Compute-effektivitet og akkumuleringslogik |
 | JPE: AI in the Knowledge Economy 2025 | Tacit knowledge som replication barrier |
-| Dallas Fed: AI og lønninger 2026 | Tacit knowledge og lønvækst empirisk |
-| ESCO v1.2, European Commission | Occupation/skills baseline (3.000+ occupations) |
-| O*NET (BLS) | Skills importance ratings og task data |
-| El-Sayed et al. 2024, Nursing Research | RACAP i sundhedsorganisationer |
+| ESCO v1.2, European Commission | Occupation/skills baseline |
+| El-Sayed et al. 2024, Nursing Research | Absorptionskapacitet i sundhedsorganisationer |
+| Simvia (PPWR-undersøgelse, juni 2026) | Koordinationskollaps-empiri |
+| Egne data — Positionsanalysen (Individ/Organisation) | Aggregeret eksponerings- og arketypedata, fra juni 2026 og frem |
 
 ---
 
@@ -204,35 +172,30 @@ Teorierne er analytiske linser — ikke pensum. De aktiveres kun når de løser 
 
 ```
 NorthLogicLab/TheEnginesBehind/
-├── Akt1 - The Pattern/
-├── Akt2 - The Accelerator/
-├── Akt3 - Positioning/
-├── Akt4 - Fragility Paradox/
-├── Akt5 - The Engines Behind the Engines/
+├── Akt1 - Mønsteret/
+├── Akt2 - Accelerationen/
+├── Akt3 - Positioneringen/
+├── Akt4 - Skrøbeligheden/
+├── Akt5 - Syntesen/
+├── instrumenter/
+│   ├── positionsanalyse-individ.html
+│   ├── positionsanalyse-organisation.html
+│   └── kapabilitetskortet.html
 ├── Visuals/
-├── 00_Core/
-├── _drafts/
 ├── MASTER_CONTEXT.md     ← denne fil
 ├── SESSIONS.md           ← analytisk beslutningslog
-├── README.md
-└── STRUCTURE.md
+└── roadmap-kommercialisering.md
 ```
 
 ---
 
-## Åbne strukturelle spørgsmål
+## Åbne fokuspunkter
 
-Disse er ikke løst og skal adresseres i kommende sessioner:
+**CTI-instrumentet er ikke empirisk valideret.** Forankret i ESCO og absorptionskapacitetsteori, men ikke en valideret psykometrisk test. Skal markeres som sådan hvor det optræder.
 
-**CTI-instrumentet er ikke empirisk valideret.** Det er teoretisk afledt og forankret i ESCO/O*NET. Det skal markeres eksplicit i teksten som et analytisk instrument — ikke en valideret test.
+**Compute-spring som accumulation reset** er delvist imødekommet (RAND-argumentet), men ikke elimineret. Påstanden om at organisatorisk RACAP overlever teknologiskift er en hypotese.
 
-**Compute-spring som accumulation reset** er delvist imødekommet men ikke elimineret. RAND-argumentet er stærkt — men påstanden om at organisatorisk RACAP overlever teknologiskift er en hypotese, ikke dokumenteret faktum.
-
-**Akt4 er underudviklet** relativt til bogens øvrige dele. Fragility Paradox-argumentet er bogens mest originale bidrag og fortjener mindst to yderligere kapitler.
-
-**Bro fra Akt1 til Akt2** — overgangen fra historiske cases til AI-acceleration er analytisk klar men ikke narrativt skrevet som en overgang endnu.
-
-**Gennemskrivningsrunde mangler** på alle kapitler — særligt åbningssætninger og overgange inden for kapitlerne.
+**Gennemskrivningsrunde** mangler stadig på Akt 1 og 2 — særligt åbningssætninger og overgange.
 
 ---
 
@@ -242,10 +205,10 @@ Start hver session med at læse denne fil og SESSIONS.md.
 
 Opdater SESSIONS.md ved sessionens afslutning med: hvad der blev løst, beslutninger der ikke kan omgøres, forkastede retninger og åbne spørgsmål.
 
-Udkast gemmes i `/drafts`. Færdige kapitler i den relevante Akt-mappe. Commit og push ved sessionens afslutning.
+Commit og push ved sessionens afslutning.
 
 ---
 
-*MASTER_CONTEXT v3 — The Engines Behind*
-*Opdateres når fundamentale projektbeslutninger ændres.*
-*Ikke ved hver session — kun når noget strukturelt skifter.*
+*MASTER_CONTEXT v4 — The Engines Behind*
+*Opdateres når fundamentale projektbeslutninger ændres — ikke ved hver session.*
+*v4 — juni 2026: titel justeret til Conversion Gap-positionering, akademisk oprindelse fjernet, målgruppe udvidet (HR, transformation, statsledere), kernebegreber gjort to-sprogede, terminologi renset for forladte paralleltermer, kommercialiseringsspor tilføjet, referencesætninger fjernet.*

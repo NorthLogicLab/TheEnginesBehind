@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <style>
+      .title { font-family: 'Arial Narrow', Arial, sans-serif; font-weight: 700; }
+      .subtitle { font-family: Arial, sans-serif; font-weight: 400; }
+      .node-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+      .node-desc { font-family: Arial, sans-serif; font-weight: 400; font-size: 11px; }
+      .label { font-family: Arial, sans-serif; font-weight: 700; font-size: 10px; }
+      .label-small { font-family: Arial, sans-serif; font-weight: 400; font-size: 10px; }
+      .footer-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .size-label { font-family: Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .size-q { font-family: Arial, sans-serif; font-style: italic; font-size: 10px; }
+      .bottom-bar { font-family: Arial, sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.12em; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1050" fill="#faf9f6"/>
+
+  <!-- Header rule top -->
+  <line x1="60" y1="68" x2="740" y2="68" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="400" y="46" text-anchor="middle" class="title" font-size="32" fill="#1a1a1a" letter-spacing="0.06em">AKKUMULERINGSMASKINEN</text>
+
+  <!-- Subtitle -->
+  <text x="400" y="90" text-anchor="middle" class="subtitle" font-size="12" fill="#c47d0e" letter-spacing="0.1em">DEN SAMME MEKANISME SKABER FORDEL – OG SKRØBELIGHED</text>
+
+  <!-- Header rule bottom -->
+  <line x1="60" y1="104" x2="740" y2="104" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- ===== LEFT COLUMN LABELS ===== -->
+  <!-- "Det alle ser" -->
+  <text x="115" y="185" text-anchor="middle" class="label" fill="#1a1a1a" font-size="11">DET ALLE SER</text>
+  <line x1="75" y1="190" x2="155" y2="190" stroke="#1a1a1a" stroke-width="0.5"/>
+  <text x="115" y="206" text-anchor="middle" class="label-small" fill="#555" font-size="10">Adgang bliver</text>
+  <text x="115" y="219" text-anchor="middle" class="label-small" fill="#555" font-size="10">stadig bredere.</text>
+
+  <!-- Dashed vertical left -->
+  <line x1="115" y1="225" x2="115" y2="600" stroke="#aaa" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!-- Bottom left label -->
+  <text x="115" y="625" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10">Mange får adgang.</text>
+  <text x="115" y="640" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10">Få skaber varig fordel.</text>
+  <text x="115" y="658" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10.5" font-weight="700">Færre bliver</text>
+  <text x="115" y="673" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10.5" font-weight="700">systemkritiske.</text>
+
+  <!-- ===== RIGHT COLUMN ===== -->
+  <!-- "Det de færreste krydser" -->
+  <text x="660" y="185" text-anchor="middle" class="label" fill="#1a1a1a" font-size="11">DET DE FÆRRESTE</text>
+  <text x="660" y="198" text-anchor="middle" class="label" fill="#1a1a1a" font-size="11">KRYDSER</text>
+  <line x1="620" y1="204" x2="700" y2="204" stroke="#1a1a1a" stroke-width="0.5"/>
+  <text x="660" y="218" text-anchor="middle" class="label-small" fill="#555" font-size="10">Forskellen skabes</text>
+  <text x="660" y="231" text-anchor="middle" class="label-small" fill="#555" font-size="10">i translationen.</text>
+
+  <!-- Dashed vertical right -->
+  <line x1="660" y1="238" x2="660" y2="420" stroke="#aaa" stroke-width="1" stroke-dasharray="4 3"/>
+  <!-- Arrow tip -->
+  <polygon points="656,420 664,420 660,432" fill="#aaa"/>
+
+  <!-- Right annotation -->
+  <text x="660" y="452" text-anchor="middle" class="label-small" fill="#555" font-size="10">Jo højere op,</text>
+  <text x="660" y="466" text-anchor="middle" class="label-small" fill="#555" font-size="10">jo færre aktører.</text>
+  <text x="660" y="484" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10" font-weight="700">Jo større fordel –</text>
+  <text x="660" y="498" text-anchor="middle" class="label-small" fill="#1a1a1a" font-size="10" font-weight="700">jo større risiko.</text>
+
+  <!-- Divider -->
+  <line x1="620" y1="516" x2="700" y2="516" stroke="#ddd" stroke-width="1"/>
+
+  <!-- FIRE STØRRELSER -->
+  <text x="660" y="536" text-anchor="middle" class="label" fill="#1a1a1a" font-size="11">FIRE STØRRELSER</text>
+
+  <!-- Size items -->
+  <!-- Individet -->
+  <circle cx="632" cy="558" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="632" y="563" text-anchor="middle" font-size="10" fill="#1a1a1a">👤</text>
+  <text x="648" y="556" class="size-label" fill="#1a1a1a">INDIVIDET</text>
+  <text x="648" y="568" class="size-q" fill="#555">Hvad akkumulerer du?</text>
+
+  <!-- Organisationen -->
+  <circle cx="632" cy="592" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="632" y="597" text-anchor="middle" font-size="10" fill="#1a1a1a">🏢</text>
+  <text x="648" y="590" class="size-label" fill="#1a1a1a">ORGANISATIONEN</text>
+  <text x="648" y="602" class="size-q" fill="#555">Hvad bygger I?</text>
+
+  <!-- Staten -->
+  <circle cx="632" cy="626" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="632" y="631" text-anchor="middle" font-size="10" fill="#1a1a1a">🏛</text>
+  <text x="648" y="624" class="size-label" fill="#1a1a1a">STATEN</text>
+  <text x="648" y="636" class="size-q" fill="#555">Hvad kan I koordinere?</text>
+
+  <!-- Kontinentet -->
+  <circle cx="632" cy="660" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="632" y="665" text-anchor="middle" font-size="10" fill="#1a1a1a">🌍</text>
+  <text x="648" y="658" class="size-label" fill="#1a1a1a">KONTINENTET</text>
+  <text x="648" y="670" class="size-q" fill="#555">Hvad ejer I?</text>
+
+  <!-- ===== CENTER NODES ===== -->
+  <!-- Node width/positioning -->
+  <!-- Nodes: x=220, width=320, so x+w=540. Center=380 -->
+
+  <!-- 1. ADGANG -->
+  <rect x="220" y="130" width="320" height="74" rx="6" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- Icon circle -->
+  <circle cx="260" cy="167" r="20" fill="#f5f5f2" stroke="#ddd" stroke-width="1"/>
+  <text x="260" y="173" text-anchor="middle" font-size="18">⊕</text>
+  <text x="380" y="155" text-anchor="middle" class="node-title" fill="#1a1a1a">1.  ADGANG</text>
+  <text x="380" y="171" text-anchor="middle" class="node-desc" fill="#555">Teknologi, kapital, viden og</text>
+  <text x="380" y="185" text-anchor="middle" class="node-desc" fill="#555">infrastruktur bliver mere bredt tilgængelige.</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="380" y1="204" x2="380" y2="232" stroke="#1a1a1a" stroke-width="1.5"/>
+  <polygon points="376,232 384,232 380,244" fill="#1a1a1a"/>
+
+  <!-- 2. TRANSLATION -->
+  <rect x="220" y="244" width="320" height="74" rx="6" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="260" cy="281" r="20" fill="#f5f5f2" stroke="#ddd" stroke-width="1"/>
+  <text x="260" y="287" text-anchor="middle" font-size="18">⌖</text>
+  <text x="380" y="269" text-anchor="middle" class="node-title" fill="#1a1a1a">2.  TRANSLATION</text>
+  <text x="380" y="285" text-anchor="middle" class="node-desc" fill="#555">Kun få aktører formår at forstå,</text>
+  <text x="380" y="299" text-anchor="middle" class="node-desc" fill="#555">omsætte og integrere ny viden i praksis.</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="380" y1="318" x2="380" y2="346" stroke="#1a1a1a" stroke-width="1.5"/>
+  <polygon points="376,346 384,346 380,358" fill="#1a1a1a"/>
+
+  <!-- 3. AKKUMULERING -->
+  <rect x="220" y="358" width="320" height="86" rx="6" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="260" cy="401" r="20" fill="#f5f5f2" stroke="#ccc" stroke-width="1"/>
+  <text x="260" y="407" text-anchor="middle" font-size="18">⚙</text>
+  <text x="380" y="381" text-anchor="middle" class="node-title" fill="#1a1a1a">3.  AKKUMULERING</text>
+  <text x="380" y="397" text-anchor="middle" class="node-desc" fill="#555">Evnen til at lære, forbedre og</text>
+  <text x="380" y="411" text-anchor="middle" class="node-desc" fill="#555">gentage skaber bedre beslutninger,</text>
+  <text x="380" y="425" text-anchor="middle" class="node-desc" fill="#555">lavere omkostninger og højere kvalitet.</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="380" y1="444" x2="380" y2="472" stroke="#1a1a1a" stroke-width="1.5"/>
+  <polygon points="376,472 384,472 380,484" fill="#1a1a1a"/>
+
+  <!-- 4. KONCENTRATION -->
+  <rect x="220" y="484" width="320" height="74" rx="6" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="260" cy="521" r="20" fill="#f5f5f2" stroke="#ddd" stroke-width="1"/>
+  <text x="260" y="527" text-anchor="middle" font-size="18">▲</text>
+  <text x="380" y="505" text-anchor="middle" class="node-title" fill="#1a1a1a">4.  KONCENTRATION</text>
+  <text x="380" y="521" text-anchor="middle" class="node-desc" fill="#555">Fordele vokser over tid og samles</text>
+  <text x="380" y="535" text-anchor="middle" class="node-desc" fill="#555">hos færre aktører og systemer.</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="380" y1="558" x2="380" y2="586" stroke="#1a1a1a" stroke-width="1.5"/>
+  <polygon points="376,586 384,586 380,598" fill="#1a1a1a"/>
+
+  <!-- 5. SKRØBELIGHED -->
+  <rect x="220" y="598" width="320" height="74" rx="6" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="260" cy="635" r="20" fill="#f5f5f2" stroke="#ddd" stroke-width="1"/>
+  <text x="260" y="641" text-anchor="middle" font-size="16">⚠</text>
+  <text x="380" y="619" text-anchor="middle" class="node-title" fill="#1a1a1a">5.  SKRØBELIGHED</text>
+  <text x="380" y="635" text-anchor="middle" class="node-desc" fill="#555">Afhængighed, flaskehalse og</text>
+  <text x="380" y="649" text-anchor="middle" class="node-desc" fill="#555">single points of failure gør systemet mere sårbart.</text>
+
+  <!-- ===== BOTTOM BOX ===== -->
+  <rect x="160" y="706" width="480" height="86" rx="6" fill="white" stroke="#c47d0e" stroke-width="1.5"/>
+  <!-- Amber loop icon -->
+  <circle cx="196" cy="749" r="18" fill="none" stroke="#c47d0e" stroke-width="1.5"/>
+  <text x="196" y="755" text-anchor="middle" font-size="16" fill="#c47d0e">↺</text>
+  <text x="400" y="730" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="#1a1a1a">SAMME MEKANISME – TO SIDER AF SAMME SAG</text>
+  <text x="400" y="748" text-anchor="middle" class="footer-text" fill="#555">Den mekanisme, der skaber akkumulering og velstand, skaber også</text>
+  <text x="400" y="762" text-anchor="middle" class="footer-text" fill="#555">koncentration og skrøbelighed. Spørgsmålet er ikke, om den virker</text>
+  <text x="400" y="776" text-anchor="middle" class="footer-text" fill="#555">– men hvem der mestrer den, og hvordan vi håndterer konsekvenserne.</text>
+
+  <!-- ===== BOTTOM BAR ===== -->
+  <line x1="60" y1="820" x2="740" y2="820" stroke="#1a1a1a" stroke-width="0.5"/>
+  <text x="400" y="848" text-anchor="middle" class="bottom-bar" fill="#555" font-size="10">INDSIGT  →  KAPABILITET  →  HANDLING  →  AKKUMULERING  →  POSITIONERING  →  BÆREDYGTIGHED</text>
+  <line x1="60" y1="860" x2="740" y2="860" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Book attribution -->
+  <text x="400" y="900" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#aaa" letter-spacing="0.08em">THE ENGINES BEHIND  ·  NORTHLOGICLAB  ·  THEENGINESBEHIND.COM</text>
+</svg>

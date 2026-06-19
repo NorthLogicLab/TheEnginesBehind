@@ -446,3 +446,9 @@ Koblingen Skæbne → Kompas i instrumenterne — sekvens-link ikke implementere
 Gennemlæsning af Akt3 kap 2-4 (Organisation, Stat, Kontinent) med samme revisionslogik som individniveauet.
 
 Eller: Priksekvensen — find den i claude.ai-historik og integrer.
+
+
+Fokuspunkt — Balance mellem Oversætteren og Systemskaberen
+I dagens session er Oversætteren konsekvent blevet brugt som det primære eksempel (kommerciel kontekst, Kapabilitetskortet, samtaler om Conversion Gap), mens Systemskaberen er nævnt mere sjældent — selvom Systemskaberen analytisk er den profil med det skarpeste single point of failure (jf. "Systemskaberen som ny flaskehals", Akt 4).
+Risiko: en læser kan fejllæse Oversætteren som hierarkiets top, præcis den fejllæsning "De har brug for hinanden" (Akt 5) er skrevet for at forhindre.
+Handling til senere session: Gennemgå Akt 3-5 systematisk for hvor ofte hver af de fem positioner bruges som eksempel versus blot navngivet i en liste — og ret balancen hvor den er skæv, særligt i passager der bruger Oversætteren som standardeksempel uden modpol fra Systemskaberen.

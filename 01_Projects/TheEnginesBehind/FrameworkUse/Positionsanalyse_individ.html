@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hvad akkumulerer dit arbejde? — Positionsanalysen (Individ) — The Engines Behind</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7f4;color:#1a1a1a;min-height:100vh}
+
+.masthead{border-bottom:2px solid #1a1a1a;padding:18px 32px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.masthead-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888}
+.masthead-brand{font-size:12px;color:#aaa}
+
+.hero{max-width:660px;margin:0 auto;padding:56px 32px 40px}
+.hero-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c47d0e;margin-bottom:18px}
+.hero h1{font-size:clamp(26px,4.5vw,42px);font-weight:500;line-height:1.15;margin-bottom:14px}
+.hero-sub{font-size:16px;color:#666;line-height:1.65;max-width:500px;margin-bottom:24px}
+.hero-edge{font-size:14px;color:#1a1a1a;font-weight:500;border-left:3px solid #1a1a1a;padding-left:16px;line-height:1.55}
+
+.org-tag-box{margin-top:28px;padding:18px 20px;background:#fff;border:1px solid #e0ddd8;border-radius:8px}
+.org-tag-label{display:block;font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px}
+.org-tag-opt{font-weight:400;color:#999;font-style:italic}
+.org-tag-input{width:100%;padding:10px 12px;border:1px solid #d0cdc8;border-radius:6px;font-size:14px;font-family:inherit;color:#1a1a1a;margin-bottom:8px}
+.org-tag-input:focus{outline:none;border-color:#c47d0e}
+.org-tag-note{font-size:11px;color:#aaa;line-height:1.5}
+
+.form-wrap{max-width:660px;margin:0 auto;padding:8px 32px 64px}
+
+/* SPØRGSMÅL */
+.q-block{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid #e0ddd8}
+.q-block:last-of-type{border-bottom:none}
+.q-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c47d0e;margin-bottom:10px}
+.q-text{font-size:18px;font-weight:500;color:#1a1a1a;line-height:1.3;margin-bottom:6px}
+.q-sub{font-size:13px;color:#aaa;line-height:1.5;margin-bottom:18px;font-style:italic}
+
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid #d0cdc8;border-radius:8px;background:#fff;cursor:pointer;transition:all .12s;text-align:left;width:100%;font-family:inherit}
+.opt:hover{border-color:#1a1a1a}
+.opt.selected{border-color:#1a1a1a;background:#1a1a1a}
+.opt-dot{width:16px;height:16px;border-radius:50%;border:1px solid #ccc;flex-shrink:0;margin-top:2px;background:#fff;transition:all .12s}
+.opt.selected .opt-dot{background:#c47d0e;border-color:#c47d0e}
+.opt-body{flex:1}
+.opt-main{font-size:14px;font-weight:500;color:#1a1a1a;line-height:1.35;margin-bottom:3px}
+.opt.selected .opt-main{color:#fff}
+.opt-ex{font-size:12px;color:#999;line-height:1.45}
+.opt.selected .opt-ex{color:rgba(255,255,255,.5)}
+.opt-score{font-size:10px;font-weight:700;color:#c47d0e;letter-spacing:.08em;text-transform:uppercase;margin-left:auto;padding-left:12px;flex-shrink:0;padding-top:2px}
+.opt.selected .opt-score{color:#c47d0e}
+
+/* SUBMIT */
+.submit-row{padding:28px 0 0;border-top:2px solid #1a1a1a;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.submit-btn{background:#1a1a1a;color:#fff;border:none;padding:14px 32px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .12s}
+.submit-btn:hover{background:#c47d0e}
+.submit-note{font-size:13px;color:#aaa}
+
+/* RESULTAT */
+#result{display:none;max-width:660px;margin:0 auto;padding:0 32px 80px}
+#result.show{display:block}
+
+/* TRAPPE */
+.staircase{margin-bottom:2px;background:#fff;border:1px solid #e0ddd8;border-radius:8px 8px 0 0;padding:28px 28px 24px}
+.staircase-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:20px}
+.stairs{display:flex;align-items:flex-end;gap:6px;height:100px;margin-bottom:14px}
+.stair{flex:1;border-radius:4px 4px 0 0;transition:all .3s;position:relative;cursor:default}
+.stair-label{font-size:10px;color:#aaa;text-align:center;margin-top:6px;line-height:1.3}
+.stair.active .stair-label{color:#1a1a1a;font-weight:600}
+.stair-wrap{flex:1;display:flex;flex-direction:column;align-items:center}
+.stair-indicator{font-size:16px;text-align:center;height:20px;margin-bottom:2px}
+
+/* POSITION-KORT */
+.res-card{background:#1a1a1a;color:#fff;padding:28px}
+.res-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#666;margin-bottom:12px}
+.res-archetype{font-size:30px;font-weight:500;color:#c47d0e;margin-bottom:3px}
+.res-arch-tag{font-size:13px;color:#888;font-style:italic;margin-bottom:16px}
+
+/* EKSPONERING ZONE */
+.res-zone{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:4px;margin-bottom:16px}
+.res-zone.low{background:rgba(129,199,132,.15);border:1px solid rgba(129,199,132,.3)}
+.res-zone.mid{background:rgba(255,183,77,.15);border:1px solid rgba(255,183,77,.3)}
+.res-zone.high{background:rgba(229,115,115,.15);border:1px solid rgba(229,115,115,.3)}
+.res-zone-dot{width:8px;height:8px;border-radius:50%}
+.res-zone.low .res-zone-dot{background:#81c784}
+.res-zone.mid .res-zone-dot{background:#ffb74d}
+.res-zone.high .res-zone-dot{background:#e57373}
+.res-zone-txt{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.res-zone.low .res-zone-txt{color:#81c784}
+.res-zone.mid .res-zone-txt{color:#ffb74d}
+.res-zone.high .res-zone-txt{color:#e57373}
+
+.res-desc{font-size:14px;color:#ccc;line-height:1.7}
+
+/* FIRE DIMENSIONER */
+.res-dims{background:#fff;border:1px solid #e0ddd8;border-top:none;padding:24px 28px}
+.res-dims-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:16px}
+.dim-item{margin-bottom:16px}
+.dim-item:last-child{margin-bottom:0}
+.dim-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.dim-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.dim-status{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.dim-status.strength{color:#81c784}
+.dim-status.develop{color:#ffb74d}
+.dim-status.risk{color:#e57373}
+.dim-track{height:3px;background:#e0ddd8;border-radius:2px;overflow:hidden;margin-bottom:4px}
+.dim-fill{height:100%;border-radius:2px;background:#c47d0e}
+.dim-note{font-size:12px;color:#888;line-height:1.45}
+
+/* KANT */
+.res-kant{background:#f0ede8;padding:20px 28px;border-left:3px solid #1a1a1a}
+.res-kant p{font-size:14px;color:#444;line-height:1.7;font-style:italic}
+.res-kant p strong{color:#1a1a1a;font-style:normal}
+
+/* NÆSTE TRÆK + DOKUMENTATION */
+.res-action{background:#fff;border:1px solid #e0ddd8;border-top:none;padding:24px 28px}
+.res-action-section{margin-bottom:20px}
+.res-action-section:last-child{margin-bottom:0}
+.res-action-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:8px}
+.res-action-main{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px;line-height:1.4}
+.res-action-sub{font-size:13px;color:#666;line-height:1.6}
+
+.res-footer{background:#fff;border:1px solid #e0ddd8;border-top:none;border-radius:0 0 8px 8px;padding:16px 28px;display:flex;gap:10px;flex-wrap:wrap}
+.org-cta{text-align:center;padding:18px 0 0;font-size:13px;color:#999}
+.org-cta a{color:#c47d0e;font-weight:600;text-decoration:none}
+.org-cta a:hover{text-decoration:underline}
+.btn-print{background:#1a1a1a;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-size:13px;cursor:pointer;font-family:inherit}
+.btn-reset{background:transparent;color:#888;border:1px solid #d0cdc8;padding:10px 20px;border-radius:6px;font-size:13px;cursor:pointer;font-family:inherit;transition:all .1s}
+.btn-reset:hover{border-color:#888;color:#1a1a1a}
+
+footer{border-top:2px solid #1a1a1a;padding:20px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:40px}
+footer p{font-size:11px;color:#aaa}
+footer a{color:#aaa;text-decoration:none}
+footer a:hover{color:#c47d0e}
+
+@media(max-width:560px){
+  .hero,.form-wrap,#result{padding-left:20px;padding-right:20px}
+  .masthead{padding:16px 20px}
+  .stairs{height:70px}
+}
+@media print{.masthead,.hero-sub,.hero-edge,.submit-row,footer,.res-footer,.org-tag-box,.org-cta{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-title">Positionsanalysen — Individ</div>
+  <div class="masthead-brand">The Engines Behind</div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">Diagnostisk refleksionsværktøj</div>
+  <h1>Hvad akkumulerer dit arbejde?</h1>
+  <p class="hero-sub">En positionsanalyse for mennesker der vil forstå deres rolle i AI-alderen. Fem spørgsmål. Ingen procenter. Et diagnostisk spejl.</p>
+  <div class="hero-edge">Bygger du motoren — betjener du den — eller er du ved at blive input til den?</div>
+
+  <div class="org-tag-box" id="org-tag-box">
+    <label class="org-tag-label" for="org-tag-input">Er du her via din arbejdsplads? <span class="org-tag-opt">(valgfrit)</span></label>
+    <input type="text" id="org-tag-input" class="org-tag-input" placeholder="fx Danpo, Kronfågel, Scandi HR-pilot">
+    <div class="org-tag-note">Dit svar forbliver anonymt. Tagget bruges kun til at vise jeres organisation et samlet billede — ingen individuelle svar deles.</div>
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- Q1 -->
+
+  <div class="q-block">
+    <div class="q-num">01 — Tilstedeværelse</div>
+    <div class="q-text">Hvad forsvinder, når du ikke er der?</div>
+    <div class="q-sub">Tænk ikke på hvad du laver — tænk på hvad der mangler, når du er fraværende.</div>
+    <div class="options" id="q1">
+      <button class="opt" onclick="pick(this,'q1',1)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En opgave bliver ikke løst</div>
+          <div class="opt-ex">fx rapporten sendes ikke, mødet bookes ikke, dataen opdateres ikke</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q1',2)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En faglig viden er ikke til stede</div>
+          <div class="opt-ex">fx juridisk fortolkning, teknisk kendskab, markedsforståelse, regulatorisk erfaring</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q1',3)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En metode eller struktur holder op med at virke</div>
+          <div class="opt-ex">fx salgsprocessen halter, budgetflowet knækker, onboarding-rutinen falder fra hinanden</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q1',4)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En forbindelse brydes — og ingen andre lukker den</div>
+          <div class="opt-ex">fx mellem kunde og leverandør, IT og forretning, compliance og drift, ledelse og marked</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q1',5)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En beslutningslogik forsvinder</div>
+          <div class="opt-ex">fx hvem der prioriteres, hvilke risici der accepteres, hvilken retning der vælges</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-num">02 — Efterladenskab</div>
+    <div class="q-text">Hvad overlever dig?</div>
+    <div class="q-sub">Tænk på det vigtigste du har gjort det seneste år. Hvad eksisterer stadig — og bruges af andre?</div>
+    <div class="options" id="q2">
+      <button class="opt" onclick="pick(this,'q2',1)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Ingenting særligt — indsatsen var god, men er afsluttet</div>
+          <div class="opt-ex">fx et projekt leveret, en aftale lukket, en rapport godkendt</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q2',2)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Noget der stadig bruges — men primært af mig selv</div>
+          <div class="opt-ex">fx en model jeg selv kører, en relation jeg selv plejer, et system jeg selv vedligeholder</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q2',3)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">En struktur eller metode andre bruger</div>
+          <div class="opt-ex">fx et format kolleger følger, en proces andre er oplært i, en skabelon der er blevet standard</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q2',4)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Noget der har ændret måden vi arbejder på — og lever videre uden mig</div>
+          <div class="opt-ex">fx en ny beslutningsstruktur, en omlagt proces, et samarbejde der nu er normalt</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block">
+    <div class="q-num">03 — Repliker­barhed</div>
+    <div class="q-text">Hvad tager længst tid for andre at lære af det du kan?</div>
+    <div class="q-sub">Ikke hvad du er hurtigst til — hvad der er sværest at kopiere.</div>
+    <div class="options" id="q3">
+      <button class="opt" onclick="pick(this,'q3',1)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Systemerne og rutinerne — men de kan læres hurtigt</div>
+          <div class="opt-ex">En ny kollega er op til hastighed inden for få uger</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q3',2)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Den faglige dybde — det tager måneder at opbygge</div>
+          <div class="opt-ex">Domænekendskab, regulatorisk viden, teknisk forståelse</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q3',3)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Forståelsen for hvordan tingene hænger sammen</div>
+          <div class="opt-ex">Hvad der skaber friktion, hvad der blokerer hvad, hvilke rækkefølger der virker</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q3',4)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Relationerne og den kontekstuelle tillid</div>
+          <div class="opt-ex">At folk ved at jeg forstår begge sider — og stoler på min vurdering</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q3',5)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Forståelsen for hvilke beslutninger der faktisk driver alt det andet</div>
+          <div class="opt-ex">Det kræver år at se — og de fleste ser det aldrig</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-num">04 — Forbindelser</div>
+    <div class="q-text">Hvilke forbindelser lukker du — som ingen andre lukker?</div>
+    <div class="q-sub">Hvornår søger folk dig specifikt — frem for blot "nogen i din funktion"?</div>
+    <div class="options" id="q4">
+      <button class="opt" onclick="pick(this,'q4',1)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Det gør de sjældent — opgaven kunne løses af andre i samme rolle</div>
+          <div class="opt-ex">Jeg er tilgængelig og pålidelig, men ikke unik</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q4',2)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Når de har brug for min faglige viden specifikt</div>
+          <div class="opt-ex">fx en juridisk afklaring, en teknisk vurdering, en compliance-tolkning</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q4',3)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Når noget skal koordineres på tværs — og ingen andre forstår begge sider</div>
+          <div class="opt-ex">fx IT og forretning, sælger og leverandør, leder og medarbejder, dansk og udenlandsk kontor</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q4',4)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Når der skal træffes en beslutning ingen andre vil tage ejerskab for</div>
+          <div class="opt-ex">fx hvad der prioriteres, hvilken retning der vælges, hvad organisationen egentlig mener</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-num">05 — Akkumulering</div>
+    <div class="q-text">Hvad akkumulerer dit arbejde?</div>
+    <div class="q-sub">Ikke hvad du producerer — hvad der vokser og kompounder over tid som følge af det du gør.</div>
+    <div class="options" id="q5">
+      <button class="opt" onclick="pick(this,'q5',1)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Udførte opgaver og afsluttede leverancer</div>
+          <div class="opt-ex">Arbejdet er godt — men bygger primært ikke videre på sig selv</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q5',2)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Faglig dybde og domænekendskab</div>
+          <div class="opt-ex">Jeg ved mere og mere om mit felt — og det gør mig bedre år for år</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q5',3)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Metoder og strukturer der gør organisationen mere effektiv</div>
+          <div class="opt-ex">Processer, standarder og frameworks der er bedre end de var</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q5',4)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Oversættelseskapabilitet — evnen til at lukke loops andre ikke kan</div>
+          <div class="opt-ex">Jo mere erfaring, jo hurtigere og præcisere oversætter jeg</div>
+        </div>
+      </button>
+      <button class="opt" onclick="pick(this,'q5',5)">
+        <div class="opt-dot"></div>
+        <div class="opt-body">
+          <div class="opt-main">Beslutningslogik og systemforståelse der påvirker hvad organisationen vælger</div>
+          <div class="opt-ex">Måden vi tænker om problemer er anderledes fordi jeg er her</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="submit-row">
+    <button class="submit-btn" onclick="analyse()">Se min position →</button>
+    <span class="submit-note">Ikke en dom. Et udgangspunkt.</span>
+  </div>
+
+</div>
+
+<!-- RESULTAT -->
+<div id="result">
+
+  <!-- TRAPPE -->
+  <div class="staircase">
+    <div class="staircase-label">Din akkumuleringsposition</div>
+    <div class="stairs" id="stairs-vis"></div>
+    <div style="display:flex;gap:0" id="stair-labels"></div>
+  </div>
+
+  <!-- POSITION-KORT -->
+  <div class="res-card">
+    <div class="res-card-eyebrow">Din position</div>
+    <div class="res-archetype" id="r-archetype"></div>
+    <div class="res-arch-tag" id="r-arch-tag"></div>
+    <div class="res-zone" id="r-zone">
+      <div class="res-zone-dot"></div>
+      <div class="res-zone-txt" id="r-zone-txt"></div>
+    </div>
+    <div class="res-desc" id="r-desc"></div>
+  </div>
+
+  <!-- DIMENSIONER -->
+  <div class="res-dims">
+    <div class="res-dims-eyebrow">Hvad analysen ser</div>
+    <div id="r-dims"></div>
+  </div>
+
+  <!-- KANT -->
+  <div class="res-kant">
+    <p id="r-kant"></p>
+  </div>
+
+  <!-- NÆSTE TRÆK + DOKUMENTATION -->
+  <div class="res-action">
+    <div class="res-action-section">
+      <div class="res-action-eyebrow">Næste træk</div>
+      <div class="res-action-main" id="r-next-main"></div>
+      <div class="res-action-sub" id="r-next-sub"></div>
+    </div>
+    <div class="res-action-section">
+      <div class="res-action-eyebrow">Hvad du skal dokumentere</div>
+      <div class="res-action-main" id="r-doc-main"></div>
+      <div class="res-action-sub" id="r-doc-sub"></div>
+    </div>
+  </div>
+
+  <div class="res-footer">
+    <button class="btn-print" onclick="window.print()">Udskriv analyse</button>
+    <button class="btn-reset" onclick="reset()">Start forfra</button>
+  </div>
+
+  <div class="org-cta">
+    Er flere af dine kolleger med? <a href="positionsanalyse-organisation.html">Se det samlede organisationsbillede →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p><a href="https://theenginesbehind.com">theenginesbehind.com</a></p>
+  <p>Positionsanalysen — Individ · The Engines Behind · 2026</p>
+</footer>
+
+<script>
+const answers = {};
+
+function pick(btn, qId, val) {
+  document.querySelectorAll(`#${qId} .opt`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[qId] = val;
+}
+
+const ARCHETYPES = [
+  {
+    score: 1,
+    name: 'Systemfølgeren',
+    tag: 'Holder systemet kørende',
+    zone: 'high', zoneLabel: 'Høj strukturel eksponering',
+    desc: 'En motor uden brændstof er værdiløs. Du er brændstoffet. Det du gør holder organisationen kørende — det er ikke uvæsentligt. Men brændstof forbrændes. Det giver strukturel eksponering — ikke fordi du er svag, men fordi det du leverer kan leveres af billigere alternativer over tid.',
+    dims: [
+      { name: 'Opgaveudførelse', pct: 90, status: 'strength', note: 'Din styrke. Pålidelig og struktureret levering.' },
+      { name: 'Faglig dybde', pct: 30, status: 'develop', note: 'Mulighed for at opbygge viden der er sværere at replikere.' },
+      { name: 'Systemforståelse', pct: 20, status: 'develop', note: 'Endnu uudnyttet potentiale i at forstå helheden.' },
+      { name: 'Brobygning', pct: 15, status: 'develop', note: 'Lav — men det er her næste skridt starter.' }
+    ],
+    kant: 'Dette er ikke en dom. <strong>Det er et spørgsmål: ved du at du er brændstoffet — og er det et valg du har truffet, eller en position du er gledet ind i uden at vælge det?</strong>',
+    next: 'Tag én gentagelig opgave du ejer — og gør den til noget andre kan bruge uden dig.',
+    nextsub: 'En tjekliste. Et flow. En skabelon der overlever dig. Det er første skridt fra brændstof til motor.',
+    doc: 'Dokumentér tre eksempler på opgaver du løser bedre end andre — og beskriv præcist hvad der gør dig bedre.',
+    docsub: 'Ikke for at vise dig frem. For at forstå præcist hvad din reelle differentiering er — og om det er noget du kan bygge videre på.'
+  },
+  {
+    score: 2,
+    name: 'Fageksperten',
+    tag: 'Samler erfaring',
+    zone: 'mid', zoneLabel: 'Moderat strukturel eksponering',
+    desc: 'Du har dyb viden inden for dit domæne. Den er reel og har taget lang tid at opbygge. Det giver reel beskyttelse. Udfordringen er at viden der forbliver i ét hoved ikke skalerer — den forsvinder når du gør. Silo-grænsen er dit akkumuleringsloft.',
+    dims: [
+      { name: 'Faglig dybde', pct: 85, status: 'strength', note: 'Din primære styrke. Svær at replikere hurtigt.' },
+      { name: 'Opgaveudførelse', pct: 70, status: 'strength', note: 'Solid fundament i faglig leverance.' },
+      { name: 'Systemforståelse', pct: 35, status: 'develop', note: 'Her er vækstpotentialet — fra silo til system.' },
+      { name: 'Brobygning', pct: 25, status: 'develop', note: 'Næste skridt: bringe din viden i spil på tværs.' }
+    ],
+    kant: 'Fagekspertise er nødvendigt men ikke tilstrækkeligt. <strong>Det der ikke kan bruges af andre, er din personlige aktiv — ikke organisationens. Og det beskyttes ikke af AI-automationslogikken.</strong>',
+    next: 'Tag ét stykke viden du ejer eksklusivt — og eksternaliser det i en form andre kan bruge uden dig.',
+    nextsub: 'En beslutningsguide. Et analyseformat. Et framework andre følger. Fra ekspert til systemskaber.',
+    doc: 'Dokumentér tre situationer hvor din faglige viden ændrede en beslutning — og beskriv hvad der var anderledes i beslutningen fordi du var der.',
+    docsub: 'Det er beviset for at din viden ikke blot er kompetence — men at den skaber organisatorisk forskel.'
+  },
+  {
+    score: 3,
+    name: 'Procesbyggeren',
+    tag: 'Skaber metoder',
+    zone: 'mid', zoneLabel: 'Moderat strukturel eksponering',
+    desc: 'Du har gjort arbejdet mere systematisk og skalerbart. Det er markant mere end opgaveudførelse — du efterlader strukturer andre bruger. Men så længe metoderne ikke returnerer information der gør næste iteration bedre, forbliver kurven lineær fremfor eksponentiel.',
+    dims: [
+      { name: 'Systemforståelse', pct: 75, status: 'strength', note: 'Du ser mønstre og kodificerer dem. Reel styrke.' },
+      { name: 'Faglig dybde', pct: 65, status: 'strength', note: 'Funderet i domænekendskab.' },
+      { name: 'Brobygning', pct: 45, status: 'develop', note: 'Næste skridt: fra procesoptimering til beslutningsredesign.' },
+      { name: 'Beslutningslogik', pct: 30, status: 'develop', note: 'Her er potentialet til Oversætterniveauet.' }
+    ],
+    kant: 'En god metode er et fundament — ikke et loft. <strong>Procesbyggeren stopper præcis det sted hvor kompoundingen begynder. Feedback-loopet mangler.</strong>',
+    next: 'Tag din bedste metode — og tilføj ét måleparameter der siger dig om den faktisk virker bedre end sidst.',
+    nextsub: 'Ikke et dashboard. Ét tal. Det der om seks måneder fortæller dig om metoden akkumulerer eller blot gentager sig.',
+    doc: 'Dokumentér tre processer du har skabt eller forbedret — og beskriv hvad der er anderledes i organisationens output som følge af dem.',
+    docsub: 'Fokusér på output-forskellen, ikke på processen selv. Det er beviset for at dine metoder akkumulerer.'
+  },
+  {
+    score: 4,
+    name: 'Oversætteren',
+    tag: 'Designer motorer',
+    zone: 'low', zoneLabel: 'Lav strukturel eksponering',
+    desc: 'Du forbinder det der ikke taler samme sprog. Du kan bevæge dig mellem domæner, funktioner og systemer og skabe sammenhæng andre ikke kan. Det er præcis den kapabilitet organisationer ikke kan producere hurtigt nok på rekrutteringsmarkedet — og som AI ikke erstatter.',
+    dims: [
+      { name: 'Brobygning', pct: 88, status: 'strength', note: 'Din primære styrke. Strukturelt sværest at erstatte.' },
+      { name: 'Systemforståelse', pct: 75, status: 'strength', note: 'Du ser helheden — ikke kun dit eget felt.' },
+      { name: 'Faglig dybde', pct: 65, status: 'strength', note: 'Fundament der giver troværdighed på begge sider.' },
+      { name: 'Beslutningslogik', pct: 55, status: 'develop', note: 'Næste skridt mod Systemskaberniveauet.' }
+    ],
+    kant: 'Du er strukturelt sjælden. <strong>Det markedet ikke kan producere hurtigt nok, er præcis det du allerede er. Den reelle risiko er ikke erstatning — det er at organisationen ikke forstår hvad du faktisk gør.</strong>',
+    next: 'Identificér den forbindelse i din organisation der bryder oftest — og gør dig uundværlig præcis der.',
+    nextsub: 'Ikke som et projekt. Som din naturlige arbejdsposition. Det er sådan Oversættere akkumulerer.',
+    doc: 'Dokumentér tre konkrete situationer hvor du oversatte mellem funktioner — og beskriv hvad der ændrede sig i en beslutning som følge.',
+    docsub: 'Det er dit bevis. Oversætterens arbejde er usynligt indtil det dokumenteres. Det er dit ansvar at gøre det synligt.'
+  },
+  {
+    score: 5,
+    name: 'Systemskaberen',
+    tag: 'Ejer beslutningslogik',
+    zone: 'low', zoneLabel: 'Lav strukturel eksponering',
+    desc: 'Du påvirker hvordan organisationen tænker og vælger. Du er ikke blot god til dit arbejde — du former de præmisser andre arbejder ud fra. Hvert år vokser gabet til dem der ikke gør det du gør.',
+    dims: [
+      { name: 'Beslutningslogik', pct: 92, status: 'strength', note: 'Din definerende styrke. Svært at erstatte og svært at kopiere.' },
+      { name: 'Brobygning', pct: 80, status: 'strength', note: 'Du ser og lukker forbindelser på systemniveau.' },
+      { name: 'Systemforståelse', pct: 85, status: 'strength', note: 'Mønstre over tid — ikke blot situationer.' },
+      { name: 'Faglig dybde', pct: 70, status: 'strength', note: 'Funderet indsigt der underbygger systemforståelsen.' }
+    ],
+    kant: '<strong>Den bindende begrænsning er ikke længere din kapabilitet. Det er organisationens evne til at absorbere hvad du bidrager med.</strong> Det er dit næste problem at løse — ikke et personligt, men et strukturelt.',
+    next: 'Kortlæg præcis hvor organisationen holder op med at bruge det du ved — og forstå den strukturelle årsag.',
+    nextsub: 'Svaret definerer din næste indsats. Ikke hvad du gør — men hvad der skal til for at det du gør skalerer ud over dig selv.',
+    doc: 'Dokumentér tre beslutninger der er anderledes fordi du var i rummet — og beskriv den systemiske effekt, ikke den individuelle.',
+    docsub: 'Det er beviset for at du ikke blot løser problemer. Du ændrer måden organisationen identificerer dem.'
+  }
+];
+
+const STAIR_LABELS = ['Opgave', 'Viden', 'Metode', 'Koordination', 'Beslutning'];
+const STAIR_HEIGHTS = [20, 36, 52, 70, 90]; // % af container
+
+function buildStairs(activeScore) {
+  const stairsEl = document.getElementById('stairs-vis');
+  const labelsEl = document.getElementById('stair-labels');
+  stairsEl.innerHTML = '';
+  labelsEl.innerHTML = '';
+
+  STAIR_LABELS.forEach((lbl, i) => {
+    const score = i + 1;
+    const isActive = score === activeScore;
+    const isPast = score < activeScore;
+
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center';
+
+    const indicator = document.createElement('div');
+    indicator.style.cssText = 'font-size:16px;text-align:center;height:20px;margin-bottom:2px';
+    indicator.textContent = isActive ? '▲' : '';
+    indicator.style.color = '#c47d0e';
+
+    const stair = document.createElement('div');
+    stair.style.cssText = `
+      width:100%;
+      height:${STAIR_HEIGHTS[i]}%;
+      border-radius:4px 4px 0 0;
+      background:${isActive ? '#c47d0e' : isPast ? '#d0cdc8' : '#e8e4de'};
+      transition:all .4s;
+    `;
+
+    wrap.appendChild(indicator);
+    wrap.appendChild(stair);
+    stairsEl.appendChild(wrap);
+
+    const labelWrap = document.createElement('div');
+    labelWrap.style.cssText = 'flex:1;text-align:center';
+    const labelEl = document.createElement('div');
+    labelEl.style.cssText = `font-size:10px;color:${isActive ? '#1a1a1a' : '#aaa'};font-weight:${isActive ? '700' : '400'};margin-top:6px;line-height:1.3`;
+    labelEl.textContent = lbl;
+    labelWrap.appendChild(labelEl);
+    labelsEl.appendChild(labelWrap);
+  });
+}
+
+function calcScore() {
+  const vals = [answers.q1||1, answers.q2||1, answers.q3||1, answers.q4||1, answers.q5||1];
+  // Vægtet gennemsnit — q1 og q5 vejer mest (de er de mest diagnostiske)
+  const weighted = (vals[0]*1.5 + vals[1] + vals[2] + vals[3] + vals[4]*1.5) / 6.5;
+  return Math.min(5, Math.max(1, Math.round(weighted)));
+}
+
+function analyse() {
+  if (Object.keys(answers).length < 5) {
+    alert('Besvar venligst alle fem spørgsmål.');
+    return;
+  }
+
+  const score = calcScore();
+  const arch = ARCHETYPES[score - 1];
+
+  buildStairs(score);
+
+  document.getElementById('r-archetype').textContent = arch.name;
+  document.getElementById('r-arch-tag').textContent = arch.tag;
+
+  const zoneEl = document.getElementById('r-zone');
+  zoneEl.className = 'res-zone ' + arch.zone;
+  document.getElementById('r-zone-txt').textContent = arch.zoneLabel;
+
+  document.getElementById('r-desc').textContent = arch.desc;
+
+  // Dimensioner
+  document.getElementById('r-dims').innerHTML = arch.dims.map(d => `
+    <div class="dim-item">
+      <div class="dim-header">
+        <div class="dim-name">${d.name}</div>
+        <div class="dim-status ${d.status}">${d.status === 'strength' ? 'Styrke' : 'Potentiale'}</div>
+      </div>
+      <div class="dim-track"><div class="dim-fill" style="width:${d.pct}%"></div></div>
+      <div class="dim-note">${d.note}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('r-kant').innerHTML = arch.kant;
+  document.getElementById('r-next-main').textContent = arch.next;
+  document.getElementById('r-next-sub').textContent = arch.nextsub;
+  document.getElementById('r-doc-main').textContent = arch.doc;
+  document.getElementById('r-doc-sub').textContent = arch.docsub;
+
+  // ── GEM TIL ORGANISATIONSAGGREGERING ──────────────────────────────
+  saveResultToStorage(score, arch);
+
+  const res = document.getElementById('result');
+  res.classList.add('show');
+  res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Normaliser org-tag: lowercase, trim, fjern specialtegn — så "Danpo" og "danpo " bliver samme nøgle
+function normalizeOrgTag(raw) {
+  if (!raw) return null;
+  return raw.trim().toLowerCase().replace(/[^a-z0-9æøå\- ]/gi, '').replace(/\s+/g, '-');
+}
+
+async function saveResultToStorage(score, arch) {
+  try {
+    const rawTag = document.getElementById('org-tag-input').value;
+    const orgTag = normalizeOrgTag(rawTag);
+
+    const entry = {
+      score: score,
+      zone: arch.zone,
+      zoneLabel: arch.zoneLabel,
+      archetype: arch.name,
+      orgTag: orgTag || 'ingen-organisation',
+      timestamp: new Date().toISOString()
+    };
+
+    // Generér et unikt entry-id (ikke knyttet til person)
+    const entryId = 'entry_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
+    if (window.storage) {
+      await window.storage.set('pos-individ:' + entryId, JSON.stringify(entry), true);
+
+      // Opdater org-index, så organisationsvisningen hurtigt kan finde alle entries for et tag
+      if (orgTag) {
+        let indexResult = null;
+        try {
+          indexResult = await window.storage.get('pos-org-index:' + orgTag, true);
+        } catch (e) { /* nøgle findes ikke endnu */ }
+
+        let ids = [];
+        if (indexResult && indexResult.value) {
+          try { ids = JSON.parse(indexResult.value); } catch (e) { ids = []; }
+        }
+        ids.push(entryId);
+        await window.storage.set('pos-org-index:' + orgTag, JSON.stringify(ids), true);
+      }
+    }
+  } catch (err) {
+    // Fejler stille — værktøjet skal fungere selv hvis storage ikke er tilgængeligt
+    console.warn('Kunne ikke gemme resultat til aggregering:', err);
+  }
+}
+
+function reset() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  document.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+  document.getElementById('result').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
