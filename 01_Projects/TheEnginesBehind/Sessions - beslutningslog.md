@@ -1,454 +1,92 @@
 # SESSIONS — The Engines Behind
-## Analytisk beslutningslog
+## Analytisk beslutningslog (kort form)
+### Sidst opdateret: 19. juni 2026
 
 ---
 
-Dette dokument er ikke et mødereferat.
-
-Det er bogens analytiske hukommelse. Hver session dokumenterer ikke blot hvad der blev produceret — men hvilke analytiske valg der blev truffet, hvilke retninger der blev forkastet og hvorfor, og hvad der forbliver uafklaret.
-
-Det er den forskel der adskiller et levende projekt fra en filsamling.
+Dette dokument er bogens analytiske hukommelse — ikke et mødereferat.
+Fra denne version: kortere, status-først, next-steps-fokuseret. Detaljeret historik (maj 2026-sessionerne) ligger i `SESSIONS_archive.md` hvis den skal genfindes.
 
 ---
 
-## Session format
+## Status — hvor projektet står
+
+**Manuskript:** Komplet første udkast, alle fem akter. Akt 3–5 har været gennem store revisionsrunder (arketyper, ACA som konverteringsteori, Fragility Paradox, de to nøglesætninger). Det der mangler nu er **ikke nyt indhold** — det er **skarphed**: falsifikation, kildehærdning, gentagelsesreduktion.
+
+**Site & instrumenter:** theenginesbehind.com er live med manifest-forside (DA/EN). Fire instrumenter er bygget og opdateret:
+- Skæbnescenariet v5 — indgangsportal (Replacement vs Transformation Risk)
+- Karrierekompas v4 — retning (4 akser)
+- Selvdiagnostik v3 — selvrefleksion
+- Rekruttering v2 — kommerciel guldmine (ESCO + oversættelsesevne)
+
+Git committed gennem mindst 778eeba.
+
+**Kommerciel positionering:** Skarpere end tidligere. Se ny analyse nedenfor — bogen sidder nu eksplicit på et "Conversion Gap" mellem tre uafhængige kilder (WEF, Cedefop, EU-regulering), hvilket gør HR/rekruttering til **første indtægtskilde, ikke hovedpositionen**.
+
+---
+
+## Ny analyse — Akt 3 mod kommercialiseringsroadmap (WEF + Cedefop)
+
+Læst op mod `The_connection`-tesen: *Engines Behind forklarer hvorfor nogle organisationer omsætter adgang til kapabilitet, mens andre omsætter adgang til aktivitet.*
+
+**WEF Future of Jobs 2025 — bekræfter "Execution Gap" med hårdt tal:**
+Skills gaps er den primære barriere for organisatorisk transformation, nævnt af 63% af 1.000+ adspurgte arbejdsgivere globalt for 2025–2030 — højere end i 2023-udgaven, og rangeret #1 i 52 af 55 økonomier og 19 af 22 sektorer. Det er ikke et nichefund — det er næsten universelt. Organisationskultur/forandringsmodstand er nr. 2 (46%), forældet regulering nr. 3 (39%). Det er værd at bemærke i Akt 3: **adgang til talent er ikke det samme som adgang til skills — og skills-adgang er ikke det samme som konverteringskapacitet.** WEF måler symptomet (gap), ikke mekanismen (hvorfor gap'et ikke lukkes selv når der investeres i reskilling).
+
+Dette styrker ACA-pointen direkte: 39% af kernekompetencer forventes ændret inden 2030 (kilde allerede i MASTER_CONTEXT) — men gabet WEF rapporterer er *adgang til de rette profiler*, ikke organisationens evne til at konvertere de profiler den allerede har. Det er præcis Translation Barrier-argumentet fra Akt 2/3.
+
+**Cedefop "Skills in transition: the way to 2035" — bekræfter at gabet ikke kun er kvalifikationsmangel:**
+Cedefop pointerer eksplicit at mange "shortages" ikke skyldes manglende kompetencer i arbejdsstyrken, men dårlige arbejdsforhold, organisatorisk uattraktivitet og strukturelle match-problemer — kun en mindre andel (26%) af EU-virksomheder oplever reelle vanskeligheder med at finde de rette skills. Det er et vigtigt korrektiv: Cedefop adskiller **supply-side mangel** fra **demand-side/organisatorisk dysfunktion** — hvilket er tættere på ACA end WEF er. Cedefop bevæger sig fra "skills gap" til "match mellem arbejde, kapabilitet og organisatorisk kontekst" — det er konverteringssprog, ikke adgangssprog.
+
+**Konklusion til Akt 3 / positionering:**
+De tre kilder (WEF, Cedefop, EU-regulering/SIMVIA) danner allerede den logik der er skitseret i `The_connection`: Skills Gap → Capability Gap → Execution Gap → **Conversion Gap**, og ACA er forklaringen på Conversion Gap. Det er en stærkere og bredere positionering end et rekrutteringsprodukt. Anbefaling: brug WEF's 63%-tal og Cedefop's supply/demand-distinktion som de to bærende eksterne datapunkter i Akt 3's åbning af rekrutteringskapitlet — de er primære, citerbare, og peger direkte på samme mekanisme fra to uafhængige institutionelle vinkler.
+
+**Ubekræftet/ikke undersøgt endnu:** SIMVIA-kilden og den specifikke regulatoriske kæde (PPWR, ESPR, DPP, AI Act, CSRD, EUDR) er ikke verificeret med primærkilder i denne session — kun nævnt i `The_connection`-notatet. Bør kildehærdes hvis den skal bruges som tredje ben i argumentet.
+
+---
+
+## Næste skridt — prioriteret
 
 ```
-## [Dato] — [Sessionsoverskrift]
+1. Kobling Skæbne → Kompas (site)        — hurtig, stor effekt på brugerrejse
+2. Forside: Skæbne som "START HER"        — hurtig
+3. Rekruttering v2 — skarpere ESCO +
+   oversættelsesevne                      — kommercielt stærkest, største arbejde
+4. Karrierekompas omtænkt: 4 bars → 1 retning  — kreativt arbejde
+5. Selvdiagnostik: formålslinje
+   ("til dig — ikke til din leder")        — hurtig
+```
 
-**Det vi løste:**
-Hvad blev afklaret analytisk eller strukturelt.
+```
+6. Kritisk gennemlæsning af manuskript (Akt 1 primært):
+   - Falsifikation per case: "Hvad ville modbevise min læsning?"
+   - Source hardening: 5-8 nøglepåstande/case, stærkere kilder
+   - Operationel boks efter hver case: "Hvad lederen ser" (1-2 sætninger)
+   - Gentagelsesreduktion 15-20% tværs af kapitler
+   - "Hun" plantes som narrativ tråd i Akt 2/3/4
+   Mål: manuskriptscore 87 → 92+
+```
 
-**Beslutninger der ikke kan omgøres:**
-De valg der er fundamentale for projektets retning.
-Disse må ikke overskrives uden eksplicit diskussion.
+```
+7. Kildehærdning af SIMVIA/reguleringskæden hvis Conversion Gap-
+   positioneringen skal stå skarpt i Akt 3's åbning
+```
 
-**Forkastede retninger:**
-Hvad vi forsøgte og valgte fra — og præcist hvorfor.
-Det er lige så vigtigt som hvad vi valgte.
-
-**Output:**
-Filer produceret denne session.
-
-**Åbne spørgsmål:**
-Det der forbliver uafklaret. Ikke todo-liste.
-Analytiske spørgsmål der kræver svar.
-
-**Næste træk:**
-Det mest naturlige næste skridt baseret på
-hvor projektet står nu.
+```
+8. English executive summary (når manuskript-gennemlæsning er færdig)
 ```
 
 ---
 
-## 2026-05-20 — ESCO+ACA integration og Akt3 individniveau
-
-**Det vi løste:**
-
-ESCO og ACA er nu analytisk præcist adskilt og koblet:
-ESCO beskriver rollenormen — hvad jobbet strukturelt kræver.
-ACA måler gabet opad fra normen — hvem der overskrider den og i hvilke dimensioner.
-Gabet er signalet. Ikke match mod baseline.
-
-Fem arketyper defineret med progression lav → høj ACA-sandsynlighed:
-Process Keeper (12) → Domain Expert (31) → Workflow Designer (54) → Data Translator (74) → Capability Architect (91).
-
-Scoringsmodel v2 etableret: Translation demand og Accumulation Runway vægter 2× fordi de er selvforstærkende over tid. Statiske kapacitetsdimensioner vægter 1×. Automation vulnerability fratrækkes −1×.
-
-Accumulation Runway operationaliseret i tre subdimensioner: feedback loop speed + knowledge externalizability (ESCO transversal skill-andel) + path dependency depth (skill adjacency i ESCO-ontologien).
-
-**Beslutninger der ikke kan omgøres:**
-
-ESCO placeres som motorblok — ikke som appendiks. Det er fundamentet alt andet bygger på i rekrutteringskapitlet.
-
-"Nordjysk tragikomik i enterprise-format: guldet ligger på lageret, men ingen har oprettet varenummeret" — bevares urørt. For evigt.
-
-Velocity asymmetry skrives i erhvervskrimi-tone, ikke som dyb analyse. Pointen skal mærkes, ikke forklares.
-
-**Forkastede retninger:**
-
-ESCO som appendiks efter barometeret — analytisk for svagt. ESCO er motorblokken, ikke et nyttigt supplement.
-
-Scorecard med ensartet vægtning — ikke forsvarligt. Translation demand og Accumulation Runway er de eneste selvforstærkende dimensioner. De skal veje mere.
-
-Tidshorisonter (2031/2036) som selvstændigt afsnit med procentsatser — for McKinsey-agtigt. Integreret som mekanisk WEF-forankret argument i stedet.
-
-**Output:**
-
-`part3-rekruttering-FINAL.md` — komplet kapitel (16 sektioner)
-`aca-assessment-v2.jsx` — dynamisk arketype-assessment med v2 scoring
-`capability-translation-index.jsx` — interaktiv job/AI intensity matrix
-`MASTER_CONTEXT.md` — opdateret
-`SESSIONS.md` — dette dokument startet
-
-**Åbne spørgsmål:**
-
-Kobling fra rekrutteringskapitlet til Akt1-cases (Rockefeller/Toyota/Maersk) som historisk præcedens for samme mekanisme på individniveau — ikke skrevet endnu.
-
-Grafiske visualiseringer fra tidligere sessioner (adoptionsteater, ACA-motor, velocity asymmetry) — ikke genfundet eller genopbygget.
-
-**Næste træk:**
-
-Integrere rekrutteringskapitlet i Akt3. Genopbygge grafiske visualiseringer. Starte Oversætteren-kapitlet.
-
----
-
-## 2026-05-21 — Akt2 og Akt3 komplet første udkast + repo-struktur
-
-**Det vi løste:**
-
-Akt2 komplet som tekstmateriale — syv kapitler produceret eller bekræftet:
-Det usynlige gab · Adoptionsteater vs Integrationssystem · Grænsen de fleste ikke krydser · Oversætteren · Ejer du accelerationen · TSMC & ASML · 3 Lande 3 Strategier.
-
-Akt3 komplet første udkast — otte kapitler:
-Intro (Det spørgsmål du ikke kan undgå) · 1a Oversætteren · 1b Rekruttering & karriere · 1c Workflow redesign · 2 Organisationen · 3 Staten · 4 Kontinentet · 5 Governance.
-
-Narrative broer produceret — fire overgangstekster der forbinder niveauerne i Akt3 som én fortælling frem for fem separate kapitler.
-
-ACA som universel mekanisme — tværsektorielt kapitel produceret med empirisk forankring i sundhed, kreative sektorer og service.
-
-Falsifikationsanalyse gennemført — fem påstande testet, to svagheder identificeret som strukturelle (compute-spring og CTI-validering), tre substantielt imødekommet med BCG/JPE/Dallas Fed-data.
-
-Akt5 komplet — kapitel 25 (ACA som forklaringsmotor med falsifikationsbetingelser) og kapitel 26 (Slutmanifestet).
-
-Repo-struktur etableret og synkroniseret med GitHub. .gitignore ryddet op. MASTER_CONTEXT og SESSIONS på plads.
-
-Structural Framework v2 produceret — opgraderet fra teknisk specifikation til analytisk dokument i bogens tone.
-
-**Beslutninger der ikke kan omgøres:**
-
-Akt3 åbner med billedet af to mænd der begge har set TPS — ikke med en analytisk definition. Det personlige billede kommer før teorien.
-
-De narrative broer er ikke selvstændige filer. De lever som afslutning på hvert kapitel — så overgangen sker i læseflowet, ikke som separate sektioner.
-
-Kapitel 26 slutter på to ord med tom linje foran: "Køb motorerne. Ikke narrativet." Ingen forklaring. Ingen tak for læsningen. Ingenting efter.
-
-Falsifikationsbetingelserne er eksplicitte i kapitel 25. Det er analytisk integritet der ikke må fjernes selv om det er ubehageligt.
-
-**Forkastede retninger:**
-
-Akt3 som fem separate analytiske afhandlinger — forkastet til fordel for én fortælling med narrative broer der forbinder niveauerne.
-
-Slutmanifestet som opsummering — forkastet. Det opsummerer ikke. Det stiller et spørgsmål læseren ikke kan undgå.
-
-Capability Translator i Akt3 som blot en gentagelse af Akt2-definitionen — forkastet. 1a etablerer hvem Oversætteren er og gør. 1b viser hvordan man finder dem. To separate funktioner.
-
-**Output:**
-
-`akt2-kap2-adoptionsteater.md`
-`akt2-kap7-velocity-asymmetry.md`
-`akt2-kap8-translation-barrier.md`
-`akt2-kap10-ejer-du-accelerationen.md`
-`akt2-kap11-tsmc-asml.md`
-`akt2-kap12-tre-lande.md`
-`akt3-00-intro-aabning.md`
-`akt3-1b-rekruttering-karriere.md`
-`akt3-kap14a-capability-translator.md`
-`akt3-kap14c-workflow-redesign.md`
-`akt3-kap15-organisationen.md`
-`akt3-kap16-staten.md`
-`akt3-kap17-kontinentet.md`
-`akt3-kap18-governance.md`
-`akt3-narrative-broer.md`
-`akt3-aca-universel-mekanisme.md`
-`akt5-kap25-aca-forklaringsmotor.md`
-`akt5-kap26-slutmanifestet.md`
-`structural-framework-v2.md`
-`README_final.md`
-`MASTER_CONTEXT_v3.md`
-`SESSIONS_v2.md`
-
-**Åbne spørgsmål:**
-
-CTI-instrumentet er ikke empirisk valideret. Det er den mest direkte metodologiske svaghed. Kræver enten empirisk opfølgning eller eksplicit markering i teksten som teoretisk afledt.
-
-Compute-spring som accumulation reset er delvist imødekommet men ikke elimineret. RAND-argumentet er stærkt — men påstanden om at organisatorisk RACAP overlever teknologiskift er endnu en hypotese, ikke dokumenteret faktum.
-
-Akt1 mangler en eksplicit bro til Akt2 — overgangen fra historiske cases til AI-acceleration er analytisk klar men ikke narrativt skrevet som en overgang.
-
-Akt4 er underudviklet relativt til bogens øvrige dele. Fragility Paradox-argumentet er bogens mest originale bidrag til strategilitteraturen og fortjener mere plads.
-
-Gennemskrivningsrunde mangler på alle kapitler — særligt åbningssætninger og overgange inden for kapitlerne.
-
-Grafiske visualiseringer er ikke genopbygget.
-
-**Næste træk:**
-
-Gennemskrivningsrunde på Akt1 og Akt2 med fokus på åbningssætninger og narrative overgange.
-
-Udvidelse af Akt4 — Fragility Paradox fortjener mindst to yderligere kapitler.
-
-Bro fra Akt1 til Akt2 — én side der forbinder det historiske mønster med AI-acceleration narrativt.
-
----
-
-## 2026-05-21 — Begrebsrydning, dansk terminologi og Akt4 kapitel 3
-
-**Det vi løste:**
-
-Capability Translator erstattet med **Oversætteren** overalt i manuskriptet. Beslutningen er endelig og må ikke omgøres.
-
-Komplet begrebsafklaring gennemført — alle engelske fagtermer kortlagt med anbefalinger:
-- Beholdes på dansk med forklaring: ACA, PACAP/RACAP, Oversætteren
-- Erstattes i narrativ tekst: Translation Barrier → "grænsen de fleste ikke krydser", Velocity Asymmetry → "Det usynlige gab", Bottleneck → "flaskehals"
-- Fagligt register kun: ESCO Baseline, ESCO-ACA Gap, Replication Barriers
-
-Akt4 kapitel 3 skrevet: Koncentrationsparadokset — TSMC, ASML, hyperscalers og foundation models som fire koncentrationspunkter. Paradoksets kerne: den samme mekanisme der producerede styrken, producerede sårbarheden.
-
-Repo ryddet op og synkroniseret. Begrebsregister tilføjet som fil.
-
-MASTER_CONTEXT v3 og SESSIONS v2 uploadet til Claude Projects — erstatter gamle kontekstfiler. Fuld sessionshukommelse nu automatisk tilgængelig ved sessionstart.
-
-Projektrating: 73 → estimeret 78 efter dagens arbejde.
-
-**Beslutninger der ikke kan omgøres:**
-
-**Oversætteren** er det endelige danske navn for Capability Translator. Bro-bygger blev overvejet og forkastet — for generisk. Oversætteren er præcist deskriptivt og aktiverer genkendelighed.
-
-Begrebsjargon reduceres konsekvent i narrativ tekst. Fagtermer lever i begrebsregister og MASTER_CONTEXT — ikke i løbende kapiteltekst.
-
-**Forkastede retninger:**
-
-Bro-bygger som alternativ til Oversætteren — forkastet. For associeret med "samarbejdsvillig person" fremfor en præcis funktion.
-
-Porter's Diamant som aktiv analytisk linse — forkastet. Bidrager med én reel indsigt (konkurrencefordel opstår i systemet omkring aktøren) men er ikke operationelt aktiv i teksten. Bevares i teoretisk fundament som én linje.
-
-**Output:**
-
-`begrebsafklaring-v1.md`
-`3. Koncentrationsparadokset.md`
-`SESSIONS_v3.md` — denne fil
-`README_final.md` — opdateret
-
-**Åbne spørgsmål:**
-
-De fem arketyper har engelske navne (Process Keeper, Domain Expert, Workflow Designer, Data Translator, Capability Architect) — skal disse også danskgøres? Forslag: Systemfølgeren, Fageksperten, Procesbyggeren, Datafortolkeren, Arkitekten.
-
-Akt4 kapitel 3 er nummer tre — men der mangler stadig kobling mellem kapitel 2 og 3. Koncentrationsparadokset springer direkte ind — en kortere bro fra F1-bilen til TSMC ville styrke flowet.
-
-Grafiske visualiseringer stadig ikke genopbygget.
-
-**Næste træk:**
-
-Dansk navngivning af de fem arketyper — beslutning kræves.
-
-Gennemskrivningsrunde på Akt2 åbningssætninger med den nye danske terminologi.
-
-Bro fra Akt1 til Akt2 — narrativ overgang fra historiske cases til AI-acceleration.
+## Beslutninger der ikke kan omgøres (uændret)
+
+- "Køb motorerne. Ikke narrativet." — slutter Kapitel 26, ingen forklaring, ingenting efter
+- ACA er konvertering, ikke adgang — må ikke drifte tilbage til adgangsframing
+- Lusiaves/Scandi Standard: strukturanalyse, ingen intentionsattribuering
+- CTI-instrumentet: eksplicit markeret som teoretisk afledt, ikke empirisk valideret
+- Fem arketyper låst: Systemfølgeren / Fageksperten / Procesbyggeren / Oversætteren / Systemskaberen
+- Manifest-tone, ikke akademisk — korte deklarative sætninger
 
 ---
 
 *SESSIONS.md — The Engines Behind*
-*Opdateres ved afslutning af hver session.*
-*Format: analytisk beslutningslog, ikke mødereferat.*
-
-
----
-
-## 2026-05-23 — Skæbnescenariet, kognitiv stratifikation og bogens anden nøglesætning
-
-**Det vi løste:**
-
-Skæbnescenariet bygget og itereret til v3 — robust model baseret på seks analytiske dimensioner kollapset til fire intuitive spørgsmål. To separate risici: erstatningsrisiko og transformationsrisiko. Fem profiler. Jobtitel driver ingen logik — kun genkendelse.
-
-SOSU-problemet løst: instrumentet undervurderede tidligere profiler med høj relationel og ansvarsmæssig tyngde. Dimension 5 (fejlomkostning) virker nu korrekt omvendt — beskytter mod erstatning, men ikke mod transformation.
-
-Kognitiv stratifikation udvidet til to kapitler:
-- Kap 8: kortlægger mekanismen og de tre lag
-- Kap 10: "Stien der forsvinder" — tre tidshorisonter, tre verdener, vej frem for individet og staten
-
-DeepSeek-tilføjelse skrevet til Akt 2 kap 5.
-Disclaimer skrevet til copyright-siden.
-
-**Beslutninger der ikke kan omgøres:**
-
-Bogens anden nøglesætning er låst fast:
-
-*"Bygger du motoren, betjener du motoren — eller bliver du input til motoren?"*
-
-Det er det menneskelige perspektiv på bogens centrale mekanisme.
-"Køb motorerne. Ikke narrativet." er investorperspektivet.
-Disse to sætninger dækker bogens to niveauer.
-
-Sætningen bruges tre steder:
-1. Som slutlinje i Skæbnescenariet
-2. Som bogens anden nøglesætning i MASTER_CONTEXT
-3. Som potentiel åbningslinje på theenginesbehind.com
-
-Jobtitler driver ingen logik i instrumenterne — kun genkendelse. Al logik baseres udelukkende på sliders/svar.
-
-Universalt sprog i alle instrumenter — ikke system-sprog, ikke sektor-specifikt. Menneskeligt og genkendelig på tværs af SOSU, læge, musiker, finansmand.
-
-**Forkastede retninger:**
-
-Sektor-specifikt sprog i instrumenter — forkastet. For snævert. Ikke skalerbart til de mange jobtitler og profiler der eksisterer.
-
-Jobtitel som logik-driver — forkastet. Producerede forkerte resultater for profiler med høj relationel og ansvarsmæssig tyngde (SOSU-problemet).
-
-Én samlet risikoscore — forkastet. Erstatningsrisiko og transformationsrisiko er fundamentalt forskellige og skal vises separat.
-
-**Output:**
-
-`skaebne-scenarie-v3.html` — robust instrument med seks-dimensions-model
-`akt4-kap10-stien-der-forsvinder.md` — nyt kapitel
-`tre-tilfoejelser-deepseek-disclaimer-stratifikation.md`
-`SESSIONS_v3.md` — denne opdatering
-
-**Åbne spørgsmål:**
-
-MASTER_CONTEXT skal opdateres med den nye nøglesætning.
-
-theenginesbehind.com forsiden skal redesignes med den nye sætning som åbning.
-
-Gennemskrivningsrunden er stadig den vigtigste udestående opgave for at løfte scoren fra 87 til 90+.
-
-**Næste træk:**
-
-Opdater MASTER_CONTEXT med ny nøglesætning.
-Commit alt til GitHub.
-Planlæg gennemskrivningsrunde på Akt 1 og 2.
-
----
-
-*SESSIONS.md — The Engines Behind*
-*Opdateres ved afslutning af hver session.*
-
-
----
-
-## 2026-05-23 — Redaktionelle principper for gennemskrivningsrunden
-
-**Tre principper der skal styre næste runde — ikke opgaver, men analytiske standarder:**
-
----
-
-**Princip 1: Falsifikation per case**
-
-For hver historisk case i Akt 1 stilles eksplicit spørgsmålet:
-*"Hvad ville modbevise min læsning?"*
-
-Eksempel Ford: Var Fords fordel virkelig ukopiérbar læring — eller bare kapital, timing, markedsekspansion og lav pris?
-
-Det gør teksten analytisk robust uden at dræbe energien. Det er ikke en svækkelse af argumentet — det er en styrkelse. Et argument der har overvejet sin stærkeste modstander, er stærkere end et der ikke har.
-
-Falsifikationsspørgsmålet skrives ikke nødvendigvis eksplicit i teksten — men det skal have informeret hvert kapitels analyse. Hvis svaret på "hvad ville modbevise dette" er trivielt, er påstanden for svag.
-
-**Princip 2: Source hardening-runde**
-
-5-8 nøglepåstande per case identificeres og verificeres med stærkere kilder. Ikke alt skal fodnotes ihjel — men de bærende kausale påstande og de centrale tal skal stå solidt.
-
-Særlig opmærksomhed på: påstande om markedsandele, tidspunkter for teknologiske skift, og kausale kæder der præsenteres som fakta men er fortolkninger.
-
-Metoden: for hver case — hvad er den ene påstand der bærer hele argumentet? Den skal have den stærkeste kilde.
-
-**Princip 3: Operationel oversættelsesboks**
-
-Efter hver case i Akt 1 tilføjes én fast boks. Ikke en opsummering. En operationel oversættelse.
-
-Format:
-```
-HVAD LEDEREN SER
-[Én til to sætninger der oversætter casen 
-til en konkret observation en praktiker 
-kan bruge]
-```
-
-Det gør materialet brugbart til:
-- NotebookLM og AI-assisteret analyse
-- LinkedIn-uddrag
-- Lederdialoger og foredrag
-- PTDE/Regulus-kontekst
-- Karrierepositionering
-
-Boksen skal ikke forklare casen igen. Den skal besvare spørgsmålet: *"Hvad er det første jeg kigger efter i min egen organisation?"*
-
----
-
-**Redaktionel regel der tilføjes til gennemskrivningsrunden:**
-
-*"Det var ikke X, det var Y"*-konstruktionen bruges nu selektivt — maksimalt to gange per kapitel. Samme pointe gentaget med næsten samme formulering skæres konsekvent.
-
-Mål: 15-20% reduktion i gentagelse på tværs af alle kapitler. Rytmen bevares. Støjen fjernes.
-
----
-
-**Næste træk:**
-
-Gennemskrivningsrunden starter med Akt 1 — de syv cases er bogens fundament og fortjener den første runde.
-
-Rækkefølge: falsifikation → source hardening → operationel boks → gentagelsesreduktion.
-
-
-
----
-
-## 2026-06-17 — Rekrutteringsværktøj v4 + Akt3 individniveau revideret
-
-**Det vi løste:**
-
-Rekrutteringsværktøjet redesignet som én schweizerkniv med fire tabs:
-① Interviewspørgsmål (eksisterende, bevaret urørt)
-② Stillingsopslag (eksisterende, bevaret urørt)
-③ ACA-analyse (ny — fem dimensioner, vægtning, arketype-output)
-④ Skjulte talenter (eksisterende, bevaret urørt)
-
-WEF Future of Jobs Report 2025 integreret som analytisk åbning i headeren — ikke som salgsargument, men som datakontekst. Tre tal: 39%, 63%, 11/100. Data skaber behovet. Sekvensguide øverst viser brugerrejsen.
-
-Skelnen etableret og fastholdt: analytisk tone hele vejen. Ingen kommerciel indpakning. Analysen visualiserer problemet — brugeren drager konklusionen selv.
-
-Akt3 individniveau revideret — fire filer:
-- 1. Individet kondenseret fra 530 linjer til ét skarpt åbningskapitel. De fem arketyper med kanoniske navne. Lukker på bogens menneskelige ankerspørgsmål.
-- 1a. Oversætteren komplet: nutidigt procurement-eksempel tilføjet (ERP/e-procurement/BI uden API). Alle tre barrierer demonstreret i én genkendelig virksomhedskontekst. Advarselsboks fjernet.
-- 1b. Rekruttering restruktureret: overlap med 1. Individet fjernet. ESCO-argumentet bevaret. WEF integreret som analytisk begrundelse for intern identifikation. Redaktionel note markerer at instrumentet er det separate lag.
-- 1c. Workflow redesign: "Capability Translator" → "Oversætteren" alle 11 steder.
-
-Arketype-navne nu konsistente på tværs af alle filer: Systemfølgeren, Fageksperten, Procesbyggeren, Oversætteren, Systemskaberen.
-
-To git commits. 39 filer. Push gennemført til main.
-
-**Beslutninger der ikke kan omgøres:**
-
-Rekrutteringsværktøjet er ét instrument — ikke to separate filer. Schweizerkniv-strukturen er fastlagt.
-
-Analytisk tone er valgt over kommerciel tone. WEF-tallene er kontekst, ikke pitch.
-
-1. Individet er et åbningskapitel — ikke et selvstændigt kapitel med fuld argumentation. Al ESCO-argumentation, WEF-tal og karrierekurver lever i 1b.
-
-Procurement-eksemplet i 1a er forankret i generisk enterprise-virkelighed (ERP/e-procurement/BI) — ikke i navngivne produkter. Holder sig dermed tidløst.
-
-**Forkastede retninger:**
-
-Kommerciel version af rekrutteringsværktøjet (rekruttering-kommerciel.html) — forkastet til fordel for analytisk tone der skaber behovet organisk.
-
-To separate filer (rekruttering-analyse + rekruttering-interview) — forkastet til fordel for én schweizerkniv.
-
-Integration af WEF-tal som hero-tekst — forkastet. Tallene lever i header som kontekst, ikke som åbning.
-
-**Output:**
-
-`instrumenter/rekruttering.html` — schweizerkniv v4
-`01_Projects/TheEnginesBehind/Akt3 - Positioning/1. Individet.md` — kondenseret
-`01_Projects/TheEnginesBehind/Akt3 - Positioning/1a. Oversætteren - de 3 barrierer.md` — komplet
-`01_Projects/TheEnginesBehind/Akt3 - Positioning/1b. Rekruttering & karriere.md` — restruktureret
-`01_Projects/TheEnginesBehind/Akt3 - Positioning/1c. Workflow re-design.md` — terminologi konsistent
-`01_Projects/TheEnginesBehind/Visuals/` — alle HTML-visualiseringer committed for første gang
-
-**Åbne spørgsmål:**
-
-Priksekvensen — gammel session i claude.ai-historik som Jon husker som stærk. Indholdet er ikke genfundet. Afventer manuel gennemgang af samtalehistorik.
-
-Resten af Akt3 (2. Organisationen, 3. Staten, 4. Kontinentet) — ikke revideret denne session.
-
-Koblingen Skæbne → Kompas i instrumenterne — sekvens-link ikke implementeret endnu.
-
-**Næste træk:**
-
-Gennemlæsning af Akt3 kap 2-4 (Organisation, Stat, Kontinent) med samme revisionslogik som individniveauet.
-
-Eller: Priksekvensen — find den i claude.ai-historik og integrer.
-
-
-Fokuspunkt — Balance mellem Oversætteren og Systemskaberen
-I dagens session er Oversætteren konsekvent blevet brugt som det primære eksempel (kommerciel kontekst, Kapabilitetskortet, samtaler om Conversion Gap), mens Systemskaberen er nævnt mere sjældent — selvom Systemskaberen analytisk er den profil med det skarpeste single point of failure (jf. "Systemskaberen som ny flaskehals", Akt 4).
-Risiko: en læser kan fejllæse Oversætteren som hierarkiets top, præcis den fejllæsning "De har brug for hinanden" (Akt 5) er skrevet for at forhindre.
-Handling til senere session: Gennemgå Akt 3-5 systematisk for hvor ofte hver af de fem positioner bruges som eksempel versus blot navngivet i en liste — og ret balancen hvor den er skæv, særligt i passager der bruger Oversætteren som standardeksempel uden modpol fra Systemskaberen.
+*Opdateres ved afslutning af hver session — kort form fra 19. juni 2026.*
