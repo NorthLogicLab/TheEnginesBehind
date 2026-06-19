@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hvad akkumulerer dit arbejde? — Positionsanalysen — The Engines Behind</title>
+<title>Positionsanalysen — Organisation — The Engines Behind</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7f4;color:#1a1a1a;min-height:100vh}
@@ -17,6 +17,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hero h1{font-size:clamp(26px,4.5vw,42px);font-weight:500;line-height:1.15;margin-bottom:14px}
 .hero-sub{font-size:16px;color:#666;line-height:1.65;max-width:500px;margin-bottom:24px}
 .hero-edge{font-size:14px;color:#1a1a1a;font-weight:500;border-left:3px solid #1a1a1a;padding-left:16px;line-height:1.55}
+
+.org-tag-box{margin-top:28px;padding:18px 20px;background:#fff;border:1px solid #e0ddd8;border-radius:8px}
+.org-tag-label{display:block;font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px}
+.org-tag-input{width:100%;padding:10px 12px;border:1px solid #d0cdc8;border-radius:6px;font-size:14px;font-family:inherit;color:#1a1a1a;margin-bottom:8px}
+.org-tag-input:focus{outline:none;border-color:#c47d0e}
+.org-tag-note{font-size:11px;color:#aaa;line-height:1.5}
 
 .form-wrap{max-width:660px;margin:0 auto;padding:8px 32px 64px}
 
@@ -38,8 +44,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .opt.selected .opt-main{color:#fff}
 .opt-ex{font-size:12px;color:#999;line-height:1.45}
 .opt.selected .opt-ex{color:rgba(255,255,255,.5)}
-.opt-score{font-size:10px;font-weight:700;color:#c47d0e;letter-spacing:.08em;text-transform:uppercase;margin-left:auto;padding-left:12px;flex-shrink:0;padding-top:2px}
-.opt.selected .opt-score{color:#c47d0e}
 
 /* SUBMIT */
 .submit-row{padding:28px 0 0;border-top:2px solid #1a1a1a;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
@@ -51,21 +55,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 #result{display:none;max-width:660px;margin:0 auto;padding:0 32px 80px}
 #result.show{display:block}
 
-/* TRAPPE */
 .staircase{margin-bottom:2px;background:#fff;border:1px solid #e0ddd8;border-radius:8px 8px 0 0;padding:28px 28px 24px}
 .staircase-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:20px}
 .stairs{display:flex;align-items:flex-end;gap:6px;height:100px;margin-bottom:14px}
-.stair{flex:1;border-radius:4px 4px 0 0;transition:all .3s;position:relative;cursor:default}
 .stair-label{font-size:10px;color:#aaa;text-align:center;margin-top:6px;line-height:1.3}
-.stair.active .stair-label{color:#1a1a1a;font-weight:600}
 
-/* POSITION-KORT */
 .res-card{background:#1a1a1a;color:#fff;padding:28px}
 .res-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#666;margin-bottom:12px}
 .res-archetype{font-size:30px;font-weight:500;color:#c47d0e;margin-bottom:3px}
 .res-arch-tag{font-size:13px;color:#888;font-style:italic;margin-bottom:16px}
 
-/* EKSPONERING ZONE */
 .res-zone{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:4px;margin-bottom:16px}
 .res-zone.low{background:rgba(129,199,132,.15);border:1px solid rgba(129,199,132,.3)}
 .res-zone.mid{background:rgba(255,183,77,.15);border:1px solid rgba(255,183,77,.3)}
@@ -81,7 +80,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .res-desc{font-size:14px;color:#ccc;line-height:1.7}
 
-/* SAMLET KONKLUSION — ny, ersatter de fire bars som hovedbudskab */
 .res-verdict{background:#fff;border:1px solid #e0ddd8;border-top:none;padding:26px 28px}
 .res-verdict-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:14px}
 .res-verdict-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;padding-bottom:14px;border-bottom:1px solid #f0ede8}
@@ -91,26 +89,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .res-verdict-value.styrke{color:#5a9c5e}
 .res-verdict-value.vækst{color:#c9881f}
 
-/* KANT */
 .res-kant{background:#f0ede8;padding:20px 28px;border-left:3px solid #1a1a1a}
 .res-kant p{font-size:14px;color:#444;line-height:1.7;font-style:italic}
 .res-kant p strong{color:#1a1a1a;font-style:normal}
 
-/* DEL-SEKTION — nyt, central for B2C-loop */
-.res-share{background:#1a1a1a;border-top:none;padding:24px 28px;text-align:center}
-.res-share-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#666;margin-bottom:10px}
-.res-share-text{font-size:14px;color:#ccc;line-height:1.6;margin-bottom:16px;max-width:480px;margin-left:auto;margin-right:auto}
-.share-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn-share{background:#c47d0e;color:#fff;border:none;padding:11px 22px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .12s}
-.btn-share:hover{background:#a8690c}
-.btn-share-alt{background:transparent;color:#ccc;border:1px solid #555;padding:11px 22px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s}
-.btn-share-alt:hover{border-color:#888;color:#fff}
-
-.res-footer{background:#fff;border:1px solid #e0ddd8;border-top:none;border-radius:0 0 8px 8px;padding:16px 28px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.btn-print{background:transparent;color:#888;border:none;padding:10px 12px;font-size:12px;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:2px}
-.btn-print:hover{color:#1a1a1a}
-.btn-reset{background:transparent;color:#888;border:none;padding:10px 12px;font-size:12px;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:2px}
-.btn-reset:hover{color:#1a1a1a}
+.res-confirm{background:#fff;border:1px solid #e0ddd8;border-top:none;border-radius:0 0 8px 8px;padding:20px 28px;text-align:center}
+.res-confirm-text{font-size:13px;color:#888;line-height:1.6}
+.res-confirm-text strong{color:#1a1a1a}
 
 footer{border-top:2px solid #1a1a1a;padding:20px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:40px}
 footer p{font-size:11px;color:#aaa}
@@ -122,21 +107,27 @@ footer a:hover{color:#c47d0e}
   .masthead{padding:16px 20px}
   .stairs{height:70px}
 }
-@media print{.masthead,.hero-sub,.hero-edge,.submit-row,footer,.res-footer,.res-share{display:none!important}body{background:#fff}}
+@media print{.masthead,.hero-sub,.hero-edge,.submit-row,footer,.org-tag-box{display:none!important}body{background:#fff}}
 </style>
 </head>
 <body>
 
 <header class="masthead">
-  <div class="masthead-title">Positionsanalysen</div>
+  <div class="masthead-title">Positionsanalysen — Internt</div>
   <div class="masthead-brand">The Engines Behind</div>
 </header>
 
 <div class="hero">
   <div class="hero-label">Diagnostisk refleksionsværktøj</div>
   <h1>Hvad akkumulerer dit arbejde?</h1>
-  <p class="hero-sub">En positionsanalyse for mennesker der vil forstå deres rolle i AI-alderen. Fem spørgsmål. Et diagnostisk spejl.</p>
+  <p class="hero-sub">Fem spørgsmål. Et diagnostisk spejl. Dine svar bidrager til jeres organisations samlede billede.</p>
   <div class="hero-edge">Bygger du motoren — betjener du den — eller er du ved at blive input til den?</div>
+
+  <div class="org-tag-box" id="org-tag-box">
+    <label class="org-tag-label" for="org-tag-input">Organisations-tag</label>
+    <input type="text" id="org-tag-input" class="org-tag-input" placeholder="fx Danpo, Kronfågel, Scandi HR-pilot">
+    <div class="org-tag-note">Dit svar forbliver anonymt. Tagget bruges kun til at vise jeres organisation et samlet billede — ingen individuelle svar deles eller kan spores tilbage til dig.</div>
+  </div>
 </div>
 
 <div class="form-wrap">
@@ -357,14 +348,12 @@ footer a:hover{color:#c47d0e}
 <!-- RESULTAT -->
 <div id="result">
 
-  <!-- TRAPPE -->
   <div class="staircase">
     <div class="staircase-label">Din akkumuleringsposition</div>
     <div class="stairs" id="stairs-vis"></div>
     <div style="display:flex;gap:0" id="stair-labels"></div>
   </div>
 
-  <!-- POSITION-KORT -->
   <div class="res-card">
     <div class="res-card-eyebrow">Din position</div>
     <div class="res-archetype" id="r-archetype"></div>
@@ -376,7 +365,6 @@ footer a:hover{color:#c47d0e}
     <div class="res-desc" id="r-desc"></div>
   </div>
 
-  <!-- SAMLET KONKLUSION (ersatter fire bars) -->
   <div class="res-verdict">
     <div class="res-verdict-eyebrow">Hvad analysen ser</div>
     <div class="res-verdict-row">
@@ -389,30 +377,19 @@ footer a:hover{color:#c47d0e}
     </div>
   </div>
 
-  <!-- KANT -->
   <div class="res-kant">
     <p id="r-kant"></p>
   </div>
 
-  <!-- DEL -->
-  <div class="res-share">
-    <div class="res-share-label">Del din position</div>
-    <div class="res-share-text" id="share-text-preview"></div>
-    <div class="share-row">
-      <button class="btn-share" onclick="shareResult()">Kopiér til deling →</button>
-    </div>
-  </div>
-
-  <div class="res-footer">
-    <button class="btn-print" onclick="window.print()">Udskriv analyse</button>
-    <button class="btn-reset" onclick="reset()">Start forfra</button>
+  <div class="res-confirm">
+    <div class="res-confirm-text" id="confirm-text">Dit svar er registreret anonymt under organisationen <strong id="confirm-org"></strong>.</div>
   </div>
 
 </div>
 
 <footer>
   <p><a href="https://theenginesbehind.com">theenginesbehind.com</a></p>
-  <p>Positionsanalysen · The Engines Behind · 2026</p>
+  <p>Positionsanalysen — Internt · The Engines Behind · 2026</p>
 </footer>
 
 <script>
@@ -424,70 +401,46 @@ function pick(btn, qId, val) {
   answers[qId] = val;
 }
 
-// Dimensionsnavne der bruges til "stærkeste/vækst"-konklusionen pr. arketype
-const DIM_LABELS = {
-  opgave: 'Opgaveudførelse',
-  faglig: 'Faglig dybde',
-  system: 'Systemforståelse',
-  bro: 'Brobygning',
-  beslutning: 'Beslutningslogik'
-};
-
 const ARCHETYPES = [
   {
-    score: 1,
-    name: 'Systemfølgeren',
-    tag: 'Holder systemet kørende',
+    score: 1, name: 'Systemfølgeren', tag: 'Holder systemet kørende',
     zone: 'high', zoneLabel: 'Høj strukturel eksponering',
     desc: 'En motor uden brændstof er værdiløs. Du er brændstoffet. Det du gør holder organisationen kørende — det er ikke uvæsentligt. Men brændstof forbrændes. Det giver strukturel eksponering — ikke fordi du er svag, men fordi det du leverer kan leveres af billigere alternativer over tid.',
     strength: 'Opgaveudførelse — pålidelig og struktureret levering',
     growth: 'Brobygning — det er her næste skridt starter',
-    kant: 'Dette er ikke en dom. <strong>Det er et spørgsmål: ved du at du er brændstoffet — og er det et valg du har truffet, eller en position du er gledet ind i uden at vælge det?</strong>',
-    shareLine: 'Jeg er Systemfølgeren ifølge The Engines Behind-positionsanalysen — høj strukturel eksponering. Hvad er din position?'
+    kant: 'Dette er ikke en dom. <strong>Det er et spørgsmål: ved du at du er brændstoffet — og er det et valg du har truffet, eller en position du er gledet ind i uden at vælge det?</strong>'
   },
   {
-    score: 2,
-    name: 'Fageksperten',
-    tag: 'Samler erfaring',
+    score: 2, name: 'Fageksperten', tag: 'Samler erfaring',
     zone: 'mid', zoneLabel: 'Moderat strukturel eksponering',
     desc: 'Du har dyb viden inden for dit domæne. Den er reel og har taget lang tid at opbygge. Det giver reel beskyttelse. Udfordringen er at viden der forbliver i ét hoved ikke skalerer — den forsvinder når du gør. Silo-grænsen er dit akkumuleringsloft.',
     strength: 'Faglig dybde — svær at replikere hurtigt',
     growth: 'Systemforståelse — fra silo til system',
-    kant: 'Fagekspertise er nødvendigt men ikke tilstrækkeligt. <strong>Det der ikke kan bruges af andre, er din personlige aktiv — ikke organisationens. Og det beskyttes ikke af AI-automationslogikken.</strong>',
-    shareLine: 'Jeg er Fageksperten ifølge The Engines Behind-positionsanalysen — moderat strukturel eksponering. Hvad er din position?'
+    kant: 'Fagekspertise er nødvendigt men ikke tilstrækkeligt. <strong>Det der ikke kan bruges af andre, er din personlige aktiv — ikke organisationens. Og det beskyttes ikke af AI-automationslogikken.</strong>'
   },
   {
-    score: 3,
-    name: 'Procesbyggeren',
-    tag: 'Skaber metoder',
+    score: 3, name: 'Procesbyggeren', tag: 'Skaber metoder',
     zone: 'mid', zoneLabel: 'Moderat strukturel eksponering',
     desc: 'Du har gjort arbejdet mere systematisk og skalerbart. Det er markant mere end opgaveudførelse — du efterlader strukturer andre bruger. Men så længe metoderne ikke returnerer information der gør næste iteration bedre, forbliver kurven lineær fremfor eksponentiel.',
     strength: 'Systemforståelse — du ser mønstre og kodificerer dem',
     growth: 'Beslutningslogik — fra procesoptimering til beslutningsredesign',
-    kant: 'En god metode er et fundament — ikke et loft. <strong>Procesbyggeren stopper præcis det sted hvor kompoundingen begynder. Feedback-loopet mangler.</strong>',
-    shareLine: 'Jeg er Procesbyggeren ifølge The Engines Behind-positionsanalysen — moderat strukturel eksponering. Hvad er din position?'
+    kant: 'En god metode er et fundament — ikke et loft. <strong>Procesbyggeren stopper præcis det sted hvor kompoundingen begynder. Feedback-loopet mangler.</strong>'
   },
   {
-    score: 4,
-    name: 'Oversætteren',
-    tag: 'Designer motorer',
+    score: 4, name: 'Oversætteren', tag: 'Designer motorer',
     zone: 'low', zoneLabel: 'Lav strukturel eksponering',
     desc: 'Du forbinder det der ikke taler samme sprog. Du kan bevæge dig mellem domæner, funktioner og systemer og skabe sammenhæng andre ikke kan. Det er præcis den kapabilitet organisationer ikke kan producere hurtigt nok på rekrutteringsmarkedet — og som AI ikke erstatter.',
     strength: 'Brobygning — strukturelt sværest at erstatte',
     growth: 'Beslutningslogik — næste skridt mod Systemskaberniveauet',
-    kant: 'Du er strukturelt sjælden. <strong>Det markedet ikke kan producere hurtigt nok, er præcis det du allerede er. Den reelle risiko er ikke erstatning — det er at organisationen ikke forstår hvad du faktisk gør.</strong>',
-    shareLine: 'Jeg er Oversætteren ifølge The Engines Behind-positionsanalysen — lav strukturel eksponering. Hvad er din position?'
+    kant: 'Du er strukturelt sjælden. <strong>Det markedet ikke kan producere hurtigt nok, er præcis det du allerede er. Den reelle risiko er ikke erstatning — det er at organisationen ikke forstår hvad du faktisk gør.</strong>'
   },
   {
-    score: 5,
-    name: 'Systemskaberen',
-    tag: 'Ejer beslutningslogik',
+    score: 5, name: 'Systemskaberen', tag: 'Ejer beslutningslogik',
     zone: 'low', zoneLabel: 'Lav strukturel eksponering',
     desc: 'Du påvirker hvordan organisationen tænker og vælger. Du er ikke blot god til dit arbejde — du former de præmisser andre arbejder ud fra. Hvert år vokser gabet til dem der ikke gør det du gør.',
     strength: 'Beslutningslogik — svært at erstatte og svært at kopiere',
     growth: 'Organisationens absorptionskapacitet — ikke længere din egen kapabilitet',
-    kant: '<strong>Den bindende begrænsning er ikke længere din kapabilitet. Det er organisationens evne til at absorbere hvad du bidrager med.</strong> Det er dit næste problem at løse — ikke et personligt, men et strukturelt.',
-    shareLine: 'Jeg er Systemskaberen ifølge The Engines Behind-positionsanalysen — lav strukturel eksponering. Hvad er din position?'
+    kant: '<strong>Den bindende begrænsning er ikke længere din kapabilitet. Det er organisationens evne til at absorbere hvad du bidrager med.</strong> Det er dit næste problem at løse — ikke et personligt, men et strukturelt.'
   }
 ];
 
@@ -542,8 +495,6 @@ function calcScore() {
   return Math.min(5, Math.max(1, Math.round(weighted)));
 }
 
-let currentArch = null;
-
 function analyse() {
   if (Object.keys(answers).length < 5) {
     alert('Besvar venligst alle fem spørgsmål.');
@@ -552,7 +503,6 @@ function analyse() {
 
   const score = calcScore();
   const arch = ARCHETYPES[score - 1];
-  currentArch = arch;
 
   buildStairs(score);
 
@@ -567,32 +517,59 @@ function analyse() {
   document.getElementById('r-strength').textContent = arch.strength;
   document.getElementById('r-growth').textContent = arch.growth;
   document.getElementById('r-kant').innerHTML = arch.kant;
-  document.getElementById('share-text-preview').textContent = '"' + arch.shareLine + '"';
+
+  const rawTag = document.getElementById('org-tag-input').value;
+  const orgTag = normalizeOrgTag(rawTag);
+  document.getElementById('confirm-org').textContent = orgTag ? orgTag.replace(/-/g, ' ') : 'ingen organisation angivet';
+
+  saveResultToStorage(score, arch);
 
   const res = document.getElementById('result');
   res.classList.add('show');
   res.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function shareResult() {
-  if (!currentArch) return;
-  const text = currentArch.shareLine + ' theenginesbehind.com/positionsanalysen';
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.btn-share');
-    const original = btn.textContent;
-    btn.textContent = 'Kopieret ✓';
-    setTimeout(() => btn.textContent = original, 2000);
-  }).catch(() => {
-    alert(text);
-  });
+function normalizeOrgTag(raw) {
+  if (!raw) return null;
+  return raw.trim().toLowerCase().replace(/[^a-z0-9æøå\- ]/gi, '').replace(/\s+/g, '-');
 }
 
-function reset() {
-  Object.keys(answers).forEach(k => delete answers[k]);
-  document.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
-  document.getElementById('result').classList.remove('show');
-  currentArch = null;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+async function saveResultToStorage(score, arch) {
+  try {
+    const rawTag = document.getElementById('org-tag-input').value;
+    const orgTag = normalizeOrgTag(rawTag);
+
+    const entry = {
+      score: score,
+      zone: arch.zone,
+      zoneLabel: arch.zoneLabel,
+      archetype: arch.name,
+      orgTag: orgTag || 'ingen-organisation',
+      timestamp: new Date().toISOString()
+    };
+
+    const entryId = 'entry_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
+    if (window.storage) {
+      await window.storage.set('pos-individ:' + entryId, JSON.stringify(entry), true);
+
+      if (orgTag) {
+        let indexResult = null;
+        try {
+          indexResult = await window.storage.get('pos-org-index:' + orgTag, true);
+        } catch (e) { /* nøgle findes ikke endnu */ }
+
+        let ids = [];
+        if (indexResult && indexResult.value) {
+          try { ids = JSON.parse(indexResult.value); } catch (e) { ids = []; }
+        }
+        ids.push(entryId);
+        await window.storage.set('pos-org-index:' + orgTag, JSON.stringify(ids), true);
+      }
+    }
+  } catch (err) {
+    console.warn('Kunne ikke gemme resultat til aggregering:', err);
+  }
 }
 </script>
 </body>
