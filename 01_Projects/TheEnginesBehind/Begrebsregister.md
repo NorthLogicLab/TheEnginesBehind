@@ -3,6 +3,10 @@
 
 **Beslutning 2026-05-21:** Capability Translator erstattes med **Oversætteren** overalt i manuskriptet.
 
+**Beslutning 2026-06-20:** PACAP/RACAP erstattes med **adgang/konvertering** i al narrativ tekst. Forkortelserne lever herefter kun ét sted i hele bogen — kapitel 3.3 (Oversætteren — de tre barrierer) — som den formelle teoretiske ankring til Zahra & George (2002), introduceret sammen med en fitness-analogi (*"Adgang er abonnementet. Konvertering er at rent faktisk træne."*). Dette tilsidesætter den oprindelige 2026-05-21-beslutning om at bruge "potentiel/realiseret kapabilitet" i narrativ tekst — adgang/konvertering matcher bogens allerede etablerede nøglesætning ("Adgang bliver billigere. Konvertering gør ikke.") mere direkte og er kortere i manifest-tone.
+
+**Status juni 2026:** Komplet gennemskrivningsrunde udført på tværs af alle fem akter (41 kapitler). Dette dokument er opdateret til at afspejle de faktiske, gennemførte beslutninger — ikke kun planen fra maj.
+
 ---
 
 ## Princippet
@@ -15,105 +19,108 @@ Første gang et begreb introduceres: dansk hverdagsforklaring. Begrebet i parent
 
 ## Komplet begrebsliste
 
-### KATEGORI 1 — Beholdes på dansk med forklaring første gang
+### KATEGORI 1 — Faste, navngivne begreber på dansk
 
-Disse begreber er præcise og nødvendige. De introduceres på dansk med en hverdagsforklaring, aldrig som løsrevet jargon.
+Disse begreber er præcise og nødvendige nok til at fungere som faste, genkendelige termer — ikke kun engangsforklaringer. De introduceres med en hverdagsforklaring første gang, men optræder herefter konsekvent under deres danske navn.
 
 ---
 
 **ACA → Asymmetrisk Kapabilitetsakkumulation**
 
-*Brug i tekst:* Forklar det første gang som: *"Nogle akkumulerer. Andre har blot adgang. Det gab — og mekanismen bag det — er det denne bog handler om."* Derefter bruges "ACA" eller "akkumuleringen" skiftevis.
+*Brug i tekst:* Forklares første gang som: *"Nogle akkumulerer. Andre har blot adgang. Det gab — og mekanismen bag det — er det denne bog handler om."* Derefter bruges "ACA" eller "akkumuleringen" skiftevis.
 
 *Undgå:* At introducere det som en teori der skal læres. Det er en observation der navngives.
 
 ---
 
-**PACAP/RACAP → Potentiel/Realiseret kapabilitet**
+**Adgang / Konvertering** *(tidligere: PACAP/RACAP)*
 
-*Brug i tekst:* I narrative kapitler bruges altid "potentiel kapabilitet" og "realiseret kapabilitet". PACAP/RACAP reserveres til faglige afsnit og begrebsregister.
+*Status: GÆLDENDE BESLUTNING (tilsidesætter 2026-05-21-planen om "potentiel/realiseret kapabilitet").*
 
-*Forklaring første gang:* *"De fleste organisationer har adgangen. Meget få konverterer den. Forskellen mellem de to — det er præcis det der afgør hvem der akkumulerer."*
+*Brug i tekst:* "Adgang" og "konvertering" bruges konsekvent i al narrativ tekst på tværs af alle fem akter. De akademiske forkortelser PACAP/RACAP forekommer kun ét sted i hele bogen: kapitel 3.3, hvor de introduceres formelt som teoretisk ankring til Zahra & George (2002), umiddelbart efterfulgt af fitness-analogien.
+
+*Fitness-analogien (introduceres i 3.3, kan genbruges i salgsmateriale og instrumenternes UI-tekst):*
+*"Adgang er abonnementet. Konvertering er at rent faktisk træne. Et fitnessabonnement koster en hundredelap om måneden — alle kan få det. At møde op og gøre det igen og igen over måneder er noget andet. Det er konvertering — og konvertering er svær, fordi den kræver gentagelse, ikke et enkelt køb."*
+
+*Forklaring første gang (3.3):* *"De fleste organisationer har adgangen. Meget få konverterer den. Forskellen mellem de to — det er præcis det der afgør hvem der akkumulerer."*
 
 ---
 
 **Oversætteren** *(tidligere: Capability Translator)*
 
-*Beslutning: Capability Translator erstattes med Oversætteren overalt.*
+*Beslutning: Capability Translator erstattes med Oversætteren overalt. Gennemført.*
 
 *Introduktion i tekst:* Ikke som et begreb der defineres — men som en observation: *"Der er en person de fleste organisationer har — og ingen kan forklare præcist hvad hun laver."* Navnet Oversætteren kommer bagefter som en præcis beskrivelse af hvad hun faktisk gør.
 
-*Filer der skal opdateres:*
-- `Akt2 - The Accelerator/4. Capability Translator.md` → omdøbes og omskrives
-- `Akt3 - Positioning/1a. Capability Translator - 3 barrierer.md` → omdøbes og omskrives
-- MASTER_CONTEXT → opdateres
-- README → opdateres
+*Status:* Gennemført konsekvent i Akt 2 (kapitel 4 og 6), Akt 3 (kapitel 3.3–3.5), Akt 4 og Akt 5.
 
 ---
 
-### KATEGORI 2 — Erstattes med dansk hverdagssprog i løbende tekst
+**Oversættelsesbarrieren** *(tidligere: Translation Barrier)*
+
+*Status: GÆLDENDE BESLUTNING — afviger fra 2026-05-21-planen.*
+
+Den oprindelige plan (maj 2026) foreslog at *erstatte* begrebet med situationsbestemte omskrivninger ("grænsen de fleste ikke krydser", "skellet mellem dem der bruger AI og dem der akkumulerer med det") og undgå et fast navn i narrativ tekst.
+
+Manuskriptet har i stedet etableret **Oversættelsesbarrieren** som et fast, navngivet dansk begreb — parallelt med Oversætteren — fordi et helt kapitel (Akt 2, kapitel 3: *"Oversættelsesbarrieren: grænsen de fleste ikke ved de har ramt"*) bygger sin struktur omkring det som en navngivet ting, ikke en omskrivning. Dette er den gældende praksis og er gennemført konsekvent på tværs af Akt 1, 2, 3 og 4.
+
+*Introduktion i tekst:* *"Der er et præcist navn for den grænse de alle krydsede mens deres konkurrenter ikke gjorde. Oversættelsesbarrieren."*
+
+---
+
+### KATEGORI 2 — Erstattet med dansk hverdagssprog i løbende tekst
 
 Disse begreber er analytisk præcise men skaber unødvendig distance til læseren. De bruges kun i begrebsregister og faglige afsnit — aldrig i narrativ tekst.
 
 ---
 
-**Translation Barrier → Grænsen de fleste ikke krydser**
-
-*Nuværende brug:* Bruges hyppigt som fagterm i narrativ tekst.
-
-*Erstattes med:*
-- *"Grænsen mellem adgang og reel integration"*
-- *"Det punkt de fleste ikke kommer forbi"*
-- *"Skellet mellem dem der bruger AI og dem der akkumulerer med det"*
-
-*Behold i:* Begrebsregister, faglige afsnit, MASTER_CONTEXT.
-
----
-
 **Translation Demand → Oversættelsesevne**
 
-*Erstattes med:*
-- *"Evnen til at bevæge sig mellem forretningslogik og systemlogik"*
-- *"Oversættelsesevnen"* (enkelt og præcist)
+*Status: Gennemført.* Bruges som *"evnen til at bevæge sig mellem forretningslogik og systemlogik"* eller kort *"oversættelsesevnen"*.
 
 ---
 
-**Accumulation Runway → Akkumuleringshastighed** eller **opbygningskapacitet**
+**Accumulation Runway → Akkumuleringshastighed**
 
-*Erstattes med:*
-- *"Hastigheden kapabilitet opbygges"*
-- *"Hvor hurtigt og dybt kapabilitet kompounder"*
+*Status: Gennemført* i de kapitler hvor begrebet optræder. Erstattet med *"hastigheden kapabilitet opbygges"* eller *"hvor hurtigt og dybt kapabilitet kompounder"*.
 
 ---
 
-**Velocity Asymmetry → Gabet der vokser mens ingen kigger**
+**Velocity Asymmetry → Hastighedsasymmetri**
 
-*Dette er faktisk allerede formuleret godt i teksten.* Behold sætningen — drop det engelske begrebsnavn i løbende tekst.
+*Status: GÆLDENDE — afviger let fra 2026-05-21-planen.*
 
-*Erstattes med:*
-- *"Gabet der vokser stille og strukturelt"*
-- *"Den acceleration der ikke er synlig i regnskabet — endnu"*
+Den oprindelige plan foreslog at undgå et fast begrebsnavn helt (*"gabet der vokser mens ingen kigger"*). Manuskriptet (Akt 2, kapitel 1: *"Hastighedsasymmetri: det usynlige gab"*) har i stedet givet begrebet et fast, navngivet dansk navn — samme mønster som Oversættelsesbarrieren. Det er den gennemførte og gældende praksis.
+
+*Bevares fra den oprindelige plan:* Billedsproget *"gabet der vokser mens ingen kigger"* / *"det vokser inden nogen kan se det i regnskabet"* bruges stadig flittigt i den omgivende prosa — det er ikke enten/eller, men begge dele i kombination.
 
 ---
 
-**Replication Barriers → Svær at kopiere**
+**Replication Barriers → Replikeringsbarrieren / strukturelt svær at kopiere**
 
-*Erstattes med:*
-- *"Strukturelt svær at kopiere"*
-- *"Det der gør positionen svær at indhente"*
-- *"Barrierer mod kopiering"*
+*Status: Gennemført, samme princip som Oversættelsesbarrieren* — bruges både som fast begreb ("replikeringsbarrieren") og som situationsbeskrivelse ("det der gør positionen svær at indhente"), afhængig af kontekst.
 
 ---
 
 **Bottleneck Position → Flaskehals**
 
-*Løsning:* Brug simpelthen "flaskehals" — det er et etableret dansk ord der er præcist og genkendeligtw.
-
-*"ASML kontrollerer flaskehalsen i global halvlederproduktion."* ← stærkere end "ASML har en bottleneck position."
+*Status: Gennemført.* *"ASML kontrollerer flaskehalsen i global halvlederproduktion."*
 
 ---
 
-### KATEGORI 3 — Fjernes fra løbende tekst, kun i begrebsregister
+**Switching costs → Skifteomkostninger**
+
+*Status: Gennemført* på tværs af Akt 1 (Maersk-kapitlet) og Akt 4 (Vendepunkter, Stiafhængighedens fængsel).
+
+---
+
+**Tacit knowledge → Tavs viden**
+
+*Status: Gennemført* på tværs af Akt 4 og Akt 5.
+
+---
+
+### KATEGORI 3 — Fjernet fra løbende tekst, kun i begrebsregister
 
 Disse begreber er analytisk præcise men for tekniske til at leve i narrativ tekst. De placeres i begrebsregisteret som opslagsværktøj for den læser der vil gå dybere.
 
@@ -135,66 +142,90 @@ Disse begreber er analytisk præcise men for tekniske til at leve i narrativ tek
 
 **Path Dependency → Stiafhængighed** *(allerede dansk)*
 
-Brug konsekvent "stiafhængighed" — det er et etableret begreb på dansk.
+Brug konsekvent "stiafhængighed". *Status: Gennemført* — eget kapitel i Akt 4 (*"Stiafhængighedens fængsel"*).
 
 ---
 
 **Second-order effects → Afledte konsekvenser**
 
-*Erstattes med:* *"Hvad der sker bagefter"*, *"de konsekvenser ingen så komme"*, *"afledte effekter".
+*Erstattes med:* *"Hvad der sker bagefter"*, *"de konsekvenser ingen så komme"*, *"afledte effekter"*.
 
 ---
 
 ### KATEGORI 4 — De fem arketyper
 
-Disse skal revurderes i lyset af Oversætteren-beslutningen.
+**Status: GÆLDENDE — manuskriptet har valgt en anden vej end de oprindelige forslag for to af de fem navne.**
 
-| Nuværende navn | Forslag | Begrundelse |
+Den oprindelige plan (maj 2026) foreslog **Datafortolkeren** (for "Data Translator") og **Kapabilitetsarkitekten/Arkitekten** (for "Capability Architect"). Manuskriptet har i stedet konsekvent brugt **Oversætteren** og **Systemskaberen** for disse to roller på tværs af alle fem akter. Det er den gennemførte og gældende praksis — registrets eget "alternativ"-forbehold fra maj ("behold alle fem på dansk men med enkle, genkendelige navne... ikke navnene") dækker præcis dette udfald.
+
+| Engelsk (forhistorisk) | Maj 2026-forslag | **Gældende navn (gennemført)** | Begrundelse |
+|---|---|---|---|
+| Process Keeper | Systemfølgeren | **Systemfølgeren** | Beskriver adfærd, ikke dom. Uændret. |
+| Domain Expert | Fageksperten | **Fageksperten** | Allerede dansk. Uændret. |
+| Workflow Designer | Procesbyggeren | **Procesbyggeren** | Præcist og genkendeligt. Uændret. |
+| Data Translator | Datafortolkeren | **Oversætteren** | Parallelt med Capability Translator-erstatningen — samme rolle, samme navn, ikke et separat begreb. |
+| Capability Architect | Kapabilitetsarkitekten | **Systemskaberen** | Stærkere manifest-tone end "Arkitekten"; matcher kapitlernes fokus på at "bygge systemer der overlever en selv". |
+
+*Vigtig konsekvens af denne sammenlægning:* "Oversætteren" betegner nu **både** individets karriereprofil (Akt 3, kapitel 3.3–3.5) **og** den fjerde arketype i den femtrins-skala der går fra Systemfølgeren til Systemskaberen. Det er ikke en inkonsistens — det er bevidst: Oversætteren-profilen og fjerde-trins-arketypen er den samme ting set fra to vinkler (individuel kapabilitet vs. organisatorisk klassifikation). Dette bør dog nævnes eksplicit første gang begge bruges i samme kapitel, så læseren ikke tror der er tale om to forskellige begreber.
+
+---
+
+## Resumé — gældende beslutningsoversigt (juni 2026)
+
+| Begreb | Beslutning | Hvad det er erstattet med | Status |
+|---|---|---|---|
+| Capability Translator | Erstattet | Oversætteren | ✅ Gennemført |
+| PACAP/RACAP | Erstattet (ny beslutning) | Adgang/konvertering — kun formelt i 3.3 | ✅ Gennemført |
+| Translation Barrier | Erstattet med fast dansk begreb | Oversættelsesbarrieren | ✅ Gennemført |
+| Velocity Asymmetry | Erstattet med fast dansk begreb | Hastighedsasymmetri | ✅ Gennemført |
+| Translation Demand | Reduceret | Oversættelsesevnen | ✅ Gennemført |
+| Accumulation Runway | Reduceret | Akkumuleringshastighed | ✅ Gennemført |
+| Replication Barriers | Reduceret/fast begreb | Replikeringsbarrieren | ✅ Gennemført |
+| Bottleneck Position | Erstattet | Flaskehals | ✅ Gennemført |
+| Switching costs | Erstattet | Skifteomkostninger | ✅ Gennemført |
+| Tacit knowledge | Erstattet | Tavs viden | ✅ Gennemført |
+| ACA | Beholdes | Forklares første gang i hverdagssprog | ✅ Uændret |
+| ESCO Baseline | Fagligt kun | Rollenormen i narrativ tekst | ✅ Gennemført |
+| ESCO-ACA Gap | Fagligt kun | Gabet opad fra normen | ✅ Gennemført |
+| Path Dependency | Dansk | Stiafhængighed | ✅ Gennemført |
+| Second-order effects | Erstattet | Afledte konsekvenser | — Ikke verificeret i denne runde |
+| Data Translator | Sammenlagt (ny beslutning) | Oversætteren | ✅ Gennemført |
+| Capability Architect | Erstattet (afviger fra majforslag) | Systemskaberen | ✅ Gennemført |
+
+---
+
+## Akt-titler — dansk gennemgående (besluttet og gennemført juni 2026)
+
+| Akt | Engelsk (forhistorisk) | Dansk (gældende) |
 |---|---|---|
-| Process Keeper | **Systemfølgeren** | Beskriver adfærd, ikke dom |
-| Domain Expert | **Fageksperten** | Allerede dansk |
-| Workflow Designer | **Procesbyggeren** | Præcist og genkendeligtw |
-| Data Translator | **Datafortolkeren** | Parallelt med Oversætteren |
-| Capability Architect | **Kapabilitetsarkitekten** | Eller bare **Arkitekten** |
+| 1 | The Pattern | **Mønstret** |
+| 2 | The Accelerator | **Acceleratoren** |
+| 3 | Strategic Positioning | **Strategisk Positionering** |
+| 4 | The Fragility Paradox | **Skrøbelighedsparadokset** |
+| 5 | The Engine Behind the Engine | **Motoren Bag Motoren** |
 
-*Alternativ:* Behold alle fem på dansk men med enkle, genkendelige navne. Progressionen lav → høj ACA er det vigtige — ikke navnene.
-
----
-
-## Resumé — beslutningsoversigt
-
-| Begreb | Beslutning | Hvad det erstattes med |
-|---|---|---|
-| Capability Translator | **Erstattes** | Oversætteren |
-| Translation Barrier | **Reduceres** | Grænsen de fleste ikke krydser |
-| Translation Demand | **Reduceres** | Oversættelsesevnen |
-| Accumulation Runway | **Reduceres** | Akkumuleringshastighed |
-| Velocity Asymmetry | **Reduceres** | Gabet der vokser mens ingen kigger |
-| Replication Barriers | **Reduceres** | Strukturelt svær at kopiere |
-| Bottleneck Position | **Erstattes** | Flaskehals |
-| PACAP/RACAP | **Beholdes fagligt** | Potentiel/realiseret kapabilitet i narrativ tekst |
-| ACA | **Beholdes** | Forklares første gang i hverdagssprog |
-| ESCO Baseline | **Fagligt kun** | Rollenormen i narrativ tekst |
-| ESCO-ACA Gap | **Fagligt kun** | Gabet opad fra normen |
-| Path Dependency | **Dansk** | Stiafhængighed |
-| Second-order effects | **Erstattes** | Afledte konsekvenser |
+*Bogens egen titel ("The Engines Behind") er ikke en akt-titel og er ikke ændret.*
 
 ---
 
-## Hvad der skal opdateres i manuskriptet
+## Hvad der er gennemført i juni 2026-runden
 
-**Prioritet 1 — navneændring:**
-- Alle forekomster af "Capability Translator" → "Oversætteren"
-- Kapiteltitler i Akt2 og Akt3 opdateres
+**Gennemført — navneændringer på tværs af alle 41 kapitler (Akt 1–5):**
+- Alle fem akt-titler oversat til dansk
+- PACAP/RACAP fjernet fra narrativ tekst i alle kapitler undtagen 3.3 (formel ankring)
+- Translation Barrier → Oversættelsesbarrieren (gennemgående)
+- Velocity Asymmetry → Hastighedsasymmetri (gennemgående)
+- Process Keeper → Systemfølgeren (Akt 4, kapitel 11; Akt 5, kapitel 2)
+- Øvrige engelske akademiske termer (Institutional Fusion, Architectural Embedding, Coordination Insight, Organizational Memory, Network Coordination, Strategic Reconfiguration, switching costs, tacit knowledge, replication barrier) oversat konsekvent i Akt 1 og Akt 4
 
-**Prioritet 2 — narrativ tekst:**
-- Gennemskrivningsrunde med fokus på at erstatte fagtermer med hverdagssprog i åbningssætninger og overgange
-
-**Prioritet 3 — begrebsregister:**
-- Alle tekniske definitioner bevares her — men lever ikke længere i løbende tekst
+**Ikke verificeret i denne runde:**
+- "Second-order effects" — ingen forekomster fundet eller rettet, status uændret fra maj
+- Interlude-kapitlet (Scandi/Lusiaves) — ikke gennemgået for engelsk terminologi i denne runde
+- Indledningen — ikke gennemgået i denne runde
 
 ---
 
-*Begrebsafklaring v1 — The Engines Behind*
-*Beslutning truffet: 2026-05-21*
-*Næste revision: efter gennemskrivningsrunde*
+*Begrebsafklaring v2 — The Engines Behind*
+*Oprindelig beslutning: 2026-05-21*
+*Opdateret med gennemførte beslutninger: 2026-06-20*
+*Næste revision: når Interlude og Indledning er gennemgået for samme terminologi*
