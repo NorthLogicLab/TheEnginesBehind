@@ -1,6 +1,6 @@
 # SESSIONS — The Engines Behind
 ## Analytisk beslutningslog (kort form)
-### Sidst opdateret: 20. juni 2026
+### Sidst opdateret: 21. juni 2026
 
 ---
 
@@ -9,19 +9,107 @@ Status-først, next-steps-fokuseret. Tidligere historik ligger i tidligere versi
 
 ---
 
-## Status — hvor projektet står
+## ÅBEN KONFLIKT — kræver afklaring før næste commit
 
-**Manuskript:** Komplet gennemskrivningsrunde udført på tværs af **alle fem akter (42 kapitler inkl. Interlude)**. Dette var ikke nyt indhold — det var en samlet sprog- og kildehærdningsrunde, der gør hele manuskriptet konsistent for første gang siden de individuelle akter blev skrevet i separate sessioner.
+To parallelle sessioner (20. og 21. juni) har arbejdet på manuskriptet uafhængigt af hinanden, og er ikke afstemt mod samme filversion. Én konkret modsigelse er fundet:
 
-**Instrumenter:** Positionsanalysen er omstruktureret fra to til **fire værktøjer** med en klar B2C/B2B-arkitektur. Kapabilitetskortet er rettet for to konkrete fejl (tab-nummerering, arketype-specifikke interviewspørgsmål).
-
-**Hjemmeside:** Forside og bagside i manifest-stil er designet, godkendt mod skærmbilleder af det oprindelige (ikke-genfindelige) design, og klar til at lægges ind i repoet — **ikke committet endnu**, afventer at filerne lægges lokalt.
-
-**Git:** Hele terminologi- og kildehærdningsrunden er committet og pushet (`4ba62c9..23babcc`).
+**Akt 4's danske titel.** Sessionen 20. juni besluttede og dokumenterede at Akt 4 hedder "Skrøbelighedsparadokset" på dansk (se akt-titel-tabellen nedenfor). Den fil sessionen 21. juni arbejdede fra, har imidlertid 39 forekomster af "Akt 4 — The Fragility Paradox" i de faktiske kapiteloverskrifter, mod kun 1 forekomst af den danske form — og selv akt-toppen er selv splittet ("AKT 4 — SKRØBELIGHEDEN" i forsiden, "The Fragility Paradox" i hvert kapitel derunder). Det er uklart om 20. juni-sessionens beslutning er udført i den faktiske, nyeste fil, eller kun besluttet og ikke gennemført endnu. **Afklar hvilken fil er den autoritative nyeste, før der committes** — ellers risikerer et commit at overskrive den ene sessions arbejde med den andens.
 
 ---
 
-## Det store arbejde — sprog- og terminologioprydning (hele bogen)
+## Status — hvor projektet står
+
+**Manuskript:** Komplet gennemskrivningsrunde udført på tværs af **alle fem akter (42 kapitler inkl. Interlude)** — sprog- og kildehærdning, ikke nyt indhold (session 20. juni). Parallelt: Akt 5's hovedmetafor erstattet (stige → skov/rod), to nye grænser og falsifikationsskærpelse i kapitel 25, EPOCH operationaliseret i rekrutteringskapitlet, Akt 1's case-numre rettet til kanonisk rækkefølge, Akt 4 kapitel 6's overskrift omformuleret (session 21. juni).
+
+**Instrumenter:** Positionsanalysen bekræftet uafhængigt af begge sessioner som **tre niveauer plus Kapabilitetskortet** (fire værktøjer i alt) — B2C/B2B-arkitekturen fra 20. juni matcher den filstruktur 21. juni fandt og rettede roadmap'en til (`Positionsanalyse_individ` / `Org_individ` / `Org_Org` / `Kapabilitetskortet`). Kapabilitetskortets seks faner (①ACA-analyse ②Udvikling ③Succession & Teamdesign ④Interviewspørgsmål ⑤Stillingsopslag ⑥Skjulte talenter) bekræftet fra begge sider — 20. juni rettede UI-fejl i fanerne, 21. juni navngav dem korrekt i roadmap'en, som tidligere kun nævnte fire.
+
+**Hjemmeside:** Forside og bagside i manifest-stil designet og godkendt — **ikke committet endnu**, afventer at filerne lægges lokalt (session 20. juni, status uændret).
+
+**Roadmap:** Opdateret til v4 — rettet fra to til tre instrumentniveauer, fra fire til seks Kapabilitetskort-anvendelser, Capability Stack Analysis og Capability Position Scorecard tilføjet som eksplicit udskudte, fremtidige produktmuligheder (session 21. juni).
+
+**Git:** Terminologi- og kildehærdningsrunden fra 20. juni er committet og pushet (`4ba62c9..23babcc`). Akt 1 case-rækkefølge, Akt 5 skov-metafor, EPOCH og roadmap v4 fra 21. juni er committet og pushet (`23babcc..03f840f`, samt en opfølgende stratifikations-rettelse `03f840f..5654f2e`).
+
+---
+
+## 2026-06-21 — Skov-metafor i Akt 5, EPOCH-operationalisering, DeepSeek-reframing, roadmap v4, case-rækkefølge
+
+**Det vi løste:**
+
+Stigemetaforen i Akt 5 erstattet med skov/rod — "tyve træer, et eller to dominerer ved år 30" gør koncentration synlig som en hel population, ikke kun konkurrence mellem to. Mycorrhiza-netværket tilføjet som billede på relationer/koordinering/institutioner, der binder individ/organisation/stat/kontinent til "samme figur, fire skalaer".
+
+"Tre baner" tilføjet som Akt 5's afsluttende scenarie-syntese — flad verden / stor ulighed / skrøbelighed eksploderer. Bevidst kaldt "baner", ikke "Verden A/B/C", for at undgå navnekollision med kapitel 9's allerede etablerede scenarier på individniveau.
+
+Double-compounding-hypotesen (konverteringsraten stiger selv, ikke kun grundlaget den beregnes af) udvidet med DeepSeek R1 som konkret empirisk eksempel. Samme reframing i kapitel 25, Grænse 1: DeepSeek vendt fra defensiv ("stærkeste udfordring mod ACA") til offensiv (skarpeste bekræftelse — gratis adgang for alle kan pr. definition ikke være differentieringsfaktoren). Videnskabelig forsigtighed bevaret begge steder.
+
+Grænse 5 tilføjet til kapitel 25 — ACA's stumhed om individets handlekraft når konverteringsmekanismen er strukturelt lukket. Eksplicit markeret som en anden type grænse end de første fire (konstaterbar, ikke testbar med data). Tre forankrede, ikke-trøstende fragmenter af svar givet, ingen falsk trøst.
+
+Falsifikationsbetingelser i kapitel 25 skærpet med konkret operationel tærskel — BCG's 1,7x/3,6x øjebliksbillede testet som et langsgående krav over fem til ti år, ikke kun korrelation.
+
+"Industrial Absorption Systems"-rammen skrevet ind i Akt 3's åbning. Kinas klimateknologi tilføjet til Staten-kapitlets demokrati/autoritær-dilemma — eksplicit skilt fra TSMC/ASML's markedsdrevne akkumulering.
+
+EPOCH (Loaiza & Rigobon, MIT Sloan) operationaliseret fra egenskaber til adfærdsspørgsmål i bogens eget sprog: Systemforståelse, Situationsforståelse, Beslutningskapacitet, Rekombinationskapacitet, Koordinationskapacitet. Eksempler bygget i sales/økonomi i stedet for procurement. Skrevet ind i rekrutteringskapitlet og Akt 5 kapitel 3. Valideringsdisclaimer tilføjet.
+
+Lusiaves/Scandi-interludet fået konkret indhold: 2027 EBIT-mål og kvartalsdata, korrigeret fra blandet kvartalssammenligning til år-over-år efter at Q3's sæsonalitet blev flaget. 2032-strategien eksplicit udeladt — afventer officiel offentliggørelse.
+
+Akt 1's case-rækkefølge rettet til kanonisk EIC(1)/Rockefeller(2)/Ford(3)/Toyota(4)/Intel(5)/Maersk(6) — gennemført både i den samlede bogfil og i de seks individuelle case-filer (overskrift, fodnote-titel og placeringsreference rettet konsekvent i alle tre lag, i alle seks filer).
+
+Akt 4 kapitel 6's overskrift ændret fra "Standard Oil og den pyrrhussejr" til "Standard Oil og sejren der blev sin egen undergang" — selvforklarende uden at kræve forhåndskendskab til Pyrrhus-referencen.
+
+"Kognitiv stratifikation" (kapitel 9) fået en kort forklaring af selve ordet — afviste en foreslået neuropsykologisk analogi (forkert felt, ville modsige kapitlets pointe om at stratifikationen er strukturel, ikke individuel), valgte skoven, genbrugt fra Akt 5 for konsistens.
+
+Roadmap rettet fra to til tre instrumentniveauer for at matche faktiske filnavne — fandt at roadmap'ens Fase 1 fejlagtigt brugte det tag-løse Individ-instrument til Danpo-pilotens data, hvilket ville have gjort aggregering umulig. Rettet til Organisation–individ. Kapabilitetskortet rettet fra fire til seks anvendelser. Capability Stack Analysis og Capability Position Scorecard tilføjet som eksplicit udskudte, fremtidige produktmuligheder.
+
+Generel terminologi-oprydning fortsat: "replication barriers" → "barriere mod kopiering", "deployer" → "udruller", "Process Keeper" → "Systemfølgeren" konsekvent i kapitel 11 og 12.
+
+**Beslutninger der ikke kan omgøres:**
+
+Skoven/roden er nu bogens eneste hovedmetafor for akkumulering over tid — stigen er fuldt udfaset.
+
+"Baner", ikke "Verden A/B/C", er navnet på Akt 5's afsluttende scenarie-syntese. Verden A/B/C forbliver låst til kapitel 9's individniveau.
+
+DeepSeek og lignende AI-effektivitetsspring behandles som bekræftelse af ACA, ikke som trussel mod den.
+
+Statsdrevet og markedsdrevet akkumulering er to forskellige veje til samme udfald, og skal altid eksplicit skilles fra hinanden når begge eksemplificeres i samme afsnit.
+
+EPOCH-kategorierne hedder Systemforståelse/Situationsforståelse/Beslutningskapacitet/Rekombinationskapacitet/Koordinationskapacitet i bogens sprog — MIT's originale akronym krediteres som kilde, bruges ikke som bogens egne etiketter.
+
+**Forkastede retninger:**
+
+Neuropsykologisk hjernehierarki-model som forklaring på "kognitiv stratifikation" — forkastet, forkert felt.
+
+Geologisk lag-analogi til samme begreb — overvejet, forkastet for konsistens med skoven.
+
+"Capability Early Warning System" som produktnavn — forkastet, for kategorisk et løfte. Erstattet af "Capability Position Scorecard" med eksplicit to-trins struktur.
+
+**Output:**
+
+`THE_ENGINES_BEHIND_KOMPLET.md`, `THE_ENGINES_BEHIND.pdf`
+`akt3-aabning.md`, `akt3-kap2-organisationen.md`, `akt3-kap3-staten.md`, `akt3-kap14b-rekruttering.md`
+`akt4-kap4-koordinationskollaps.md`, `akt4-kap6-legitimitetserosion.md`, `akt4-kap11-systemskaberen-flaskehals.md`
+`akt5-kap3-syntese-slutposition.md`, `akt5-kap25-aca-forklaringsmotor.md`
+`interlude-lusiaves-scandi.md`
+`1.1 EIC.md` til `1.6 Maersk.md` (case-filer, rettet rækkefølge)
+`Roadmap_v4.md`
+`alle_ser_kronen.png`
+`commit-simple.ps1`
+
+**Åbne spørgsmål:**
+
+Akt 4's danske akt-titel ("Skrøbelighedsparadokset" vs. "The Fragility Paradox") — se ÅBEN KONFLIKT øverst i dette dokument. Skal afklares før næste commit rører Akt 4.
+
+"Tacit knowledge" stadig ubehandlet engelsk i kapitel 10, mens kapitel 9 og resten af bogen bruger "tavs viden".
+
+Capability Stack Analysis og Capability Position Scorecard er navngivet og placeret i roadmap'en, men ikke designet som produkt.
+
+Positionsanalysen er ikke koblet til "Tre baner" — diskuteret, ikke bygget.
+
+**Næste træk:**
+
+Fintune rekrutteringsværktøjerne — Kapabilitetskortet og de tre Positionsanalyse-niveauer. Sandsynligt fokus: bekræfte Organisation–individ → Organisation–org-aggregeringen virker med rigtige data, og at de seks Kapabilitetskort-anvendelser er konsistente med EPOCH-operationaliseringen.
+
+---
+
+## 2026-06-20 — Sprog- og terminologioprydning (hele bogen)
 
 **Baggrund:** PACAP/RACAP og en række engelske akademiske termer (Institutional Fusion, Architectural Embedding, Translation Barrier, Process Keeper, m.fl.) var spredt ud gennem alle fem akter fra tidligere skriveperioder. Et gammelt Begrebsregister (2026-05-21) havde planlagt en delvis oprydning, men var aldrig fuldt udført, og var i flere tilfælde overhalet af bedre beslutninger taget direkte i manuskriptet.
 
@@ -42,7 +130,7 @@ Status-først, next-steps-fokuseret. Tidligere historik ligger i tidligere versi
 **Gennemgående regel etableret (ny beslutning, tilsidesætter maj-planen):**
 PACAP/RACAP er fjernet fra al narrativ tekst og eksisterer nu **kun formelt ét sted i hele bogen** — kapitel 3.3 — som teoretisk ankring til Zahra & George (2002). Resten af bogen bruger **adgang/konvertering**. En **fitness-analogi** ("Adgang er abonnementet. Konvertering er at rent faktisk træne.") er indsat direkte efter denne introduktion som bro mellem det akademiske sprog og bogens eget sprog.
 
-**Akt-titler — alle fem oversat og gennemført konsekvent:**
+**Akt-titler — alle fem oversat og gennemført konsekvent (se ÅBEN KONFLIKT for Akt 4-status):**
 
 | Akt | Dansk titel |
 |---|---|
@@ -60,9 +148,9 @@ PACAP/RACAP er fjernet fra al narrativ tekst og eksisterer nu **kun formelt ét 
 
 ---
 
-## Instrumenter — ny B2C/B2B-arkitektur
+## Instrumenter — B2C/B2B-arkitektur (bekræftet fra to uafhængige sessioner)
 
-**Strategisk beslutning:** Positionsanalysen er splittet i fire værktøjer med klart adskilte formål, efter en grundig afklaring af go-to-market-logikken:
+**Strategisk beslutning:** Positionsanalysen er splittet i tre niveauer plus Kapabilitetskortet, med klart adskilte formål:
 
 ```
 P-Individ (B2C)         → Positionsanalyse_individ.html
@@ -82,17 +170,19 @@ P-Org-Org (B2B)         → Positionsanalyse_Org_Org.html
 
 Kapabilitetskortet (B2B) → Kapabilitetskortet.html
   Handlingslaget. Diagnose er gratis i de tre ovenstående — handling
-  (rekruttering, udvikling, succession, teamdesign) er her.
+  (rekruttering, udvikling, succession, teamdesign, interview, opslag,
+  skjulte talenter — seks anvendelser i alt) er her.
 ```
 
 **Nøglebeslutning om distributionsrækkefølge:** Kæden er **Problem → P-Organisation → Kapabilitetskort**, ikke P-Individ → P-Organisation → Kapabilitetskort. HR køber ikke fordi en medarbejder delte en personlighedstest — de køber fordi de allerede har et navngivet problem. P-Individ er en parallel, selvstændig brand-awareness-motor, ikke trin 1 i en B2B-salgstragt.
 
 **Distributionsprioritet (kort til langt sigt):** 1) Direkte relationer (Scandi, netværk, møder) → 2) Interne champions (en HR-medarbejder finder værktøjet og overbeviser sin egen organisation) → 3) Organisk inbound (SEO, content) — bevidst nedprioriteret til produktet er bevist i lukkede relationer.
 
-**Kapabilitetskortet — to konkrete fejl rettet:**
-1. Sekvens-guidens fire-trins-fortælling matchede ikke de faktiske seks faner i UI'en — nu synkroniseret 1-til-1 (①ACA-analyse → ②Udvikling → ③Succession & Teamdesign → ④Interviewspørgsmål → ⑤Stillingsopslag → ⑥Skjulte talenter).
-2. Interviewspørgsmålene i Stillingsopslag-fanen var identiske og hardkodede for alle fem arketyper — herunder spørgsmål skrevet til Oversætteren/Systemskaberen-profilen, der blev stillet blindt til Fageksperten-kandidater. Hver arketype har nu sit eget, relevante sæt af tre spørgsmål.
-3. Aktiv fane-tilstand i navigationen var for diskret (kun 2px understregning) — nu markant tydeligere med fuld baggrundsfarve.
+**Kapabilitetskortet — fejl rettet, anvendelser navngivet korrekt:**
+1. Sekvens-guidens fortælling synkroniseret 1-til-1 med de faktiske seks faner (①ACA-analyse → ②Udvikling → ③Succession & Teamdesign → ④Interviewspørgsmål → ⑤Stillingsopslag → ⑥Skjulte talenter). Roadmap'en havde tidligere kun navngivet fire af de seks — rettet.
+2. Interviewspørgsmålene i Stillingsopslag-fanen var identiske og hardkodede for alle fem arketyper. Hver arketype har nu sit eget, relevante sæt af tre spørgsmål.
+3. Aktiv fane-tilstand i navigationen gjort markant tydeligere.
+4. Roadmap'ens Fase 1 brugte fejlagtigt det tag-løse P-Individ-instrument til pilotdata, som derfor ikke kunne have været aggregeret — rettet til P-Org-individ.
 
 **Simvia/PPWR-kilden** er bygget ind to steder med forskellig funktion: 3.7 (empirisk bevis i bogteksten) og `The_connection`-strategidokumentet (kommercielt åbningsargument med hård deadline, målt tal og total markedsudelukkelse som sanktion).
 
@@ -107,7 +197,7 @@ Begge sider er i stedet genbygget fra grunden, **godkendt iterativt mod skærmbi
 - **Forside:** "Adgang distribueres. Fordel koncentreres." + "Hvorfor?" + slutmanifest.
 - **Bagside:** Tre historiske strofer (Rockefeller/jernbanen, Toyota/fabriksgulvet, TSMC/uerstattelig) → "Adgang bliver billigere / Kapabilitet bliver vigtigere / Forskellen vokser" → thesis: *"Dette er ikke en bog om AI. Det er en bog om, hvorfor nogle aktører akkumulerer — mens andre starter forfra."*
 
-**Status:** Filerne er klar i Claude outputs, men er **ikke lagt ind i det lokale repo eller committet endnu** — afventer at Jon henter dem til `C:\Dev\NorthLogicLab` og kører en separat commit.
+**Status:** Filerne er klar, men er **ikke lagt ind i det lokale repo eller committet endnu** — afventer at Jon henter dem til `C:\Dev\NorthLogicLab` og kører en separat commit.
 
 **Bemærkning til senere:** Hjemmesidens marketing-tekst bruger nu tre lidt forskellige formuleringer af samme grundmekanisme på tværs af forskellige flader — "adgang/konvertering" (bogens narrative tekst), "adgang/kapabilitet" (bagside), "adgang/fordel" (forside). Ikke nødvendigvis et problem (marketing-tekst kan tillade sig mere variation end bogens prosa), men værd at tage stilling til bevidst, hvis det skal strammes til ét fast ordpar.
 
@@ -116,19 +206,25 @@ Begge sider er i stedet genbygget fra grunden, **godkendt iterativt mod skærmbi
 ## Næste skridt — prioriteret
 
 ```
-1. Hjemmeside: hent forside/bagside-filer lokalt, læg i repo, commit separat
-2. Akt 1 til 4's "Hvad lederen ser"-bokse og øvrige Akt 2-3 kapitler:
-   gennemgå for evt. resterende, ikke-fundne engelske termer
-   (denne runde fangede det meste, men er ikke 100% udtømmende testet)
-3. Indledningen: bekræftet i god stand, ingen ændring nødvendig
-4. Fitness-analogien fra 3.3: overveje om den skal genbruges som UI-tekst
+1. AFKLAR konflikten om Akt 4's danske titel (se ÅBEN KONFLIKT) før noget
+   andet rører Akt 4 i en commit.
+2. Hjemmeside: hent forside/bagside-filer lokalt, læg i repo, commit separat
+3. Fintune rekrutteringsværktøjerne — bekræft P-Org-individ → P-Org-Org-
+   aggregeringen virker med rigtige data, verificer de seks Kapabilitetskort-
+   anvendelser er konsistente med EPOCH-operationaliseringen fra 21. juni
+4. Resterende engelske termer: "tacit knowledge" i Akt 4 kapitel 10 endnu
+   ikke rettet til "tavs viden", trods at kapitel 9 og resten af bogen er det
+5. Indledningen: bekræftet i god stand, ingen ændring nødvendig
+6. Fitness-analogien fra 3.3: overveje om den skal genbruges som UI-tekst
    i Positionsanalyse-instrumenterne (tidligere besluttet, ikke udført endnu)
-5. Kritisk manuskriptgennemlæsning (Akt 1 primært) — uændret fra sidste
+7. Kritisk manuskriptgennemlæsning (Akt 1 primært) — uændret fra sidste
    session, stadig åbent: falsifikation per case, source hardening,
    "Hvad lederen ser"-bokse, gentagelsesreduktion, "hun" som narrativ tråd
-6. SIMVIA/regulatorisk kæde — PPWR er nu kildehærdet og indsat.
+8. SIMVIA/regulatorisk kæde — PPWR er nu kildehærdet og indsat.
    ESPR/AI Act/CSRD/EUDR-resten af kæden fra The_connection er stadig
    ikke selvstændigt verificeret med samme grundighed
+9. Capability Stack Analysis og Capability Position Scorecard (roadmap v4)
+   er navngivet, ikke designet — ingen konkret produktspecifikation endnu
 ```
 
 ---
@@ -143,6 +239,9 @@ Begge sider er i stedet genbygget fra grunden, **godkendt iterativt mod skærmbi
 - Fem arketyper låst: Systemfølgeren / Fageksperten / Procesbyggeren / Oversætteren / Systemskaberen — "Oversætteren" betegner nu både individets karriereprofil og fjerde arketype-trin; samme ting set fra to vinkler, ikke to begreber
 - Manifest-tone, ikke akademisk — korte deklarative sætninger
 - P-Individ forbliver ren B2C uden organisatorisk salgslogik — B2B-broen ligger i P-Organisation, ikke i P-Individ
+- Skoven/roden er bogens eneste hovedmetafor for akkumulering over tid (21. juni — erstatter en tidligere stigemetafor)
+- "Baner", ikke "Verden A/B/C", er navnet på Akt 5's scenarie-syntese; Verden A/B/C forbliver låst til kapitel 9's individniveau
+- Akt 1's case-rækkefølge er EIC(1)/Rockefeller(2)/Ford(3)/Toyota(4)/Intel(5)/Maersk(6) — gennemført i både samlet bogfil og de seks individuelle case-filer
 
 ---
 
