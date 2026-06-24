@@ -1,6 +1,6 @@
 # SESSIONS — The Engines Behind
 ## Analytisk beslutningslog (kort form)
-### Sidst opdateret: 21. juni 2026
+### Sidst opdateret: 24. juni 2026
 
 ---
 
@@ -9,25 +9,89 @@ Status-først, next-steps-fokuseret. Tidligere historik ligger i tidligere versi
 
 ---
 
-## ÅBEN KONFLIKT — kræver afklaring før næste commit
+## LØST KONFLIKT — Akt 4's danske titel (var åben siden 21. juni)
 
-To parallelle sessioner (20. og 21. juni) har arbejdet på manuskriptet uafhængigt af hinanden, og er ikke afstemt mod samme filversion. Én konkret modsigelse er fundet:
+Konflikten beskrevet nedenfor er løst i sessionen 24. juni. Den faktiske, autoritative fil havde 35 forekomster af engelske akt-titler spredt over to forskellige formater — `## Akt X — [engelsk titel]` i kapiteloverskrifter, og `*Akt X — [engelsk titel]*` i fodnoter og case-filers placeringsreferencer. Begge formater er nu rettet konsekvent til de danske titler (Mønstret, Acceleratoren, Strategisk Positionering, Skrøbelighedsparadokset, Motoren Bag Motoren) på tværs af hele manuskriptet, inklusive de seks Akt 1-case-filer. Rettelsen er committet (`86495a7..9650721`).
 
-**Akt 4's danske titel.** Sessionen 20. juni besluttede og dokumenterede at Akt 4 hedder "Skrøbelighedsparadokset" på dansk (se akt-titel-tabellen nedenfor). Den fil sessionen 21. juni arbejdede fra, har imidlertid 39 forekomster af "Akt 4 — The Fragility Paradox" i de faktiske kapiteloverskrifter, mod kun 1 forekomst af den danske form — og selv akt-toppen er selv splittet ("AKT 4 — SKRØBELIGHEDEN" i forsiden, "The Fragility Paradox" i hvert kapitel derunder). Det er uklart om 20. juni-sessionens beslutning er udført i den faktiske, nyeste fil, eller kun besluttet og ikke gennemført endnu. **Afklar hvilken fil er den autoritative nyeste, før der committes** — ellers risikerer et commit at overskrive den ene sessions arbejde med den andens.
+**Resterende, bevidst urørt:** Akt 4 og Akt 5's titelsider (`# AKT 4 — SKRØBELIGHEDEN` / `## The Fragility Paradox` og samme mønster for Akt 5) har stadig en engelsk undertitel direkte under den danske hovedtitel. Det kan være en bevidst brand-detalje, parallelt med at bogens egen titel ("The Engines Behind") ikke oversættes — ikke rettet ensidigt, afventer en eksplicit beslutning.
+
+Den oprindelige konfliktbeskrivelse, bevaret for historikkens skyld:
+
+> To parallelle sessioner (20. og 21. juni) havde arbejdet på manuskriptet uafhængigt af hinanden, og var ikke afstemt mod samme filversion. Akt 4's danske titel var sat til "Skrøbelighedsparadokset" i én session, mens den faktiske, nyeste fil havde 39 forekomster af den engelske form. Det var uklart hvilken fil var den autoritative nyeste.
 
 ---
 
 ## Status — hvor projektet står
 
-**Manuskript:** Komplet gennemskrivningsrunde udført på tværs af **alle fem akter (42 kapitler inkl. Interlude)** — sprog- og kildehærdning, ikke nyt indhold (session 20. juni). Parallelt: Akt 5's hovedmetafor erstattet (stige → skov/rod), to nye grænser og falsifikationsskærpelse i kapitel 25, EPOCH operationaliseret i rekrutteringskapitlet, Akt 1's case-numre rettet til kanonisk rækkefølge, Akt 4 kapitel 6's overskrift omformuleret (session 21. juni).
+**Manuskript:** Komplet gennemskrivningsrunde udført på tværs af **alle fem akter (42 kapitler inkl. Interlude)** — sprog- og kildehærdning (session 20. juni). Akt 5's hovedmetafor erstattet (stige → skov/rod), EPOCH operationaliseret, Akt 1's case-numre rettet (session 21. juni). Fem nye teoretiske fundamenter integreret med metaforisk sprog — Coase, Ashby, Hicks, I.J. Good/intelligensexplosion, Piketty/Zucman — samt en kritisk faktarettelse af BCG's 10-20-70-regel og en fuld oprydning af engelske akt-titler (session 24. juni).
 
-**Instrumenter:** Positionsanalysen bekræftet uafhængigt af begge sessioner som **tre niveauer plus Kapabilitetskortet** (fire værktøjer i alt) — B2C/B2B-arkitekturen fra 20. juni matcher den filstruktur 21. juni fandt og rettede roadmap'en til (`Positionsanalyse_individ` / `Org_individ` / `Org_Org` / `Kapabilitetskortet`). Kapabilitetskortets seks faner (①ACA-analyse ②Udvikling ③Succession & Teamdesign ④Interviewspørgsmål ⑤Stillingsopslag ⑥Skjulte talenter) bekræftet fra begge sider — 20. juni rettede UI-fejl i fanerne, 21. juni navngav dem korrekt i roadmap'en, som tidligere kun nævnte fire.
+**Instrumenter:** Positionsanalysen bekræftet som **tre niveauer plus Kapabilitetskortet**. Kapabilitetskortets seks faner bekræftet fra begge sider af tidligere sessioner.
 
-**Hjemmeside:** Forside og bagside i manifest-stil designet og godkendt — **ikke committet endnu**, afventer at filerne lægges lokalt (session 20. juni, status uændret).
+**Hjemmeside:** Forside og bagside i manifest-stil designet og godkendt — **ikke committet endnu**, afventer at filerne lægges lokalt (status uændret siden 20. juni).
 
-**Roadmap:** Opdateret til v4 — rettet fra to til tre instrumentniveauer, fra fire til seks Kapabilitetskort-anvendelser, Capability Stack Analysis og Capability Position Scorecard tilføjet som eksplicit udskudte, fremtidige produktmuligheder (session 21. juni).
+**Roadmap:** v4 — tre instrumentniveauer, seks Kapabilitetskort-anvendelser, Capability Stack Analysis og Capability Position Scorecard som udskudte fremtidsmuligheder.
 
-**Git:** Terminologi- og kildehærdningsrunden fra 20. juni er committet og pushet (`4ba62c9..23babcc`). Akt 1 case-rækkefølge, Akt 5 skov-metafor, EPOCH og roadmap v4 fra 21. juni er committet og pushet (`23babcc..03f840f`, samt en opfølgende stratifikations-rettelse `03f840f..5654f2e`).
+**Visualisering:** Tre færdige illustrationer for Akt 4's Fragility Paradox (Robust/Fragil/Antifragil) bygget på Talebs skelnen, med træ/rod-billedsprog konsistent med bogens hovedmetafor — leveret som separate billedfiler, ikke endnu indsat i selve manuskriptteksten.
+
+**Git:** Terminologi- og kildehærdning fra 20. juni committet (`4ba62c9..23babcc`). Akt 1-rækkefølge, skov-metafor, EPOCH, roadmap v4 fra 21. juni committet (`23babcc..03f840f`, opfølgning `03f840f..5654f2e`). Teoretisk styrkelse, BCG-faktarettelse og akt-titel-oprydning fra 24. juni committet og pushet (`86495a7..9650721`).
+
+---
+
+## 2026-06-24 — Teoretisk styrkelse, BCG-faktarettelse, akt-titel-oprydning, Taleb-visualisering
+
+**Det vi løste:**
+
+Fem nye teoretiske fundamenter undersøgt, kritisk vurderet, og integreret med metaforisk sprog i stedet for tør teorihenvisning:
+
+- **Coases teori om virksomhedens grænser (1937)** — hvorfor virksomheder vokser ved at internalisere transaktioner der er dyrere at forhandle på markedet. Integreret i Ford-casen (husstand/restaurant-analogi: lave maden selv vs. bestille take-away) og som kort krydsreference i Organisationen-kapitlets "Tre organisationer, samme Oversætter".
+- **Ashby's lov om nødvendig variation (1956)** — kun variation kan absorbere variation. Integreret i Effektivitetens pris-kapitlet med skib/storm-analogi, og gør "slack er en dæmper"-argumentet til en formel lov i stedet for kun en metafor.
+- **Hicks' induced innovation-hypotese (1932)** — relative faktorpriser retter teknologi mod at erstatte den dyreste faktor. Brugt i Akt 5's double-compounding-hypotese, med en eksplicit, selvkritisk korrektion: den oprindelige anvendelse var for firkantet (ignorerede substitutionselasticitet — høj pris fører kun til erstatning hvor erstatning faktisk er teknisk mulig, ellers fører den til investering i bevarelse).
+- **I.J. Good (1965), Amodei, Kaplan, Bengio** — intelligensexplosion tilføjet som sjette, åben grænsebetingelse i kapitel 25. Kurzweil bevidst afvist som kilde (manglende metodologisk disciplin, historik af ikke-verificerede datoer) efter direkte undersøgelse af kritikken af hans seneste bog.
+- **Piketty (r > g), Zucman (skattely), World Inequality Report 2026** — tilføjet til Rockefeller-casen med konkret, målt accelerationsrate (8% årligt hos milliardærer mod under 4% siden 1990'erne). Syvende grænsebetingelse tilføjet i kapitel 25: vi kan kun måle koncentration der ikke er gjort usynlig. Pikettys kritiker (Góes/IMF) undersøgt grundigt efter direkte spørgsmål om kritikkens berettigelse — fundet at være en reel, teknisk metodeindvending (forkert proxy for kapitalafkast), ikke kun politisk motiveret, men at Zucmans uafhængige skattely-forskning samtidig styrker Pikettys side af striden betydeligt.
+
+**Kritisk faktarettelse, fundet ved sammenligning af to parallelle redaktionsspor:** Organisationen-kapitlet (3.7) i den autoritative arbejdsfil havde stadig den **fejlciterede** udgave af BCG's "70-20-10-regel" stående — en påstået fordeling af virksomheder i tre adoptionslag (70% deployer, 20% integrerer, 10% redesigner). Et uploadet, parallelt redigeret eksemplar af samme kapitel havde den **korrekte** version (verificeret direkte mod BCG.com): en fordeling af *værdi* i en AI-implementering (10% algoritme, 20% teknologi/data, 70% proces/mennesker). De to spor blev sammenlagt — korrekt BCG-fakta fra det ene spor, nyere Coase-tilføjelse og WEF/Cedefop/Simvia-syntese fra det andet, ingen af delene tabt.
+
+**Akt-titel-oprydning, to lag:** Et tidligere forsøg på at rette engelske akt-titler havde kun fanget `## Akt X — [titel]`-formatet i kapiteloverskrifter. En bredere gennemgang fandt 35 yderligere forekomster i `*Akt X — [titel]*`-fodnotestilen (kursiv) og i de seks Akt 1-case-filers `*Placering: Akt X — [titel]*`-linjer. Alle rettet konsekvent. Organisationen-kapitlets nummerering rettet fra "### 2." til "### 3.7 —" efter direkte instruktion.
+
+**Taleb-baseret visualisering, Akt 4 Fragility Paradox:** Iterativt arbejde gennem tre forsøg. Første (fire separate paneler, hver egen akse) afvist: ingen synlig sammenhæng. Andet (ét samlet diagram, normaliseret akse, alle cases lagt på arketype-skygger) afvist: for meget information i ét billede. Tredje, endelige tilgang: tre separate, fokuserede billeder (Robust/Fragil/Antifragil), hver med kurve + træ-illustrationer (krone og synlige rødder under jorden) i stedet for kun abstrakte kurver — konsistent med bogens skov/rod-hovedmetafor. Central pointe indbygget visuelt i Fragil-billedet: det første træ er mærket "så sundt ud — men roden var svag", fordi fragilitet per definition er usynlig før chokket. Antifragil-billedet bærer en eksplicit ærlighedsklausul: ingen af bogens egne cases dokumenterer denne form i Talebs strenge forstand.
+
+**57 stående `-e`-formateringsrester** fundet og fjernet fra hele `book_updated.md` — en gammel artefakt fra tidligere shell-ekstraktioner.
+
+**Beslutninger der ikke kan omgøres:**
+
+Alle akt-titler er danske i både kapiteloverskrifter og fodnoter, konsekvent: Mønstret, Acceleratoren, Strategisk Positionering, Skrøbelighedsparadokset, Motoren Bag Motoren.
+
+Coase, Ashby, Hicks, I.J. Good og Piketty/Zucman behandles alle med samme forsigtighed: mekanisme som forklaringskraft, eksplicit markeret hvor de er omstridt eller ikke direkte udviklet til AI-kontekst.
+
+BCG's 10-20-70 er en fordeling af værdi i en AI-implementering, ikke en fordeling af virksomheder efter modenhed. Denne distinktion må ikke driftes tilbage til den fejlciterede version.
+
+**Forkastede retninger:**
+
+To af tre visualiseringsforsøg for Talebs robust/fragil/antifragil-skelnen — begge forkastet for at presse for meget information ind i ét billede, ikke for faktuel fejl.
+
+En sammensat, vægtet "Fragility Score" (fem dimensioner: koncentration, redundans, koblingsgrad, adaptiv kapacitet, social sammenhængskraft) — forkastet efter kritisk modspil: en vægtet sammensætning af usammenlignelige enheder er pseudo-præcis, samme svaghedstype som allerede identificeret i andre kilders metodefejl.
+
+**Output:**
+
+`THE_ENGINES_BEHIND_KOMPLET.md` (fuld bog, opdateret og oprenset)
+`akt3-kap7-organisationen.md` (rettet nummerering + BCG-fakta)
+`akt4-kap8-effektivitetens-pris.md`, `akt4-kap11-systemskaberen-flaskehals.md` (akt-titel-rettelse)
+`A1_robust.png`, `A2_fragil.png`, `A3_antifragil.png` (Taleb-træ-illustrationer)
+`commit-session.ps1`
+
+**Åbne spørgsmål:**
+
+Akt 4 og Akt 5's titelsider har stadig en engelsk undertitel under den danske hovedtitel ("The Fragility Paradox", "The Engine Behind the Engine") — ikke rettet, afventer eksplicit beslutning om det er en bevidst brand-detalje.
+
+Et fjerde Taleb-visualiseringsbillede (stats-/kontinentniveau, samme træ-skabelon) er ikke bygget.
+
+Integrationstekst der binder de tre færdige Taleb-billeder ind i selve Akt 4-manuskriptet er ikke skrevet — billederne eksisterer som separate filer, ikke som indsat bogindhold.
+
+"Tacit knowledge" i Akt 4 kapitel 10 — status ikke reverificeret i denne session, tidligere flaget som ikke fuldt rettet.
+
+**Næste træk:**
+
+Afklar om Akt 4/5's engelske undertitler skal blive eller rettes. Byg det fjerde Taleb-billede (kontinenter) hvis ønsket. Skriv integrationstekst for Taleb-billederne ind i Akt 4. Fortsæt fintuning af rekrutteringsværktøjerne (uændret fra 21. juni's prioritet).
 
 ---
 
@@ -206,25 +270,31 @@ Begge sider er i stedet genbygget fra grunden, **godkendt iterativt mod skærmbi
 ## Næste skridt — prioriteret
 
 ```
-1. AFKLAR konflikten om Akt 4's danske titel (se ÅBEN KONFLIKT) før noget
-   andet rører Akt 4 i en commit.
+1. Afklar om Akt 4/5's engelske undertitler ("The Fragility Paradox",
+   "The Engine Behind the Engine") skal blive eller rettes til dansk
 2. Hjemmeside: hent forside/bagside-filer lokalt, læg i repo, commit separat
-3. Fintune rekrutteringsværktøjerne — bekræft P-Org-individ → P-Org-Org-
+3. Byg det fjerde Taleb-visualiseringsbillede (stats-/kontinentniveau,
+   samme træ-skabelon som Robust/Fragil/Antifragil)
+4. Skriv integrationstekst der binder de tre færdige Taleb-billeder
+   ind i selve Akt 4-manuskriptet — de eksisterer i dag kun som separate
+   billedfiler, ikke som indsat bogindhold
+5. Fintune rekrutteringsværktøjerne — bekræft P-Org-individ → P-Org-Org-
    aggregeringen virker med rigtige data, verificer de seks Kapabilitetskort-
-   anvendelser er konsistente med EPOCH-operationaliseringen fra 21. juni
-4. Resterende engelske termer: "tacit knowledge" i Akt 4 kapitel 10 endnu
-   ikke rettet til "tavs viden", trods at kapitel 9 og resten af bogen er det
-5. Indledningen: bekræftet i god stand, ingen ændring nødvendig
-6. Fitness-analogien fra 3.3: overveje om den skal genbruges som UI-tekst
+   anvendelser er konsistente med EPOCH-operationaliseringen
+6. Resterende engelske termer: "tacit knowledge" i Akt 4 kapitel 10 — sidst
+   flaget (21. juni) som endnu ikke rettet til "tavs viden", selvom kapitel 9
+   og resten af bogen allerede er det. Ikke reverificeret i denne session.
+7. Indledningen: bekræftet i god stand, ingen ændring nødvendig
+8. Fitness-analogien fra 3.3: overveje om den skal genbruges som UI-tekst
    i Positionsanalyse-instrumenterne (tidligere besluttet, ikke udført endnu)
-7. Kritisk manuskriptgennemlæsning (Akt 1 primært) — uændret fra sidste
-   session, stadig åbent: falsifikation per case, source hardening,
+9. Kritisk manuskriptgennemlæsning (Akt 1 primært) — uændret fra tidligere
+   sessioner, stadig åbent: falsifikation per case, source hardening,
    "Hvad lederen ser"-bokse, gentagelsesreduktion, "hun" som narrativ tråd
-8. SIMVIA/regulatorisk kæde — PPWR er nu kildehærdet og indsat.
-   ESPR/AI Act/CSRD/EUDR-resten af kæden fra The_connection er stadig
-   ikke selvstændigt verificeret med samme grundighed
-9. Capability Stack Analysis og Capability Position Scorecard (roadmap v4)
-   er navngivet, ikke designet — ingen konkret produktspecifikation endnu
+10. SIMVIA/regulatorisk kæde — PPWR er nu kildehærdet og indsat.
+    ESPR/AI Act/CSRD/EUDR-resten af kæden fra The_connection er stadig
+    ikke selvstændigt verificeret med samme grundighed
+11. Capability Stack Analysis og Capability Position Scorecard (roadmap v4)
+    er navngivet, ikke designet — ingen konkret produktspecifikation endnu
 ```
 
 ---
@@ -242,6 +312,9 @@ Begge sider er i stedet genbygget fra grunden, **godkendt iterativt mod skærmbi
 - Skoven/roden er bogens eneste hovedmetafor for akkumulering over tid (21. juni — erstatter en tidligere stigemetafor)
 - "Baner", ikke "Verden A/B/C", er navnet på Akt 5's scenarie-syntese; Verden A/B/C forbliver låst til kapitel 9's individniveau
 - Akt 1's case-rækkefølge er EIC(1)/Rockefeller(2)/Ford(3)/Toyota(4)/Intel(5)/Maersk(6) — gennemført i både samlet bogfil og de seks individuelle case-filer
+- Alle akt-titler er danske, konsekvent, i både kapiteloverskrifter og fodnoter — Mønstret, Acceleratoren, Strategisk Positionering, Skrøbelighedsparadokset, Motoren Bag Motoren (24. juni — løste en tidligere åben konflikt mellem to redaktionsspor)
+- BCG's 10-20-70 er en fordeling af værdi i en AI-implementering (10% algoritme, 20% teknologi/data, 70% proces/mennesker) — ikke en fordeling af virksomheder efter modenhed. Den fejlciterede version må ikke gentages
+- Organisationen-kapitlet hedder 3.7, ikke "2." — Akt 3's bredere nummereringsinkonsistens (blandede stilarter: Kapitel 13/14a/14b, 1c, 3.7, 4, 5) forbliver et åbent, ikke-besluttet spørgsmål
 
 ---
 
